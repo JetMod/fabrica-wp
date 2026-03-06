@@ -806,8 +806,17 @@
 /* Форма регистрации */
 .designers-form {
     padding: 120px 0;
-    background: linear-gradient(135deg, #F5F3EF 0%, #FFFFFF 100%);
-    position: relative;
+}
+
+.designers-form--cta .designers-form__inner {
+    align-items: center;
+}
+
+.designers-form__submit--link {
+    display: inline-flex;
+    text-decoration: none;
+    width: auto;
+    min-width: 200px;
 }
 
 .designers-form__inner {

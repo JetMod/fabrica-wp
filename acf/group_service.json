@@ -1,0 +1,31 @@
+{
+    "key": "group_service",
+    "title": "Услуга — данные карточки",
+    "fields": [
+        {
+            "key": "field_service_image",
+            "label": "Изображение",
+            "name": "service_image",
+            "type": "image",
+            "instructions": "Фото для карточки. Если не указано — используется миниатюра записи.",
+            "return_format": "array",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "fabrica_service"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Поля для карточки услуги. Название, описание и категория — в основных полях записи."
+}

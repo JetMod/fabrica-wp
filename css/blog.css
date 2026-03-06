@@ -354,7 +354,9 @@
     justify-content: center;
 }
 
+.blog-filters__link,
 .blog-filters__button {
+    display: inline-block;
     padding: 12px 24px;
     font-size: 15px;
     font-weight: 500;
@@ -364,14 +366,17 @@
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
+.blog-filters__link:hover,
 .blog-filters__button:hover {
     color: var(--color-dark);
     border-color: var(--color-dark);
     background: rgba(30, 30, 30, 0.02);
 }
 
+.blog-filters__link--active,
 .blog-filters__button--active {
     color: var(--color-white);
     background: var(--color-accent);
@@ -389,6 +394,59 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     margin-bottom: 60px;
+}
+
+.blog-list__empty {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    color: rgba(30, 30, 30, 0.6);
+}
+
+/* Пагинация */
+.blog-list .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(30, 30, 30, 0.08);
+}
+
+.blog-list .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.blog-list .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-dark);
+    background: transparent;
+    border: 2px solid rgba(30, 30, 30, 0.15);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.blog-list .page-numbers:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.blog-list .page-numbers.current {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
 }
 
 /* Карточка статьи */

@@ -1,13 +1,13 @@
 <?php
 /**
- * Шаблон страницы блога (архив записей)
- * Используется когда в Настройки → Чтение указана «Страница записей»
+ * Шаблон архива блога (категории, теги, автор, дата)
+ * Использует тот же layout, что и home.php
  *
  * @package Fabrica
  */
 
 $t = get_template_directory_uri();
-$body_class = 'page-blog';
+$body_class = 'page-blog page-blog-archive';
 ?>
 <?php get_template_part('inc/header-document'); ?>
 <?php get_header(); ?>

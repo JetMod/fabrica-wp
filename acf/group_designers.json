@@ -1,0 +1,316 @@
+{
+    "key": "group_designers",
+    "title": "Страница «Дизайнерам»",
+    "fields": [
+        {
+            "key": "field_designers_hero_badge",
+            "label": "Hero: Бейдж",
+            "name": "designers_hero_badge",
+            "type": "text",
+            "default_value": "Партнерство"
+        },
+        {
+            "key": "field_designers_hero_title_1",
+            "label": "Hero: Заголовок (строка 1)",
+            "name": "designers_hero_title_1",
+            "type": "text",
+            "default_value": "Создавайте"
+        },
+        {
+            "key": "field_designers_hero_title_2",
+            "label": "Hero: Заголовок (строка 2, акцент)",
+            "name": "designers_hero_title_2",
+            "type": "text",
+            "default_value": "вместе с нами"
+        },
+        {
+            "key": "field_designers_hero_subtitle",
+            "label": "Hero: Подзаголовок",
+            "name": "designers_hero_subtitle",
+            "type": "textarea",
+            "default_value": "Выгодные условия сотрудничества для дизайнеров интерьеров. Премиальная мебель, индивидуальные решения и профессиональная поддержка на каждом этапе проекта."
+        },
+        {
+            "key": "field_designers_hero_btn_primary_text",
+            "label": "Hero: Текст кнопки «Стать партнером»",
+            "name": "designers_hero_btn_primary_text",
+            "type": "text",
+            "default_value": "Стать партнером"
+        },
+        {
+            "key": "field_designers_hero_btn_primary_url",
+            "label": "Hero: Ссылка кнопки (tel: или страница)",
+            "name": "designers_hero_btn_primary_url",
+            "type": "url",
+            "default_value": "tel:+79785977442"
+        },
+        {
+            "key": "field_designers_hero_btn_secondary_text",
+            "label": "Hero: Текст кнопки «Узнать больше»",
+            "name": "designers_hero_btn_secondary_text",
+            "type": "text",
+            "default_value": "Узнать больше"
+        },
+        {
+            "key": "field_designers_hero_image",
+            "label": "Hero: Изображение",
+            "name": "designers_hero_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_designers_hero_stats",
+            "label": "Hero: Статистика (3 блока)",
+            "name": "designers_hero_stats",
+            "type": "repeater",
+            "min": 3,
+            "max": 3,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_designers_stat_number",
+                    "label": "Число",
+                    "name": "stat_number",
+                    "type": "text",
+                    "default_value": "200+"
+                },
+                {
+                    "key": "field_designers_stat_label",
+                    "label": "Подпись",
+                    "name": "stat_label",
+                    "type": "text",
+                    "default_value": "дизайнеров-партнеров"
+                }
+            ]
+        },
+        {
+            "key": "field_designers_benefits_badge",
+            "label": "Преимущества: Бейдж",
+            "name": "designers_benefits_badge",
+            "type": "text",
+            "default_value": "Преимущества"
+        },
+        {
+            "key": "field_designers_benefits_title",
+            "label": "Преимущества: Заголовок",
+            "name": "designers_benefits_title",
+            "type": "text",
+            "default_value": "Почему дизайнеры выбирают нас"
+        },
+        {
+            "key": "field_designers_benefits_subtitle",
+            "label": "Преимущества: Подзаголовок",
+            "name": "designers_benefits_subtitle",
+            "type": "text",
+            "default_value": "Мы создали экосистему для успешного сотрудничества"
+        },
+        {
+            "key": "field_designers_benefits_items",
+            "label": "Преимущества: Карточки (6 шт)",
+            "name": "designers_benefits_items",
+            "type": "repeater",
+            "min": 6,
+            "max": 6,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_designers_benefit_title",
+                    "label": "Заголовок",
+                    "name": "benefit_title",
+                    "type": "text",
+                    "default_value": "Выгодные цены"
+                },
+                {
+                    "key": "field_designers_benefit_text",
+                    "label": "Текст",
+                    "name": "benefit_text",
+                    "type": "textarea",
+                    "default_value": "Специальные партнерские цены до 15% ниже розничных. Прозрачное ценообразование без скрытых комиссий."
+                }
+            ]
+        },
+        {
+            "key": "field_designers_process_badge",
+            "label": "Процесс: Бейдж",
+            "name": "designers_process_badge",
+            "type": "text",
+            "default_value": "Как это работает"
+        },
+        {
+            "key": "field_designers_process_title",
+            "label": "Процесс: Заголовок",
+            "name": "designers_process_title",
+            "type": "text",
+            "default_value": "Процесс сотрудничества"
+        },
+        {
+            "key": "field_designers_process_subtitle",
+            "label": "Процесс: Подзаголовок",
+            "name": "designers_process_subtitle",
+            "type": "text",
+            "default_value": "Простой и прозрачный процесс от заявки до реализации проекта"
+        },
+        {
+            "key": "field_designers_process_steps",
+            "label": "Процесс: Шаги (5 шт)",
+            "name": "designers_process_steps",
+            "type": "repeater",
+            "min": 5,
+            "max": 5,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_designers_step_number",
+                    "label": "Номер (01, 02...)",
+                    "name": "step_number",
+                    "type": "text",
+                    "default_value": "01"
+                },
+                {
+                    "key": "field_designers_step_title",
+                    "label": "Заголовок",
+                    "name": "step_title",
+                    "type": "text",
+                    "default_value": "Регистрация"
+                },
+                {
+                    "key": "field_designers_step_text",
+                    "label": "Текст",
+                    "name": "step_text",
+                    "type": "textarea",
+                    "default_value": "Заполните форму заявки на партнерство. Мы рассмотрим вашу заявку в течение 24 часов."
+                }
+            ]
+        },
+        {
+            "key": "field_designers_conditions_badge",
+            "label": "Условия: Бейдж",
+            "name": "designers_conditions_badge",
+            "type": "text",
+            "default_value": "Условия"
+        },
+        {
+            "key": "field_designers_conditions_title",
+            "label": "Условия: Заголовок",
+            "name": "designers_conditions_title",
+            "type": "text",
+            "default_value": "Условия партнерства"
+        },
+        {
+            "key": "field_designers_conditions_text",
+            "label": "Условия: Описание",
+            "name": "designers_conditions_text",
+            "type": "textarea",
+            "default_value": "Мы предлагаем гибкие условия сотрудничества, адаптированные под разные типы проектов и объемы заказов."
+        },
+        {
+            "key": "field_designers_conditions_items",
+            "label": "Условия: Список (4 пункта)",
+            "name": "designers_conditions_items",
+            "type": "repeater",
+            "min": 4,
+            "max": 4,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_designers_condition_title",
+                    "label": "Заголовок",
+                    "name": "condition_title",
+                    "type": "text",
+                    "default_value": "Скидки"
+                },
+                {
+                    "key": "field_designers_condition_text",
+                    "label": "Текст",
+                    "name": "condition_text",
+                    "type": "text",
+                    "default_value": "В зависимости от объема заказов и статуса партнера"
+                }
+            ]
+        },
+        {
+            "key": "field_designers_conditions_card_min",
+            "label": "Условия: Карточка — мин. заказ",
+            "name": "designers_conditions_card_min",
+            "type": "text",
+            "default_value": "от 50 000 ₽"
+        },
+        {
+            "key": "field_designers_conditions_card_discount",
+            "label": "Условия: Карточка — скидки",
+            "name": "designers_conditions_card_discount",
+            "type": "text",
+            "default_value": "от 15%"
+        },
+        {
+            "key": "field_designers_cta_badge",
+            "label": "CTA: Бейдж",
+            "name": "designers_cta_badge",
+            "type": "text",
+            "default_value": "Регистрация"
+        },
+        {
+            "key": "field_designers_cta_title",
+            "label": "CTA: Заголовок",
+            "name": "designers_cta_title",
+            "type": "text",
+            "default_value": "Станьте нашим партнером"
+        },
+        {
+            "key": "field_designers_cta_subtitle",
+            "label": "CTA: Подзаголовок",
+            "name": "designers_cta_subtitle",
+            "type": "text",
+            "default_value": "Свяжитесь с нами для обсуждения условий сотрудничества"
+        },
+        {
+            "key": "field_designers_cta_features",
+            "label": "CTA: Пункты (3 шт)",
+            "name": "designers_cta_features",
+            "type": "repeater",
+            "min": 3,
+            "max": 3,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_designers_cta_feature_text",
+                    "label": "Текст",
+                    "name": "cta_feature_text",
+                    "type": "text",
+                    "default_value": "Быстрое рассмотрение заявки"
+                }
+            ]
+        },
+        {
+            "key": "field_designers_cta_btn_text",
+            "label": "CTA: Текст кнопки",
+            "name": "designers_cta_btn_text",
+            "type": "text",
+            "default_value": "Позвонить"
+        },
+        {
+            "key": "field_designers_cta_btn_url",
+            "label": "CTA: Ссылка кнопки",
+            "name": "designers_cta_btn_url",
+            "type": "url",
+            "default_value": "tel:+79785977442"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-designers.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Поля для страницы «Дизайнерам»"
+}

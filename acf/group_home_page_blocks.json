@@ -1,0 +1,787 @@
+{
+    "key": "group_home_page_blocks",
+    "title": "Главная страница — первые 3 блока",
+    "fields": [
+        {
+            "key": "field_tab_video_hero",
+            "label": "Блок 1: Video Hero",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "placement": "top"
+        },
+        {
+            "key": "field_video_hero_video",
+            "label": "Видео",
+            "name": "video_hero_video",
+            "type": "file",
+            "instructions": "Загрузите видео для фона. Рекомендуется MP4 или MOV.",
+            "required": 0,
+            "return_format": "url",
+            "library": "all",
+            "mime_types": "mp4,mov,webm",
+            "default_value": ""
+        },
+        {
+            "key": "field_video_hero_tagline",
+            "label": "Слоган (первая часть)",
+            "name": "video_hero_tagline",
+            "type": "text",
+            "instructions": "Текст до выделенного слова",
+            "default_value": "Фабрика"
+        },
+        {
+            "key": "field_video_hero_tagline_accent",
+            "label": "Слоган (выделенная часть)",
+            "name": "video_hero_tagline_accent",
+            "type": "text",
+            "instructions": "Слово с акцентом",
+            "default_value": "интерьеров"
+        },
+        {
+            "key": "field_video_hero_title",
+            "label": "Заголовок",
+            "name": "video_hero_title",
+            "type": "text",
+            "default_value": "Дизайнерская мебель в Крыму"
+        },
+        {
+            "key": "field_video_hero_text",
+            "label": "Текст",
+            "name": "video_hero_text",
+            "type": "textarea",
+            "default_value": "Мебель на заказ и интерьеры под ключ. Отражаем ваш вкус."
+        },
+        {
+            "key": "field_video_hero_button_text",
+            "label": "Текст кнопки",
+            "name": "video_hero_button_text",
+            "type": "text",
+            "default_value": "В каталог"
+        },
+        {
+            "key": "field_video_hero_button_url",
+            "label": "Ссылка кнопки",
+            "name": "video_hero_button_url",
+            "type": "url",
+            "instructions": "Произвольный URL или выберите страницу позже",
+            "default_value": ""
+        },
+        {
+            "key": "field_video_hero_scroll_hint",
+            "label": "Текст подсказки «Листайте вниз»",
+            "name": "video_hero_scroll_hint",
+            "type": "text",
+            "default_value": "Листайте вниз"
+        },
+        {
+            "key": "field_tab_hero_promo",
+            "label": "Блок 2: Hero Promo (слайдер)",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hero_promo_label",
+            "label": "Метка блока",
+            "name": "hero_promo_label",
+            "type": "text",
+            "default_value": "Акции и новинки"
+        },
+        {
+            "key": "field_hero_promo_title",
+            "label": "Заголовок блока",
+            "name": "hero_promo_title",
+            "type": "text",
+            "default_value": "Специальные предложения"
+        },
+        {
+            "key": "field_hero_promo_subtitle",
+            "label": "Подзаголовок блока",
+            "name": "hero_promo_subtitle",
+            "type": "text",
+            "default_value": "Выгодные условия на мебель и интерьерные решения"
+        },
+        {
+            "key": "field_hero_promo_slides",
+            "label": "Слайды",
+            "name": "hero_promo_slides",
+            "type": "repeater",
+            "instructions": "Добавляйте слайды. Снимите галочку «Показать» чтобы скрыть слайд.",
+            "layout": "block",
+            "button_label": "Добавить слайд",
+            "sub_fields": [
+                {
+                    "key": "field_hero_slide_active",
+                    "label": "Показать слайд",
+                    "name": "slide_active",
+                    "type": "true_false",
+                    "instructions": "Снимите галочку чтобы скрыть слайд",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Вкл",
+                    "ui_off_text": "Выкл"
+                },
+                {
+                    "key": "field_hero_slide_title",
+                    "label": "Заголовок слайда",
+                    "name": "slide_title",
+                    "type": "text",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_hero_slide_subtitle",
+                    "label": "Подзаголовок слайда",
+                    "name": "slide_subtitle",
+                    "type": "text",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_hero_slide_button_text",
+                    "label": "Текст кнопки",
+                    "name": "slide_button_text",
+                    "type": "text",
+                    "default_value": "В КАТАЛОГ"
+                },
+                {
+                    "key": "field_hero_slide_button_url",
+                    "label": "Ссылка кнопки",
+                    "name": "slide_button_url",
+                    "type": "url",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_hero_slide_image",
+                    "label": "Изображение",
+                    "name": "slide_image",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "medium"
+                }
+            ]
+        },
+        {
+            "key": "field_tab_about",
+            "label": "Блок 3: О компании",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_about_title",
+            "label": "Заголовок",
+            "name": "about_title",
+            "type": "text",
+            "default_value": "ФАБРИКА интерьеров"
+        },
+        {
+            "key": "field_about_subtitle",
+            "label": "Подзаголовок",
+            "name": "about_subtitle",
+            "type": "text",
+            "default_value": "Производство полного цикла"
+        },
+        {
+            "key": "field_about_text_1",
+            "label": "Текст (абзац 1)",
+            "name": "about_text_1",
+            "type": "textarea",
+            "default_value": "Мы создаём интерьерные решения под ключ — от проектирования до монтажа. Работаем с домами, отелями, ресторанами и общественными пространствами."
+        },
+        {
+            "key": "field_about_text_2",
+            "label": "Текст (абзац 2)",
+            "name": "about_text_2",
+            "type": "textarea",
+            "default_value": "Предлагаем не просто мебель, а продуманные до деталей комплексные решения: проектирование, производство, отделку, индивидуальные элементы и монтаж."
+        },
+        {
+            "key": "field_about_button_text",
+            "label": "Текст кнопки",
+            "name": "about_button_text",
+            "type": "text",
+            "default_value": "Узнать о производстве"
+        },
+        {
+            "key": "field_about_button_url",
+            "label": "Ссылка кнопки",
+            "name": "about_button_url",
+            "type": "url",
+            "default_value": ""
+        },
+        {
+            "key": "field_about_image",
+            "label": "Изображение",
+            "name": "about_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_about_values_title",
+            "label": "Заголовок блока преимуществ",
+            "name": "about_values_title",
+            "type": "text",
+            "default_value": "Наши приемущества"
+        },
+        {
+            "key": "field_about_value_1_icon",
+            "label": "Преимущество 1 — SVG иконка",
+            "name": "about_value_1_icon",
+            "type": "textarea",
+            "instructions": "Вставьте SVG код целиком (с тегом svg)",
+            "default_value": "<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 5L25 15L35 17L27.5 24.5L29 35L20 30L11 35L12.5 24.5L5 17L15 15L20 5Z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+        },
+        {
+            "key": "field_about_value_1_name",
+            "label": "Преимущество 1 — название",
+            "name": "about_value_1_name",
+            "type": "text",
+            "default_value": "Качество"
+        },
+        {
+            "key": "field_about_value_1_text",
+            "label": "Преимущество 1 — описание",
+            "name": "about_value_1_text",
+            "type": "textarea",
+            "default_value": "Используем лучшие материалы и технологии производства"
+        },
+        {
+            "key": "field_about_value_2_icon",
+            "label": "Преимущество 2 — SVG иконка",
+            "name": "about_value_2_icon",
+            "type": "textarea",
+            "default_value": "<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M5 20H15M25 20H35M20 5V15M20 25V35\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><circle cx=\"20\" cy=\"20\" r=\"12\" stroke=\"currentColor\" stroke-width=\"2\"/></svg>"
+        },
+        {
+            "key": "field_about_value_2_name",
+            "label": "Преимущество 2 — название",
+            "name": "about_value_2_name",
+            "type": "text",
+            "default_value": "Дизайн"
+        },
+        {
+            "key": "field_about_value_2_text",
+            "label": "Преимущество 2 — описание",
+            "name": "about_value_2_text",
+            "type": "textarea",
+            "default_value": "Современные решения и авторский подход к каждому проекту"
+        },
+        {
+            "key": "field_about_value_3_icon",
+            "label": "Преимущество 3 — SVG иконка",
+            "name": "about_value_3_icon",
+            "type": "textarea",
+            "default_value": "<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 35C28.2843 35 35 28.2843 35 20C35 11.7157 28.2843 5 20 5C11.7157 5 5 11.7157 5 20C5 28.2843 11.7157 35 20 35Z\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"M20 12V20L26 26\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>"
+        },
+        {
+            "key": "field_about_value_3_name",
+            "label": "Преимущество 3 — название",
+            "name": "about_value_3_name",
+            "type": "text",
+            "default_value": "Индивидуальность"
+        },
+        {
+            "key": "field_about_value_3_text",
+            "label": "Преимущество 3 — описание",
+            "name": "about_value_3_text",
+            "type": "textarea",
+            "default_value": "Создаём уникальные решения под задачи клиента"
+        },
+        {
+            "key": "field_about_value_4_icon",
+            "label": "Преимущество 4 — SVG иконка",
+            "name": "about_value_4_icon",
+            "type": "textarea",
+            "default_value": "<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 20L15 28L33 10\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
+        },
+        {
+            "key": "field_about_value_4_name",
+            "label": "Преимущество 4 — название",
+            "name": "about_value_4_name",
+            "type": "text",
+            "default_value": "Ответственность"
+        },
+        {
+            "key": "field_about_value_4_text",
+            "label": "Преимущество 4 — описание",
+            "name": "about_value_4_text",
+            "type": "textarea",
+            "default_value": "Берём ответственность за результат от начала до конца"
+        },
+        {
+            "key": "field_tab_featured_products",
+            "label": "Блок 4: Скидки и новинки",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_featured_tab_sale_label",
+            "label": "Название таба «Скидки»",
+            "name": "featured_tab_sale_label",
+            "type": "text",
+            "instructions": "Текст первой вкладки",
+            "default_value": "Скидки и акции"
+        },
+        {
+            "key": "field_featured_products_sale",
+            "label": "Товары для таба «Скидки и акции»",
+            "name": "featured_products_sale",
+            "type": "relationship",
+            "instructions": "Выберите товары для отображения. Порядок можно менять перетаскиванием.",
+            "post_type": ["fabrica_product"],
+            "return_format": "id",
+            "min": 0,
+            "max": 0,
+            "filters": ["search", "post_type"],
+            "elements": ""
+        },
+        {
+            "key": "field_featured_tab_new_label",
+            "label": "Название таба «Новинки»",
+            "name": "featured_tab_new_label",
+            "type": "text",
+            "instructions": "Текст второй вкладки",
+            "default_value": "Новинки"
+        },
+        {
+            "key": "field_featured_products_new",
+            "label": "Товары для таба «Новинки»",
+            "name": "featured_products_new",
+            "type": "relationship",
+            "instructions": "Выберите товары для отображения. Порядок можно менять перетаскиванием.",
+            "post_type": ["fabrica_product"],
+            "return_format": "id",
+            "min": 0,
+            "max": 0,
+            "filters": ["search", "post_type"],
+            "elements": ""
+        },
+        {
+            "key": "field_featured_view_all_text",
+            "label": "Текст ссылки «Смотреть всё»",
+            "name": "featured_view_all_text",
+            "type": "text",
+            "default_value": "Смотреть всё"
+        },
+        {
+            "key": "field_featured_view_all_url",
+            "label": "Ссылка «Смотреть всё»",
+            "name": "featured_view_all_url",
+            "type": "url",
+            "instructions": "Ссылка на страницу каталога",
+            "default_value": ""
+        },
+        {
+            "key": "field_tab_catalog",
+            "label": "Блок 5: Каталог",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_catalog_title",
+            "label": "Заголовок блока",
+            "name": "catalog_title",
+            "type": "text",
+            "default_value": "Каталог"
+        },
+        {
+            "key": "field_catalog_subtitle",
+            "label": "Подзаголовок блока",
+            "name": "catalog_subtitle",
+            "type": "text",
+            "default_value": "Откройте для себя мир премиальных интерьерных решений"
+        },
+        {
+            "key": "field_catalog_cards",
+            "label": "Карточки каталога",
+            "name": "catalog_cards",
+            "type": "repeater",
+            "instructions": "Ровно 6 карточек. Порядок определяет нумерацию (01, 02...).",
+            "layout": "block",
+            "min": 6,
+            "max": 6,
+            "button_label": "Карточка",
+            "sub_fields": [
+                {
+                    "key": "field_catalog_card_image",
+                    "label": "Изображение",
+                    "name": "card_image",
+                    "type": "image",
+                    "return_format": "array",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_catalog_card_title",
+                    "label": "Название",
+                    "name": "card_title",
+                    "type": "text",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_catalog_card_text",
+                    "label": "Описание",
+                    "name": "card_text",
+                    "type": "text",
+                    "default_value": ""
+                },
+                {
+                    "key": "field_catalog_card_url",
+                    "label": "Ссылка",
+                    "name": "card_url",
+                    "type": "url",
+                    "instructions": "Куда ведёт карточка (страница товаров/категории)",
+                    "default_value": ""
+                }
+            ]
+        },
+        {
+            "key": "field_catalog_view_all_text",
+            "label": "Текст кнопки «Посмотреть весь каталог»",
+            "name": "catalog_view_all_text",
+            "type": "text",
+            "default_value": "Посмотреть весь каталог"
+        },
+        {
+            "key": "field_catalog_view_all_url",
+            "label": "Ссылка кнопки «Посмотреть весь каталог»",
+            "name": "catalog_view_all_url",
+            "type": "url",
+            "instructions": "Страница каталога со всеми категориями",
+            "default_value": ""
+        },
+        {
+            "key": "field_tab_services",
+            "label": "Блок 6: Услуги",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_services_title",
+            "label": "Заголовок блока",
+            "name": "services_title",
+            "type": "text",
+            "default_value": "Фабрика также предоставляет услуги"
+        },
+        {
+            "key": "field_services_subtitle",
+            "label": "Подзаголовок блока",
+            "name": "services_subtitle",
+            "type": "text",
+            "default_value": "Комплексный подход к реализации ваших интерьерных проектов"
+        },
+        {
+            "key": "field_services_page_url",
+            "label": "Ссылка на страницу «Услуги»",
+            "name": "services_page_url",
+            "type": "url",
+            "instructions": "Куда ведёт ссылка «Услуги» в шапке и кнопка в блоке",
+            "default_value": ""
+        },
+        {
+            "key": "field_featured_services",
+            "label": "Услуги для слайдера",
+            "name": "featured_services",
+            "type": "relationship",
+            "instructions": "Выберите услуги для отображения в слайдере. Все карточки — ссылки на страницы услуг.",
+            "post_type": ["fabrica_service"],
+            "return_format": "id",
+            "min": 0,
+            "max": 0,
+            "filters": ["search", "post_type"],
+            "elements": ""
+        },
+        {
+            "key": "field_services_footer_text",
+            "label": "Текст кнопки внизу блока",
+            "name": "services_footer_text",
+            "type": "text",
+            "default_value": "Обсудить проект"
+        },
+        {
+            "key": "field_services_footer_url",
+            "label": "Ссылка кнопки внизу блока",
+            "name": "services_footer_url",
+            "type": "url",
+            "instructions": "Например: #contact-form или страница контактов",
+            "default_value": ""
+        },
+        {
+            "key": "field_tab_projects",
+            "label": "Блок 7: Проекты",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_projects_title",
+            "label": "Заголовок блока",
+            "name": "projects_title",
+            "type": "text",
+            "default_value": "Наши проекты"
+        },
+        {
+            "key": "field_projects_subtitle",
+            "label": "Подзаголовок блока",
+            "name": "projects_subtitle",
+            "type": "text",
+            "default_value": "Реализованные интерьерные решения для разных пространств"
+        },
+        {
+            "key": "field_featured_projects",
+            "label": "Проекты для главной",
+            "name": "featured_projects",
+            "type": "relationship",
+            "instructions": "Выберите проекты для отображения. Все карточки — ссылки на страницы проектов.",
+            "post_type": ["fabrica_project"],
+            "return_format": "id",
+            "min": 0,
+            "max": 0,
+            "filters": ["search", "post_type"],
+            "elements": ""
+        },
+        {
+            "key": "field_projects_view_all_text",
+            "label": "Текст кнопки «Смотреть все»",
+            "name": "projects_view_all_text",
+            "type": "text",
+            "default_value": "Смотреть все проекты"
+        },
+        {
+            "key": "field_projects_view_all_url",
+            "label": "Ссылка кнопки «Смотреть все»",
+            "name": "projects_view_all_url",
+            "type": "url",
+            "instructions": "Страница со всеми проектами",
+            "default_value": ""
+        },
+        {
+            "key": "field_tab_wholesale",
+            "label": "Блок 8: Оптовые клиенты и дизайнеры",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_wholesale_show",
+            "label": "Показать блок",
+            "name": "wholesale_show",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_wholesale_image",
+            "label": "Изображение",
+            "name": "wholesale_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_wholesale_image_alt",
+            "label": "Alt изображения",
+            "name": "wholesale_image_alt",
+            "type": "text",
+            "instructions": "Описание для доступности. Если пусто — используется заголовок блока."
+        },
+        {
+            "key": "field_wholesale_show_badge",
+            "label": "Показать бейдж",
+            "name": "wholesale_show_badge",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_wholesale_badge",
+            "label": "Бейдж (над изображением)",
+            "name": "wholesale_badge",
+            "type": "text",
+            "default_value": "ПРЕМИУМ"
+        },
+        {
+            "key": "field_wholesale_title",
+            "label": "Заголовок",
+            "name": "wholesale_title",
+            "type": "text",
+            "default_value": "Для оптовых клиентов и дизайнеров"
+        },
+        {
+            "key": "field_wholesale_subtitle",
+            "label": "Подзаголовок",
+            "name": "wholesale_subtitle",
+            "type": "text",
+            "instructions": "Необязательно. Отображается под заголовком."
+        },
+        {
+            "key": "field_wholesale_description",
+            "label": "Описание",
+            "name": "wholesale_description",
+            "type": "textarea",
+            "default_value": "Мы тщательно анализируем мебельный рынок и точно знаем, что нужно современному покупателю. Создаём интерьерные решения, которые выбирают профессионалы."
+        },
+        {
+            "key": "field_wholesale_features",
+            "label": "Преимущества (4 карточки)",
+            "name": "wholesale_features",
+            "type": "repeater",
+            "min": 4,
+            "max": 4,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_wholesale_feature_icon",
+                    "label": "Иконка",
+                    "name": "feature_icon",
+                    "type": "select",
+                    "choices": {
+                        "box": "Коробка / каталог",
+                        "factory": "Производство",
+                        "team": "Команда",
+                        "percent": "Персональные условия"
+                    },
+                    "default_value": "box"
+                },
+                {
+                    "key": "field_wholesale_feature_title",
+                    "label": "Заголовок",
+                    "name": "feature_title",
+                    "type": "text",
+                    "default_value": "1500+ товаров"
+                },
+                {
+                    "key": "field_wholesale_feature_text",
+                    "label": "Текст",
+                    "name": "feature_text",
+                    "type": "text",
+                    "default_value": "Широкий ассортимент в каталоге"
+                }
+            ]
+        },
+        {
+            "key": "field_wholesale_cta_text",
+            "label": "Текст основной кнопки",
+            "name": "wholesale_cta_text",
+            "type": "text",
+            "default_value": "Условия для сотрудничества"
+        },
+        {
+            "key": "field_wholesale_cta_url",
+            "label": "Ссылка основной кнопки",
+            "name": "wholesale_cta_url",
+            "type": "url",
+            "instructions": "Страница «Дизайнерам» или «Бизнесу»",
+            "default_value": ""
+        },
+        {
+            "key": "field_wholesale_cta2_show",
+            "label": "Показать вторую кнопку",
+            "name": "wholesale_cta2_show",
+            "type": "true_false",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_wholesale_cta2_text",
+            "label": "Текст второй кнопки",
+            "name": "wholesale_cta2_text",
+            "type": "text",
+            "default_value": "Позвонить",
+            "conditional_logic": [
+                [{"field": "field_wholesale_cta2_show", "operator": "==", "value": "1"}]
+            ]
+        },
+        {
+            "key": "field_wholesale_cta2_url",
+            "label": "Ссылка второй кнопки",
+            "name": "wholesale_cta2_url",
+            "type": "url",
+            "default_value": "tel:+79785977442",
+            "conditional_logic": [
+                [{"field": "field_wholesale_cta2_show", "operator": "==", "value": "1"}]
+            ]
+        },
+        {
+            "key": "field_tab_blog",
+            "label": "Блок 9: Блог",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_blog_show",
+            "label": "Показать блок",
+            "name": "blog_show",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_blog_title",
+            "label": "Заголовок блока",
+            "name": "blog_title",
+            "type": "text",
+            "default_value": "Вам будет интересно"
+        },
+        {
+            "key": "field_blog_view_all_text",
+            "label": "Текст ссылки «Все статьи»",
+            "name": "blog_view_all_text",
+            "type": "text",
+            "default_value": "Все статьи"
+        },
+        {
+            "key": "field_blog_view_all_url",
+            "label": "Ссылка «Все статьи»",
+            "name": "blog_view_all_url",
+            "type": "url",
+            "instructions": "Страница блога. Если пусто — используется страница записей из Настройки → Чтение."
+        },
+        {
+            "key": "field_blog_posts_count",
+            "label": "Количество статей на главной",
+            "name": "blog_posts_count",
+            "type": "number",
+            "min": 1,
+            "max": 12,
+            "default_value": 4,
+            "instructions": "Сколько последних статей показывать (1–12)"
+        },
+        {
+            "key": "field_blog_featured_posts",
+            "label": "Выбранные статьи (опционально)",
+            "name": "blog_featured_posts",
+            "type": "relationship",
+            "instructions": "Если выбраны — показываются они вместо последних статей. Если пусто — показываются последние опубликованные.",
+            "post_type": ["post"],
+            "return_format": "id",
+            "min": 0,
+            "max": 12,
+            "filters": ["search", "post_type"]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-home"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Поля для первых 3 блоков главной страницы: Video Hero, Hero Promo, О компании",
+    "show_in_rest": 0
+}

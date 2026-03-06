@@ -30,14 +30,45 @@
  
  <?php get_header(); ?>
 
+<?php
+// ACF Options для главной страницы (с fallback на значения по умолчанию)
+$opt = function($key, $default = '') {
+    if (!function_exists('get_field')) return $default;
+    $v = get_field($key, 'option');
+    return ($v !== '' && $v !== null && $v !== false) ? $v : $default;
+};
+$hero_slides_default = array(
+    array('slide_active' => true, 'slide_title' => 'СКИДКА НА КОМПЛЕКТ СТОЛ + СТУЛЬЯ', 'slide_subtitle' => 'Акция распространяется на столы без знака «финальная цена»', 'slide_button_text' => 'В КАТАЛОГ', 'slide_button_url' => '', 'slide_image' => array('url' => $t . '/img/16.webp')),
+    array('slide_active' => true, 'slide_title' => 'СТУЛЬЯ GALLOTI', 'slide_subtitle' => 'Итальянская элегантность в вашем интерьере ♡', 'slide_button_text' => 'В КАТАЛОГ', 'slide_button_url' => '', 'slide_image' => array('url' => $t . '/img/17.webp')),
+    array('slide_active' => true, 'slide_title' => 'СТУЛ MORGAN', 'slide_subtitle' => 'Идеальное решение для вашего интерьера ♡', 'slide_button_text' => 'В МАГАЗИН', 'slide_button_url' => '', 'slide_image' => array('url' => $t . '/img/18.webp')),
+    array('slide_active' => true, 'slide_title' => 'КОЛЛЕКЦИЯ SOFIA И СТОЛ ORION', 'slide_subtitle' => 'Коллекция Sofia в новом цвете — творчество и новая распашной круглый стол Orion ♡', 'slide_button_text' => 'В МАГАЗИН', 'slide_button_url' => '', 'slide_image' => array('url' => $t . '/img/19.webp')),
+    array('slide_active' => true, 'slide_title' => 'ДИВАН CAMPO', 'slide_subtitle' => 'От итальянского конструктора Giovanni Lella ♡', 'slide_button_text' => 'В МАГАЗИН', 'slide_button_url' => '', 'slide_image' => array('url' => $t . '/img/20.webp')),
+);
+$hero_slides_raw = function_exists('get_field') ? get_field('hero_promo_slides', 'option') : array();
+$hero_slides = !empty($hero_slides_raw) ? $hero_slides_raw : $hero_slides_default;
+$hero_slides = array_values(array_filter($hero_slides, function($s) { return !empty($s['slide_active']); }));
+if (empty($hero_slides)) $hero_slides = $hero_slides_default;
+?>
+
     <!-- Основной контент -->
     <main class="main" role="main" id="main-content">
         <!-- Видео Hero — полноэкранное видео -->
+        <?php
+        $vh_video = $opt('video_hero_video', '');
+        $vh_video_src = $vh_video ? esc_url($vh_video) : esc_url($t . '/video/hero1.mov');
+        $vh_tagline = $opt('video_hero_tagline', 'Фабрика');
+        $vh_tagline_accent = $opt('video_hero_tagline_accent', 'интерьеров');
+        $vh_title = $opt('video_hero_title', 'Дизайнерская мебель в Крыму');
+        $vh_text = $opt('video_hero_text', 'Мебель на заказ и интерьеры под ключ. Отражаем ваш вкус.');
+        $vh_btn_text = $opt('video_hero_button_text', 'В каталог');
+        $vh_btn_url = $opt('video_hero_button_url', '#');
+        $vh_scroll = $opt('video_hero_scroll_hint', 'Листайте вниз');
+        ?>
         <section class="video-hero" aria-label="Видео ФАБРИКА интерьеров">
             <div class="video-hero__wrapper">
                 <video
                     class="video-hero__video"
-                    src="<?php echo esc_url($t . '/video/hero1.mov'); ?>"
+                    src="<?php echo $vh_video_src; ?>"
                     autoplay
                     muted
                     loop
@@ -51,108 +82,62 @@
             <div class="video-hero__content">
                 <div class="video-hero__content-inner">
                     <div class="container">
-                        <p class="video-hero__tagline">Фабрика <span class="video-hero__tagline-accent">интерьеров</span></p>
-                        <h1 class="video-hero__title">Дизайнерская мебель в Крыму</h1>
-                        <p class="video-hero__text">Мебель на заказ и интерьеры под ключ. Отражаем ваш вкус.</p>
-                        <a href="catalog.html" class="video-hero__cta button button--primary">В каталог</a>
+                        <p class="video-hero__tagline"><?php echo esc_html($vh_tagline); ?> <span class="video-hero__tagline-accent"><?php echo esc_html($vh_tagline_accent); ?></span></p>
+                        <h1 class="video-hero__title"><?php echo esc_html($vh_title); ?></h1>
+                        <p class="video-hero__text"><?php echo esc_html($vh_text); ?></p>
+                        <a href="<?php echo esc_url($vh_btn_url); ?>" class="video-hero__cta button button--primary"><?php echo esc_html($vh_btn_text); ?></a>
                     </div>
                 </div>
             </div>
-            <a href="#about" class="video-hero__scroll-hint" aria-label="Листайте вниз">
+            <a href="#about" class="video-hero__scroll-hint" aria-label="<?php echo esc_attr($vh_scroll); ?>">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                <span>Листайте вниз</span>
+                <span><?php echo esc_html($vh_scroll); ?></span>
             </a>
         </section>
 
         <!-- Заголовок блока акций -->
+        <?php
+        $hp_label = $opt('hero_promo_label', 'Акции и новинки');
+        $hp_title = $opt('hero_promo_title', 'Специальные предложения');
+        $hp_subtitle = $opt('hero_promo_subtitle', 'Выгодные условия на мебель и интерьерные решения');
+        ?>
         <div class="hero-promo-intro">
-            <p class="hero-promo-intro__label">Акции и новинки</p>
-            <h2 class="hero-promo-intro__title">Специальные предложения</h2>
-            <p class="hero-promo-intro__subtitle">Выгодные условия на мебель и интерьерные решения</p>
+            <p class="hero-promo-intro__label"><?php echo esc_html($hp_label); ?></p>
+            <h2 class="hero-promo-intro__title"><?php echo esc_html($hp_title); ?></h2>
+            <p class="hero-promo-intro__subtitle"><?php echo esc_html($hp_subtitle); ?></p>
         </div>
 
         <!-- Hero секция — слайдер акций -->
         <section class="hero" aria-label="Промо-слайдер с акциями и трендами">
             <div class="hero__slider">
-                <!-- Слайд 1 - Акция -->
-                <div class="hero__slide active">
+                <?php
+                $slide_index = 0;
+                foreach ($hero_slides as $slide) :
+                    $s_title = !empty($slide['slide_title']) ? $slide['slide_title'] : '';
+                    $s_subtitle = !empty($slide['slide_subtitle']) ? $slide['slide_subtitle'] : '';
+                    $s_btn_text = !empty($slide['slide_button_text']) ? $slide['slide_button_text'] : 'В КАТАЛОГ';
+                    $s_btn_url = !empty($slide['slide_button_url']) ? $slide['slide_button_url'] : '#';
+                    $s_img = $slide['slide_image'] ?? null;
+                    $s_img_url = is_array($s_img) ? ($s_img['url'] ?? '') : ($s_img ?: '');
+                    if (empty($s_img_url)) $s_img_url = $t . '/img/16.webp';
+                    $is_first = ($slide_index === 0);
+                    $slide_index++;
+                ?>
+                <div class="hero__slide<?php echo $is_first ? ' active' : ''; ?>">
                     <div class="hero__slide-content">
                         <div class="hero__text-side">
                             <div class="hero__text-wrapper">
-                                <h1 class="hero__title">СКИДКА НА КОМПЛЕКТ СТОЛ + СТУЛЬЯ</h1>
-                                <p class="hero__subtitle">Акция распространяется на столы без знака «финальная цена»</p>
-                                <a href="catalog.html" class="button button--primary hero__button">В КАТАЛОГ</a>
+                                <h1 class="hero__title"><?php echo esc_html($s_title); ?></h1>
+                                <p class="hero__subtitle"><?php echo esc_html($s_subtitle); ?></p>
+                                <a href="<?php echo esc_url($s_btn_url); ?>" class="button button--primary hero__button"><?php echo esc_html($s_btn_text); ?></a>
                             </div>
                         </div>
                         <div class="hero__image-side">
-                            <img src="<?php echo esc_url($t . '/img/16.webp'); ?>" alt="Акция на столы и стулья" class="hero__image">
+                            <img src="<?php echo esc_url($s_img_url); ?>" alt="<?php echo esc_attr($s_title); ?>" class="hero__image">
                         </div>
                     </div>
                 </div>
-
-                <!-- Слайд 2 - Стулья GALLOTI -->
-                <div class="hero__slide">
-                    <div class="hero__slide-content">
-                        <div class="hero__text-side">
-                            <div class="hero__text-wrapper">
-                                <h1 class="hero__title">СТУЛЬЯ GALLOTI</h1>
-                                <p class="hero__subtitle">Итальянская элегантность в вашем интерьере ♡</p>
-                                <a href="catalog.html" class="button button--primary hero__button">В КАТАЛОГ</a>
-                            </div>
-                        </div>
-                        <div class="hero__image-side">
-                            <img src="<?php echo esc_url($t . '/img/17.webp'); ?>" alt="Стулья Galloti" class="hero__image">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Слайд 3 - Стул MORGAN -->
-                <div class="hero__slide">
-                    <div class="hero__slide-content">
-                        <div class="hero__text-side">
-                            <div class="hero__text-wrapper">
-                                <h1 class="hero__title">СТУЛ MORGAN</h1>
-                                <p class="hero__subtitle">Идеальное решение для вашего интерьера ♡</p>
-                                <a href="catalog.html" class="button button--primary hero__button">В МАГАЗИН</a>
-                            </div>
-                        </div>
-                        <div class="hero__image-side">
-                            <img src="<?php echo esc_url($t . '/img/18.webp'); ?>" alt="Стул Morgan" class="hero__image">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Слайд 4 - Коллекция SOFIA -->
-                <div class="hero__slide">
-                    <div class="hero__slide-content">
-                        <div class="hero__text-side">
-                            <div class="hero__text-wrapper">
-                                <h1 class="hero__title">КОЛЛЕКЦИЯ SOFIA И СТОЛ ORION</h1>
-                                <p class="hero__subtitle">Коллекция Sofia в новом цвете — творчество и новая распашной круглый стол Orion ♡</p>
-                                <a href="catalog.html" class="button button--primary hero__button">В МАГАЗИН</a>
-                            </div>
-                        </div>
-                        <div class="hero__image-side">
-                            <img src="<?php echo esc_url($t . '/img/19.webp'); ?>" alt="Коллекция Sofia и стол Orion" class="hero__image">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Слайд 5 - Диван CAMPO -->
-                <div class="hero__slide">
-                    <div class="hero__slide-content">
-                        <div class="hero__text-side">
-                            <div class="hero__text-wrapper">
-                                <h1 class="hero__title">ДИВАН CAMPO</h1>
-                                <p class="hero__subtitle">От итальянского конструктора Giovanni Lella ♡</p>
-                                <a href="catalog.html" class="button button--primary hero__button">В МАГАЗИН</a>
-                            </div>
-                        </div>
-                        <div class="hero__image-side">
-                            <img src="<?php echo esc_url($t . '/img/20.webp'); ?>" alt="Диван Campo" class="hero__image">
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
 
             <!-- Навигация слайдера -->
@@ -171,91 +156,88 @@
 
             <!-- Индикаторы слайдов -->
             <div class="hero__dots">
-                <button class="hero__dot active" data-slide="0" aria-label="Слайд 1"></button>
-                <button class="hero__dot" data-slide="1" aria-label="Слайд 2"></button>
-                <button class="hero__dot" data-slide="2" aria-label="Слайд 3"></button>
-                <button class="hero__dot" data-slide="3" aria-label="Слайд 4"></button>
-                <button class="hero__dot" data-slide="4" aria-label="Слайд 5"></button>
+                <?php foreach ($hero_slides as $i => $slide) : ?>
+                <button class="hero__dot<?php echo $i === 0 ? ' active' : ''; ?>" data-slide="<?php echo (int) $i; ?>" aria-label="Слайд <?php echo $i + 1; ?>"></button>
+                <?php endforeach; ?>
             </div>
 
             <!-- Счетчик слайдов -->
             <div class="hero__counter">
                 <span class="hero__counter-current">01</span>
                 <span class="hero__counter-separator">/</span>
-                <span class="hero__counter-total">05</span>
+                <span class="hero__counter-total"><?php echo str_pad((string) count($hero_slides), 2, '0', STR_PAD_LEFT); ?></span>
             </div>
 
         </section>
 
         <!-- О компании -->
+        <?php
+        $ab_title = $opt('about_title', 'ФАБРИКА интерьеров');
+        $ab_subtitle = $opt('about_subtitle', 'Производство полного цикла');
+        $ab_text1 = $opt('about_text_1', 'Мы создаём интерьерные решения под ключ — от проектирования до монтажа. Работаем с домами, отелями, ресторанами и общественными пространствами.');
+        $ab_text2 = $opt('about_text_2', 'Предлагаем не просто мебель, а продуманные до деталей комплексные решения: проектирование, производство, отделку, индивидуальные элементы и монтаж.');
+        $ab_btn_text = $opt('about_button_text', 'Узнать о производстве');
+        $ab_btn_url = $opt('about_button_url', '#');
+        $ab_image = $opt('about_image', null);
+        $ab_img_url = is_array($ab_image) ? ($ab_image['url'] ?? '') : ($ab_image ?: '');
+        if (empty($ab_img_url)) $ab_img_url = $t . '/img/main.webp';
+        $ab_values_title = $opt('about_values_title', 'Наши приемущества');
+        $ab_v1_icon = $opt('about_value_1_icon', '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 5L25 15L35 17L27.5 24.5L29 35L20 30L11 35L12.5 24.5L5 17L15 15L20 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        $ab_v1_name = $opt('about_value_1_name', 'Качество');
+        $ab_v1_text = $opt('about_value_1_text', 'Используем лучшие материалы и технологии производства');
+        $ab_v2_icon = $opt('about_value_2_icon', '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 20H15M25 20H35M20 5V15M20 25V35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="2"/></svg>');
+        $ab_v2_name = $opt('about_value_2_name', 'Дизайн');
+        $ab_v2_text = $opt('about_value_2_text', 'Современные решения и авторский подход к каждому проекту');
+        $ab_v3_icon = $opt('about_value_3_icon', '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35C28.2843 35 35 28.2843 35 20C35 11.7157 28.2843 5 20 5C11.7157 5 5 11.7157 5 20C5 28.2843 11.7157 35 20 35Z" stroke="currentColor" stroke-width="2"/><path d="M20 12V20L26 26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>');
+        $ab_v3_name = $opt('about_value_3_name', 'Индивидуальность');
+        $ab_v3_text = $opt('about_value_3_text', 'Создаём уникальные решения под задачи клиента');
+        $ab_v4_icon = $opt('about_value_4_icon', '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 20L15 28L33 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        $ab_v4_name = $opt('about_value_4_name', 'Ответственность');
+        $ab_v4_text = $opt('about_value_4_text', 'Берём ответственность за результат от начала до конца');
+        ?>
         <section class="about animate-on-scroll" id="about" aria-labelledby="about-title">
             <div class="container">
                 <div class="about__inner">
                     <!-- Текстовая часть -->
                     <div class="about__content">
-                        <h2 class="about__title" id="about-title">ФАБРИКА интерьеров</h2>
-                        <p class="about__subtitle">Производство полного цикла</p>
-                        <p class="about__text">
-                            Мы создаём интерьерные решения под ключ — от проектирования до монтажа. Работаем с домами, отелями, ресторанами и общественными пространствами.
-                        </p>
-                        <p class="about__text">
-                            Предлагаем не просто мебель, а продуманные до деталей комплексные решения: проектирование, производство, отделку, индивидуальные элементы и монтаж.
-                        </p>
-                        <a href="office.html" class="button button--secondary about__button">
-                            Узнать о производстве
+                        <h2 class="about__title" id="about-title"><?php echo esc_html($ab_title); ?></h2>
+                        <p class="about__subtitle"><?php echo esc_html($ab_subtitle); ?></p>
+                        <p class="about__text"><?php echo esc_html($ab_text1); ?></p>
+                        <p class="about__text"><?php echo esc_html($ab_text2); ?></p>
+                        <a href="<?php echo esc_url($ab_btn_url); ?>" class="button button--secondary about__button">
+                            <?php echo esc_html($ab_btn_text); ?>
                         </a>
                     </div>
 
                     <!-- Изображение -->
                     <div class="about__image">
-                        <img src="<?php echo esc_url($t . '/img/main.webp'); ?>" alt="Интерьерные решения" class="about__img">
+                        <img src="<?php echo esc_url($ab_img_url); ?>" alt="<?php echo esc_attr($ab_title); ?>" class="about__img">
                     </div>
                 </div>
 
                 <!-- Ключевые приемущества -->
                 <div class="about__values">
-                    <h3 class="about__values-title">Наши приемущества</h3>
+                    <h3 class="about__values-title"><?php echo esc_html($ab_values_title); ?></h3>
                     <div class="about__values-grid">
                         <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 5L25 15L35 17L27.5 24.5L29 35L20 30L11 35L12.5 24.5L5 17L15 15L20 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-name">Качество</h4>
-                            <p class="about__value-text">Используем лучшие материалы и технологии производства</p>
+                            <div class="about__value-icon"><?php echo $ab_v1_icon; ?></div>
+                            <h4 class="about__value-name"><?php echo esc_html($ab_v1_name); ?></h4>
+                            <p class="about__value-text"><?php echo esc_html($ab_v1_text); ?></p>
                         </div>
-
                         <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 20H15M25 20H35M20 5V15M20 25V35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                    <circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-name">Дизайн</h4>
-                            <p class="about__value-text">Современные решения и авторский подход к каждому проекту</p>
+                            <div class="about__value-icon"><?php echo $ab_v2_icon; ?></div>
+                            <h4 class="about__value-name"><?php echo esc_html($ab_v2_name); ?></h4>
+                            <p class="about__value-text"><?php echo esc_html($ab_v2_text); ?></p>
                         </div>
-
                         <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 35C28.2843 35 35 28.2843 35 20C35 11.7157 28.2843 5 20 5C11.7157 5 5 11.7157 5 20C5 28.2843 11.7157 35 20 35Z" stroke="currentColor" stroke-width="2"/>
-                                    <path d="M20 12V20L26 26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-name">Индивидуальность</h4>
-                            <p class="about__value-text">Создаём уникальные решения под задачи клиента</p>
+                            <div class="about__value-icon"><?php echo $ab_v3_icon; ?></div>
+                            <h4 class="about__value-name"><?php echo esc_html($ab_v3_name); ?></h4>
+                            <p class="about__value-text"><?php echo esc_html($ab_v3_text); ?></p>
                         </div>
-
                         <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M7 20L15 28L33 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-name">Ответственность</h4>
-                            <p class="about__value-text">Берём ответственность за результат от начала до конца</p>
+                            <div class="about__value-icon"><?php echo $ab_v4_icon; ?></div>
+                            <h4 class="about__value-name"><?php echo esc_html($ab_v4_name); ?></h4>
+                            <p class="about__value-text"><?php echo esc_html($ab_v4_text); ?></p>
                         </div>
                     </div>
                 </div>
@@ -263,23 +245,31 @@
         </section>
 
         <!-- Каталог популярных товаров -->
+        <?php
+        $fp_sale_label = $opt('featured_tab_sale_label', 'Скидки и акции');
+        $fp_new_label = $opt('featured_tab_new_label', 'Новинки');
+        $fp_view_all_text = $opt('featured_view_all_text', 'Смотреть всё');
+        $fp_view_all_url = $opt('featured_view_all_url', '#');
+        $fp_sale_ids = function_exists('get_field') ? get_field('featured_products_sale', 'option') : array();
+        $fp_new_ids = function_exists('get_field') ? get_field('featured_products_new', 'option') : array();
+        $fp_sale_ids = is_array($fp_sale_ids) ? $fp_sale_ids : array();
+        $fp_new_ids = is_array($fp_new_ids) ? $fp_new_ids : array();
+        ?>
         <section class="featured-products animate-on-scroll" aria-label="Популярные позиции каталога — скидки и новинки">
             <div class="container">
-                <!-- Заголовок с табами -->
                 <div class="featured-products__header">
                     <div class="featured-products__tabs">
-                        <button class="featured-products__tab active" data-tab="sale">Скидки и акции</button>
-                        <button class="featured-products__tab" data-tab="new">Новинки</button>
+                        <button class="featured-products__tab active" data-tab="sale"><?php echo esc_html($fp_sale_label); ?></button>
+                        <button class="featured-products__tab" data-tab="new"><?php echo esc_html($fp_new_label); ?></button>
                     </div>
-                    <a href="catalog.html" class="featured-products__view-all">
-                        Смотреть всё
+                    <a href="<?php echo esc_url($fp_view_all_url); ?>" class="featured-products__view-all">
+                        <?php echo esc_html($fp_view_all_text); ?>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
                 </div>
 
-                <!-- Контент табов -->
                 <div class="featured-products__content">
                     <!-- Таб: Скидки и акции -->
                     <div class="featured-products__tab-content active" data-content="sale">
@@ -289,232 +279,11 @@
                                     <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
-                            
                             <div class="featured-products__slider-wrapper">
                                 <div class="featured-products__grid">
-                                <!-- Товар 1 -->
-                                <div class="product-card" data-product-id="1">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/16.webp'); ?>" alt="Стол обеденный" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge">Финальная цена</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Стол обеденный раскладной</h3>
-                                        <div class="product-card__status product-card__status--available">В наличии</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">45 900 руб.</span>
-                                                <span class="product-card__price-old">62 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                    <!-- Товар 2 -->
-                                    <div class="product-card" data-product-id="9">
-                                        <div class="product-card__image">
-                                            <img src="<?php echo esc_url($t . '/img/17.webp'); ?>" alt="Стулья Galloti" class="product-card__img">
-                                            <button class="product-card__favorite" aria-label="В избранное">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="product-card__info">
-                                            <h3 class="product-card__title">Стулья Galloti комплект 4 шт</h3>
-                                            <div class="product-card__status product-card__status--order">Под заказ</div>
-                                            <div class="product-card__footer">
-                                                <div class="product-card__price">
-                                                    <span class="product-card__price-current">89 900 руб.</span>
-                                                    <span class="product-card__price-old">115 900 руб.</span>
-                                                </div>
-                                                <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Товар 3 -->
-                                    <div class="product-card" data-product-id="10">
-                                        <div class="product-card__image">
-                                            <img src="<?php echo esc_url($t . '/img/18.webp'); ?>" alt="Стул Morgan" class="product-card__img">
-                                            <button class="product-card__favorite" aria-label="В избранное">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                                </svg>
-                                            </button>
-                                            <div class="product-card__badge">Финальная цена</div>
-                                        </div>
-                                        <div class="product-card__info">
-                                            <h3 class="product-card__title">Стул Morgan, велюр серый</h3>
-                                            <div class="product-card__status product-card__status--available">В наличии</div>
-                                            <div class="product-card__footer">
-                                                <div class="product-card__price">
-                                                    <span class="product-card__price-current">24 990 руб.</span>
-                                                    <span class="product-card__price-old">32 990 руб.</span>
-                                                </div>
-                                                <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Товар 4 -->
-                                    <div class="product-card" data-product-id="2">
-                                        <div class="product-card__image">
-                                            <img src="<?php echo esc_url($t . '/img/19.webp'); ?>" alt="Стол Orion" class="product-card__img">
-                                            <button class="product-card__favorite" aria-label="В избранное">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="product-card__info">
-                                            <h3 class="product-card__title">Стол Orion раскладной круглый</h3>
-                                            <div class="product-card__status product-card__status--available">В наличии</div>
-                                            <div class="product-card__footer">
-                                                <div class="product-card__price">
-                                                    <span class="product-card__price-current">52 900 руб.</span>
-                                                    <span class="product-card__price-old">68 900 руб.</span>
-                                                </div>
-                                                <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                <!-- Товар 5 -->
-                                <div class="product-card" data-product-id="11">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/20.webp'); ?>" alt="Диван Campo" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge">Финальная цена</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Диван Campo, ткань букле</h3>
-                                        <div class="product-card__status product-card__status--order">Под заказ</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">169 900 руб.</span>
-                                                <span class="product-card__price-old">199 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Товар 6 -->
-                                <div class="product-card" data-product-id="12">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/17.webp'); ?>" alt="Стулья Galloti" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge">Финальная цена</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Стулья Galloti, комплект 2 шт</h3>
-                                        <div class="product-card__status product-card__status--available">В наличии</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">54 900 руб.</span>
-                                                <span class="product-card__price-old">69 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Товар 7 -->
-                                <div class="product-card" data-product-id="13">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/18.webp'); ?>" alt="Стул Morgan" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge">Финальная цена</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Стул Morgan, экокожа</h3>
-                                        <div class="product-card__status product-card__status--available">В наличии</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">19 900 руб.</span>
-                                                <span class="product-card__price-old">26 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Товар 8 -->
-                                <div class="product-card" data-product-id="3">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/16.webp'); ?>" alt="Стол обеденный" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Стол обеденный прямоугольный</h3>
-                                        <div class="product-card__status product-card__status--order">Под заказ</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">39 900 руб.</span>
-                                                <span class="product-card__price-old">52 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <?php foreach ($fp_sale_ids as $pid) : get_template_part('template-parts/product-card', null, array('product_id' => $pid)); endforeach; ?>
                                 </div>
                             </div>
-
                             <button class="featured-products__nav featured-products__nav--next" aria-label="Следующий">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -532,141 +301,11 @@
                                     <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
-                            
                             <div class="featured-products__slider-wrapper">
                                 <div class="featured-products__grid">
-                                <div class="product-card" data-product-id="14">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/20.webp'); ?>" alt="Диван Campo" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge product-card__badge--trend">Тренд</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Диван Campo от Giovanni Lella</h3>
-                                        <div class="product-card__status product-card__status--order">Под заказ</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">189 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="product-card" data-product-id="15">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/19.webp'); ?>" alt="Коллекция Sofia" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge product-card__badge--trend">Тренд</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Коллекция Sofia, стол Orion</h3>
-                                        <div class="product-card__status product-card__status--available">В наличии</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">129 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product-card" data-product-id="16">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/18.webp'); ?>" alt="Стул Morgan" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge product-card__badge--trend">Тренд</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Стул Morgan, латте</h3>
-                                        <div class="product-card__status product-card__status--order">Под заказ</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">27 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product-card" data-product-id="17">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/17.webp'); ?>" alt="Стулья Galloti" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge product-card__badge--trend">Тренд</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Стулья Galloti, комплект 2 шт</h3>
-                                        <div class="product-card__status product-card__status--available">В наличии</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">59 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="product-card" data-product-id="4">
-                                    <div class="product-card__image">
-                                        <img src="<?php echo esc_url($t . '/img/16.webp'); ?>" alt="Стол обеденный" class="product-card__img">
-                                        <button class="product-card__favorite" aria-label="В избранное">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                            </svg>
-                                        </button>
-                                        <div class="product-card__badge product-card__badge--trend">Тренд</div>
-                                    </div>
-                                    <div class="product-card__info">
-                                        <h3 class="product-card__title">Стол обеденный, ясень</h3>
-                                        <div class="product-card__status product-card__status--order">Под заказ</div>
-                                        <div class="product-card__footer">
-                                            <div class="product-card__price">
-                                                <span class="product-card__price-current">74 900 руб.</span>
-                                            </div>
-                                            <button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <?php foreach ($fp_new_ids as $pid) : get_template_part('template-parts/product-card', null, array('product_id' => $pid)); endforeach; ?>
                                 </div>
                             </div>
-                            
                             <button class="featured-products__nav featured-products__nav--next" aria-label="Следующий">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -683,130 +322,59 @@
      
 
         <!-- Каталог -->
+        <?php
+        $cat_title = $opt('catalog_title', 'Каталог');
+        $cat_subtitle = $opt('catalog_subtitle', 'Откройте для себя мир премиальных интерьерных решений');
+        $cat_cards_raw = function_exists('get_field') ? get_field('catalog_cards', 'option') : array();
+        $cat_cards_default = array(
+            array('card_image' => array('url' => $t . '/img/20.webp'), 'card_title' => 'Мебель', 'card_text' => 'Дизайнерская мебель для любого пространства', 'card_url' => '#'),
+            array('card_image' => array('url' => $t . '/img/18.webp'), 'card_title' => 'Освещение', 'card_text' => 'Элегантные светильники и люстры', 'card_url' => '#'),
+            array('card_image' => array('url' => $t . '/img/19.webp'), 'card_title' => 'Декор', 'card_text' => 'Изысканные аксессуары для интерьера', 'card_url' => '#'),
+            array('card_image' => array('url' => $t . '/img/17.webp'), 'card_title' => 'Текстиль', 'card_text' => 'Премиальные ткани и текстильные решения', 'card_url' => '#'),
+            array('card_image' => array('url' => $t . '/img/16.webp'), 'card_title' => 'Напольные покрытия', 'card_text' => 'Качественные материалы для пола', 'card_url' => '#'),
+            array('card_image' => array('url' => $t . '/img/6.webp'), 'card_title' => 'HORECA', 'card_text' => 'Профессиональные решения для бизнеса', 'card_url' => '#'),
+        );
+        $cat_cards = (!empty($cat_cards_raw) && count($cat_cards_raw) >= 6) ? $cat_cards_raw : $cat_cards_default;
+        $cat_view_all_text = $opt('catalog_view_all_text', 'Посмотреть весь каталог');
+        $cat_view_all_url = $opt('catalog_view_all_url', '#');
+        $cat_arrow_svg = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+        ?>
         <section class="catalog animate-on-scroll" id="catalog" aria-labelledby="catalog-title">
             <div class="container">
                 <div class="catalog__header">
-                    <h2 class="catalog__title" id="catalog-title">Каталог</h2>
-                    <p class="catalog__subtitle">Откройте для себя мир премиальных интерьерных решений</p>
+                    <h2 class="catalog__title" id="catalog-title"><?php echo esc_html($cat_title); ?></h2>
+                    <p class="catalog__subtitle"><?php echo esc_html($cat_subtitle); ?></p>
                 </div>
 
                 <div class="catalog__grid">
-                    <!-- Мебель -->
-                    <a href="catalog.html" class="catalog__card">
+                    <?php foreach ($cat_cards as $i => $card) :
+                        $c_img = $card['card_image'] ?? null;
+                        $c_img_url = is_array($c_img) ? ($c_img['url'] ?? '') : ($c_img ?: '');
+                        if (empty($c_img_url)) $c_img_url = $t . '/img/20.webp';
+                        $c_title = !empty($card['card_title']) ? $card['card_title'] : '';
+                        $c_text = !empty($card['card_text']) ? $card['card_text'] : '';
+                        $c_url = !empty($card['card_url']) ? $card['card_url'] : '#';
+                        $c_num = str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT);
+                    ?>
+                    <a href="<?php echo esc_url($c_url); ?>" class="catalog__card">
                         <div class="catalog__card-image">
-                            <img src="<?php echo esc_url($t . '/img/20.webp'); ?>" alt="Мебель" class="catalog__img">
+                            <img src="<?php echo esc_url($c_img_url); ?>" alt="<?php echo esc_attr($c_title); ?>" class="catalog__img">
                             <div class="catalog__card-overlay"></div>
                         </div>
                         <div class="catalog__card-content">
-                            <span class="catalog__card-number">01</span>
-                            <h3 class="catalog__card-title">Мебель</h3>
-                            <p class="catalog__card-text">Дизайнерская мебель для любого пространства</p>
-                            <span class="catalog__card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </span>
+                            <span class="catalog__card-number"><?php echo esc_html($c_num); ?></span>
+                            <h3 class="catalog__card-title"><?php echo esc_html($c_title); ?></h3>
+                            <p class="catalog__card-text"><?php echo esc_html($c_text); ?></p>
+                            <span class="catalog__card-arrow"><?php echo $cat_arrow_svg; ?></span>
                         </div>
                     </a>
-
-                    <!-- Освещение -->
-                    <a href="catalog.html" class="catalog__card">
-                        <div class="catalog__card-image">
-                            <img src="<?php echo esc_url($t . '/img/18.webp'); ?>" alt="Освещение" class="catalog__img">
-                            <div class="catalog__card-overlay"></div>
-                        </div>
-                        <div class="catalog__card-content">
-                            <span class="catalog__card-number">02</span>
-                            <h3 class="catalog__card-title">Освещение</h3>
-                            <p class="catalog__card-text">Элегантные светильники и люстры</p>
-                            <span class="catalog__card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </a>
-
-                    <!-- Декор -->
-                    <a href="catalog.html" class="catalog__card">
-                        <div class="catalog__card-image">
-                            <img src="<?php echo esc_url($t . '/img/19.webp'); ?>" alt="Декор" class="catalog__img">
-                            <div class="catalog__card-overlay"></div>
-                        </div>
-                        <div class="catalog__card-content">
-                            <span class="catalog__card-number">03</span>
-                            <h3 class="catalog__card-title">Декор</h3>
-                            <p class="catalog__card-text">Изысканные аксессуары для интерьера</p>
-                            <span class="catalog__card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </a>
-
-                    <!-- Текстиль -->
-                    <a href="catalog.html" class="catalog__card">
-                        <div class="catalog__card-image">
-                            <img src="<?php echo esc_url($t . '/img/17.webp'); ?>" alt="Текстиль" class="catalog__img">
-                            <div class="catalog__card-overlay"></div>
-                        </div>
-                        <div class="catalog__card-content">
-                            <span class="catalog__card-number">04</span>
-                            <h3 class="catalog__card-title">Текстиль</h3>
-                            <p class="catalog__card-text">Премиальные ткани и текстильные решения</p>
-                            <span class="catalog__card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </a>
-
-                    <!-- Напольные покрытия -->
-                    <a href="catalog.html" class="catalog__card">
-                        <div class="catalog__card-image">
-                            <img src="<?php echo esc_url($t . '/img/16.webp'); ?>" alt="Напольные покрытия" class="catalog__img">
-                            <div class="catalog__card-overlay"></div>
-                        </div>
-                        <div class="catalog__card-content">
-                            <span class="catalog__card-number">05</span>
-                            <h3 class="catalog__card-title">Напольные покрытия</h3>
-                            <p class="catalog__card-text">Качественные материалы для пола</p>
-                            <span class="catalog__card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </a>
-
-                    <!-- HORECA -->
-                    <a href="catalog.html" class="catalog__card">
-                        <div class="catalog__card-image">
-                            <img src="<?php echo esc_url($t . '/img/6.webp'); ?>" alt="HORECA" class="catalog__img">
-                            <div class="catalog__card-overlay"></div>
-                        </div>
-                        <div class="catalog__card-content">
-                            <span class="catalog__card-number">06</span>
-                            <h3 class="catalog__card-title">HORECA</h3>
-                            <p class="catalog__card-text">Профессиональные решения для бизнеса</p>
-                            <span class="catalog__card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </span>
-                        </div>
-                    </a>
+                    <?php endforeach; ?>
                 </div>
 
-                <!-- Кнопка посмотреть все -->
                 <div class="catalog__action">
-                    <a href="catalog.html" class="catalog__view-all">
-                        <span>Посмотреть весь каталог</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
+                    <a href="<?php echo esc_url($cat_view_all_url); ?>" class="catalog__view-all">
+                        <span><?php echo esc_html($cat_view_all_text); ?></span>
+                        <?php echo $cat_arrow_svg; ?>
                     </a>
                 </div>
             </div>
@@ -814,16 +382,22 @@
 
 
            <!-- Услуги -->
+           <?php
+           $svc_title = $opt('services_title', 'Фабрика также предоставляет услуги');
+           $svc_subtitle = $opt('services_subtitle', 'Комплексный подход к реализации ваших интерьерных проектов');
+           $svc_footer_text = $opt('services_footer_text', 'Обсудить проект');
+           $svc_footer_url = $opt('services_footer_url', '#contact-form');
+           $svc_ids = function_exists('get_field') ? get_field('featured_services', 'option') : array();
+           $svc_ids = is_array($svc_ids) ? $svc_ids : array();
+           if (!empty($svc_ids)) : ?>
            <section class="services animate-on-scroll" aria-labelledby="services-title">
             <div class="container">
                 <div class="services__header">
-                    <h2 class="services__title" id="services-title">Фабрика также предоставляет услуги</h2>
-                    <p class="services__subtitle">Комплексный подход к реализации ваших интерьерных проектов</p>
+                    <h2 class="services__title" id="services-title"><?php echo esc_html($svc_title); ?></h2>
+                    <p class="services__subtitle"><?php echo esc_html($svc_subtitle); ?></p>
                 </div>
 
                 <div class="services__slider-wrapper">
-                    <!-- Кнопка "Назад" -->
-                    <!-- Кнопка "Назад" -->
                     <button class="services__nav services__nav--prev" aria-label="Предыдущие услуги">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -832,204 +406,7 @@
 
                     <div class="services__slider">
                         <div class="services__track">
-                            <!-- 1. Оснащение -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/1.webp'); ?>" alt="Оснащение отелей и гостиниц" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Оснащение отелей и гостиниц</h4>
-                                    <p class="services__card-text">Комплексная комплектация гостиничных номеров и общественных зон: мебель, текстиль, освещение, аксессуары.</p>
-                                </div>
-                            </div>
-                            <!-- 2. Производство -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/6.webp'); ?>" alt="Мебель на заказ корпусная и мягкая" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Мебель на заказ (корпусная и мягкая)</h4>
-                                    <p class="services__card-text">Изготовление мебели по индивидуальным размерам для отелей, ресторанов и жилых интерьеров.</p>
-                                </div>
-                            </div>
-                            <!-- 3. Проектирование -->
-                            <a href="service-single.html" class="services__card services__card--link">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/5.webp'); ?>" alt="Дизайн интерьера и визуализация" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Дизайн интерьера и визуализация</h4>
-                                    <p class="services__card-text">Концепция интерьера, 3D-визуализация и подбор всех элементов под ключ.</p>
-                                </div>
-                            </a>
-                            <!-- 4. Поставка -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/2.webp'); ?>" alt="Поставка посуды для HoReCa" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Поставка посуды для HoReCa</h4>
-                                    <p class="services__card-text">Широкий ассортимент посуды и столовых принадлежностей для ресторанов и отелей.</p>
-                                </div>
-                            </div>
-                            <!-- 5. Монтаж -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/6.webp'); ?>" alt="Монтаж и доставка по России" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Монтаж и доставка по России</h4>
-                                    <p class="services__card-text">Профессиональная установка мебели и доставка по всей России.</p>
-                                </div>
-                            </div>
-                            <!-- 6. Оснащение -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/2.webp'); ?>" alt="Оснащение ресторанов и кафе" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Оснащение ресторанов и кафе</h4>
-                                    <p class="services__card-text">Посуда, мебель, текстиль, декор и оборудование для ресторанов, кафе и баров под ключ.</p>
-                                </div>
-                            </div>
-                            <!-- 7. Производство -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/1.webp'); ?>" alt="Производство мебели по индивидуальным проектам" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Производство мебели по индивидуальным проектам</h4>
-                                    <p class="services__card-text">Собственное производство: корпусная и мягкая мебель, панели, двери по вашим эскизам.</p>
-                                </div>
-                            </div>
-                            <!-- 8. Проектирование -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/7.webp'); ?>" alt="Проектирование и подбор мебели" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Проектирование и подбор мебели</h4>
-                                    <p class="services__card-text">Индивидуальное проектирование, 3D-визуализация и подбор решений под ваш интерьер.</p>
-                                </div>
-                            </div>
-                            <!-- 9. Поставка -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/3.webp'); ?>" alt="Поставка текстиля для ресторанов и отелей" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Поставка текстиля для ресторанов и отелей</h4>
-                                    <p class="services__card-text">Постельное бельё, полотенца, шторы, скатерти и другой текстиль от проверенных производителей.</p>
-                                </div>
-                            </div>
-                            <!-- 10. Оснащение -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/5.webp'); ?>" alt="Комплектация объектов под ключ" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Комплектация объектов «под ключ»</h4>
-                                    <p class="services__card-text">От выбора материалов до финального монтажа — одна команда и полная ответственность за результат.</p>
-                                </div>
-                            </div>
-                            <!-- 11. Производство -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/2.webp'); ?>" alt="Производство и покраска мебели" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Производство и покраска мебели</h4>
-                                    <p class="services__card-text">Работаем с ЛДСП, МДФ, натуральным деревом, металлом. Используем точный распил и современную покраску.</p>
-                                </div>
-                            </div>
-                            <!-- 12. Поставка -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/4.webp'); ?>" alt="Освещение и элементы интерьера" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Освещение и элементы интерьера</h4>
-                                    <p class="services__card-text">Светильники, декор и аксессуары для создания гармоничного интерьера.</p>
-                                </div>
-                            </div>
-                            <!-- 13. Оснащение -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/3.webp'); ?>" alt="Оснащение апартаментов и мини-отелей" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Оснащение апартаментов и мини-отелей</h4>
-                                    <p class="services__card-text">Полная комплектация апартаментов и мини-отелей мебелью, техникой и аксессуарами.</p>
-                                </div>
-                            </div>
-                            <!-- 14. Сотрудничество -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/7.webp'); ?>" alt="Условия для дизайнеров и студий" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Условия для дизайнеров и студий</h4>
-                                    <p class="services__card-text">Выгодные условия, персональное сопровождение и помощь в комплектации проектов.</p>
-                                </div>
-                            </div>
-                            <!-- 15. Обслуживание -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/9.webp'); ?>" alt="Постпродажное обслуживание" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Постпродажное обслуживание</h4>
-                                    <p class="services__card-text">Гарантийное обслуживание, ремонт и консультации по уходу за изделиями.</p>
-                                </div>
-                            </div>
-                            <!-- 16. Оснащение -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/4.webp'); ?>" alt="Оснащение офисов и коммерческих помещений" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Оснащение офисов и коммерческих помещений</h4>
-                                    <p class="services__card-text">Мебель и интерьерные решения для офисов, шоурумов и коммерческих пространств.</p>
-                                </div>
-                            </div>
-                            <!-- 17. Поставка -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/3.webp'); ?>" alt="Поставка фурнитуры и декора" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Поставка фурнитуры и декора</h4>
-                                    <p class="services__card-text">Надёжная фурнитура, текстиль, свет и аксессуары от проверенных поставщиков для интерьеров.</p>
-                                </div>
-                            </div>
-                            <!-- 18. Поставка -->
-                            <div class="services__card">
-                                <div class="services__card-image">
-                                    <img src="<?php echo esc_url($t . '/img/4.webp'); ?>" alt="Поставка хозтоваров для HoReCa" class="services__img">
-                                    <div class="services__card-overlay"></div>
-                                </div>
-                                <div class="services__card-content">
-                                    <h4 class="services__card-title">Поставка хозтоваров для HoReCa</h4>
-                                    <p class="services__card-text">Широкий ассортимент хозяйственных товаров для ресторанов, отелей и кафе от проверенных производителей.</p>
-                                </div>
-                            </div>
+                            <?php foreach ($svc_ids as $sid) : get_template_part('template-parts/service-card', null, array('service_id' => $sid)); endforeach; ?>
                         </div>
                     </div>
 
@@ -1040,398 +417,211 @@
                     </button>
                 </div>
 
-                <!-- Индикаторы слайдов -->
                 <div class="services__dots" aria-hidden="true"></div>
 
                 <div class="services__footer">
-                    <a href="#contact-form" class="button button--primary">Обсудить проект</a>
+                    <a href="<?php echo esc_url($svc_footer_url); ?>" class="button button--primary"><?php echo esc_html($svc_footer_text); ?></a>
                 </div>
             </div>
         </section>
+        <?php endif; ?>
 
         <!-- Проекты -->
+        <?php
+        $prj_title = $opt('projects_title', 'Наши проекты');
+        $prj_subtitle = $opt('projects_subtitle', 'Реализованные интерьерные решения для разных пространств');
+        $prj_ids = function_exists('get_field') ? get_field('featured_projects', 'option') : array();
+        $prj_ids = is_array($prj_ids) ? $prj_ids : array();
+        $prj_view_all_text = $opt('projects_view_all_text', 'Смотреть все проекты');
+        $prj_view_all_url = $opt('projects_view_all_url', '');
+        if (empty($prj_view_all_url)) {
+            $prj_pages = get_posts(array(
+                'post_type'      => 'page',
+                'posts_per_page' => 1,
+                'meta_key'       => '_wp_page_template',
+                'meta_value'     => 'templates/template-projects.php',
+            ));
+            $prj_view_all_url = $prj_pages ? get_permalink($prj_pages[0]) : home_url('/');
+        }
+        ?>
         <section class="projects animate-on-scroll" id="projects" aria-labelledby="projects-title">
             <div class="container">
                 <div class="projects__header">
-                    <h2 class="projects__title" id="projects-title">Наши проекты</h2>
-                    <p class="projects__subtitle">Реализованные интерьерные решения для разных пространств</p>
+                    <h2 class="projects__title" id="projects-title"><?php echo esc_html($prj_title); ?></h2>
+                    <p class="projects__subtitle"><?php echo esc_html($prj_subtitle); ?></p>
                 </div>
 
+                <?php if (!empty($prj_ids)) : ?>
                 <div class="projects__grid">
-                    <!-- Проект 1 -->
-                    <div class="projects__item projects__item--large" data-project-id="1">
-                        <div class="projects__image">
-                            <img src="<?php echo esc_url($t . '/img/16.webp'); ?>" alt="Интерьер гостиной" class="projects__img" loading="lazy">
-                            <div class="projects__overlay">
-                                <div class="projects__content">
-                                    <h3 class="projects__name">Современная гостиная</h3>
-                                    <p class="projects__category">Частный дом</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Проект 2 -->
-                    <div class="projects__item" data-project-id="2">
-                        <div class="projects__image">
-                            <img src="<?php echo esc_url($t . '/img/17.webp'); ?>" alt="Интерьер спальни" class="projects__img" loading="lazy">
-                            <div class="projects__overlay">
-                                <div class="projects__content">
-                                    <h3 class="projects__name">Премиальная спальня</h3>
-                                    <p class="projects__category">Апартаменты</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Проект 3 -->
-                    <div class="projects__item" data-project-id="3">
-                        <div class="projects__image">
-                            <img src="<?php echo esc_url($t . '/img/18.webp'); ?>" alt="Интерьер кухни" class="projects__img" loading="lazy">
-                            <div class="projects__overlay">
-                                <div class="projects__content">
-                                    <h3 class="projects__name">Дизайнерская кухня</h3>
-                                    <p class="projects__category">Квартира</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Проект 4 -->
-                    <div class="projects__item" data-project-id="4">
-                        <div class="projects__image">
-                            <img src="<?php echo esc_url($t . '/img/19.webp'); ?>" alt="Интерьер ресторана" class="projects__img" loading="lazy">
-                            <div class="projects__overlay">
-                                <div class="projects__content">
-                                    <h3 class="projects__name">Ресторан премиум-класса</h3>
-                                    <p class="projects__category">Общепит</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Проект 5 -->
-                    <div class="projects__item projects__item--wide" data-project-id="5">
-                        <div class="projects__image">
-                            <img src="<?php echo esc_url($t . '/img/20.webp'); ?>" alt="Интерьер отеля" class="projects__img" loading="lazy">
-                            <div class="projects__overlay">
-                                <div class="projects__content">
-                                    <h3 class="projects__name">Отель бутик</h3>
-                                    <p class="projects__category">Гостиничный номер</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Проект 6 -->
-                    <div class="projects__item" data-project-id="6">
-                        <div class="projects__image">
-                            <img src="<?php echo esc_url($t . '/img/21.webp'); ?>" alt="Интерьер офиса" class="projects__img" loading="lazy">
-                            <div class="projects__overlay">
-                                <div class="projects__content">
-                                    <h3 class="projects__name">Современный офис</h3>
-                                    <p class="projects__category">Коммерческое пространство</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Проект 7 -->
-                    <div class="projects__item" data-project-id="7">
-                        <div class="projects__image">
-                            <img src="<?php echo esc_url($t . '/img/22.webp'); ?>" alt="Интерьер кафе" class="projects__img" loading="lazy">
-                            <div class="projects__overlay">
-                                <div class="projects__content">
-                                    <h3 class="projects__name">Уютное кафе</h3>
-                                    <p class="projects__category">Общепит</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                 
+                    <?php foreach ($prj_ids as $i => $pid) : get_template_part('template-parts/project-card', null, array('project_id' => $pid, 'index' => $i)); endforeach; ?>
                 </div>
 
                 <div class="projects__footer">
-                    <a href="projects.html" class="button button--secondary">Смотреть все проекты</a>
+                    <a href="<?php echo esc_url($prj_view_all_url); ?>" class="button button--secondary"><?php echo esc_html($prj_view_all_text); ?></a>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
 
-        <!-- Форма обратной связи -->
-        <!-- Премиальная форма заявки -->
-        <section class="contact animate-on-scroll" id="contact-form" aria-labelledby="contact-title">
-            <div class="contact__background">
-                <div class="contact__pattern"></div>
-            </div>
-            <div class="container">
-                <div class="contact__premium">
-                    <div class="contact__header">
-                        <span class="contact__accent">Начните свой проект</span>
-                        <h2 class="contact__title" id="contact-title">Получите персональную консультацию</h2>
-                        <p class="contact__subtitle">Оставьте заявку, и наш эксперт свяжется с вами в течение 15 минут</p>
-                    </div>
+        <?php get_template_part('template-parts/contact-form'); ?>
 
-                    <form class="contact__form" id="contactForm">
-                        <div class="contact__form-row">
-                            <div class="contact__input-wrapper">
-                                <input 
-                                    type="text" 
-                                    id="name" 
-                                    name="name" 
-                                    class="contact__input" 
-                                    placeholder="Ваше имя"
-                                    required
-                                >
-                                <span class="contact__input-border"></span>
-                            </div>
-                            <div class="contact__input-wrapper">
-                                <input 
-                                    type="tel" 
-                                    id="phone" 
-                                    name="phone" 
-                                    class="contact__input" 
-                                    placeholder="+7 (___) ___-__-__"
-                                    required
-                                >
-                                <span class="contact__input-border"></span>
-                            </div>
-                            <button type="submit" class="contact__button">
-                                <span>Получить консультацию</span>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <p class="contact__privacy">
-                            <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
-                                <input type="checkbox" name="privacy_agreement" required style="margin-top: 2px; cursor: pointer;">
-                                <span>Нажимая на кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></span>
-                            </label>
-                        </p>
-                    </form>
 
-                    <!-- Преимущества -->
-                    <div class="contact__benefits">
-                        <div class="contact__benefit">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 6L9 17L4 12"/>
-                            </svg>
-                            <span>Бесплатная консультация</span>
-                        </div>
-                        <div class="contact__benefit">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 6L9 17L4 12"/>
-                            </svg>
-                            <span>Расчёт в день обращения</span>
-                        </div>
-                        <div class="contact__benefit">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 6L9 17L4 12"/>
-                            </svg>
-                            <span>Гарантия качества</span>
-                        </div>
-                    </div>
 
-                    <!-- Сообщение об успешной отправке -->
-                    <div class="contact__success" id="successMessage">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M8 12l2 2 4-4"/>
-                        </svg>
-                        <div>
-                            <h3>Спасибо за обращение!</h3>
-                            <p>Наш менеджер свяжется с вами в ближайшее время</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+
 
         <!-- Для оптовых клиентов и дизайнеров -->
+        <?php
+        $wh_show = $opt('wholesale_show', true);
+        $wh_show = ($wh_show === false || $wh_show === '0' || $wh_show === 0) ? false : true;
+        if ($wh_show) :
+        $wh_img = function_exists('get_field') ? get_field('wholesale_image', 'option') : null;
+        $wh_img_url = (!empty($wh_img) && is_array($wh_img) && !empty($wh_img['url'])) ? $wh_img['url'] : $t . '/img/20.webp';
+        $wh_img_alt = $opt('wholesale_image_alt', '');
+        $wh_show_badge = $opt('wholesale_show_badge', true);
+        $wh_show_badge = ($wh_show_badge === false || $wh_show_badge === '0' || $wh_show_badge === 0) ? false : true;
+        $wh_badge = $opt('wholesale_badge', 'ПРЕМИУМ');
+        $wh_title = $opt('wholesale_title', 'Для оптовых клиентов и дизайнеров');
+        $wh_subtitle = $opt('wholesale_subtitle', '');
+        $wh_desc = $opt('wholesale_description', 'Мы тщательно анализируем мебельный рынок и точно знаем, что нужно современному покупателю. Создаём интерьерные решения, которые выбирают профессионалы.');
+        $wh_features_raw = function_exists('get_field') ? get_field('wholesale_features', 'option') : array();
+        $wh_features_default = array(
+            array('feature_icon' => 'box', 'feature_title' => '1500+ товаров', 'feature_text' => 'Широкий ассортимент в каталоге'),
+            array('feature_icon' => 'factory', 'feature_title' => 'Собственное производство', 'feature_text' => 'Полный цикл от идеи до монтажа'),
+            array('feature_icon' => 'team', 'feature_title' => 'Своя команда Design&Research', 'feature_text' => 'Проектирование и разработка'),
+            array('feature_icon' => 'percent', 'feature_title' => 'Персональные условия', 'feature_text' => 'Индивидуальный подход на любые объёмы'),
+        );
+        $wh_features = !empty($wh_features_raw) ? $wh_features_raw : $wh_features_default;
+        $wh_svg_icons_map = array(
+            'box' => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M3 7V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V7M3 7L3 19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V7M3 7L12 13L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            'factory' => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M3 21H21M5 21V7L13 2L21 7V21M9 9V21M15 9V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            'team' => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            'percent' => '<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 2V22M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        );
+        $wh_cta_text = $opt('wholesale_cta_text', 'Условия для сотрудничества');
+        $wh_cta_url = $opt('wholesale_cta_url', '');
+        if (empty($wh_cta_url)) {
+            $wh_pages = get_posts(array('post_type' => 'page', 'posts_per_page' => 1, 'meta_key' => '_wp_page_template', 'meta_value' => 'templates/template-designers.php'));
+            $wh_cta_url = $wh_pages ? get_permalink($wh_pages[0]) : 'tel:+79785977442';
+        }
+        $wh_cta2_show = $opt('wholesale_cta2_show', false);
+        $wh_cta2_show = ($wh_cta2_show === true || $wh_cta2_show === '1' || $wh_cta2_show === 1);
+        $wh_cta2_text = $opt('wholesale_cta2_text', 'Позвонить');
+        $wh_cta2_url = $opt('wholesale_cta2_url', 'tel:+79785977442');
+        $wh_svg_star = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        $wh_img_alt = $wh_img_alt ?: $wh_title;
+        ?>
         <section class="wholesale animate-on-scroll" id="wholesale" aria-labelledby="wholesale-title">
             <div class="container">
                 <div class="wholesale__inner">
-                    <!-- Изображение -->
                     <div class="wholesale__image">
                         <div class="wholesale__image-wrapper">
-                            <img src="<?php echo esc_url($t . '/img/20.webp'); ?>" alt="Дизайнерская мебель для оптовых клиентов" class="wholesale__img" loading="lazy">
+                            <img src="<?php echo esc_url($wh_img_url); ?>" alt="<?php echo esc_attr($wh_img_alt); ?>" class="wholesale__img" loading="lazy">
                             <div class="wholesale__image-overlay"></div>
+                            <?php if ($wh_show_badge && $wh_badge) : ?>
                             <div class="wholesale__badge">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                <span>ПРЕМИУМ</span>
+                                <?php echo $wh_svg_star; ?>
+                                <span><?php echo esc_html($wh_badge); ?></span>
                             </div>
+                            <?php endif; ?>
                         </div>
                     </div>
-
-                    <!-- Контент -->
                     <div class="wholesale__content">
-                        <h2 class="wholesale__title" id="wholesale-title">Для оптовых клиентов и дизайнеров</h2>
-                        <p class="wholesale__description">
-                            Мы тщательно анализируем мебельный рынок и точно знаем, что нужно современному покупателю. Создаём интерьерные решения, которые выбирают профессионалы.
-                        </p>
-
-                        <!-- Преимущества -->
+                        <h2 class="wholesale__title" id="wholesale-title"><?php echo esc_html($wh_title); ?></h2>
+                        <?php if ($wh_subtitle) : ?>
+                        <p class="wholesale__subtitle"><?php echo esc_html($wh_subtitle); ?></p>
+                        <?php endif; ?>
+                        <p class="wholesale__description"><?php echo esc_html($wh_desc); ?></p>
                         <div class="wholesale__features">
+                            <?php foreach ($wh_features as $i => $f) :
+                                $ficon = !empty($f['feature_icon']) ? $f['feature_icon'] : (array_keys($wh_svg_icons_map)[$i] ?? 'box');
+                                $ft = !empty($f['feature_title']) ? $f['feature_title'] : '';
+                                $fx = !empty($f['feature_text']) ? $f['feature_text'] : '';
+                                $icon = isset($wh_svg_icons_map[$ficon]) ? $wh_svg_icons_map[$ficon] : $wh_svg_icons_map['box'];
+                                if ($ft || $fx) :
+                            ?>
                             <div class="wholesale__feature">
-                                <div class="wholesale__feature-icon">
-                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3 7V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V7M3 7L3 19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V7M3 7L12 13L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
+                                <div class="wholesale__feature-icon"><?php echo $icon; ?></div>
                                 <div class="wholesale__feature-content">
-                                    <h3 class="wholesale__feature-title">1500+ товаров</h3>
-                                    <p class="wholesale__feature-text">Широкий ассортимент в каталоге</p>
+                                    <h3 class="wholesale__feature-title"><?php echo esc_html($ft); ?></h3>
+                                    <p class="wholesale__feature-text"><?php echo esc_html($fx); ?></p>
                                 </div>
                             </div>
-
-                            <div class="wholesale__feature">
-                                <div class="wholesale__feature-icon">
-                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3 21H21M5 21V7L13 2L21 7V21M9 9V21M15 9V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="wholesale__feature-content">
-                                    <h3 class="wholesale__feature-title">Собственное производство</h3>
-                                    <p class="wholesale__feature-text">Полный цикл от идеи до монтажа</p>
-                                </div>
-                            </div>
-
-                            <div class="wholesale__feature">
-                                <div class="wholesale__feature-icon">
-                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="wholesale__feature-content">
-                                    <h3 class="wholesale__feature-title">Своя команда Design&Research</h3>
-                                    <p class="wholesale__feature-text">Проектирование и разработка</p>
-                                </div>
-                            </div>
-
-                            <div class="wholesale__feature">
-                                <div class="wholesale__feature-icon">
-                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 2V22M17 5H9.5C8.57174 5 7.6815 5.36875 7.02513 6.02513C6.36875 6.6815 6 7.57174 6 8.5C6 9.42826 6.36875 10.3185 7.02513 10.9749C7.6815 11.6313 8.57174 12 9.5 12H14.5C15.4283 12 16.3185 12.3687 16.9749 13.0251C17.6313 13.6815 18 14.5717 18 15.5C18 16.4283 17.6313 17.3185 16.9749 17.9749C16.3185 18.6313 15.4283 19 14.5 19H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="wholesale__feature-content">
-                                    <h3 class="wholesale__feature-title">Персональные условия</h3>
-                                    <p class="wholesale__feature-text">Индивидуальный подход на любые объёмы</p>
-                                </div>
-                            </div>
+                            <?php endif; endforeach; ?>
                         </div>
-
-                        <!-- Кнопка CTA -->
-                        <a href="#contact-form" class="wholesale__cta button button--primary">
-                            <span>Условия для сотрудничества</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
+                        <div class="wholesale__cta-group">
+                            <a href="<?php echo esc_url($wh_cta_url); ?>" class="wholesale__cta button button--primary">
+                                <span><?php echo esc_html($wh_cta_text); ?></span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <?php if ($wh_cta2_show && ($wh_cta2_text || $wh_cta2_url)) : ?>
+                            <a href="<?php echo esc_url($wh_cta2_url); ?>" class="wholesale__cta wholesale__cta--secondary button button--secondary">
+                                <span><?php echo esc_html($wh_cta2_text); ?></span>
+                            </a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        <?php endif; ?>
 
         <!-- Блог / Статьи -->
+        <?php
+        $blog_show = $opt('blog_show', true);
+        $blog_show = ($blog_show === false || $blog_show === '0' || $blog_show === 0) ? false : true;
+        if ($blog_show) :
+        $blog_title = $opt('blog_title', 'Вам будет интересно');
+        $blog_view_all_text = $opt('blog_view_all_text', 'Все статьи');
+        $blog_view_all_url = $opt('blog_view_all_url', '');
+        if (empty($blog_view_all_url)) {
+            $blog_page_id = (int) get_option('page_for_posts');
+            $blog_view_all_url = $blog_page_id ? get_permalink($blog_page_id) : home_url('/');
+        }
+        $blog_count = (int) $opt('blog_posts_count', 4);
+        $blog_count = max(1, min(12, $blog_count));
+        $blog_featured = function_exists('get_field') ? get_field('blog_featured_posts', 'option') : array();
+        $blog_featured = is_array($blog_featured) ? array_filter(array_map('intval', $blog_featured)) : array();
+
+        if (!empty($blog_featured)) {
+            $blog_query = new WP_Query(array(
+                'post_type'      => 'post',
+                'post__in'       => $blog_featured,
+                'orderby'        => 'post__in',
+                'posts_per_page' => count($blog_featured),
+                'post_status'    => 'publish',
+            ));
+        } else {
+            $blog_query = new WP_Query(array(
+                'post_type'      => 'post',
+                'posts_per_page' => $blog_count,
+                'post_status'    => 'publish',
+                'orderby'        => 'date',
+            ));
+        }
+        ?>
         <section class="blog animate-on-scroll" id="blog" aria-labelledby="blog-title">
             <div class="container">
                 <div class="blog__header">
-                    <h2 class="blog__title" id="blog-title">Вам будет интересно</h2>
-                    <a href="blog.html" class="blog__view-all">
-                        Все статьи
+                    <h2 class="blog__title" id="blog-title"><?php echo esc_html($blog_title); ?></h2>
+                    <a href="<?php echo esc_url($blog_view_all_url); ?>" class="blog__view-all">
+                        <?php echo esc_html($blog_view_all_text); ?>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </a>
                 </div>
 
+                <?php if ($blog_query->have_posts()) : ?>
                 <div class="blog__grid">
-                    <!-- Статья 1 -->
-                    <article class="blog__card">
-                        <a href="blog-single.html" class="blog__card-link">
-                            <div class="blog__card-image">
-                                <img src="<?php echo esc_url($t . '/img/16.webp'); ?>" alt="5 ключевых факторов для выбора идеальных стульев" class="blog__img" loading="lazy">
-                                <div class="blog__card-overlay">
-                                    <span class="blog__read-more">Читать далее</span>
-                                </div>
-                            </div>
-                            <div class="blog__card-content">
-                                <div class="blog__card-meta">
-                                    <span class="blog__card-category">Гиды по выбору</span>
-                                    <span class="blog__card-date">15 янв 2026</span>
-                                </div>
-                                <h3 class="blog__card-title">5 ключевых факторов для выбора идеальных стульев</h3>
-                                <p class="blog__card-excerpt">Как подобрать стулья, которые будут комфортными, стильными и прослужат долгие годы</p>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- Статья 2 -->
-                    <article class="blog__card">
-                        <a href="blog-single.html" class="blog__card-link">
-                            <div class="blog__card-image">
-                                <img src="<?php echo esc_url($t . '/img/17.webp'); ?>" alt="История дизайна мебели: от классицизма до современности" class="blog__img" loading="lazy">
-                                <div class="blog__card-overlay">
-                                    <span class="blog__read-more">Читать далее</span>
-                                </div>
-                            </div>
-                            <div class="blog__card-content">
-                                <div class="blog__card-meta">
-                                    <span class="blog__card-category">История дизайна</span>
-                                    <span class="blog__card-date">12 янв 2026</span>
-                                </div>
-                                <h3 class="blog__card-title">История дизайна мебели: от классицизма до современности</h3>
-                                <p class="blog__card-excerpt">Путешествие через эпохи — от изящного классицизма до минималистичного модерна</p>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- Статья 3 -->
-                    <article class="blog__card">
-                        <a href="blog-single.html" class="blog__card-link">
-                            <div class="blog__card-image">
-                                <img src="<?php echo esc_url($t . '/img/18.webp'); ?>" alt="История дизайна мебели: от античности до XVIII века" class="blog__img" loading="lazy">
-                                <div class="blog__card-overlay">
-                                    <span class="blog__read-more">Читать далее</span>
-                                </div>
-                            </div>
-                            <div class="blog__card-content">
-                                <div class="blog__card-meta">
-                                    <span class="blog__card-category">История дизайна</span>
-                                    <span class="blog__card-date">8 янв 2026</span>
-                                </div>
-                                <h3 class="blog__card-title">История дизайна мебели: от античности до XVIII века</h3>
-                                <p class="blog__card-excerpt">Эволюция мебельного искусства от древних времен до эпохи барокко и рококо</p>
-                            </div>
-                        </a>
-                    </article>
-
-                    <!-- Статья 4 -->
-                    <article class="blog__card">
-                        <a href="blog-single.html" class="blog__card-link">
-                            <div class="blog__card-image">
-                                <img src="<?php echo esc_url($t . '/img/19.webp'); ?>" alt="Как выбрать стол для маленькой кухни: секреты дизайнеров" class="blog__img" loading="lazy">
-                                <div class="blog__card-overlay">
-                                    <span class="blog__read-more">Читать далее</span>
-                                </div>
-                            </div>
-                            <div class="blog__card-content">
-                                <div class="blog__card-meta">
-                                    <span class="blog__card-category">Советы экспертов</span>
-                                    <span class="blog__card-date">5 янв 2026</span>
-                                </div>
-                                <h3 class="blog__card-title">Как выбрать стол для маленькой кухни: секреты дизайнеров</h3>
-                                <p class="blog__card-excerpt">Практичные решения для компактных пространств, которые не жертвуют функциональностью</p>
-                            </div>
-                        </a>
-                    </article>
+                    <?php while ($blog_query->have_posts()) : $blog_query->the_post(); get_template_part('template-parts/blog-card'); endwhile; wp_reset_postdata(); ?>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
+        <?php endif; ?>
     </main>
 
 <?php get_footer(); ?>

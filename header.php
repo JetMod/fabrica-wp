@@ -12,11 +12,11 @@ if (!isset($t)) {
                     <!-- Верхнее меню -->
                     <nav class="header__top-nav">
                         <a href="office.html" class="header__top-link">О нас</a>
-                        <a href="services.html" class="header__top-link">Услуги</a>
-                        <a href="designers.html" class="header__top-link">Дизайнерам</a>
-                        <a href="business.html" class="header__top-link">Бизнесу</a>
+                        <a href="<?php echo esc_url(fabrica_get_services_page_url()); ?>" class="header__top-link">Услуги</a>
+                        <a href="<?php echo esc_url(fabrica_get_designers_page_url()); ?>" class="header__top-link">Дизайнерам</a>
+                        <a href="<?php echo esc_url(fabrica_get_business_page_url()); ?>" class="header__top-link">Бизнесу</a>
                         <a href="delivery.html" class="header__top-link">Доставка</a>
-                        <a href="projects.html" class="header__top-link">Проекты</a>
+                        <a href="<?php echo esc_url(fabrica_get_projects_page_url()); ?>" class="header__top-link">Проекты</a>
                     </nav>
 
                     <!-- Правая часть -->
@@ -110,7 +110,7 @@ if (!isset($t)) {
                             <a href="catalog.html" class="header__menu-link">На улице</a>
                         </li> -->
                         <li class="header__menu-item">
-                            <a href="services.html" class="header__menu-link">Услуги</a>
+                            <a href="<?php echo esc_url(fabrica_get_services_page_url()); ?>" class="header__menu-link">Услуги</a>
                         </li>
                         <li class="header__menu-item">
                             <a href="catalog.html" class="header__menu-link">Horeca</a>
@@ -206,7 +206,7 @@ if (!isset($t)) {
                     </svg>
                     <span>О компании</span>
                 </a>
-                <a href="services.html" class="header__mobile-link">
+                <a href="<?php echo esc_url(fabrica_get_services_page_url()); ?>" class="header__mobile-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -218,7 +218,7 @@ if (!isset($t)) {
                     </svg>
                     <span>Производство</span>
                 </a>
-                <a href="designers.html" class="header__mobile-link">
+                <a href="<?php echo esc_url(fabrica_get_designers_page_url()); ?>" class="header__mobile-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -226,7 +226,7 @@ if (!isset($t)) {
                     </svg>
                     <span>Дизайнерам</span>
                 </a>
-                <a href="business.html" class="header__mobile-link">
+                <a href="<?php echo esc_url(fabrica_get_business_page_url()); ?>" class="header__mobile-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -240,7 +240,7 @@ if (!isset($t)) {
                     </svg>
                     <span>Доставка</span>
                 </a>
-                <a href="projects.html" class="header__mobile-link">
+                <a href="<?php echo esc_url(fabrica_get_projects_page_url()); ?>" class="header__mobile-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

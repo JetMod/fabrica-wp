@@ -13,15 +13,7 @@ $body_class = 'page-designers';
 <?php get_header(); ?>
 
 <main class="main" role="main" id="main-content">
-    <div class="container">
-        <?php
-        while (have_posts()) :
-            the_post();
-            the_content();
-        endwhile;
-        ?>
-        <!-- TODO: Добавить контент из designers.html -->
-    </div>
+    <?php get_template_part('template-parts/content-designers'); ?>
 </main>
 
 <?php get_footer(); ?>

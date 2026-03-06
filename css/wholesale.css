@@ -121,6 +121,14 @@
     letter-spacing: -0.5px;
 }
 
+.wholesale__subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(45, 45, 45, 0.7);
+    margin: 0;
+    line-height: 1.5;
+}
+
 .wholesale__description {
     font-size: 17px;
     line-height: 1.7;
@@ -212,7 +220,14 @@
     margin: 0;
 }
 
-/* Кнопка CTA */
+/* Кнопки CTA */
+.wholesale__cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+}
+
 .wholesale__cta {
     align-self: flex-start;
     margin-top: 8px;

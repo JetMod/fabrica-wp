@@ -283,3 +283,15 @@ function initCallbackFormValidation() {
         }, 3000);
     });
 }
+
+
+document.addEventListener('wpcf7mailsent', function (event) {
+    const formWrapper = event.target.closest('.contact__premium');
+    if (!formWrapper) return;
+
+    const successBox = formWrapper.querySelector('#successMessage');
+    const form = formWrapper.querySelector('.wpcf7 form');
+
+    if (successBox) successBox.style.display = 'flex';
+    if (form) form.style.display = 'none';
+}, false);

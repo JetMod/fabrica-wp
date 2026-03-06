@@ -212,71 +212,7 @@ $body_class = 'page-delivery';
         </div>
     </section>
 
-    <!-- Форма / CTA -->
-    <section class="contact animate-on-scroll" id="contact-form" aria-labelledby="contact-title">
-        <div class="contact__background">
-            <div class="contact__pattern"></div>
-        </div>
-        <div class="container">
-            <div class="contact__premium">
-                <div class="contact__header">
-                    <span class="contact__accent">Начните свой проект</span>
-                    <h2 class="contact__title" id="contact-title">Получите персональную консультацию</h2>
-                    <p class="contact__subtitle">Оставьте заявку, и наш эксперт свяжется с вами в течение 15 минут</p>
-                </div>
-
-                <form class="contact__form" id="contactForm">
-                    <div class="contact__form-row">
-                        <div class="contact__input-wrapper">
-                            <input type="text" id="name" name="name" class="contact__input" placeholder="Ваше имя" required>
-                            <span class="contact__input-border"></span>
-                        </div>
-                        <div class="contact__input-wrapper">
-                            <input type="tel" id="phone" name="phone" class="contact__input" placeholder="+7 (___) ___-__-__" required>
-                            <span class="contact__input-border"></span>
-                        </div>
-                        <button type="submit" class="contact__button">
-                            <span>Получить консультацию</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <p class="contact__privacy">
-                        <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
-                            <input type="checkbox" name="privacy_agreement" required style="margin-top: 2px; cursor: pointer;">
-                            <span>Нажимая на кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></span>
-                        </label>
-                    </p>
-                </form>
-
-                <div class="contact__benefits">
-                    <div class="contact__benefit">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17L4 12"/></svg>
-                        <span>Бесплатная консультация</span>
-                    </div>
-                    <div class="contact__benefit">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17L4 12"/></svg>
-                        <span>Расчёт в день обращения</span>
-                    </div>
-                    <div class="contact__benefit">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17L4 12"/></svg>
-                        <span>Гарантия качества</span>
-                    </div>
-                </div>
-
-                <div class="contact__success" id="successMessage">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/>
-                    </svg>
-                    <div>
-                        <h3>Спасибо за обращение!</h3>
-                        <p>Наш менеджер свяжется с вами в ближайшее время</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php get_template_part('template-parts/contact-form'); ?>
 </main>
 
 <?php get_footer(); ?>

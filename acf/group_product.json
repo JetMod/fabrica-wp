@@ -1,0 +1,72 @@
+{
+    "key": "group_product",
+    "title": "Товар — данные карточки",
+    "fields": [
+        {
+            "key": "field_product_image",
+            "label": "Изображение",
+            "name": "product_image",
+            "type": "image",
+            "instructions": "Главное фото товара. Если не указано — используется миниатюра записи.",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_product_price",
+            "label": "Цена (текущая)",
+            "name": "product_price",
+            "type": "text",
+            "instructions": "Например: 45 900 руб.",
+            "default_value": ""
+        },
+        {
+            "key": "field_product_price_old",
+            "label": "Цена (старая, зачёркнутая)",
+            "name": "product_price_old",
+            "type": "text",
+            "instructions": "Для отображения скидки. Оставьте пустым, если скидки нет.",
+            "default_value": ""
+        },
+        {
+            "key": "field_product_status",
+            "label": "Наличие",
+            "name": "product_status",
+            "type": "select",
+            "instructions": "Отображается на карточке товара.",
+            "choices": {
+                "available": "В наличии",
+                "order": "Под заказ"
+            },
+            "default_value": "order"
+        },
+        {
+            "key": "field_product_badge",
+            "label": "Бейдж",
+            "name": "product_badge",
+            "type": "select",
+            "instructions": "Метка на карточке (Финальная цена, Тренд и т.п.).",
+            "choices": {
+                "": "— Без бейджа",
+                "final": "Финальная цена",
+                "trend": "Тренд"
+            },
+            "default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "fabrica_product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Поля для карточки товара в каталоге и на главной"
+}

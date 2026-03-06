@@ -1,0 +1,31 @@
+{
+    "key": "group_project",
+    "title": "Проект — данные карточки",
+    "fields": [
+        {
+            "key": "field_project_image",
+            "label": "Изображение",
+            "name": "project_image",
+            "type": "image",
+            "instructions": "Фото для карточки. Если не указано — используется миниатюра записи.",
+            "return_format": "array",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "fabrica_project"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Поля для карточки проекта. Название и категория — в основных полях записи."
+}

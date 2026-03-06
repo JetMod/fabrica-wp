@@ -94,9 +94,9 @@ if (!isset($t)) {
                             <h4 class="footer__menu-title">Компания</h4>
                             <ul class="footer__menu-list">
                                 <li><a href="#about" class="footer__menu-link">О нас</a></li>
-                                <li><a href="projects.html" class="footer__menu-link">Наши проекты</a></li>
+                                <li><a href="<?php echo esc_url(fabrica_get_projects_page_url()); ?>" class="footer__menu-link">Наши проекты</a></li>
                                 <li><a href="#production" class="footer__menu-link">Производство</a></li>
-                                <li><a href="blog.html" class="footer__menu-link">Блог</a></li>
+                                <li><a href="<?php echo esc_url(fabrica_get_blog_page_url()); ?>" class="footer__menu-link">Блог</a></li>
                                 <li><a href="#" class="footer__menu-link">Карьера</a></li>
                             </ul>
                         </div>
@@ -117,8 +117,8 @@ if (!isset($t)) {
                         <div class="footer__menu-column">
                             <h4 class="footer__menu-title">Услуги</h4>
                             <ul class="footer__menu-list">
-                                <li><a href="designers.html" class="footer__menu-link">Для дизайнеров</a></li>
-                                <li><a href="business.html" class="footer__menu-link">Для бизнеса</a></li>
+                                <li><a href="<?php echo esc_url(fabrica_get_designers_page_url()); ?>" class="footer__menu-link">Для дизайнеров</a></li>
+                                <li><a href="<?php echo esc_url(fabrica_get_business_page_url()); ?>" class="footer__menu-link">Для бизнеса</a></li>
                                 <li><a href="#" class="footer__menu-link">Индивидуальный дизайн</a></li>
                                 <li><a href="delivery.html" class="footer__menu-link">Доставка и сборка</a></li>
                                 <li><a href="#" class="footer__menu-link">Гарантия</a></li>
