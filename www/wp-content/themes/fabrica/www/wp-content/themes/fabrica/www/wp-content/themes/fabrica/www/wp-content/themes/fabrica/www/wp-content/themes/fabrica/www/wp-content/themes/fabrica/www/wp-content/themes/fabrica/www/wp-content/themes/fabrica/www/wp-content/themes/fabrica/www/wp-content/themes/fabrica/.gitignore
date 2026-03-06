@@ -1,0 +1,33 @@
+# SFTP/FTP — учётные данные (пароли, хосты)
+.vscode/sftp.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# WordPress (если будет полный WP)
+wp-config.php
+.htaccess
+wp-content/uploads/
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+*.log
+
+# Node (если используется)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Временные файлы
+*.tmp
+*.temp
+.cache/
