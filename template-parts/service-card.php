@@ -10,7 +10,8 @@ if (!defined('ABSPATH')) {
     return;
 }
 
-$args = (array) get_query_var('args', array());
+// Поддержка args из get_template_part(..., array('service_id' => $id)) или set_query_var('args', ...)
+$args = isset($args) ? (array) $args : (array) get_query_var('args', array());
 $service_id = isset($args['service_id']) ? (int) $args['service_id'] : 0;
 if (!$service_id) {
     return;
@@ -24,6 +25,19 @@ if (!$post || $post->post_type !== 'fabrica_service') {
 $title = get_the_title($service_id);
 $link = get_permalink($service_id);
 $excerpt = has_excerpt($service_id) ? get_the_excerpt($service_id) : '';
+if (empty($excerpt) && function_exists('get_field')) {
+    $hero_subtitle = get_field('service_hero_subtitle', $service_id);
+    if (!empty($hero_subtitle)) {
+        $excerpt = $hero_subtitle;
+    } else {
+        $about = get_field('service_about_content', $service_id);
+        if (!empty($about)) {
+            $excerpt = wp_trim_words(wp_strip_all_tags($about), 20);
+        } elseif (get_post_field('post_content', $service_id)) {
+            $excerpt = wp_trim_words(wp_strip_all_tags(get_post_field('post_content', $service_id)), 20);
+        }
+    }
+}
 
 $image_arr = get_field('service_image', $service_id);
 $image_url = '';

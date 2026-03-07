@@ -2,7 +2,7 @@
    Video Hero — полноэкранное видео
    =================================== */
 
-.video-hero {
+   .video-hero {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -87,16 +87,45 @@
 }
 
 /* Название компании над заголовком */
-.video-hero__tagline {
+.video-hero__tagline-wrap {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.video-hero__tagline-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent, #C6A15B);
+    opacity: 0.95;
+}
+
+.video-hero__tagline-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.video-hero__tagline-line {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(180deg, transparent, var(--color-accent, #C6A15B), transparent);
+    border-radius: 2px;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+.video-hero__tagline {
+    display: inline;
+    margin: 0;
     font-size: clamp(0.9375rem, 2vw, 1.125rem);
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.95);
-    margin: 0 0 24px;
 }
 
 .video-hero__tagline-accent {
@@ -116,25 +145,40 @@
     text-shadow: 0 2px 32px rgba(0, 0, 0, 0.55), 0 0 56px rgba(0, 0, 0, 0.2);
 }
 
-/* Подзаголовок — читаемость и воздух */
+/* Подзаголовок — градиентный текст */
 .video-hero__text {
-    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.92);
+    font-size: clamp(1.3rem, 2.4vw, 1.625rem);
+    line-height: 1.6;
     margin: 0 0 32px;
     max-width: 28ch;
-    font-weight: 600;
-    text-shadow: 0 1px 20px rgba(0, 0, 0, 0.45);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 250, 240, 0.95) 35%,
+        rgba(220, 195, 140, 0.9) 65%,
+        rgba(198, 161, 91, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 30px rgba(198, 161, 91, 0.15));
 }
 
-/* Короткая акцентная линия между текстом и кнопкой */
+/* Короткая акцентная линия — градиент в тон тексту */
 .video-hero__text::after {
     content: '';
     display: block;
-    width: 48px;
-    height: 2px;
-    background: var(--color-accent, #C6A15B);
+    width: 64px;
+    height: 3px;
     margin-top: 24px;
+    border-radius: 2px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.6),
+        var(--color-accent, #C6A15B)
+    );
 }
 
 .video-hero__cta {
@@ -183,13 +227,13 @@
     }
 }
 
-.video-hero__tagline { animation: video-hero-fade-in 0.6s ease forwards; animation-delay: 0.15s; opacity: 0; }
+.video-hero__tagline-wrap { animation: video-hero-fade-in 0.6s ease forwards; animation-delay: 0.15s; opacity: 0; }
 .video-hero__title  { animation: video-hero-fade-in 0.6s ease forwards; animation-delay: 0.3s;  opacity: 0; }
 .video-hero__text   { animation: video-hero-fade-in 0.6s ease forwards; animation-delay: 0.45s; opacity: 0; }
 .video-hero__cta    { animation: video-hero-fade-in 0.6s ease forwards; animation-delay: 0.6s;  opacity: 0; }
 
 @media (prefers-reduced-motion: reduce) {
-    .video-hero__tagline,
+    .video-hero__tagline-wrap,
     .video-hero__title,
     .video-hero__text,
     .video-hero__cta {
@@ -240,25 +284,32 @@
 
 @media (max-width: 768px) {
     .video-hero__scroll-hint {
-        bottom: 16px;
+        bottom: 20px;
         font-size: 0.6875rem;
     }
     .video-hero__scroll-hint svg { width: 20px; height: 20px; }
 }
 @media (max-width: 480px) {
+    .video-hero__scroll-hint {
+        bottom: 16px;
+        font-size: 0.625rem;
+    }
+    .video-hero__scroll-hint svg { width: 18px; height: 18px; }
+}
+@media (max-width: 360px) {
     .video-hero__scroll-hint { display: none; }
 }
 
 /* Планшеты */
 @media (max-width: 1024px) {
     .video-hero {
-        height: 90vh;
+        height: 100vh;
         min-height: 380px;
-        max-height: 700px;
+        max-height: 100vh;
         margin-bottom: 50px;
     }
     .page-index .video-hero {
-        margin-top: -160px;
+        margin-top: -220px;
         margin-bottom: 40px;
     }
 }
@@ -266,46 +317,115 @@
 /* Планшеты вертикально и крупные телефоны */
 @media (max-width: 768px) {
     .video-hero {
-        height: 70vh;
-        min-height: 340px;
-        max-height: 600px;
+        height: 75vh;
+        height: 75dvh;
+        min-height: 400px;
+        max-height: 650px;
     }
     .page-index .video-hero {
-        margin-top: -140px;
-        margin-bottom: 20px;
+        margin-top: -150px;
+        margin-bottom: 24px;
     }
     .video-hero__content {
-        padding: 100px 20px 15%;
-        align-items: flex-start;
+        padding: 100px 20px 60px;
+        padding-top: max(100px, 20vh);
+        justify-content: flex-end;
+        padding-bottom: 80px;
+    }
+    .video-hero__content .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .video-hero__tagline-wrap {
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+    .video-hero__tagline {
+        font-size: 0.9375rem;
+    }
+    .video-hero__tagline-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    .video-hero__tagline-line {
+        height: 16px;
     }
     .video-hero__title {
-        margin-bottom: 12px;
+        font-size: clamp(2rem, 6vw, 2.75rem);
+        margin-bottom: 20px;
+        max-width: 100%;
+        line-height: 1.2;
     }
     .video-hero__text {
-        margin-bottom: 20px;
+        font-size: 1.125rem;
+        margin-bottom: 28px;
+        max-width: 100%;
+        line-height: 1.55;
+    }
+    .video-hero__text::after {
+        margin-top: 24px;
+        width: 48px;
+    }
+    .video-hero__cta {
+        padding: 16px 32px;
+        font-size: 0.9375rem;
     }
 }
 
 /* Телефоны */
 @media (max-width: 480px) {
     .video-hero {
-        height: 60vh;
-        min-height: 280px;
-        max-height: 500px;
-        margin-bottom: 40px;
+        height: 70vh;
+        height: 70dvh;
+        min-height: 660px;
+        max-height: 800px;
+        margin-bottom: 32px;
     }
     .page-index .video-hero {
-        margin-top: -120px;
+       
+        margin-bottom: 20px;
     }
     .video-hero__content {
-        padding: 80px 16px 50px;
-        padding-bottom: 12%;
+        padding: 90px 16px 70px;
+        padding-top: max(90px, 18vh);
+        padding-bottom: 120px;
+    }
+    .video-hero__content .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .video-hero__tagline-wrap {
+        margin-bottom: 18px;
+        gap: 8px;
     }
     .video-hero__tagline {
+        font-size: 0.875rem;
         letter-spacing: 0.08em;
     }
+    .video-hero__tagline-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+    .video-hero__tagline-line {
+        height: 14px;
+    }
+    .video-hero__title {
+        font-size: clamp(1.75rem, 7vw, 2.25rem);
+        margin-bottom: 18px;
+        line-height: 1.25;
+    }
+    .video-hero__text {
+        font-size: 1.0625rem;
+        margin-bottom: 24px;
+        line-height: 1.55;
+    }
+    .video-hero__text::after {
+        margin-top: 20px;
+        width: 44px;
+        height: 2px;
+    }
     .video-hero__cta {
-        padding: 12px 28px;
+        padding: 14px 28px;
         font-size: 0.875rem;
     }
 }
@@ -313,20 +433,71 @@
 /* Маленькие экраны */
 @media (max-width: 360px) {
     .video-hero {
-        height: 50vh;
-        min-height: 220px;
-        max-height: 380px;
+        height: 65vh;
+        height: 65dvh;
+        min-height: 320px;
+        max-height: 480px;
     }
     .page-index .video-hero {
-        margin-top: -100px;
+       
+        margin-bottom: 16px;
+    }
+    .video-hero__content {
+        padding: 80px 12px 60px;
+        padding-top: max(80px, 16vh);
+    }
+    .video-hero__content .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .video-hero__tagline-wrap {
+        margin-bottom: 14px;
+        gap: 6px;
+    }
+    .video-hero__tagline {
+        font-size: 0.8125rem;
+    }
+    .video-hero__tagline-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+    .video-hero__tagline-line {
+        height: 12px;
+    }
+    .video-hero__title {
+        font-size: 1.5rem;
+        margin-bottom: 14px;
+    }
+    .video-hero__text {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .video-hero__text::after {
+        margin-top: 16px;
     }
 }
 
-/* Учёт выреза экрана (notch) на мобильных */
+/* Учёт выреза экрана (notch) и адресной строки на мобильных */
 @supports (padding: max(0px)) {
     @media (max-width: 768px) {
         .video-hero {
             padding-top: env(safe-area-inset-top, 0);
+        }
+        .video-hero__content .container {
+            padding-left: max(20px, calc(20px + env(safe-area-inset-left)));
+            padding-right: max(20px, calc(20px + env(safe-area-inset-right)));
+        }
+        .video-hero__scroll-hint {
+            bottom: max(20px, env(safe-area-inset-bottom));
+        }
+    }
+    @media (max-width: 480px) {
+        .video-hero__content .container {
+            padding-left: max(16px, calc(16px + env(safe-area-inset-left)));
+            padding-right: max(16px, calc(16px + env(safe-area-inset-right)));
+        }
+        .video-hero__scroll-hint {
+            bottom: max(16px, env(safe-area-inset-bottom));
         }
     }
 }

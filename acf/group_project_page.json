@@ -1,0 +1,95 @@
+{
+    "key": "group_project_page",
+    "title": "Страница «Проекты» — Hero и настройки",
+    "fields": [
+        {
+            "key": "field_project_page_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Настройки Hero-блока страницы проектов. Проекты выводятся из раздела «Проекты» в меню. Категория проекта выбирается при редактировании каждого проекта.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_project_page_tab_hero",
+            "label": "Hero (шапка страницы)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_project_page_badge",
+            "label": "Метка (бейдж)",
+            "name": "projects_page_badge",
+            "type": "text",
+            "default_value": "Портфолио"
+        },
+        {
+            "key": "field_project_page_title_1",
+            "label": "Заголовок — первая строка",
+            "name": "projects_page_title_1",
+            "type": "text",
+            "default_value": "Наши"
+        },
+        {
+            "key": "field_project_page_title_2",
+            "label": "Заголовок — вторая строка (с акцентом)",
+            "name": "projects_page_title_2",
+            "type": "text",
+            "default_value": "проекты"
+        },
+        {
+            "key": "field_project_page_subtitle",
+            "label": "Подзаголовок",
+            "name": "projects_page_subtitle",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "Реализованные интерьерные решения для частных домов, офисов, ресторанов и гостиниц. Каждый проект — уникальное пространство, созданное с вниманием к деталям.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_project_page_stat_1_number",
+            "label": "Статистика 1 — число",
+            "name": "projects_page_stat_1_number",
+            "type": "text",
+            "instructions": "Например: 100+ или 50",
+            "default_value": "100+"
+        },
+        {
+            "key": "field_project_page_stat_1_label",
+            "label": "Статистика 1 — подпись",
+            "name": "projects_page_stat_1_label",
+            "type": "text",
+            "default_value": "реализованных проектов"
+        },
+        {
+            "key": "field_project_page_stat_2_number",
+            "label": "Статистика 2 — число",
+            "name": "projects_page_stat_2_number",
+            "type": "text",
+            "default_value": "9+"
+        },
+        {
+            "key": "field_project_page_stat_2_label",
+            "label": "Статистика 2 — подпись",
+            "name": "projects_page_stat_2_label",
+            "type": "text",
+            "default_value": "лет опыта"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-projects.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Настройки Hero страницы проектов"
+}

@@ -83,6 +83,7 @@ function fabrica_create_default_project_categories() {
         'horeca'          => 'Общепит',
         'hotel'           => 'Гостиничный номер',
         'commercial'      => 'Коммерческое пространство',
+        'retail'          => 'Торговое пространство',
     );
     foreach ($categories as $slug => $name) {
         if (!term_exists($slug, 'project_category')) {

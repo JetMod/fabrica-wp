@@ -10,9 +10,12 @@ if (!defined('ABSPATH')) {
     return;
 }
 
-$args = (array) get_query_var('args', array());
-$project_id = isset($args['project_id']) ? (int) $args['project_id'] : 0;
-$index = isset($args['index']) ? (int) $args['index'] : 0;
+// $project_id и $index передаются из вызывающего кода (index.php) через include
+if (empty($project_id) || (int) $project_id <= 0) {
+    $args = (array) get_query_var('args', array());
+    $project_id = isset($args['project_id']) ? (int) $args['project_id'] : 0;
+}
+$index = isset($index) ? (int) $index : 0;
 if (!$project_id) {
     return;
 }

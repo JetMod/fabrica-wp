@@ -130,10 +130,13 @@
     font-size: 17px;
     line-height: 1.7;
     color: rgba(30, 30, 30, 0.85);
+}
+
+.project-about__text p {
     margin: 0 0 20px;
 }
 
-.project-about__text:last-of-type {
+.project-about__text p:last-child {
     margin-bottom: 0;
 }
 

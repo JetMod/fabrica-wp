@@ -12,17 +12,68 @@ if (!defined('ABSPATH')) {
 require_once get_template_directory() . '/inc/cpt-product.php';
 require_once get_template_directory() . '/inc/cpt-service.php';
 require_once get_template_directory() . '/inc/cpt-project.php';
+require_once get_template_directory() . '/inc/tax-product-catalog.php';
 
 /**
- * Сброс правил перезаписи при активации темы (для CPT)
+ * Сброс правил перезаписи при активации темы (для CPT и таксономий)
  */
 function fabrica_rewrite_flush() {
     fabrica_register_product_cpt();
+    fabrica_register_product_catalog_taxonomy();
     fabrica_register_service_cpt();
     fabrica_register_project_cpt();
     flush_rewrite_rules();
 }
 add_action('after_switch_theme', 'fabrica_rewrite_flush');
+
+/**
+ * Скрываем стандартный блок «Каталоги» — выбор каталога только через ACF
+ */
+function fabrica_remove_product_catalog_metabox() {
+    remove_meta_box('product_catalogdiv', 'fabrica_product', 'side');
+}
+add_action('admin_menu', 'fabrica_remove_product_catalog_metabox', 99);
+
+/**
+ * Скрываем стандартный блок «Категории услуг» — выбор только через ACF (вкладка «Карточка»)
+ */
+function fabrica_remove_service_category_metabox() {
+    remove_meta_box('service_categorydiv', 'fabrica_service', 'side');
+}
+add_action('admin_menu', 'fabrica_remove_service_category_metabox', 99);
+
+/**
+ * Скрываем стандартный блок «Категории проектов» — выбор только через ACF
+ */
+function fabrica_remove_project_category_metabox() {
+    remove_meta_box('project_categorydiv', 'fabrica_project', 'side');
+}
+add_action('admin_menu', 'fabrica_remove_project_category_metabox', 99);
+
+/**
+ * Хук при сохранении услуги — сброс кэша страницы услуг для немедленного отображения
+ */
+function fabrica_service_saved_hook($post_id) {
+    if (get_post_type($post_id) !== 'fabrica_service') {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    do_action('fabrica_service_saved', $post_id);
+
+    // Сброс кэша для популярных плагинов (страница услуг обновится сразу)
+    if (function_exists('rocket_clean_domain')) {
+        rocket_clean_domain();
+    }
+    if (function_exists('w3tc_flush_all')) {
+        w3tc_flush_all();
+    }
+    if (class_exists('LiteSpeed_Cache_API') && method_exists('LiteSpeed_Cache_API', 'purge_all')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+}
+add_action('save_post', 'fabrica_service_saved_hook');
 
 /**
  * Подключение стилей и скриптов
@@ -77,6 +128,17 @@ function fabrica_enqueue_assets() {
         wp_enqueue_script(
             'fabrica-blog',
             $theme_uri . '/js/blog.js',
+            array(),
+            $version,
+            true
+        );
+    }
+
+    // Скрипт страницы товара (галерея)
+    if (is_singular('fabrica_product')) {
+        wp_enqueue_script(
+            'fabrica-product',
+            $theme_uri . '/js/product.js',
             array(),
             $version,
             true
@@ -231,3 +293,99 @@ add_action('init', 'fabrica_create_default_blog_categories', 20);
 
 
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+/**
+ * Значения по умолчанию для полей услуги (при создании новой)
+ */
+function fabrica_service_default_values($value, $post_id, $field) {
+    if ($field['name'] === 'service_hero_meta' && empty($value)) {
+        return array(
+            array('icon' => 'location', 'text' => 'Работаем по всему Крыму'),
+            array('icon' => 'clock', 'text' => 'От 2 до 4 недель'),
+            array('icon' => 'check', 'text' => 'Гарантия качества'),
+        );
+    }
+    if ($field['name'] === 'service_features' && empty($value)) {
+        return array(
+            array('icon' => 'check', 'title' => 'Опыт работы в Крыму', 'text' => 'Многолетний опыт работы с клиентами по всему Крыму, знание местных особенностей и требований.'),
+            array('icon' => 'shield', 'title' => 'Индивидуальный подход', 'text' => 'Каждый проект разрабатывается индивидуально с учётом ваших пожеланий, особенностей помещения и бюджета.'),
+            array('icon' => 'ruble', 'title' => 'Прозрачные цены', 'text' => 'Честные и прозрачные цены без скрытых доплат. Фиксированная стоимость в договоре.'),
+            array('icon' => 'clock', 'title' => 'Соблюдение сроков', 'text' => 'Строгое соблюдение оговоренных сроков выполнения работ. Работаем быстро и качественно.'),
+        );
+    }
+    if ($field['name'] === 'service_steps' && empty($value)) {
+        return array(
+            array('title' => 'Консультация и выезд', 'text' => 'Свяжитесь с нами по телефону или оставьте заявку. Наш специалист приедет к вам для консультации, замеров и обсуждения пожеланий.'),
+            array('title' => 'Разработка концепции', 'text' => 'Разрабатываем концепцию с учётом ваших предпочтений и особенностей помещения. Представляем несколько вариантов для выбора.'),
+            array('title' => 'Согласование и реализация', 'text' => 'Согласовываем детали и приступаем к реализации. Держим вас в курсе на каждом этапе.'),
+            array('title' => 'Сдача проекта', 'text' => 'Передаём готовый результат с гарантией качества. При необходимости сопровождаем после сдачи.'),
+        );
+    }
+    if ($field['name'] === 'service_pricing_factors' && empty($value)) {
+        return array(
+            array('icon' => '📐', 'text' => 'Площадь помещения'),
+            array('icon' => '🎨', 'text' => 'Стиль интерьера'),
+            array('icon' => '🚪', 'text' => 'Количество комнат'),
+            array('icon' => '✨', 'text' => 'Ваши пожелания'),
+        );
+    }
+    if ($field['name'] === 'service_hero_subtitle' && empty($value)) {
+        return 'Комплексный подход к реализации ваших интерьерных проектов. Индивидуальный подход, гарантия качества.';
+    }
+    if ($field['name'] === 'service_about_title' && empty($value)) {
+        return 'О нашей услуге';
+    }
+    if ($field['name'] === 'service_about_content' && empty($value)) {
+        return '<p>ФАБРИКА интерьеров предлагает профессиональные услуги в Симферополе и Крыму. Мы создаём уникальные интерьерные решения, которые отражают ваш стиль и потребности.</p><p>Наша команда специалистов работает с клиентами по всему Крыму: Симферополь, Ялта, Севастополь, Алушта, Евпатория и другие города. Мы гарантируем качественное выполнение работ и индивидуальный подход к каждому проекту.</p>';
+    }
+    if ($field['name'] === 'service_features_title' && empty($value)) {
+        return 'Почему выбирают нас в Симферополе и Крыму';
+    }
+    if ($field['name'] === 'service_process_title' && empty($value)) {
+        return 'Как мы работаем';
+    }
+    if ($field['name'] === 'service_portfolio_title' && empty($value)) {
+        return 'Примеры наших работ в Крыму';
+    }
+    if ($field['name'] === 'service_portfolio_subtitle' && empty($value)) {
+        return 'Реализованные проекты в Симферополе, Ялте, Севастополе и других городах Крыма';
+    }
+    if ($field['name'] === 'service_pricing_intro' && empty($value)) {
+        return 'Цены зависят от площади помещения, сложности проекта и объёма работ. Точную стоимость рассчитаем после консультации и выезда на объект.';
+    }
+    if ($field['name'] === 'service_pricing_description' && empty($value)) {
+        return '<p>Для получения точного расчёта стоимости свяжитесь с нами. Мы подготовим индивидуальное коммерческое предложение с учётом всех особенностей вашего проекта.</p>';
+    }
+    if ($field['name'] === 'service_pricing_note' && empty($value)) {
+        return 'Работаем с частными клиентами, дизайнерами и бизнесом по всему Крыму. Предоставляем услуги как полного цикла (от концепции до реализации), так и отдельных этапов (только визуализация или только подбор мебели).';
+    }
+    if ($field['name'] === 'service_faq_title' && empty($value)) {
+        return 'Часто задаваемые вопросы';
+    }
+    if ($field['name'] === 'service_faq' && empty($value)) {
+        return array(
+            array('question' => 'Сколько стоит услуга?', 'answer' => 'Стоимость зависит от площади помещения, сложности проекта и объёма работ. Для получения точного расчёта свяжитесь с нами — мы подготовим индивидуальное коммерческое предложение после консультации и выезда на объект.'),
+            array('question' => 'Что входит в услугу?', 'answer' => 'В услугу входит разработка концепции, создание визуализации, подбор мебели, материалов и декоративных элементов. Также мы предоставляем рабочие чертежи и спецификации для реализации проекта.'),
+            array('question' => 'Как долго выполняется заказ?', 'answer' => 'Сроки зависят от площади помещения и сложности проекта. Обычно разработка занимает от 2 до 4 недель. Точные сроки указываются в договоре, и мы строго их соблюдаем.'),
+            array('question' => 'Работаете ли вы в других городах Крыма?', 'answer' => 'Да, мы работаем по всему Крыму: Симферополь, Ялта, Севастополь, Алушта, Евпатория и другие города. Выезжаем на объект для консультации, замеров и выполнения работ.'),
+            array('question' => 'Даёте ли вы гарантию?', 'answer' => 'Да, мы предоставляем гарантию на все выполненные работы. Срок гарантии и условия указываются в договоре. Также мы предоставляем возможность внесения правок на этапе согласования.'),
+        );
+    }
+    return $value;
+}
+add_filter('acf/load_value/name=service_hero_meta', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_features', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_steps', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_factors', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_hero_subtitle', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_about_title', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_about_content', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_features_title', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_process_title', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_portfolio_title', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_portfolio_subtitle', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_intro', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_description', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_note', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_faq_title', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_faq', 'fabrica_service_default_values', 10, 3);

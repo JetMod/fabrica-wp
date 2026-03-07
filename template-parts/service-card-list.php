@@ -9,8 +9,11 @@ if (!defined('ABSPATH')) {
     return;
 }
 
-$args = (array) get_query_var('args', array());
-$service_id = isset($args['service_id']) ? (int) $args['service_id'] : 0;
+// $service_id передаётся из вызывающего кода (content-services.php) через include
+if (empty($service_id) || (int) $service_id <= 0) {
+    $args = (array) get_query_var('args', array());
+    $service_id = isset($args['service_id']) ? (int) $args['service_id'] : 0;
+}
 if (!$service_id) {
     return;
 }
@@ -23,6 +26,19 @@ if (!$post || $post->post_type !== 'fabrica_service') {
 $title = get_the_title($service_id);
 $link = get_permalink($service_id);
 $excerpt = has_excerpt($service_id) ? get_the_excerpt($service_id) : '';
+if (empty($excerpt) && function_exists('get_field')) {
+    $hero_subtitle = get_field('service_hero_subtitle', $service_id);
+    if (!empty($hero_subtitle)) {
+        $excerpt = $hero_subtitle;
+    } else {
+        $about = get_field('service_about_content', $service_id);
+        if (!empty($about)) {
+            $excerpt = wp_trim_words(wp_strip_all_tags($about), 25);
+        } elseif (get_post_field('post_content', $service_id)) {
+            $excerpt = wp_trim_words(wp_strip_all_tags(get_post_field('post_content', $service_id)), 25);
+        }
+    }
+}
 
 $terms = get_the_terms($service_id, 'service_category');
 $category_slug = 'design';

@@ -387,6 +387,19 @@
     gap: 24px;
 }
 
+.projects-gallery__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--color-gray);
+    font-size: 1.125rem;
+}
+
+.projects-gallery__empty a {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
 .projects-gallery__item {
     position: relative;
     overflow: hidden;

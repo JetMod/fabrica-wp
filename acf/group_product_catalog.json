@@ -1,0 +1,31 @@
+{
+    "key": "group_product_catalog",
+    "title": "Каталог — изображение",
+    "fields": [
+        {
+            "key": "field_catalog_image",
+            "label": "Изображение для карточки",
+            "name": "catalog_image",
+            "type": "image",
+            "instructions": "Фото для карточки каталога на главной странице каталога.",
+            "return_format": "array",
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "product_catalog"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Изображение для карточки каталога"
+}

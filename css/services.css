@@ -112,6 +112,7 @@
 .services__card {
     flex: 0 0 calc(25% - 18px);
     min-width: 0;
+    height: 420px;
     background-color: var(--color-white);
     border-radius: 12px;
     overflow: hidden;
@@ -180,7 +181,8 @@
 /* Контент карточки */
 .services__card-content {
     padding: 24px;
-    flex-grow: 1;
+    flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     background: linear-gradient(to bottom, #ffffff 0%, #fafafa 100%);
@@ -195,6 +197,11 @@
     min-height: 48px;
     position: relative;
     padding-right: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Стрелка для кликабельных карточек */
@@ -219,6 +226,11 @@
     line-height: 1.6;
     color: var(--color-gray);
     margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Навигация слайдера */
@@ -360,7 +372,11 @@
 
 /* Футер секции */
 .services__footer {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
     margin-top: var(--spacing-xl);
 }
 
@@ -441,6 +457,7 @@
     .services__card {
         flex: 0 0 calc(50% - 8px);
         min-width: 0;
+        height: 380px;
     }
     
     .services__slider {
@@ -458,7 +475,7 @@
     
     .services__card-title {
         font-size: 16px;
-        min-height: 44px;
+        min-height: 22px;
     }
     
     .services__card-text {
@@ -514,6 +531,7 @@
     .services__card {
         flex: 0 0 100%;
         min-width: 0;
+        height: 400px;
     }
     
     .services__slider {
@@ -526,7 +544,7 @@
     }
     
     .services__card-title {
-        min-height: auto;
+        min-height: 22px;
     }
     
     /* Стрелки еще меньше на очень маленьких экранах */

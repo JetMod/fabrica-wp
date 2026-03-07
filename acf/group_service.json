@@ -1,15 +1,364 @@
 {
     "key": "group_service",
-    "title": "Услуга — данные карточки",
+    "title": "Услуга — настройки страницы",
     "fields": [
+        {
+            "key": "field_service_msg_intro",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Заполняйте блоки по порядку сверху вниз. Каждая вкладка = соответствующая секция на странице услуги. Название услуги — в заголовке записи, краткое описание — в поле «Выдержка» (для карточки на главной).",
+            "new_lines": "br",
+            "esc_html": 0
+        },
+        {
+            "key": "field_service_tab_card",
+            "label": "1. Карточка (главная, каталог услуг)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_category",
+            "label": "Категория для фильтра",
+            "name": "service_filter_category",
+            "type": "taxonomy",
+            "instructions": "Выберите категорию — она используется для фильтра на странице «Услуги». Без выбора услуга попадёт в «Дизайн» по умолчанию.",
+            "taxonomy": "service_category",
+            "field_type": "select",
+            "allow_null": 1,
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 0
+        },
         {
             "key": "field_service_image",
             "label": "Изображение",
             "name": "service_image",
             "type": "image",
-            "instructions": "Фото для карточки. Если не указано — используется миниатюра записи.",
+            "instructions": "Фото для карточки на главной и для шапки (Hero) страницы услуги.",
             "return_format": "array",
             "preview_size": "medium"
+        },
+        {
+            "key": "field_service_tab_hero",
+            "label": "2. Шапка страницы (Hero)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_hero_subtitle",
+            "label": "Подзаголовок под названием",
+            "name": "service_hero_subtitle",
+            "type": "textarea",
+            "instructions": "Краткое описание. Если пусто — берётся из «Выдержки».",
+            "rows": 2,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_service_hero_meta",
+            "label": "Пункты с иконками (география, сроки, гарантия)",
+            "name": "service_hero_meta",
+            "type": "repeater",
+            "instructions": "До 6 пунктов. Примеры: «Работаем по всему Крыму», «От 2 до 4 недель».",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Добавить пункт",
+            "sub_fields": [
+                {
+                    "key": "field_service_hero_meta_icon",
+                    "label": "Иконка",
+                    "name": "icon",
+                    "type": "select",
+                    "choices": {
+                        "location": "Местоположение",
+                        "clock": "Сроки",
+                        "check": "Гарантия",
+                        "shield": "Защита",
+                        "ruble": "Цена"
+                    },
+                    "default_value": "check"
+                },
+                {
+                    "key": "field_service_hero_meta_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": "Работаем по всему Крыму"
+                }
+            ]
+        },
+        {
+            "key": "field_service_cta_text",
+            "label": "Текст кнопки «Получить консультацию»",
+            "name": "service_cta_text",
+            "type": "text",
+            "default_value": "Получить консультацию"
+        },
+        {
+            "key": "field_service_cta_url",
+            "label": "Ссылка кнопки",
+            "name": "service_cta_url",
+            "type": "url",
+            "default_value": "#contact-form"
+        },
+        {
+            "key": "field_service_tab_about",
+            "label": "3. Блок «О нашей услуге»",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_about_title",
+            "label": "Заголовок блока",
+            "name": "service_about_title",
+            "type": "text",
+            "placeholder": "О нашей услуге дизайна интерьера"
+        },
+        {
+            "key": "field_service_about_content",
+            "label": "Текст описания",
+            "name": "service_about_content",
+            "type": "wysiwyg",
+            "instructions": "Подробное описание услуги. Можно использовать абзацы, списки, выделение.",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_service_tab_features",
+            "label": "4. Блок «Почему выбирают нас»",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_features_title",
+            "label": "Заголовок блока",
+            "name": "service_features_title",
+            "type": "text",
+            "default_value": "Почему выбирают нас в Симферополе и Крыму"
+        },
+        {
+            "key": "field_service_features",
+            "label": "Преимущества (карточки с иконками)",
+            "name": "service_features",
+            "type": "repeater",
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Добавить преимущество",
+            "sub_fields": [
+                {
+                    "key": "field_service_feature_icon",
+                    "label": "Иконка",
+                    "name": "icon",
+                    "type": "select",
+                    "choices": {
+                        "check": "Гарантия",
+                        "shield": "3D / Защита",
+                        "users": "Команда",
+                        "ruble": "Цена",
+                        "clock": "Сроки",
+                        "location": "География"
+                    },
+                    "default_value": "check"
+                },
+                {
+                    "key": "field_service_feature_title",
+                    "label": "Заголовок",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Опыт работы в Крыму"
+                },
+                {
+                    "key": "field_service_feature_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "br"
+                }
+            ]
+        },
+        {
+            "key": "field_service_tab_process",
+            "label": "5. Блок «Как мы работаем»",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_process_title",
+            "label": "Заголовок блока",
+            "name": "service_process_title",
+            "type": "text",
+            "default_value": "Как мы работаем"
+        },
+        {
+            "key": "field_service_steps",
+            "label": "Шаги (нумерация автоматическая)",
+            "name": "service_steps",
+            "type": "repeater",
+            "min": 0,
+            "max": 10,
+            "layout": "block",
+            "button_label": "Добавить шаг",
+            "sub_fields": [
+                {
+                    "key": "field_service_step_title",
+                    "label": "Название шага",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Консультация и выезд"
+                },
+                {
+                    "key": "field_service_step_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "br"
+                }
+            ]
+        },
+        {
+            "key": "field_service_tab_portfolio",
+            "label": "6. Блок «Примеры работ»",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_portfolio_title",
+            "label": "Заголовок",
+            "name": "service_portfolio_title",
+            "type": "text",
+            "default_value": "Примеры наших работ в Крыму"
+        },
+        {
+            "key": "field_service_portfolio_subtitle",
+            "label": "Подзаголовок",
+            "name": "service_portfolio_subtitle",
+            "type": "text",
+            "placeholder": "Реализованные проекты в Симферополе, Ялте..."
+        },
+        {
+            "key": "field_service_portfolio_projects",
+            "label": "Проекты для показа",
+            "name": "service_portfolio_projects",
+            "type": "relationship",
+            "instructions": "Если не выбрано — показываются последние 3 проекта.",
+            "post_type": ["fabrica_project"],
+            "return_format": "id",
+            "min": 0,
+            "max": 6
+        },
+        {
+            "key": "field_service_tab_pricing",
+            "label": "7. Блок «Цены»",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_pricing_title",
+            "label": "Заголовок (например: «Дизайн интерьера в Симферополе»)",
+            "name": "service_pricing_title",
+            "type": "text"
+        },
+        {
+            "key": "field_service_pricing_intro",
+            "label": "Вводный текст о ценах",
+            "name": "service_pricing_intro",
+            "type": "textarea",
+            "rows": 2,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_service_pricing_description",
+            "label": "Подробный текст о стоимости",
+            "name": "service_pricing_description",
+            "type": "wysiwyg",
+            "instructions": "Текст до блока «Что влияет на стоимость».",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_service_pricing_factors",
+            "label": "Факторы, влияющие на цену",
+            "name": "service_pricing_factors",
+            "type": "repeater",
+            "min": 0,
+            "max": 8,
+            "layout": "table",
+            "button_label": "Добавить фактор",
+            "sub_fields": [
+                {
+                    "key": "field_service_pricing_factor_icon",
+                    "label": "Иконка (эмодзи)",
+                    "name": "icon",
+                    "type": "text",
+                    "placeholder": "📐"
+                },
+                {
+                    "key": "field_service_pricing_factor_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": "Площадь помещения"
+                }
+            ]
+        },
+        {
+            "key": "field_service_pricing_note",
+            "label": "Примечание после факторов",
+            "name": "service_pricing_note",
+            "type": "textarea",
+            "instructions": "Текст внизу блока (например: «Работаем с частными клиентами, дизайнерами и бизнесом...»).",
+            "rows": 2,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_service_tab_faq",
+            "label": "8. Блок «Часто задаваемые вопросы»",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_service_faq_title",
+            "label": "Заголовок блока",
+            "name": "service_faq_title",
+            "type": "text",
+            "instructions": "Например: «Часто задаваемые вопросы о [услуге] в Симферополе»."
+        },
+        {
+            "key": "field_service_faq",
+            "label": "Вопросы и ответы",
+            "name": "service_faq",
+            "type": "repeater",
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Добавить вопрос",
+            "sub_fields": [
+                {
+                    "key": "field_service_faq_question",
+                    "label": "Вопрос",
+                    "name": "question",
+                    "type": "text",
+                    "placeholder": "Сколько стоит услуга?"
+                },
+                {
+                    "key": "field_service_faq_answer",
+                    "label": "Ответ",
+                    "name": "answer",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "br"
+                }
+            ]
         }
     ],
     "location": [
@@ -27,5 +376,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "active": true,
-    "description": "Поля для карточки услуги. Название, описание и категория — в основных полях записи."
+    "description": ""
 }

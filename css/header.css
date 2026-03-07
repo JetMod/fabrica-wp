@@ -232,6 +232,7 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
 .header__tagline {
     font-size: 11px;
     line-height: 1.4;
@@ -939,16 +940,16 @@ a.header__tagline:hover {
     z-index: 1;
 }
 
-/* Заголовок мобильного меню */
+/* Заголовок мобильного меню — тёмный фон для видимости белого логотипа */
 .header__mobile-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 24px;
-    border-bottom: 1px solid rgba(198, 161, 91, 0.15);
+    border-bottom: 1px solid rgba(198, 161, 91, 0.25);
     background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(245, 243, 239, 0.9) 100%);
+        rgba(45, 42, 38, 0.98) 0%, 
+        rgba(35, 32, 28, 0.98) 100%);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -987,12 +988,10 @@ a.header__tagline:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, 
-        rgba(198, 161, 91, 0.1) 0%, 
-        rgba(198, 161, 91, 0.05) 100%);
-    border: 1px solid rgba(198, 161, 91, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    color: var(--color-primary);
+    color: rgba(255, 255, 255, 0.95);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin-left: 16px;
@@ -1000,12 +999,10 @@ a.header__tagline:hover {
 }
 
 .header__mobile-close:hover {
-    background: linear-gradient(135deg, 
-        rgba(198, 161, 91, 0.15) 0%, 
-        rgba(198, 161, 91, 0.1) 100%);
+    background: rgba(198, 161, 91, 0.25);
     border-color: var(--color-accent);
     transform: scale(1.05);
-    color: var(--color-accent);
+    color: #fff;
 }
 
 .header__mobile-close:active {

@@ -10,7 +10,8 @@ if (!defined('ABSPATH')) {
     return;
 }
 
-$args = (array) get_query_var('args', array());
+// Поддержка args из get_template_part(..., array('product_id' => $id)) или set_query_var('args', ...)
+$args = isset($args) ? (array) $args : (array) get_query_var('args', array());
 $product_id = isset($args['product_id']) ? (int) $args['product_id'] : 0;
 if (!$product_id) {
     return;

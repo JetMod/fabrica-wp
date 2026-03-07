@@ -1,15 +1,163 @@
 {
     "key": "group_project",
-    "title": "Проект — данные карточки",
+    "title": "Проект — полные настройки страницы",
     "fields": [
         {
+            "key": "field_project_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Заполняйте блоки по порядку. Название — в заголовке, краткое описание — в «Выдержке». Каждая вкладка = секция на странице проекта.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_project_tab_card",
+            "label": "1. Карточка и Hero",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_project_category",
+            "label": "Категория (тип объекта)",
+            "name": "project_filter_category",
+            "type": "taxonomy",
+            "instructions": "Частный дом, квартира, офис, ресторан и т.д. Отображается на карточке и в мета-блоке.",
+            "taxonomy": "project_category",
+            "field_type": "select",
+            "allow_null": 1,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "id",
+            "multiple": 0
+        },
+        {
+            "key": "field_project_hero_lead",
+            "label": "Подзаголовок под названием",
+            "name": "project_hero_lead",
+            "type": "textarea",
+            "instructions": "Краткое описание под заголовком в Hero. Если пусто — берётся из «Выдержки».",
+            "rows": 2,
+            "placeholder": "Интерьер гостиной в частном доме: нейтральная палитра, дизайнерская мебель и акцентное освещение.",
+            "new_lines": "br"
+        },
+        {
             "key": "field_project_image",
-            "label": "Изображение",
+            "label": "Главное фото",
             "name": "project_image",
             "type": "image",
-            "instructions": "Фото для карточки. Если не указано — используется миниатюра записи.",
+            "instructions": "Для карточки в каталоге и Hero на странице проекта. Если пусто — используется миниатюра.",
             "return_format": "array",
             "preview_size": "medium"
+        },
+        {
+            "key": "field_project_tab_about",
+            "label": "2. О проекте",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_project_about_title",
+            "label": "Заголовок блока",
+            "name": "project_about_title",
+            "type": "text",
+            "default_value": "О проекте"
+        },
+        {
+            "key": "field_project_about_content",
+            "label": "Описание проекта",
+            "name": "project_about_content",
+            "type": "wysiwyg",
+            "instructions": "Подробное описание. Если пусто — используется контент из редактора записи.",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_project_area",
+            "label": "Площадь",
+            "name": "project_area",
+            "type": "text",
+            "placeholder": "85 м²",
+            "instructions": "Отображается в мета-блоке справа."
+        },
+        {
+            "key": "field_project_year",
+            "label": "Год реализации",
+            "name": "project_year",
+            "type": "text",
+            "placeholder": "2024",
+            "instructions": "Отображается в мета-блоке справа."
+        },
+        {
+            "key": "field_project_tab_gallery",
+            "label": "3. Галерея фото",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_project_gallery_title",
+            "label": "Заголовок галереи",
+            "name": "project_gallery_title",
+            "type": "text",
+            "default_value": "Фото проекта"
+        },
+        {
+            "key": "field_project_gallery",
+            "label": "Фотографии",
+            "name": "project_gallery",
+            "type": "gallery",
+            "instructions": "Добавьте фото проекта. Порядок можно менять перетаскиванием.",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min": 0,
+            "max": 0,
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp,gif"
+        },
+        {
+            "key": "field_project_tab_cta",
+            "label": "4. Блок «Обсудить проект»",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_project_cta_title",
+            "label": "Заголовок",
+            "name": "project_cta_title",
+            "type": "text",
+            "default_value": "Хотите похожий проект?"
+        },
+        {
+            "key": "field_project_cta_text",
+            "label": "Текст",
+            "name": "project_cta_text",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Оставьте заявку — обсудим ваше пространство и подберём мебель и отделку под задачу.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_project_cta_button_text",
+            "label": "Текст кнопки",
+            "name": "project_cta_button_text",
+            "type": "text",
+            "default_value": "Обсудить проект"
+        },
+        {
+            "key": "field_project_cta_button_url",
+            "label": "Ссылка кнопки",
+            "name": "project_cta_button_url",
+            "type": "url",
+            "instructions": "Например: #contact-form или tel:+79785977442. Если пусто — #contact-form.",
+            "default_value": "#contact-form"
         }
     ],
     "location": [
@@ -27,5 +175,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "active": true,
-    "description": "Поля для карточки проекта. Название и категория — в основных полях записи."
+    "description": "Полные настройки страницы проекта"
 }

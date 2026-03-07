@@ -12,6 +12,10 @@ if (!isset($t)) {
 ?>
 <main class="main" role="main" id="main-content">
 
+    <?php
+    $services_count = wp_count_posts('fabrica_service');
+    $services_count = isset($services_count->publish) ? (int) $services_count->publish : 0;
+    ?>
     <!-- Hero секция -->
     <section class="services-hero">
         <div class="container">
@@ -27,7 +31,7 @@ if (!isset($t)) {
                 <p class="services-hero__subtitle">Полный спектр услуг от разработки концепции интерьера до производства мебели и оснащения объектов под ключ. Работаем с частными клиентами, дизайнерами и бизнесом по всему Крыму.</p>
                 <div class="services-hero__stats">
                     <div class="services-hero__stat">
-                        <div class="services-hero__stat-number">18+</div>
+                        <div class="services-hero__stat-number"><?php echo esc_html($services_count > 0 ? $services_count . '+' : '—'); ?></div>
                         <div class="services-hero__stat-label">Видов услуг</div>
                     </div>
                     <div class="services-hero__stat">
@@ -103,10 +107,63 @@ if (!isset($t)) {
                 if ($services_query->have_posts()) :
                     while ($services_query->have_posts()) :
                         $services_query->the_post();
-                        set_query_var('args', array('service_id' => get_the_ID()));
-                        get_template_part('template-parts/service-card-list');
+                        $sid = (int) get_the_ID();
+                        $spost = get_post($sid);
+                        if (!$spost || $spost->post_type !== 'fabrica_service') {
+                            continue;
+                        }
+                        $stitle = get_the_title($sid);
+                        $slink = get_permalink($sid);
+                        $sexcerpt = has_excerpt($sid) ? get_the_excerpt($sid) : '';
+                        if (empty($sexcerpt) && function_exists('get_field')) {
+                            $h = get_field('service_hero_subtitle', $sid);
+                            if (!empty($h)) {
+                                $sexcerpt = $h;
+                            } else {
+                                $ab = get_field('service_about_content', $sid);
+                                $sexcerpt = !empty($ab) ? wp_trim_words(wp_strip_all_tags($ab), 25) : wp_trim_words(wp_strip_all_tags(get_post_field('post_content', $sid)), 25);
+                            }
+                        }
+                        $sterms = get_the_terms($sid, 'service_category');
+                        $scat_slug = ($sterms && !is_wp_error($sterms)) ? $sterms[0]->slug : 'design';
+                        $scat_name = ($sterms && !is_wp_error($sterms)) ? $sterms[0]->name : 'Дизайн';
+                        $simg = function_exists('get_field') ? get_field('service_image', $sid) : null;
+                        $simg_url = '';
+                        if (!empty($simg) && is_array($simg) && !empty($simg['url'])) {
+                            $simg_url = $simg['url'];
+                        } elseif (has_post_thumbnail($sid)) {
+                            $simg_url = get_the_post_thumbnail_url($sid, 'large');
+                        }
+                        if (empty($simg_url)) {
+                            $simg_url = get_template_directory_uri() . '/img/1.webp';
+                        }
+                        ?>
+                        <a href="<?php echo esc_url($slink); ?>" class="service-card" data-category="<?php echo esc_attr($scat_slug); ?>">
+                            <div class="service-card__image">
+                                <img src="<?php echo esc_url($simg_url); ?>" alt="<?php echo esc_attr($stitle); ?>" class="service-card__img">
+                                <div class="service-card__overlay"></div>
+                                <div class="service-card__badge"><?php echo esc_html($scat_name); ?></div>
+                            </div>
+                            <div class="service-card__content">
+                                <h3 class="service-card__title"><?php echo esc_html($stitle); ?></h3>
+                                <?php if ($sexcerpt) : ?>
+                                <p class="service-card__text"><?php echo esc_html($sexcerpt); ?></p>
+                                <?php endif; ?>
+                                <div class="service-card__footer">
+                                    <span class="service-card__link">Подробнее</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                        <?php
                     endwhile;
                     wp_reset_postdata();
+                else :
+                    ?>
+                    <p class="services-list__empty">Услуги пока не добавлены. <a href="<?php echo esc_url(admin_url('post-new.php?post_type=fabrica_service')); ?>">Добавить первую услугу</a></p>
+                    <?php
                 endif;
                 ?>
             </div>

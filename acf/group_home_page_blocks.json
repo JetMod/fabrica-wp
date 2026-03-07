@@ -505,11 +505,18 @@
         },
         {
             "key": "field_services_footer_url",
-            "label": "Ссылка кнопки внизу блока",
+            "label": "Ссылка кнопки «Обсудить проект»",
             "name": "services_footer_url",
             "type": "url",
             "instructions": "Например: #contact-form или страница контактов",
             "default_value": ""
+        },
+        {
+            "key": "field_services_view_all_text",
+            "label": "Текст кнопки «Смотреть все услуги»",
+            "name": "services_view_all_text",
+            "type": "text",
+            "default_value": "Смотреть все услуги"
         },
         {
             "key": "field_tab_projects",

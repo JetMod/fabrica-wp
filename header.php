@@ -45,7 +45,10 @@ if (!isset($t)) {
                     <!-- Логотип + слоган -->
                     <div class="header__branding">
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo">
-                            <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="ФАБРИКА интерьеров" class="header__logo-img">
+                            <picture>
+                                <source media="(max-width: 768px)" srcset="<?php echo esc_url($t . '/img/logo-mobile.jpg'); ?>">
+                                <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="ФАБРИКА интерьеров" class="header__logo-img">
+                            </picture>
                         </a>
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="header__tagline">Дизайнерская мебель<br>для дома, работы и отдыха</a>
                     </div>
@@ -132,7 +135,7 @@ if (!isset($t)) {
             <!-- Заголовок меню -->
             <div class="header__mobile-header">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="header__mobile-logo">
-                    <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="ФАБРИКА интерьеров" class="header__mobile-logo-img">
+                    <img src="<?php echo esc_url($t . '/img/logo-mobile.jpg'); ?>" alt="ФАБРИКА интерьеров" class="header__mobile-logo-img">
                 </a>
                 <button class="header__mobile-close" aria-label="Закрыть меню">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

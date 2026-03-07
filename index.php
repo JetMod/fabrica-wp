@@ -82,7 +82,13 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
             <div class="video-hero__content">
                 <div class="video-hero__content-inner">
                     <div class="container">
-                        <p class="video-hero__tagline"><?php echo esc_html($vh_tagline); ?> <span class="video-hero__tagline-accent"><?php echo esc_html($vh_tagline_accent); ?></span></p>
+                        <div class="video-hero__tagline-wrap">
+                         
+                            <span class="video-hero__tagline-line" aria-hidden="true"></span>
+                            <p class="video-hero__tagline">
+                                <?php echo esc_html($vh_tagline); ?> <span class="video-hero__tagline-accent"><?php echo esc_html($vh_tagline_accent); ?></span>
+                            </p>
+                        </div>
                         <h1 class="video-hero__title"><?php echo esc_html($vh_title); ?></h1>
                         <p class="video-hero__text"><?php echo esc_html($vh_text); ?></p>
                         <a href="<?php echo esc_url($vh_btn_url); ?>" class="video-hero__cta button button--primary"><?php echo esc_html($vh_btn_text); ?></a>
@@ -387,16 +393,35 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
            $svc_subtitle = $opt('services_subtitle', 'Комплексный подход к реализации ваших интерьерных проектов');
            $svc_footer_text = $opt('services_footer_text', 'Обсудить проект');
            $svc_footer_url = $opt('services_footer_url', '#contact-form');
+           if (empty($svc_footer_url)) {
+               $svc_footer_url = '#contact-form';
+           }
+           $svc_view_all_text = $opt('services_view_all_text', 'Смотреть все услуги');
+           $svc_view_all_url = fabrica_get_services_page_url();
            $svc_ids = function_exists('get_field') ? get_field('featured_services', 'option') : array();
            $svc_ids = is_array($svc_ids) ? $svc_ids : array();
-           if (!empty($svc_ids)) : ?>
-           <section class="services animate-on-scroll" aria-labelledby="services-title">
+           if (empty($svc_ids)) {
+               $svc_query = new WP_Query(array(
+                   'post_type'      => 'fabrica_service',
+                   'posts_per_page' => 8,
+                   'orderby'       => 'menu_order title',
+                   'order'         => 'ASC',
+                   'post_status'   => 'publish',
+               ));
+               if ($svc_query->have_posts()) {
+                   $svc_ids = wp_list_pluck($svc_query->posts, 'ID');
+               }
+               wp_reset_postdata();
+           }
+           ?>
+           <section class="services animate-on-scroll" id="services" aria-labelledby="services-title">
             <div class="container">
                 <div class="services__header">
                     <h2 class="services__title" id="services-title"><?php echo esc_html($svc_title); ?></h2>
                     <p class="services__subtitle"><?php echo esc_html($svc_subtitle); ?></p>
                 </div>
 
+                <?php if (!empty($svc_ids)) : ?>
                 <div class="services__slider-wrapper">
                     <button class="services__nav services__nav--prev" aria-label="Предыдущие услуги">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -418,13 +443,14 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
                 </div>
 
                 <div class="services__dots" aria-hidden="true"></div>
+                <?php endif; ?>
 
                 <div class="services__footer">
                     <a href="<?php echo esc_url($svc_footer_url); ?>" class="button button--primary"><?php echo esc_html($svc_footer_text); ?></a>
+                    <a href="<?php echo esc_url($svc_view_all_url); ?>" class="button button--secondary"><?php echo esc_html($svc_view_all_text); ?></a>
                 </div>
             </div>
         </section>
-        <?php endif; ?>
 
         <!-- Проекты -->
         <?php
@@ -432,6 +458,17 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
         $prj_subtitle = $opt('projects_subtitle', 'Реализованные интерьерные решения для разных пространств');
         $prj_ids = function_exists('get_field') ? get_field('featured_projects', 'option') : array();
         $prj_ids = is_array($prj_ids) ? $prj_ids : array();
+        if (empty($prj_ids)) {
+            $fallback = get_posts(array(
+                'post_type'      => 'fabrica_project',
+                'posts_per_page' => 6,
+                'orderby'        => 'menu_order date',
+                'order'          => 'DESC',
+                'post_status'    => 'publish',
+                'fields'         => 'ids',
+            ));
+            $prj_ids = is_array($fallback) ? $fallback : array();
+        }
         $prj_view_all_text = $opt('projects_view_all_text', 'Смотреть все проекты');
         $prj_view_all_url = $opt('projects_view_all_url', '');
         if (empty($prj_view_all_url)) {
@@ -453,7 +490,15 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
 
                 <?php if (!empty($prj_ids)) : ?>
                 <div class="projects__grid">
-                    <?php foreach ($prj_ids as $i => $pid) : get_template_part('template-parts/project-card', null, array('project_id' => $pid, 'index' => $i)); endforeach; ?>
+                    <?php foreach ($prj_ids as $i => $pid) :
+                        $pid = (int) $pid;
+                        $card_path = get_template_directory() . '/template-parts/project-card.php';
+                        if (file_exists($card_path)) {
+                            $project_id = $pid;
+                            $index = $i;
+                            include $card_path;
+                        }
+                    endforeach; ?>
                 </div>
 
                 <div class="projects__footer">
