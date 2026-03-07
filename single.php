@@ -39,9 +39,6 @@ $body_class = 'page-single page-blog-single';
 
         <section class="article-hero">
             <div class="container">
-                <div class="article-hero__image">
-                    <img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="article-hero__img" loading="eager">
-                </div>
                 <div class="article-hero__content">
                     <div class="article-hero__meta">
                         <?php if ($category_name) : ?>
@@ -53,6 +50,9 @@ $body_class = 'page-single page-blog-single';
                     <?php if (has_excerpt()) : ?>
                     <p class="article-hero__lead"><?php the_excerpt(); ?></p>
                     <?php endif; ?>
+                </div>
+                <div class="article-hero__image">
+                    <img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="article-hero__img" loading="eager">
                 </div>
             </div>
         </section>

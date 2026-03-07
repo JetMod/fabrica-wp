@@ -473,7 +473,7 @@
 .blog-card__image {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     background: #f0eeea;
 }
 
