@@ -14,7 +14,7 @@ $d = function($key, $default = '') {
     $v = function_exists('get_field') ? get_field($key, $page_id) : '';
     return ($v !== '' && $v !== null && $v !== false) ? $v : $default;
 };
-
+   
 // Hero
 $hero_badge = $d('designers_hero_badge', 'Партнерство');
 $hero_title_1 = $d('designers_hero_title_1', 'Создавайте');
@@ -23,6 +23,7 @@ $hero_subtitle = $d('designers_hero_subtitle', 'Выгодные условия 
 $hero_btn_primary_text = $d('designers_hero_btn_primary_text', 'Стать партнером');
 $hero_btn_primary_url = $d('designers_hero_btn_primary_url', 'tel:+79785977442');
 $hero_btn_secondary_text = $d('designers_hero_btn_secondary_text', 'Узнать больше');
+$hero_btn_secondary_url = $d('designers_hero_btn_secondary_url', '#benefits');
 $hero_image = $d('designers_hero_image', null);
 $hero_img_url = (!empty($hero_image) && is_array($hero_image) && !empty($hero_image['url'])) ? $hero_image['url'] : $t . '/img/21.webp';
 $hero_stats = $d('designers_hero_stats', array());
@@ -83,8 +84,10 @@ $conditions_default = array(
     array('condition_title' => 'Техническая документация', 'condition_text' => 'Полный комплект чертежей, спецификаций и 3D-моделей'),
 );
 $conditions_items = !empty($conditions_items) ? $conditions_items : $conditions_default;
+$conditions_card_title = $d('designers_conditions_card_title', 'Партнерский статус');
 $conditions_card_min = $d('designers_conditions_card_min', 'от 50 000 ₽');
 $conditions_card_discount = $d('designers_conditions_card_discount', 'от 15%');
+$conditions_card_manager = $d('designers_conditions_card_manager', '✓');
 
 // CTA
 $cta_badge = $d('designers_cta_badge', 'Регистрация');
@@ -99,6 +102,7 @@ $cta_features_default = array(
 $cta_features = !empty($cta_features) ? $cta_features : $cta_features_default;
 $cta_btn_text = $d('designers_cta_btn_text', 'Позвонить');
 $cta_btn_url = $d('designers_cta_btn_url', 'tel:+79785977442');
+$show_contact_form = $d('designers_show_contact_form', true);
 ?>
     <!-- Hero секция -->
     <section class="designers-hero">
@@ -137,7 +141,7 @@ $cta_btn_url = $d('designers_cta_btn_url', 'tel:+79785977442');
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </a>
-                        <a href="#benefits" class="designers-hero__button designers-hero__button--secondary">
+                        <a href="<?php echo esc_url($hero_btn_secondary_url); ?>" class="designers-hero__button designers-hero__button--secondary">
                             <span><?php echo esc_html($hero_btn_secondary_text); ?></span>
                         </a>
                     </div>
@@ -262,7 +266,7 @@ $cta_btn_url = $d('designers_cta_btn_url', 'tel:+79785977442');
                                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                                 </svg>
                             </div>
-                            <h3 class="designers-conditions__card-title">Партнерский статус</h3>
+                            <h3 class="designers-conditions__card-title"><?php echo esc_html($conditions_card_title); ?></h3>
                         </div>
                         <div class="designers-conditions__card-content">
                             <div class="designers-conditions__card-feature">
@@ -275,7 +279,7 @@ $cta_btn_url = $d('designers_cta_btn_url', 'tel:+79785977442');
                             </div>
                             <div class="designers-conditions__card-feature">
                                 <span class="designers-conditions__card-feature-label">Персональный менеджер</span>
-                                <span class="designers-conditions__card-feature-value">✓</span>
+                                <span class="designers-conditions__card-feature-value"><?php echo esc_html($conditions_card_manager); ?></span>
                             </div>
                         </div>
                     </div>
@@ -284,8 +288,8 @@ $cta_btn_url = $d('designers_cta_btn_url', 'tel:+79785977442');
         </div>
     </section>
 
-    <!-- CTA вместо формы -->
-    <section class="designers-form designers-form--cta animate-on-scroll" id="contact-form">
+    <!-- CTA блок -->
+    <section class="designers-form designers-form--cta animate-on-scroll" id="designers-cta">
         <div class="container">
             <div class="designers-form__inner">
                 <div class="designers-form__content">
@@ -315,3 +319,7 @@ $cta_btn_url = $d('designers_cta_btn_url', 'tel:+79785977442');
             </div>
         </div>
     </section>
+
+<?php if ($show_contact_form) : ?>
+<?php get_template_part('template-parts/contact-form'); ?>
+<?php endif; ?>

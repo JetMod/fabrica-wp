@@ -96,7 +96,7 @@ $body_class = 'page-product';
                     <?php endif; ?>
                     <li class="product-breadcrumb__item" aria-current="page"><?php echo esc_html($title); ?></li>
                 </ol>
-            </div>
+            </div> 
         </nav>
 
         <!-- Основная секция товара -->

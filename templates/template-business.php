@@ -13,15 +13,12 @@ $body_class = 'page-business';
 <?php get_header(); ?>
 
 <main class="main" role="main" id="main-content">
-    <div class="container">
-        <?php
-        while (have_posts()) :
-            the_post();
-            the_content();
-        endwhile;
-        ?>
-        <!-- TODO: Добавить контент из business.html -->
-    </div>
+    <?php 
+    while (have_posts()) :
+        the_post();
+        get_template_part('template-parts/content', 'business');
+    endwhile;
+    ?>
 </main>
 
 <?php get_footer(); ?>

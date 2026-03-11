@@ -2,12 +2,11 @@
 // Модальное окно обратной связи
 // ===================================
 
-/**
- * Инициализация модального окна обратной связи
+/**  
+ * Инициализация модального окна обратной связи 
  */
 export function initCallbackModal() {
     const modal = document.getElementById('callbackModal');
-    const openButtons = document.querySelectorAll('[href="#contact-form"], [data-callback-modal]');
     const closeButton = document.getElementById('callbackModalClose');
     const overlay = modal?.querySelector('.callback-modal__overlay');
     const form = document.getElementById('callbackForm');
@@ -51,20 +50,17 @@ export function initCallbackModal() {
         errorInputs.forEach(input => input.classList.remove('error'));
     }
 
-    // Обработчики открытия модального окна
-    // Используем capture phase для приоритета перед другими обработчиками
-    openButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Проверяем, является ли это ссылкой на #contact-form или имеет data-атрибут
-            if (href === '#contact-form' || this.hasAttribute('data-callback-modal')) {
-                e.preventDefault();
-                e.stopPropagation(); // Останавливаем всплытие события
-                openModal();
-            }
-        }, true); // Используем capture phase для приоритета
-    });
+    // Обработчик открытия модального окна (делегирование — работает с динамически добавленными кнопками)
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('[href="#contact-form"], [data-callback-modal]');
+        if (!btn || !modal) return;
+        const href = btn.getAttribute('href');
+        if (href === '#contact-form' || btn.hasAttribute('data-callback-modal')) {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal();
+        }
+    }, true);
 
     // Обработчик закрытия по кнопке
     if (closeButton) {

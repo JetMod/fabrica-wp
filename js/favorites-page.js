@@ -29,11 +29,11 @@ function buildCard(product) {
                         '<span class="product-card__price-current">' + product.price + '</span>' +
                         priceOldHtml +
                     '</div>' +
-                    '<span class="product-card__request" aria-label="Узнать цену">' + REQUEST_SVG + '</span>' +
+                    '<button type="button" class="product-card__request" aria-label="Узнать цену" data-callback-modal>' + REQUEST_SVG + '</button>' +
                 '</div>' +
             '</div>' +
         '</a>'
-    );
+    ); 
 }
 
 function escapeHtml(text) {
@@ -60,28 +60,46 @@ function renderFavorites(productsMap, ids) {
     initFavorites();
 }
 
+function loadProducts(ids) {
+    if (typeof window.fabricaFavorites !== 'undefined' && window.fabricaFavorites.restUrl) {
+        if (ids.length === 0) {
+            return Promise.resolve([]);
+        }
+        const url = window.fabricaFavorites.restUrl + '?ids=' + encodeURIComponent(ids.join(','));
+        return fetch(url).then(function(r) { return r.json(); });
+    }
+    return fetch('data/products.json').then(function(r) { return r.json(); });
+}
+
 function run() {
     const grid = document.getElementById('favorites-grid');
     if (!grid) return;
 
-    fetch('data/products.json')
-        .then(function(r) { return r.json(); })
-        .then(function(products) {
-            const productsMap = {};
-            products.forEach(function(p) {
-                productsMap[p.id] = p;
+    function refresh() {
+        const ids = getFavorites();
+        if (ids.length === 0) {
+            renderFavorites({}, []);
+            return;
+        }
+        loadProducts(ids)
+            .then(function(products) {
+                const productsMap = {};
+                (Array.isArray(products) ? products : []).forEach(function(p) {
+                    productsMap[String(p.id)] = p;
+                });
+                renderFavorites(productsMap, ids);
+            })
+            .catch(function(err) {
+                console.warn('Favorites: failed to load products', err);
+                const empty = document.getElementById('favorites-empty');
+                if (empty) empty.hidden = false;
             });
-            const ids = getFavorites();
-            renderFavorites(productsMap, ids);
-            window.addEventListener('favoritesUpdated', function(e) {
-                renderFavorites(productsMap, e.detail.ids);
-            });
-        })
-        .catch(function(err) {
-            console.warn('Favorites: failed to load products', err);
-            const empty = document.getElementById('favorites-empty');
-            if (empty) empty.hidden = false;
-        });
+    }
+
+    refresh();
+    window.addEventListener('favoritesUpdated', function(e) {
+        refresh();
+    });
 }
 
 if (document.readyState === 'loading') {

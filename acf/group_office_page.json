@@ -1,0 +1,341 @@
+{
+    "key": "group_office_page",
+    "title": "Страница «О нас» — полные настройки",
+    "fields": [
+        {
+            "key": "field_office_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Заполняйте блоки по порядку. Каждая вкладка = секция на странице. Форма обратной связи внизу — общая, не редактируется здесь.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_office_tab_hero",
+            "label": "1. Hero (шапка)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_office_hero_badge",
+            "label": "Метка (бейдж)",
+            "name": "office_hero_badge",
+            "type": "text",
+            "default_value": "Премиум-класс"
+        },
+        {
+            "key": "field_office_hero_title_1",
+            "label": "Заголовок — первая строка",
+            "name": "office_hero_title_1",
+            "type": "text",
+            "default_value": "Дизайнерская мебель"
+        },
+        {
+            "key": "field_office_hero_title_2",
+            "label": "Заголовок — вторая строка (с акцентом)",
+            "name": "office_hero_title_2",
+            "type": "text",
+            "default_value": "нового уровня"
+        },
+        {
+            "key": "field_office_hero_subtitle",
+            "label": "Подзаголовок",
+            "name": "office_hero_subtitle",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "Создаём уникальные интерьерные решения, которые вдохновляют и восхищают. Дизайнерская мебель премиум-класса для тех, кто ценит эстетику и качество.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_office_hero_btn1_text",
+            "label": "Кнопка 1 — текст",
+            "name": "office_hero_btn1_text",
+            "type": "text",
+            "default_value": "Смотреть каталог"
+        },
+        {
+            "key": "field_office_hero_btn1_url",
+            "label": "Кнопка 1 — ссылка",
+            "name": "office_hero_btn1_url",
+            "type": "url",
+            "default_value": "#catalog"
+        },
+        {
+            "key": "field_office_hero_btn2_text",
+            "label": "Кнопка 2 — текст",
+            "name": "office_hero_btn2_text",
+            "type": "text",
+            "default_value": "Консультация"
+        },
+        {
+            "key": "field_office_hero_btn2_url",
+            "label": "Кнопка 2 — ссылка",
+            "name": "office_hero_btn2_url",
+            "type": "url",
+            "default_value": "#contact-form"
+        },
+        {
+            "key": "field_office_hero_features",
+            "label": "Пункты под кнопками (галочки)",
+            "name": "office_hero_features",
+            "type": "repeater",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Добавить пункт",
+            "sub_fields": [
+                {
+                    "key": "field_office_hero_feature_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": "Индивидуальный дизайн"
+                }
+            ]
+        },
+        {
+            "key": "field_office_hero_image",
+            "label": "Изображение справа",
+            "name": "office_hero_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_office_tab_about",
+            "label": "2. О компании",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_office_about_badge",
+            "label": "Метка",
+            "name": "office_about_badge",
+            "type": "text",
+            "default_value": "О нас"
+        },
+        {
+            "key": "field_office_about_title",
+            "label": "Заголовок",
+            "name": "office_about_title",
+            "type": "text",
+            "default_value": "Мебель для тех, кто ценит качество"
+        },
+        {
+            "key": "field_office_about_content",
+            "label": "Текст (абзацы)",
+            "name": "office_about_content",
+            "type": "wysiwyg",
+            "instructions": "Один или несколько абзацев.",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_office_about_stats",
+            "label": "Статистика (3 блока)",
+            "name": "office_about_stats",
+            "type": "repeater",
+            "min": 3,
+            "max": 3,
+            "layout": "table",
+            "button_label": "Статистика",
+            "sub_fields": [
+                {
+                    "key": "field_office_about_stat_number",
+                    "label": "Число",
+                    "name": "number",
+                    "type": "text",
+                    "placeholder": "14+"
+                },
+                {
+                    "key": "field_office_about_stat_label",
+                    "label": "Подпись",
+                    "name": "label",
+                    "type": "text",
+                    "placeholder": "лет опыта"
+                }
+            ]
+        },
+        {
+            "key": "field_office_about_image",
+            "label": "Изображение справа",
+            "name": "office_about_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_office_tab_benefits",
+            "label": "3. Преимущества",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_office_benefits_badge",
+            "label": "Метка",
+            "name": "office_benefits_badge",
+            "type": "text",
+            "default_value": "Преимущества"
+        },
+        {
+            "key": "field_office_benefits_title",
+            "label": "Заголовок",
+            "name": "office_benefits_title",
+            "type": "text",
+            "default_value": "Почему выбирают нас"
+        },
+        {
+            "key": "field_office_benefits_items",
+            "label": "Карточки преимуществ",
+            "name": "office_benefits_items",
+            "type": "repeater",
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Добавить преимущество",
+            "sub_fields": [
+                {
+                    "key": "field_office_benefit_icon",
+                    "label": "Иконка",
+                    "name": "icon",
+                    "type": "select",
+                    "choices": {
+                        "layers": "Слои",
+                        "check": "Галочка",
+                        "shield": "Щит",
+                        "clock": "Часы",
+                        "users": "Люди",
+                        "box": "Коробка"
+                    },
+                    "default_value": "layers"
+                },
+                {
+                    "key": "field_office_benefit_title",
+                    "label": "Заголовок",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Премиум материалы"
+                },
+                {
+                    "key": "field_office_benefit_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "br"
+                }
+            ]
+        },
+        {
+            "key": "field_office_tab_location",
+            "label": "4. Контакты и карта",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_office_location_badge",
+            "label": "Метка",
+            "name": "office_location_badge",
+            "type": "text",
+            "default_value": "Контакты"
+        },
+        {
+            "key": "field_office_location_title",
+            "label": "Заголовок",
+            "name": "office_location_title",
+            "type": "text",
+            "default_value": "Посетите наш шоурум"
+        },
+        {
+            "key": "field_office_location_subtitle",
+            "label": "Подзаголовок",
+            "name": "office_location_subtitle",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Приглашаем вас увидеть наши коллекции вживую и получить персональную консультацию",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_office_location_address",
+            "label": "Адрес",
+            "name": "office_location_address",
+            "type": "text",
+            "default_value": "ул. Генерала Васильева, 42"
+        },
+        {
+            "key": "field_office_location_address_url",
+            "label": "Ссылка на карту (Яндекс)",
+            "name": "office_location_address_url",
+            "type": "url",
+            "default_value": "https://yandex.ru/maps/-/CPEiqUoc"
+        },
+        {
+            "key": "field_office_location_phone",
+            "label": "Телефон",
+            "name": "office_location_phone",
+            "type": "text",
+            "default_value": "+7 (978) 597-74-42"
+        },
+        {
+            "key": "field_office_location_hours",
+            "label": "Режим работы",
+            "name": "office_location_hours",
+            "type": "text",
+            "default_value": "ежедневно, 10:00–19:00"
+        },
+        {
+            "key": "field_office_location_map_embed",
+            "label": "Код iframe карты (Яндекс)",
+            "name": "office_location_map_embed",
+            "type": "textarea",
+            "instructions": "Вставьте src из iframe Яндекс.Карт. Пример: https://yandex.ru/map-widget/v1/?um=constructor%3A...",
+            "rows": 2
+        },
+        {
+            "key": "field_office_location_btn1_text",
+            "label": "Кнопка 1 — текст",
+            "name": "office_location_btn1_text",
+            "type": "text",
+            "default_value": "Открыть на карте"
+        },
+        {
+            "key": "field_office_location_btn1_url",
+            "label": "Кнопка 1 — ссылка",
+            "name": "office_location_btn1_url",
+            "type": "url",
+            "instructions": "Оставьте пустым — будет использоваться ссылка на адрес выше."
+        },
+        {
+            "key": "field_office_location_btn2_text",
+            "label": "Кнопка 2 — текст",
+            "name": "office_location_btn2_text",
+            "type": "text",
+            "default_value": "Позвонить"
+        },
+        {
+            "key": "field_office_location_btn2_url",
+            "label": "Кнопка 2 — ссылка",
+            "name": "office_location_btn2_url",
+            "type": "url",
+            "instructions": "Оставьте пустым — будет использоваться tel: с номером телефона выше."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-office.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Полные настройки страницы О нас"
+}

@@ -361,6 +361,17 @@
     margin-bottom: 24px;
 }
 
+.office-about__content-text p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(30, 30, 30, 0.8);
+    margin-bottom: 24px;
+}
+
+.office-about__content-text p:last-child {
+    margin-bottom: 0;
+}
+
 .office-about__stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

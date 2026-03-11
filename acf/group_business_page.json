@@ -1,0 +1,373 @@
+{
+    "key": "group_business_page",
+    "title": "Страница «Бизнесу» — полные настройки",
+    "fields": [
+        {
+            "key": "field_business_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Заполняйте блоки по порядку. Каждая вкладка = секция на странице. Форма обратной связи внизу — общая.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_business_tab_hero",
+            "label": "1. Hero (шапка)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_business_hero_image",
+            "label": "Фоновое изображение",
+            "name": "business_hero_image",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_business_hero_badge",
+            "label": "Метка (бейдж)",
+            "name": "business_hero_badge",
+            "type": "text",
+            "default_value": "B2B Решения"
+        },
+        {
+            "key": "field_business_hero_title_1",
+            "label": "Заголовок — первая строка",
+            "name": "business_hero_title_1",
+            "type": "text",
+            "default_value": "Мебель для"
+        },
+        {
+            "key": "field_business_hero_title_2",
+            "label": "Заголовок — вторая строка (с акцентом)",
+            "name": "business_hero_title_2",
+            "type": "text",
+            "default_value": "вашего бизнеса"
+        },
+        {
+            "key": "field_business_hero_subtitle",
+            "label": "Подзаголовок",
+            "name": "business_hero_subtitle",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Комплексное оснащение офисов, ресторанов и гостиниц.\nОптовые поставки, индивидуальные решения и гарантия качества.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_business_hero_btn1_text",
+            "label": "Кнопка 1 — текст",
+            "name": "business_hero_btn1_text",
+            "type": "text",
+            "default_value": "Получить КП"
+        },
+        {
+            "key": "field_business_hero_btn1_url",
+            "label": "Кнопка 1 — ссылка",
+            "name": "business_hero_btn1_url",
+            "type": "url",
+            "default_value": "#contact-form"
+        },
+        {
+            "key": "field_business_hero_btn2_text",
+            "label": "Кнопка 2 — текст",
+            "name": "business_hero_btn2_text",
+            "type": "text",
+            "default_value": "Узнать условия"
+        },
+        {
+            "key": "field_business_hero_btn2_url",
+            "label": "Кнопка 2 — ссылка",
+            "name": "business_hero_btn2_url",
+            "type": "url",
+            "default_value": "#benefits"
+        },
+        {
+            "key": "field_business_hero_stats",
+            "label": "Статистика (3 блока)",
+            "name": "business_hero_stats",
+            "type": "repeater",
+            "min": 3,
+            "max": 3,
+            "layout": "table",
+            "button_label": "Статистика",
+            "sub_fields": [
+                {
+                    "key": "field_business_hero_stat_number",
+                    "label": "Число",
+                    "name": "number",
+                    "type": "text",
+                    "placeholder": "500+"
+                },
+                {
+                    "key": "field_business_hero_stat_label",
+                    "label": "Подпись",
+                    "name": "label",
+                    "type": "text",
+                    "placeholder": "Проектов"
+                }
+            ]
+        },
+        {
+            "key": "field_business_hero_scroll_text",
+            "label": "Текст ссылки «Прокрутить вниз»",
+            "name": "business_hero_scroll_text",
+            "type": "text",
+            "default_value": "Узнать больше"
+        },
+        {
+            "key": "field_business_tab_benefits",
+            "label": "2. Преимущества",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_business_benefits_badge",
+            "label": "Метка",
+            "name": "business_benefits_badge",
+            "type": "text",
+            "default_value": "Преимущества"
+        },
+        {
+            "key": "field_business_benefits_title",
+            "label": "Заголовок",
+            "name": "business_benefits_title",
+            "type": "text",
+            "default_value": "Почему компании выбирают нас"
+        },
+        {
+            "key": "field_business_benefits_subtitle",
+            "label": "Подзаголовок",
+            "name": "business_benefits_subtitle",
+            "type": "text",
+            "default_value": "Надёжный партнёр для оснащения офисов, ресторанов и гостиниц"
+        },
+        {
+            "key": "field_business_benefits_items",
+            "label": "Преимущества (карточки)",
+            "name": "business_benefits_items",
+            "type": "repeater",
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Добавить преимущество",
+            "sub_fields": [
+                {
+                    "key": "field_business_benefit_title",
+                    "label": "Заголовок",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Оптовые цены"
+                },
+                {
+                    "key": "field_business_benefit_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 2,
+                    "new_lines": "br"
+                }
+            ]
+        },
+        {
+            "key": "field_business_tab_process",
+            "label": "3. Этапы сотрудничества",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_business_process_badge",
+            "label": "Метка",
+            "name": "business_process_badge",
+            "type": "text",
+            "default_value": "Как мы работаем"
+        },
+        {
+            "key": "field_business_process_title",
+            "label": "Заголовок",
+            "name": "business_process_title",
+            "type": "text",
+            "default_value": "Этапы сотрудничества"
+        },
+        {
+            "key": "field_business_process_subtitle",
+            "label": "Подзаголовок",
+            "name": "business_process_subtitle",
+            "type": "text",
+            "default_value": "Прозрачный процесс от заявки до сдачи объекта"
+        },
+        {
+            "key": "field_business_process_steps",
+            "label": "Шаги (нумерация 01, 02... автоматическая)",
+            "name": "business_process_steps",
+            "type": "repeater",
+            "min": 0,
+            "max": 10,
+            "layout": "block",
+            "button_label": "Добавить шаг",
+            "sub_fields": [
+                {
+                    "key": "field_business_step_title",
+                    "label": "Название",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Заявка и расчёт"
+                },
+                {
+                    "key": "field_business_step_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 2,
+                    "new_lines": "br"
+                }
+            ]
+        },
+        {
+            "key": "field_business_tab_conditions",
+            "label": "4. Условия для бизнеса",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_business_conditions_badge",
+            "label": "Метка",
+            "name": "business_conditions_badge",
+            "type": "text",
+            "default_value": "Условия"
+        },
+        {
+            "key": "field_business_conditions_title",
+            "label": "Заголовок",
+            "name": "business_conditions_title",
+            "type": "text",
+            "default_value": "Условия для бизнеса"
+        },
+        {
+            "key": "field_business_conditions_text",
+            "label": "Текст",
+            "name": "business_conditions_text",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Гибкие условия для корпоративных заказчиков: от разовых поставок до долгосрочного сотрудничества.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_business_conditions_items",
+            "label": "Список условий",
+            "name": "business_conditions_items",
+            "type": "repeater",
+            "min": 0,
+            "max": 8,
+            "layout": "table",
+            "button_label": "Добавить пункт",
+            "sub_fields": [
+                {
+                    "key": "field_business_condition_title",
+                    "label": "Заголовок",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Скидка от 10% до 20%"
+                },
+                {
+                    "key": "field_business_condition_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": "В зависимости от объёма заказа"
+                }
+            ]
+        },
+        {
+            "key": "field_business_conditions_card_title",
+            "label": "Карточка справа — заголовок",
+            "name": "business_conditions_card_title",
+            "type": "text",
+            "default_value": "Корпоративный заказ"
+        },
+        {
+            "key": "field_business_conditions_card_features",
+            "label": "Карточка — пункты (метка + значение)",
+            "name": "business_conditions_card_features",
+            "type": "repeater",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Добавить пункт",
+            "sub_fields": [
+                {
+                    "key": "field_business_card_feature_label",
+                    "label": "Метка",
+                    "name": "label",
+                    "type": "text",
+                    "placeholder": "Минимальный заказ"
+                },
+                {
+                    "key": "field_business_card_feature_value",
+                    "label": "Значение",
+                    "name": "value",
+                    "type": "text",
+                    "placeholder": "от 100 000 ₽"
+                }
+            ]
+        },
+        {
+            "key": "field_business_tab_faq",
+            "label": "5. FAQ",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_business_faq_title",
+            "label": "Заголовок блока FAQ",
+            "name": "business_faq_title",
+            "type": "text",
+            "default_value": "Часто задаваемые вопросы"
+        },
+        {
+            "key": "field_business_faq_items",
+            "label": "Вопросы и ответы",
+            "name": "business_faq_items",
+            "type": "repeater",
+            "min": 0,
+            "max": 12,
+            "layout": "block",
+            "button_label": "Добавить вопрос",
+            "sub_fields": [
+                {
+                    "key": "field_business_faq_question",
+                    "label": "Вопрос",
+                    "name": "question",
+                    "type": "text",
+                    "placeholder": "Работаете ли вы с НДС?"
+                },
+                {
+                    "key": "field_business_faq_answer",
+                    "label": "Ответ",
+                    "name": "answer",
+                    "type": "wysiwyg",
+                    "instructions": "Можно использовать ссылки.",
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-business.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Настройки страницы Бизнесу"
+}

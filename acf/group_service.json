@@ -48,6 +48,13 @@
             "type": "tab"
         },
         {
+            "key": "field_service_hero_badge",
+            "label": "Метка (бейдж) над заголовком",
+            "name": "service_hero_badge",
+            "type": "text",
+            "default_value": "Профессиональные услуги"
+        },
+        {
             "key": "field_service_hero_subtitle",
             "label": "Подзаголовок под названием",
             "name": "service_hero_subtitle",
@@ -103,6 +110,20 @@
             "name": "service_cta_url",
             "type": "url",
             "default_value": "#contact-form"
+        },
+        {
+            "key": "field_service_hero_cta_secondary_text",
+            "label": "Текст второй кнопки",
+            "name": "service_hero_cta_secondary_text",
+            "type": "text",
+            "default_value": "Узнать больше"
+        },
+        {
+            "key": "field_service_hero_cta_secondary_url",
+            "label": "Ссылка второй кнопки",
+            "name": "service_hero_cta_secondary_url",
+            "type": "url",
+            "default_value": "#service-features"
         },
         {
             "key": "field_service_tab_about",
@@ -319,6 +340,60 @@
             "instructions": "Текст внизу блока (например: «Работаем с частными клиентами, дизайнерами и бизнесом...»).",
             "rows": 2,
             "new_lines": "br"
+        },
+        {
+            "key": "field_service_pricing_cta_title",
+            "label": "Блок цен — заголовок CTA-карточки",
+            "name": "service_pricing_cta_title",
+            "type": "text",
+            "default_value": "Узнайте стоимость вашего проекта"
+        },
+        {
+            "key": "field_service_pricing_cta_subtitle",
+            "label": "Блок цен — подзаголовок CTA",
+            "name": "service_pricing_cta_subtitle",
+            "type": "text",
+            "default_value": "Получите бесплатную консультацию и расчёт стоимости"
+        },
+        {
+            "key": "field_service_pricing_cta_btn_text",
+            "label": "Блок цен — текст кнопки",
+            "name": "service_pricing_cta_btn_text",
+            "type": "text",
+            "default_value": "Узнать стоимость"
+        },
+        {
+            "key": "field_service_pricing_benefits",
+            "label": "Блок цен — преимущества в CTA-карточке",
+            "name": "service_pricing_benefits",
+            "type": "repeater",
+            "min": 0,
+            "max": 4,
+            "layout": "table",
+            "button_label": "Добавить пункт",
+            "sub_fields": [
+                {
+                    "key": "field_service_pricing_benefit_title",
+                    "label": "Заголовок",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Индивидуальный расчёт"
+                },
+                {
+                    "key": "field_service_pricing_benefit_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": "Учитываем все особенности проекта"
+                }
+            ]
+        },
+        {
+            "key": "field_service_pricing_guarantee",
+            "label": "Блок цен — гарантия (под преимуществами)",
+            "name": "service_pricing_guarantee",
+            "type": "text",
+            "default_value": "Бесплатная консультация и выезд на объект"
         },
         {
             "key": "field_service_tab_faq",

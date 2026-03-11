@@ -1,0 +1,344 @@
+{
+    "key": "group_delivery_page",
+    "title": "Страница «Доставка» — полные настройки",
+    "fields": [
+        {
+            "key": "field_delivery_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Заполняйте блоки по порядку. Каждая вкладка = секция на странице. Форма обратной связи внизу — общая.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_delivery_tab_hero",
+            "label": "1. Hero (шапка)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_delivery_hero_lead",
+            "label": "Метка над заголовком",
+            "name": "delivery_hero_lead",
+            "type": "text",
+            "default_value": "Доставка и сборка мебели"
+        },
+        {
+            "key": "field_delivery_hero_title_1",
+            "label": "Заголовок — первая строка",
+            "name": "delivery_hero_title_1",
+            "type": "text",
+            "default_value": "От склада до вашей двери."
+        },
+        {
+            "key": "field_delivery_hero_title_2",
+            "label": "Заголовок — вторая строка (с акцентом)",
+            "name": "delivery_hero_title_2",
+            "type": "text",
+            "default_value": "Соберём на месте."
+        },
+        {
+            "key": "field_delivery_hero_text",
+            "label": "Подзаголовок",
+            "name": "delivery_hero_text",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "По городу, Крыму и всей России. Бережная упаковка, чёткие сроки и профессиональная сборка на объекте.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_delivery_hero_btn1_text",
+            "label": "Кнопка 1 — текст",
+            "name": "delivery_hero_btn1_text",
+            "type": "text",
+            "default_value": "Узнать сроки и цены"
+        },
+        {
+            "key": "field_delivery_hero_btn1_url",
+            "label": "Кнопка 1 — ссылка",
+            "name": "delivery_hero_btn1_url",
+            "type": "url",
+            "default_value": "#zones"
+        },
+        {
+            "key": "field_delivery_hero_btn2_phone",
+            "label": "Кнопка 2 — телефон",
+            "name": "delivery_hero_btn2_phone",
+            "type": "text",
+            "default_value": "+7 (978) 597-74-42"
+        },
+        {
+            "key": "field_delivery_hero_zones",
+            "label": "Зоны в Hero (3 карточки)",
+            "name": "delivery_hero_zones",
+            "type": "repeater",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Добавить зону",
+            "sub_fields": [
+                {
+                    "key": "field_delivery_hero_zone_title",
+                    "label": "Название",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Севастополь и Крым"
+                },
+                {
+                    "key": "field_delivery_hero_zone_desc",
+                    "label": "Описание",
+                    "name": "desc",
+                    "type": "text",
+                    "placeholder": "Своя доставка, 1–4 дня"
+                }
+            ]
+        },
+        {
+            "key": "field_delivery_tab_methods",
+            "label": "2. Способы доставки",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_delivery_methods_badge",
+            "label": "Метка",
+            "name": "delivery_methods_badge",
+            "type": "text",
+            "default_value": "Способы"
+        },
+        {
+            "key": "field_delivery_methods_title",
+            "label": "Заголовок",
+            "name": "delivery_methods_title",
+            "type": "text",
+            "default_value": "Как мы доставляем"
+        },
+        {
+            "key": "field_delivery_methods_subtitle",
+            "label": "Подзаголовок",
+            "name": "delivery_methods_subtitle",
+            "type": "text",
+            "default_value": "Выберите удобный вариант доставки"
+        },
+        {
+            "key": "field_delivery_methods_items",
+            "label": "Способы (карточки)",
+            "name": "delivery_methods_items",
+            "type": "repeater",
+            "min": 0,
+            "max": 8,
+            "layout": "block",
+            "button_label": "Добавить способ",
+            "sub_fields": [
+                {
+                    "key": "field_delivery_method_title",
+                    "label": "Название",
+                    "name": "title",
+                    "type": "text",
+                    "placeholder": "Курьером по городу"
+                },
+                {
+                    "key": "field_delivery_method_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "textarea",
+                    "rows": 2,
+                    "new_lines": "br"
+                }
+            ]
+        },
+        {
+            "key": "field_delivery_tab_zones",
+            "label": "3. Зоны и сроки",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_delivery_zones_badge",
+            "label": "Метка",
+            "name": "delivery_zones_badge",
+            "type": "text",
+            "default_value": "Зоны и сроки"
+        },
+        {
+            "key": "field_delivery_zones_title",
+            "label": "Заголовок",
+            "name": "delivery_zones_title",
+            "type": "text",
+            "default_value": "Сроки доставки"
+        },
+        {
+            "key": "field_delivery_zones_subtitle",
+            "label": "Подзаголовок",
+            "name": "delivery_zones_subtitle",
+            "type": "text",
+            "default_value": "Ориентировочные сроки. Точную дату согласуем после оформления заказа."
+        },
+        {
+            "key": "field_delivery_zones_items",
+            "label": "Зоны (название + условия)",
+            "name": "delivery_zones_items",
+            "type": "repeater",
+            "min": 0,
+            "max": 8,
+            "layout": "table",
+            "button_label": "Добавить зону",
+            "sub_fields": [
+                {
+                    "key": "field_delivery_zone_name",
+                    "label": "Название зоны",
+                    "name": "name",
+                    "type": "text",
+                    "placeholder": "Севастополь и окрестности"
+                },
+                {
+                    "key": "field_delivery_zone_terms",
+                    "label": "Сроки и стоимость",
+                    "name": "terms",
+                    "type": "text",
+                    "placeholder": "1–2 рабочих дня. Стоимость от 500 ₽."
+                }
+            ]
+        },
+        {
+            "key": "field_delivery_tab_assembly",
+            "label": "4. Сборка",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_delivery_assembly_badge",
+            "label": "Метка",
+            "name": "delivery_assembly_badge",
+            "type": "text",
+            "default_value": "Сборка"
+        },
+        {
+            "key": "field_delivery_assembly_title",
+            "label": "Заголовок",
+            "name": "delivery_assembly_title",
+            "type": "text",
+            "default_value": "Профессиональная сборка на объекте"
+        },
+        {
+            "key": "field_delivery_assembly_text",
+            "label": "Текст",
+            "name": "delivery_assembly_text",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "Собираем мебель на вашей территории: аккуратно, по инструкции, с проверкой качества. Стоимость сборки зависит от сложности и объёма — озвучим при заказе.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_delivery_assembly_list",
+            "label": "Список пунктов",
+            "name": "delivery_assembly_list",
+            "type": "repeater",
+            "min": 0,
+            "max": 8,
+            "layout": "table",
+            "button_label": "Добавить пункт",
+            "sub_fields": [
+                {
+                    "key": "field_delivery_assembly_item",
+                    "label": "Пункт",
+                    "name": "item",
+                    "type": "text",
+                    "placeholder": "Сборка корпусной и мягкой мебели"
+                }
+            ]
+        },
+        {
+            "key": "field_delivery_assembly_btn_text",
+            "label": "Текст кнопки",
+            "name": "delivery_assembly_btn_text",
+            "type": "text",
+            "default_value": "Заказать доставку и сборку"
+        },
+        {
+            "key": "field_delivery_assembly_btn_url",
+            "label": "Ссылка кнопки",
+            "name": "delivery_assembly_btn_url",
+            "type": "url",
+            "default_value": "#contact-form"
+        },
+        {
+            "key": "field_delivery_assembly_card_title",
+            "label": "Карточка справа — заголовок",
+            "name": "delivery_assembly_card_title",
+            "type": "text",
+            "default_value": "Сборка под ключ"
+        },
+        {
+            "key": "field_delivery_assembly_card_text",
+            "label": "Карточка справа — текст",
+            "name": "delivery_assembly_card_text",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Рассчитаем стоимость доставки и сборки под ваш заказ. Оставьте заявку или позвоните нам.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_delivery_tab_payment",
+            "label": "5. Оплата",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_delivery_payment_badge",
+            "label": "Метка",
+            "name": "delivery_payment_badge",
+            "type": "text",
+            "default_value": "Оплата"
+        },
+        {
+            "key": "field_delivery_payment_title",
+            "label": "Заголовок",
+            "name": "delivery_payment_title",
+            "type": "text",
+            "default_value": "Способы оплаты"
+        },
+        {
+            "key": "field_delivery_payment_items",
+            "label": "Способы оплаты",
+            "name": "delivery_payment_items",
+            "type": "repeater",
+            "min": 0,
+            "max": 6,
+            "layout": "table",
+            "button_label": "Добавить способ",
+            "sub_fields": [
+                {
+                    "key": "field_delivery_payment_label",
+                    "label": "Название",
+                    "name": "label",
+                    "type": "text",
+                    "placeholder": "Наличные / карта"
+                },
+                {
+                    "key": "field_delivery_payment_text",
+                    "label": "Описание",
+                    "name": "text",
+                    "type": "text",
+                    "placeholder": "При получении заказа курьеру..."
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-delivery.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Настройки страницы доставки"
+}

@@ -11,23 +11,23 @@ if (!isset($t)) {
                 <div class="header__top-inner">
                     <!-- Верхнее меню -->
                     <nav class="header__top-nav">
-                        <a href="office.html" class="header__top-link">О нас</a>
+                        <a href="<?php echo esc_url(fabrica_get_office_page_url()); ?>" class="header__top-link">О нас</a>
                         <a href="<?php echo esc_url(fabrica_get_services_page_url()); ?>" class="header__top-link">Услуги</a>
                         <a href="<?php echo esc_url(fabrica_get_designers_page_url()); ?>" class="header__top-link">Дизайнерам</a>
                         <a href="<?php echo esc_url(fabrica_get_business_page_url()); ?>" class="header__top-link">Бизнесу</a>
-                        <a href="delivery.html" class="header__top-link">Доставка</a>
+                        <a href="<?php echo esc_url(fabrica_get_delivery_page_url()); ?>" class="header__top-link">Доставка</a>
                         <a href="<?php echo esc_url(fabrica_get_projects_page_url()); ?>" class="header__top-link">Проекты</a>
                     </nav>
 
                     <!-- Правая часть -->
                     <div class="header__top-right">
-                        <a href="favorites.html" class="header__top-link">
+                        <a href="<?php echo esc_url(fabrica_get_favorites_page_url()); ?>" class="header__top-link">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
                             </svg>
                             Избранное
                         </a>
-                        <a href="catalog.html" class="header__top-link header__top-catalog">
+                        <a href="<?php echo esc_url(fabrica_get_catalog_page_url()); ?>" class="header__top-link header__top-catalog">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 2h3v3H2V2zm5 0h3v3H7V2zm5 0h3v3h-3V2zM2 7h3v3H2V7zm5 0h3v3H7V7zm5 0h3v3h-3V7zM2 12h3v3H2v-3zm5 0h3v3H7v-3zm5 0h3v3h-3v-3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
@@ -104,10 +104,10 @@ if (!isset($t)) {
                             <a href="#mebel" class="header__menu-link">Мебель</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="catalog.html" class="header__menu-link">Посуда</a>
+                            <a href="<?php echo esc_url(fabrica_get_catalog_page_url()); ?>" class="header__menu-link">Посуда</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="catalog.html" class="header__menu-link">Декор</a>
+                            <a href="<?php echo esc_url(fabrica_get_catalog_page_url()); ?>" class="header__menu-link">Декор</a>
                         </li>
                         <!-- <li class="header__menu-item">
                             <a href="catalog.html" class="header__menu-link">На улице</a>
@@ -116,7 +116,7 @@ if (!isset($t)) {
                             <a href="<?php echo esc_url(fabrica_get_services_page_url()); ?>" class="header__menu-link">Услуги</a>
                         </li>
                         <li class="header__menu-item">
-                            <a href="catalog.html" class="header__menu-link">Horeca</a>
+                            <a href="<?php echo esc_url(fabrica_get_catalog_page_url()); ?>" class="header__menu-link">Horeca</a>
                         </li>
                        
                         <li class="header__menu-item">
@@ -196,17 +196,17 @@ if (!isset($t)) {
 
             <!-- Навигация -->
             <nav class="header__mobile-nav">
-                <a href="favorites.html" class="header__mobile-link">
+                <a href="<?php echo esc_url(fabrica_get_favorites_page_url()); ?>" class="header__mobile-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
                     </svg>
                     <span>Избранное</span>
                 </a>
-                <a href="office.html" class="header__mobile-link">
+                <a href="<?php echo esc_url(fabrica_get_office_page_url()); ?>" class="header__mobile-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    </svg> 
                     <span>О компании</span>
                 </a>
                 <a href="<?php echo esc_url(fabrica_get_services_page_url()); ?>" class="header__mobile-link">
@@ -235,7 +235,7 @@ if (!isset($t)) {
                     </svg>
                     <span>Бизнесу</span>
                 </a>
-                <a href="delivery.html" class="header__mobile-link">
+                <a href="<?php echo esc_url(fabrica_get_delivery_page_url()); ?>" class="header__mobile-link">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

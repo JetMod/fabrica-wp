@@ -56,7 +56,45 @@ $feature_icons = array(
 
 $services_page_url = fabrica_get_services_page_url();
 $projects_page_url = fabrica_get_projects_page_url();
+
+$hero_badge = get_field('service_hero_badge', $service_id) ?: 'Профессиональные услуги';
+$hero_cta_secondary_text = get_field('service_hero_cta_secondary_text', $service_id) ?: 'Узнать больше';
+$hero_cta_secondary_url = get_field('service_hero_cta_secondary_url', $service_id) ?: '#service-features';
+
+$pricing_cta_title = get_field('service_pricing_cta_title', $service_id) ?: 'Узнайте стоимость вашего проекта';
+$pricing_cta_subtitle = get_field('service_pricing_cta_subtitle', $service_id) ?: 'Получите бесплатную консультацию и расчёт стоимости';
+$pricing_cta_btn_text = get_field('service_pricing_cta_btn_text', $service_id) ?: 'Узнать стоимость';
+$pricing_benefits = get_field('service_pricing_benefits', $service_id);
+$pricing_benefits_default = array(
+    array('title' => 'Индивидуальный расчёт', 'text' => 'Учитываем все особенности проекта'),
+    array('title' => 'Прозрачные цены', 'text' => 'Без скрытых доплат и комиссий'),
+    array('title' => 'Гарантия качества', 'text' => 'Фиксируем стоимость в договоре'),
+);
+$pricing_benefits = !empty($pricing_benefits) ? $pricing_benefits : $pricing_benefits_default;
+$pricing_guarantee = get_field('service_pricing_guarantee', $service_id) ?: 'Бесплатная консультация и выезд на объект';
 ?>
+
+<!-- Breadcrumbs -->
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+    <div class="container">
+        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumbs__link" itemprop="item"><span itemprop="name">Главная</span></a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li class="breadcrumbs__item"><span class="breadcrumbs__separator">/</span></li>
+            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="<?php echo esc_url($services_page_url); ?>" class="breadcrumbs__link" itemprop="item"><span itemprop="name">Услуги</span></a>
+                <meta itemprop="position" content="2">
+            </li>
+            <li class="breadcrumbs__item"><span class="breadcrumbs__separator">/</span></li>
+            <li class="breadcrumbs__item breadcrumbs__current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name"><?php the_title(); ?></span>
+                <meta itemprop="position" content="3">
+            </li>
+        </ol>
+    </div>
+</nav>
 
 <!-- Hero -->
 <section class="service-hero">
@@ -72,7 +110,7 @@ $projects_page_url = fabrica_get_projects_page_url();
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span>Профессиональные услуги</span>
+                <span><?php echo esc_html($hero_badge); ?></span>
             </div>
             <h1 class="service-hero__title"><?php the_title(); ?></h1>
             <?php if ($hero_subtitle) : ?>
@@ -97,7 +135,7 @@ $projects_page_url = fabrica_get_projects_page_url();
                     <span><?php echo esc_html($cta_text); ?></span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#service-features" class="service-hero__cta service-hero__cta--secondary"><span>Узнать больше</span></a>
+                <a href="<?php echo esc_url($hero_cta_secondary_url); ?>" class="service-hero__cta service-hero__cta--secondary"><span><?php echo esc_html($hero_cta_secondary_text); ?></span></a>
             </div>
         </div>
     </div>
@@ -114,7 +152,7 @@ if (empty($about_title) && $about_content) {
 }
 if ($about_title || $about_content) :
 ?>
-<section class="service-about">
+<section class="service-about animate-on-scroll">
     <div class="container">
         <div class="service-about__content">
             <?php if ($about_title) : ?>
@@ -134,7 +172,7 @@ $features = get_field('service_features', $service_id);
 $features = is_array($features) ? $features : array();
 if (!empty($features)) :
 ?>
-<section class="service-features" id="service-features">
+<section class="service-features animate-on-scroll" id="service-features">
     <div class="container">
         <h2 class="service-features__title"><?php echo esc_html($features_title); ?></h2>
         <div class="service-features__grid">
@@ -164,7 +202,7 @@ $steps = get_field('service_steps', $service_id);
 $steps = is_array($steps) ? $steps : array();
 if (!empty($steps)) :
 ?>
-<section class="service-process">
+<section class="service-process animate-on-scroll">
     <div class="container">
         <h2 class="service-process__title"><?php echo esc_html($process_title); ?></h2>
         <div class="service-process__steps">
@@ -203,7 +241,7 @@ if (empty($portfolio_ids)) {
 }
 if (!empty($portfolio_ids)) :
 ?>
-<section class="service-portfolio">
+<section class="service-portfolio animate-on-scroll">
     <div class="container">
         <h2 class="service-portfolio__title"><?php echo esc_html($portfolio_title); ?></h2>
         <?php if ($portfolio_subtitle) : ?>
@@ -246,7 +284,7 @@ $pricing_factors = is_array($pricing_factors) ? $pricing_factors : array();
 $show_pricing = true;
 if ($show_pricing) :
 ?>
-<section class="service-pricing">
+<section class="service-pricing animate-on-scroll">
     <div class="service-pricing__container">
         <div class="service-pricing__grid">
             <div class="service-pricing__left">
@@ -292,30 +330,29 @@ if ($show_pricing) :
             <div class="service-pricing__right">
                 <div class="service-pricing__cta-card">
                     <div class="service-pricing__cta-header">
-                        <h3>Узнайте стоимость вашего проекта</h3>
-                        <p>Получите бесплатную консультацию и расчёт стоимости</p>
+                        <h3><?php echo esc_html($pricing_cta_title); ?></h3>
+                        <p><?php echo esc_html($pricing_cta_subtitle); ?></p>
                     </div>
                     <a href="#contact-form" class="service-pricing__cta-button">
-                        <span>Узнать стоимость</span>
+                        <span><?php echo esc_html($pricing_cta_btn_text); ?></span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
                     <div class="service-pricing__benefits">
+                        <?php
+                        $pricing_benefit_icons = array($feature_icons['check'], $feature_icons['ruble'], $feature_icons['shield'], $feature_icons['check']);
+                        foreach ($pricing_benefits as $i => $pb) :
+                            if (empty($pb['title']) && empty($pb['text'])) continue;
+                            $icon = isset($pricing_benefit_icons[$i]) ? $pricing_benefit_icons[$i] : $feature_icons['check'];
+                        ?>
                         <div class="service-pricing__benefit">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><?php echo $feature_icons['check']; ?></svg>
-                            <div><strong>Индивидуальный расчёт</strong><span>Учитываем все особенности проекта</span></div>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><?php echo $icon; ?></svg>
+                            <div><strong><?php echo esc_html($pb['title']); ?></strong><span><?php echo esc_html($pb['text']); ?></span></div>
                         </div>
-                        <div class="service-pricing__benefit">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><?php echo $feature_icons['ruble']; ?></svg>
-                            <div><strong>Прозрачные цены</strong><span>Без скрытых доплат и комиссий</span></div>
-                        </div>
-                        <div class="service-pricing__benefit">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><?php echo $feature_icons['shield']; ?></svg>
-                            <div><strong>Гарантия качества</strong><span>Фиксируем стоимость в договоре</span></div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="service-pricing__guarantee">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><?php echo $feature_icons['check']; ?></svg>
-                        <span>Бесплатная консультация и выезд на объект</span>
+                        <span><?php echo esc_html($pricing_guarantee); ?></span>
                     </div>
                 </div>
             </div>
@@ -332,7 +369,7 @@ $faq_items = get_field('service_faq', $service_id);
 $faq_items = is_array($faq_items) ? $faq_items : array();
 if (!empty($faq_items)) :
 ?>
-<section class="service-faq">
+<section class="service-faq animate-on-scroll">
     <div class="container">
         <h2 class="service-faq__title"><?php echo esc_html($faq_title ?: 'Часто задаваемые вопросы'); ?></h2>
         <div class="service-faq__list">

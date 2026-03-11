@@ -7,14 +7,15 @@
 
 if (!defined('ABSPATH')) {
     exit;
-}
+} 
 
 require_once get_template_directory() . '/inc/cpt-product.php';
 require_once get_template_directory() . '/inc/cpt-service.php';
 require_once get_template_directory() . '/inc/cpt-project.php';
 require_once get_template_directory() . '/inc/tax-product-catalog.php';
-
-/**
+require_once get_template_directory() . '/inc/rest-favorites.php';
+ 
+/**   
  * Сброс правил перезаписи при активации темы (для CPT и таксономий)
  */
 function fabrica_rewrite_flush() {
@@ -74,6 +75,156 @@ function fabrica_service_saved_hook($post_id) {
     }
 }
 add_action('save_post', 'fabrica_service_saved_hook');
+
+/**
+ * Сброс кэша при сохранении страницы услуг
+ */
+function fabrica_services_page_saved_hook($post_id) {
+    if (get_post_type($post_id) !== 'page') {
+        return;
+    }
+    if (get_page_template_slug($post_id) !== 'templates/template-services.php') {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (function_exists('rocket_clean_domain')) {
+        rocket_clean_domain();
+    }
+    if (function_exists('w3tc_flush_all')) {
+        w3tc_flush_all();
+    }
+    if (class_exists('LiteSpeed_Cache_API') && method_exists('LiteSpeed_Cache_API', 'purge_all')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+}
+add_action('save_post', 'fabrica_services_page_saved_hook');
+
+/**
+ * Сброс кэша при сохранении страницы доставки
+ */
+function fabrica_delivery_page_saved_hook($post_id) {
+    if (get_post_type($post_id) !== 'page') {
+        return;
+    }
+    if (get_page_template_slug($post_id) !== 'templates/template-delivery.php') {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (function_exists('rocket_clean_domain')) {
+        rocket_clean_domain();
+    }
+    if (function_exists('w3tc_flush_all')) {
+        w3tc_flush_all();
+    }
+    if (class_exists('LiteSpeed_Cache_API') && method_exists('LiteSpeed_Cache_API', 'purge_all')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+}
+add_action('save_post', 'fabrica_delivery_page_saved_hook');
+
+/**
+ * Сброс кэша при сохранении страницы «Бизнесу»
+ */
+function fabrica_business_page_saved_hook($post_id) {
+    if (get_post_type($post_id) !== 'page') {
+        return;
+    }
+    if (get_page_template_slug($post_id) !== 'templates/template-business.php') {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (function_exists('rocket_clean_domain')) {
+        rocket_clean_domain();
+    }
+    if (function_exists('w3tc_flush_all')) {
+        w3tc_flush_all();
+    }
+    if (class_exists('LiteSpeed_Cache_API') && method_exists('LiteSpeed_Cache_API', 'purge_all')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+}
+add_action('save_post', 'fabrica_business_page_saved_hook');
+
+/**
+ * Сброс кэша при сохранении страницы «Дизайнерам»
+ */
+function fabrica_designers_page_saved_hook($post_id) {
+    if (get_post_type($post_id) !== 'page') {
+        return;
+    }
+    if (get_page_template_slug($post_id) !== 'templates/template-designers.php') {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (function_exists('rocket_clean_domain')) {
+        rocket_clean_domain();
+    }
+    if (function_exists('w3tc_flush_all')) {
+        w3tc_flush_all();
+    }
+    if (class_exists('LiteSpeed_Cache_API') && method_exists('LiteSpeed_Cache_API', 'purge_all')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+}
+add_action('save_post', 'fabrica_designers_page_saved_hook');
+
+/**
+ * Сброс кэша при сохранении страницы «Проекты»
+ */
+function fabrica_projects_page_saved_hook($post_id) {
+    if (get_post_type($post_id) !== 'page') {
+        return;
+    }
+    if (get_page_template_slug($post_id) !== 'templates/template-projects.php') {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (function_exists('rocket_clean_domain')) {
+        rocket_clean_domain();
+    }
+    if (function_exists('w3tc_flush_all')) {
+        w3tc_flush_all();
+    }
+    if (class_exists('LiteSpeed_Cache_API') && method_exists('LiteSpeed_Cache_API', 'purge_all')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+}
+add_action('save_post', 'fabrica_projects_page_saved_hook');
+
+/**
+ * Сброс кэша при сохранении страницы «Избранное»
+ */
+function fabrica_favorites_page_saved_hook($post_id) {
+    if (get_post_type($post_id) !== 'page') {
+        return;
+    }
+    if (get_page_template_slug($post_id) !== 'templates/template-favorites.php') {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (function_exists('rocket_clean_domain')) {
+        rocket_clean_domain();
+    }
+    if (function_exists('w3tc_flush_all')) {
+        w3tc_flush_all();
+    }
+    if (class_exists('LiteSpeed_Cache_API') && method_exists('LiteSpeed_Cache_API', 'purge_all')) {
+        LiteSpeed_Cache_API::purge_all();
+    }
+}
+add_action('save_post', 'fabrica_favorites_page_saved_hook');
 
 /**
  * Подключение стилей и скриптов
@@ -144,6 +295,21 @@ function fabrica_enqueue_assets() {
             true
         );
     }
+
+    // Скрипт страницы «Избранное»
+    if (is_page_template('templates/template-favorites.php')) {
+        wp_enqueue_script(
+            'fabrica-favorites-page',
+            $theme_uri . '/js/favorites-page.js',
+            array(),
+            $version,
+            true
+        );
+        wp_localize_script('fabrica-favorites-page', 'fabricaFavorites', array(
+            'restUrl' => rest_url('fabrica/v1/favorites-products'),
+            'nonce'   => wp_create_nonce('wp_rest'),
+        ));
+    }
 }
 add_action('wp_enqueue_scripts', 'fabrica_enqueue_assets');
 
@@ -151,7 +317,7 @@ add_action('wp_enqueue_scripts', 'fabrica_enqueue_assets');
  * Добавляем type="module" и nomodule для скриптов
  */
 function fabrica_script_loader_tag($tag, $handle, $src) {
-    if ('fabrica-app' === $handle) {
+    if ('fabrica-app' === $handle || 'fabrica-favorites-page' === $handle) {
         return '<script type="module" src="' . esc_url($src) . '"></script>';
     }
     if ('fabrica-main' === $handle) {
@@ -200,6 +366,58 @@ function fabrica_acf_json_load_point($paths) {
     return $paths;
 }
 add_filter('acf/settings/load_json', 'fabrica_acf_json_load_point');
+
+/** 
+ * URL страницы «О нас» (office)
+ */
+function fabrica_get_office_page_url() {
+    $pages = get_posts(array(
+        'post_type'      => 'page',
+        'posts_per_page' => 1,
+        'meta_key'       => '_wp_page_template',
+        'meta_value'     => 'templates/template-office.php',
+    ));
+    return $pages ? get_permalink($pages[0]) : home_url('/');
+}
+
+/**
+ * URL страницы «Доставка»
+ */
+function fabrica_get_delivery_page_url() {
+    $pages = get_posts(array(
+        'post_type'      => 'page',
+        'posts_per_page' => 1,
+        'meta_key'       => '_wp_page_template',
+        'meta_value'     => 'templates/template-delivery.php',
+    ));
+    return $pages ? get_permalink($pages[0]) : home_url('/');
+}
+
+/**
+ * URL страницы «Каталог»
+ */
+function fabrica_get_catalog_page_url() {
+    $pages = get_posts(array(
+        'post_type'      => 'page',
+        'posts_per_page' => 1,
+        'meta_key'       => '_wp_page_template',
+        'meta_value'     => 'templates/template-catalog.php',
+    ));
+    return $pages ? get_permalink($pages[0]) : (get_post_type_archive_link('fabrica_product') ?: home_url('/'));
+}
+
+/**
+ * URL страницы «Избранное»
+ */
+function fabrica_get_favorites_page_url() {
+    $pages = get_posts(array(
+        'post_type'      => 'page',
+        'posts_per_page' => 1,
+        'meta_key'       => '_wp_page_template',
+        'meta_value'     => 'templates/template-favorites.php',
+    ));
+    return $pages ? get_permalink($pages[0]) : home_url('/');
+}
 
 /**
  * URL страницы услуг (из ACF или страницы с шаблоном «Услуги»)
@@ -362,6 +580,34 @@ function fabrica_service_default_values($value, $post_id, $field) {
     if ($field['name'] === 'service_faq_title' && empty($value)) {
         return 'Часто задаваемые вопросы';
     }
+    if ($field['name'] === 'service_hero_badge' && empty($value)) {
+        return 'Профессиональные услуги';
+    }
+    if ($field['name'] === 'service_hero_cta_secondary_text' && empty($value)) {
+        return 'Узнать больше';
+    }
+    if ($field['name'] === 'service_hero_cta_secondary_url' && empty($value)) {
+        return '#service-features';
+    }
+    if ($field['name'] === 'service_pricing_cta_title' && empty($value)) {
+        return 'Узнайте стоимость вашего проекта';
+    }
+    if ($field['name'] === 'service_pricing_cta_subtitle' && empty($value)) {
+        return 'Получите бесплатную консультацию и расчёт стоимости';
+    }
+    if ($field['name'] === 'service_pricing_cta_btn_text' && empty($value)) {
+        return 'Узнать стоимость';
+    }
+    if ($field['name'] === 'service_pricing_benefits' && empty($value)) {
+        return array(
+            array('title' => 'Индивидуальный расчёт', 'text' => 'Учитываем все особенности проекта'),
+            array('title' => 'Прозрачные цены', 'text' => 'Без скрытых доплат и комиссий'),
+            array('title' => 'Гарантия качества', 'text' => 'Фиксируем стоимость в договоре'),
+        );
+    }
+    if ($field['name'] === 'service_pricing_guarantee' && empty($value)) {
+        return 'Бесплатная консультация и выезд на объект';
+    }
     if ($field['name'] === 'service_faq' && empty($value)) {
         return array(
             array('question' => 'Сколько стоит услуга?', 'answer' => 'Стоимость зависит от площади помещения, сложности проекта и объёма работ. Для получения точного расчёта свяжитесь с нами — мы подготовим индивидуальное коммерческое предложение после консультации и выезда на объект.'),
@@ -389,3 +635,77 @@ add_filter('acf/load_value/name=service_pricing_description', 'fabrica_service_d
 add_filter('acf/load_value/name=service_pricing_note', 'fabrica_service_default_values', 10, 3);
 add_filter('acf/load_value/name=service_faq_title', 'fabrica_service_default_values', 10, 3);
 add_filter('acf/load_value/name=service_faq', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_hero_badge', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_hero_cta_secondary_text', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_hero_cta_secondary_url', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_cta_title', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_cta_subtitle', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_cta_btn_text', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_benefits', 'fabrica_service_default_values', 10, 3);
+add_filter('acf/load_value/name=service_pricing_guarantee', 'fabrica_service_default_values', 10, 3);
+
+/**
+ * Schema.org Service для страницы услуги
+ */
+function fabrica_service_schema() {
+    if (!is_singular('fabrica_service')) {
+        return;
+    }
+    $service_id = get_queried_object_id();
+    $title = get_the_title($service_id);
+    $excerpt = has_excerpt($service_id) ? get_the_excerpt($service_id) : '';
+    $image = get_field('service_image', $service_id);
+    $image_url = '';
+    if (!empty($image) && is_array($image) && !empty($image['url'])) {
+        $image_url = $image['url'];
+    } elseif (has_post_thumbnail($service_id)) {
+        $image_url = get_the_post_thumbnail_url($service_id, 'large');
+    }
+    if ($image_url && strpos($image_url, 'http') !== 0) {
+        $image_url = home_url($image_url);
+    }
+
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'Service',
+        'serviceType' => $title,
+        'name' => $title,
+        'description' => $excerpt ?: wp_strip_all_tags(get_post_field('post_content', $service_id)),
+        'provider' => array(
+            '@type' => 'LocalBusiness',
+            'name' => 'ФАБРИКА интерьеров',
+            'telephone' => '+79785977442',
+            'address' => array(
+                '@type' => 'PostalAddress',
+                'addressLocality' => 'Симферополь',
+                'addressRegion' => 'Крым',
+                'addressCountry' => 'RU',
+            ),
+            'openingHoursSpecification' => array(
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
+                'opens' => '10:00',
+                'closes' => '19:00',
+            ),
+            'areaServed' => array('@type' => 'City', 'name' => 'Симферополь'),
+        ),
+        'areaServed' => array('@type' => 'City', 'name' => 'Симферополь'),
+    );
+    if ($image_url) {
+        $schema['image'] = $image_url;
+    }
+    echo '<script type="application/ld+json">' . wp_json_encode($schema) . '</script>' . "\n";
+
+    $services_url = fabrica_get_services_page_url();
+    $breadcrumb = array(
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => array(
+            array('@type' => 'ListItem', 'position' => 1, 'name' => 'Главная', 'item' => array('@id' => home_url('/'))),
+            array('@type' => 'ListItem', 'position' => 2, 'name' => 'Услуги', 'item' => array('@id' => $services_url)),
+            array('@type' => 'ListItem', 'position' => 3, 'name' => $title, 'item' => array('@id' => get_permalink($service_id))),
+        ),
+    );
+    echo '<script type="application/ld+json">' . wp_json_encode($breadcrumb) . '</script>' . "\n";
+}
+add_action('wp_head', 'fabrica_service_schema', 5);

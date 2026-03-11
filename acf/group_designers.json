@@ -3,6 +3,12 @@
     "title": "Страница «Дизайнерам»",
     "fields": [
         {
+            "key": "field_designers_tab_hero",
+            "label": "1. Hero",
+            "name": "",
+            "type": "tab"
+        },
+        {
             "key": "field_designers_hero_badge",
             "label": "Hero: Бейдж",
             "name": "designers_hero_badge",
@@ -52,6 +58,13 @@
             "default_value": "Узнать больше"
         },
         {
+            "key": "field_designers_hero_btn_secondary_url",
+            "label": "Hero: Ссылка кнопки «Узнать больше»",
+            "name": "designers_hero_btn_secondary_url",
+            "type": "url",
+            "default_value": "#benefits"
+        },
+        {
             "key": "field_designers_hero_image",
             "label": "Hero: Изображение",
             "name": "designers_hero_image",
@@ -83,6 +96,12 @@
                     "default_value": "дизайнеров-партнеров"
                 }
             ]
+        },
+        {
+            "key": "field_designers_tab_benefits",
+            "label": "2. Преимущества",
+            "name": "",
+            "type": "tab"
         },
         {
             "key": "field_designers_benefits_badge",
@@ -129,6 +148,12 @@
                     "default_value": "Специальные партнерские цены до 15% ниже розничных. Прозрачное ценообразование без скрытых комиссий."
                 }
             ]
+        },
+        {
+            "key": "field_designers_tab_process",
+            "label": "3. Процесс",
+            "name": "",
+            "type": "tab"
         },
         {
             "key": "field_designers_process_badge",
@@ -184,6 +209,12 @@
             ]
         },
         {
+            "key": "field_designers_tab_conditions",
+            "label": "4. Условия",
+            "name": "",
+            "type": "tab"
+        },
+        {
             "key": "field_designers_conditions_badge",
             "label": "Условия: Бейдж",
             "name": "designers_conditions_badge",
@@ -230,6 +261,13 @@
             ]
         },
         {
+            "key": "field_designers_conditions_card_title",
+            "label": "Условия: Карточка — заголовок",
+            "name": "designers_conditions_card_title",
+            "type": "text",
+            "default_value": "Партнерский статус"
+        },
+        {
             "key": "field_designers_conditions_card_min",
             "label": "Условия: Карточка — мин. заказ",
             "name": "designers_conditions_card_min",
@@ -242,6 +280,19 @@
             "name": "designers_conditions_card_discount",
             "type": "text",
             "default_value": "от 15%"
+        },
+        {
+            "key": "field_designers_conditions_card_manager",
+            "label": "Условия: Карточка — персональный менеджер",
+            "name": "designers_conditions_card_manager",
+            "type": "text",
+            "default_value": "✓"
+        },
+        {
+            "key": "field_designers_tab_cta",
+            "label": "5. CTA / Форма",
+            "name": "",
+            "type": "tab"
         },
         {
             "key": "field_designers_cta_badge",
@@ -295,6 +346,14 @@
             "name": "designers_cta_btn_url",
             "type": "url",
             "default_value": "tel:+79785977442"
+        },
+        {
+            "key": "field_designers_show_contact_form",
+            "label": "Показать форму обратной связи под CTA",
+            "name": "designers_show_contact_form",
+            "type": "true_false",
+            "message": "Если включено — под блоком CTA выводится общая форма заявки (имя, телефон).",
+            "default_value": 1
         }
     ],
     "location": [

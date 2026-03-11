@@ -1,0 +1,142 @@
+{
+    "key": "group_services_page",
+    "title": "Страница «Услуги» — Hero, фильтры, CTA",
+    "fields": [
+        {
+            "key": "field_services_page_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Настройки страницы услуг. Карточки услуг выводятся автоматически из раздела «Услуги» в меню. Категории фильтров берутся из таксономии «Категория услуги».",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_services_page_tab_hero",
+            "label": "Hero (шапка)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_services_page_badge",
+            "label": "Метка (бейдж)",
+            "name": "services_page_badge",
+            "type": "text",
+            "default_value": "Профессиональные услуги"
+        },
+        {
+            "key": "field_services_page_title",
+            "label": "Заголовок",
+            "name": "services_page_title",
+            "type": "text",
+            "default_value": "Услуги дизайна интерьера и производства мебели в Симферополе и Крыму"
+        },
+        {
+            "key": "field_services_page_subtitle",
+            "label": "Подзаголовок",
+            "name": "services_page_subtitle",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "Полный спектр услуг от разработки концепции интерьера до производства мебели и оснащения объектов под ключ. Работаем с частными клиентами, дизайнерами и бизнесом по всему Крыму.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_services_page_stats",
+            "label": "Статистика (3 блока)",
+            "name": "services_page_stats",
+            "type": "repeater",
+            "min": 3,
+            "max": 3,
+            "layout": "table",
+            "button_label": "Статистика",
+            "sub_fields": [
+                {
+                    "key": "field_services_page_stat_number",
+                    "label": "Число",
+                    "name": "number",
+                    "type": "text",
+                    "instructions": "Оставьте пустым — подставится количество услуг. Или введите: 18+, 100%, Крым и т.д.",
+                    "placeholder": "18+ или пусто"
+                },
+                {
+                    "key": "field_services_page_stat_label",
+                    "label": "Подпись",
+                    "name": "label",
+                    "type": "text",
+                    "placeholder": "Видов услуг"
+                }
+            ]
+        },
+        {
+            "key": "field_services_page_tab_filters",
+            "label": "Фильтры",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_services_page_filter_all_text",
+            "label": "Текст кнопки «Все услуги»",
+            "name": "services_page_filter_all_text",
+            "type": "text",
+            "default_value": "Все услуги"
+        },
+        {
+            "key": "field_services_page_tab_cta",
+            "label": "CTA (призыв к действию)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_services_page_cta_title",
+            "label": "Заголовок",
+            "name": "services_page_cta_title",
+            "type": "text",
+            "default_value": "Нужна консультация по услугам?"
+        },
+        {
+            "key": "field_services_page_cta_text",
+            "label": "Текст",
+            "name": "services_page_cta_text",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Свяжитесь с нами, и мы поможем выбрать оптимальное решение для вашего проекта в Симферополе и Крыму",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_services_page_cta_btn_text",
+            "label": "Текст кнопки",
+            "name": "services_page_cta_btn_text",
+            "type": "text",
+            "default_value": "Получить консультацию"
+        },
+        {
+            "key": "field_services_page_cta_btn_url",
+            "label": "Ссылка кнопки",
+            "name": "services_page_cta_btn_url",
+            "type": "url",
+            "default_value": "#contact-form"
+        },
+        {
+            "key": "field_services_page_cta_phone",
+            "label": "Телефон для второй кнопки",
+            "name": "services_page_cta_phone",
+            "type": "text",
+            "default_value": "+7 (978) 597-74-42"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-services.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Настройки страницы услуг"
+}
