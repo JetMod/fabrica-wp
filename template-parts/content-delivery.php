@@ -245,6 +245,14 @@ $pay_items = !empty($pay_items) ? $pay_items : $pay_default;
             </div>
             <?php endforeach; ?>
         </div>
+        <?php
+        $legal_req_url = function_exists('fabrica_get_legal_requisites_url') ? fabrica_get_legal_requisites_url() : '';
+        if ($legal_req_url) :
+        ?>
+        <p class="delivery-payment__legal">
+            <a href="<?php echo esc_url($legal_req_url); ?>">Реквизиты для юридических лиц и ИП</a> — в разделе юридической информации.
+        </p>
+        <?php endif; ?>
     </div> 
 </section>
 

@@ -1,6 +1,6 @@
 <?php $t = get_template_directory_uri(); ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html <?php language_attributes(); ?>>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,9 +26,10 @@
     
     <?php wp_head(); ?>
 </head>
-<body class="page-index">
- 
- <?php get_header(); ?>
+<body <?php body_class('page-index'); ?>>
+<?php wp_body_open(); ?>
+
+<?php get_header(); ?>
 
 <?php
 // ACF Options для главной страницы (с fallback на значения по умолчанию)
@@ -261,7 +262,7 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
         $fp_sale_ids = is_array($fp_sale_ids) ? $fp_sale_ids : array();
         $fp_new_ids = is_array($fp_new_ids) ? $fp_new_ids : array();
         ?>
-        <section class="featured-products animate-on-scroll" aria-label="Популярные позиции каталога — скидки и новинки">
+        <section class="featured-products animate-on-scroll" id="sale" aria-label="Популярные позиции каталога — скидки и новинки">
             <div class="container">
                 <div class="featured-products__header">
                     <div class="featured-products__tabs">
@@ -556,7 +557,7 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
         $wh_svg_star = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
         $wh_img_alt = $wh_img_alt ?: $wh_title;
         ?>
-        <section class="wholesale animate-on-scroll" id="wholesale" aria-labelledby="wholesale-title">
+        <section class="wholesale animate-on-scroll" id="production" aria-labelledby="wholesale-title">
             <div class="container">
                 <div class="wholesale__inner">
                     <div class="wholesale__image">

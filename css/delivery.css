@@ -831,6 +831,24 @@
     margin: 0;
 }
 
+.delivery-payment__legal {
+    margin: 28px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(45, 45, 45, 0.08);
+    text-align: center;
+    font-size: 14px;
+    color: rgba(30, 30, 30, 0.7);
+}
+
+.delivery-payment__legal a {
+    color: var(--color-accent, #c6a15b);
+    text-decoration: none;
+}
+
+.delivery-payment__legal a:hover {
+    text-decoration: underline;
+}
+
 /* Адаптив */
 @media (max-width: 1200px) {
     .delivery-methods__grid {

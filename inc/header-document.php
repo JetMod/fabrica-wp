@@ -12,7 +12,7 @@ if (!isset($t)) {
 $body_class = isset($body_class) ? $body_class : 'page';
 ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html <?php language_attributes(); ?>>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,4 +21,5 @@ $body_class = isset($body_class) ? $body_class : 'page';
     <link rel="apple-touch-icon" href="<?php echo esc_url($t . '/img/logo.jpg'); ?>">
     <?php wp_head(); ?>
 </head>
-<body class="<?php echo esc_attr($body_class); ?>">
+<body <?php body_class($body_class); ?>>
+<?php wp_body_open(); ?>

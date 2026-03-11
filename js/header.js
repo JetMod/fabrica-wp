@@ -52,4 +52,36 @@ export function initHeaderScroll() {
             this.style.transform = '';
         });
     }
+
+    // Выпадающий список на touch-устройствах (клик вместо hover)
+    initHeaderDropdown();
+}
+
+/**
+ * Инициализация выпадающего меню (dropdown) для touch-устройств
+ */
+function initHeaderDropdown() {
+    const dropdownItems = document.querySelectorAll('.header__menu-item--has-dropdown');
+    if (!dropdownItems.length) return;
+
+    function closeAllDropdowns() {
+        dropdownItems.forEach(item => item.classList.remove('header__dropdown-open'));
+        document.removeEventListener('click', closeAllDropdowns);
+    }
+
+    dropdownItems.forEach(item => {
+        const link = item.querySelector('.header__menu-link');
+        if (!link) return;
+
+        link.addEventListener('click', function(e) {
+            if (!('ontouchstart' in window)) return; // только для touch
+            if (item.classList.contains('header__dropdown-open')) {
+                return; // при повторном клике — переход по ссылке
+            }
+            e.preventDefault();
+            dropdownItems.forEach(other => other.classList.remove('header__dropdown-open'));
+            item.classList.add('header__dropdown-open');
+            setTimeout(() => document.addEventListener('click', closeAllDropdowns), 0);
+        });
+    });
 }

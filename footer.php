@@ -2,14 +2,28 @@
 if (!isset($t)) {
     $t = get_template_directory_uri();
 }
+$catalog_url = fabrica_get_catalog_page_url();
+$office_url = fabrica_get_office_page_url();
+$home_url = home_url('/');
 ?>
     <!-- Footer -->
     <footer class="footer" id="contacts" role="contentinfo">
         <!-- Верхняя секция с карточками -->
         <div class="footer__cta-section">
             <div class="container">
-                <div class="footer__cta-grid">
-                    <!-- B2B Программа -->
+                    <?php
+                    $cta1_title = fabrica_footer_option('footer_cta_1_title', 'B2B программа');
+                    $cta1_text = fabrica_footer_option('footer_cta_1_text', 'Вы дизайнер интерьера или архитектор? Присоединяйтесь сегодня.');
+                    $cta1_link = fabrica_footer_option('footer_cta_1_link', '#contact-form');
+                    $cta1_btn = fabrica_footer_option('footer_cta_1_btn', 'Присоединиться');
+                    $cta2_title = fabrica_footer_option('footer_cta_2_title', 'Дизайн-услуги');
+                    $cta2_text = fabrica_footer_option('footer_cta_2_text', 'Комплексные дизайн-услуги для вашего интерьера под ключ.');
+                    $cta2_link = fabrica_footer_option('footer_cta_2_link', '#contact-form');
+                    $cta2_btn = fabrica_footer_option('footer_cta_2_btn', 'Записаться на встречу');
+                    $cta3_title = fabrica_footer_option('footer_cta_3_title', 'Посетите шоурум');
+                    $cta3_text = fabrica_footer_option('footer_cta_3_text', 'Приглашаем увидеть наши коллекции в нашем шоуруме.');
+                    ?>
+                    <div class="footer__cta-grid">
                     <div class="footer__cta-card">
                         <div class="footer__cta-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -17,14 +31,11 @@ if (!isset($t)) {
                                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                             </svg>
                         </div>
-                        <h3 class="footer__cta-title">B2B программа</h3>
-                        <p class="footer__cta-text">Вы дизайнер интерьера или архитектор? Присоединяйтесь сегодня.</p>
-                        <a href="#contact-form" class="footer__cta-link">Присоединиться</a>
+                        <h3 class="footer__cta-title"><?php echo esc_html($cta1_title); ?></h3>
+                        <p class="footer__cta-text"><?php echo esc_html($cta1_text); ?></p>
+                        <a href="<?php echo esc_url($cta1_link ?: '#contact-form'); ?>" class="footer__cta-link"><?php echo esc_html($cta1_btn); ?></a>
                     </div>
-
                     <div class="footer__cta-divider"></div>
-
-                    <!-- Дизайн-услуги -->
                     <div class="footer__cta-card">
                         <div class="footer__cta-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -34,14 +45,11 @@ if (!isset($t)) {
                                 <circle cx="11" cy="11" r="2"></circle>
                             </svg>
                         </div>
-                        <h3 class="footer__cta-title">Дизайн-услуги</h3>
-                        <p class="footer__cta-text">Комплексные дизайн-услуги для вашего интерьера под ключ.</p>
-                        <a href="#contact-form" class="footer__cta-link">Записаться на встречу</a>
+                        <h3 class="footer__cta-title"><?php echo esc_html($cta2_title); ?></h3>
+                        <p class="footer__cta-text"><?php echo esc_html($cta2_text); ?></p>
+                        <a href="<?php echo esc_url($cta2_link ?: '#contact-form'); ?>" class="footer__cta-link"><?php echo esc_html($cta2_btn); ?></a>
                     </div>
-
                     <div class="footer__cta-divider"></div>
-
-                    <!-- Посетите шоурум -->
                     <div class="footer__cta-card">
                         <div class="footer__cta-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -49,8 +57,8 @@ if (!isset($t)) {
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </div>
-                        <h3 class="footer__cta-title">Посетите шоурум</h3>
-                        <p class="footer__cta-text">Приглашаем увидеть наши коллекции в нашем шоуруме.</p>
+                        <h3 class="footer__cta-title"><?php echo esc_html($cta3_title); ?></h3>
+                        <p class="footer__cta-text"><?php echo esc_html($cta3_text); ?></p>
                     </div>
                 </div>
             </div>
@@ -60,101 +68,104 @@ if (!isset($t)) {
         <div class="footer__main">
             <div class="container">
                 <div class="footer__content">
-                    <!-- Левая часть: Логотип и описание -->
+                    <?php
+                    $footer_logo = function_exists('get_field') ? get_field('footer_logo', 'option') : null;
+                    $footer_logo_src = ($footer_logo && !empty($footer_logo['url'])) ? $footer_logo['url'] : $t . '/img/logo.jpg';
+                    $footer_logo_alt = ($footer_logo && !empty($footer_logo['alt'])) ? $footer_logo['alt'] : get_bloginfo('name');
+                    ?>
                     <div class="footer__brand">
-                        <div class="footer__logo">
-                            <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="ФАБРИКА интерьеров" class="footer__logo-img">
-                        </div>
-                        <p class="footer__description">
-                            Производство полного цикла интерьерных решений премиум-класса. Создаём мебель и комплексные проекты под ключ с 2010 года.
-                        </p>
+                        <a href="<?php echo esc_url($home_url); ?>" class="footer__logo">
+                            <img src="<?php echo esc_url($footer_logo_src); ?>" alt="<?php echo esc_attr($footer_logo_alt); ?>" class="footer__logo-img">
+                        </a>
+                        <p class="footer__description"><?php echo esc_html(fabrica_footer_option('footer_description', 'Производство полного цикла интерьерных решений премиум-класса. Создаём мебель и комплексные проекты под ключ с 2010 года.')); ?></p>
                         <div class="footer__social">
-                            <a href="#" class="footer__social-link" aria-label="ВКонтакте">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.19 14.86h-1.55c-.46 0-.6-.36-1.42-1.18-.72-.72-1.03-.82-1.21-.82-.25 0-.32.07-.32.41v1.08c0 .29-.09.46-.87.46-1.27 0-2.67-.77-3.66-2.21-1.49-2.15-1.9-3.77-1.9-4.1 0-.18.07-.34.41-.34h1.55c.31 0 .42.14.54.47.59 1.68 1.58 3.15 1.99 3.15.15 0 .22-.07.22-.46v-1.77c-.05-.85-.5-1.02-.5-1.35 0-.15.13-.29.33-.29h2.44c.26 0 .35.14.35.44v2.39c0 .26.11.35.19.35.15 0 .27-.09.55-.37.86-.98 1.48-2.49 1.48-2.49.08-.18.22-.34.54-.34h1.55c.37 0 .45.19.37.44-.17.79-.83 1.91-1.46 2.71l-.53.69c-.13.18-.16.26 0 .47.11.15.51.5.77.79.51.51.9 1.04 1.01 1.37.11.34-.06.51-.41.51z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="footer__social-link" aria-label="WhatsApp">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="footer__social-link" aria-label="Telegram">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                                </svg>
-                            </a>
+                            <?php
+                            $social_links = fabrica_footer_option('footer_social_links', array());
+                            if (!empty($social_links) && is_array($social_links)) {
+                                foreach ($social_links as $item) {
+                                    $url = isset($item['url']) ? $item['url'] : '';
+                                    $icon_key = isset($item['icon']) ? $item['icon'] : 'telegram';
+                                    if (empty($url)) continue;
+                                    $icon_data = fabrica_get_social_icon_svg($icon_key);
+                                    ?>
+                                    <a href="<?php echo esc_url($url); ?>" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr($icon_data['label']); ?>">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><?php echo $icon_data['path']; ?></svg>
+                                    </a>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
 
-                    <!-- Правая часть: Меню -->
                     <div class="footer__menu-grid">
-                        <!-- Колонка: Компания -->
-                        <div class="footer__menu-column">
-                            <h4 class="footer__menu-title">Компания</h4>
-                            <ul class="footer__menu-list">
-                                <li><a href="#about" class="footer__menu-link">О нас</a></li>
-                                <li><a href="<?php echo esc_url(fabrica_get_projects_page_url()); ?>" class="footer__menu-link">Наши проекты</a></li>
-                                <li><a href="#production" class="footer__menu-link">Производство</a></li>
-                                <li><a href="<?php echo esc_url(fabrica_get_blog_page_url()); ?>" class="footer__menu-link">Блог</a></li>
-                                <li><a href="#" class="footer__menu-link">Карьера</a></li>
-                            </ul>
-                        </div>
+                        <?php
+                        $company_default = array(
+                            array('label' => 'О нас', 'preset' => 'office_about', 'url' => ''),
+                            array('label' => 'Наши проекты', 'preset' => 'projects', 'url' => ''),
+                            array('label' => 'Производство', 'preset' => 'production', 'url' => ''),
+                            array('label' => 'Блог', 'preset' => 'blog', 'url' => ''),
+                        );
+                        $catalog_default = array(
+                            array('label' => 'Мебель', 'preset' => 'mebel', 'url' => ''),
+                            array('label' => 'Посуда', 'preset' => 'posuda', 'url' => ''),
+                            array('label' => 'Декор', 'preset' => 'dekor', 'url' => ''),
+                            array('label' => 'Horeca', 'preset' => 'horeca', 'url' => ''),
+                        );
+                        $services_default = array(
+                            array('label' => 'Для дизайнеров', 'preset' => 'designers', 'url' => ''),
+                            array('label' => 'Для бизнеса', 'preset' => 'business', 'url' => ''),
+                            array('label' => 'Услуги', 'preset' => 'services', 'url' => ''),
+                            array('label' => 'Доставка и сборка', 'preset' => 'delivery', 'url' => ''),
+                        );
+                        $company_items = fabrica_footer_option('footer_menu_company', $company_default);
+                        $catalog_items = fabrica_footer_option('footer_menu_catalog', $catalog_default);
+                        $services_items = fabrica_footer_option('footer_menu_services', $services_default);
+                        if (!is_array($company_items)) $company_items = $company_default;
+                        if (!is_array($catalog_items)) $catalog_items = $catalog_default;
+                        if (!is_array($services_items)) $services_items = $services_default;
 
-                        <!-- Колонка: Каталог -->
-                        <div class="footer__menu-column">
-                            <h4 class="footer__menu-title">Каталог</h4>
-                            <ul class="footer__menu-list">
-                                <li><a href="catalog.html" class="footer__menu-link">Мебель</a></li>
-                                <li><a href="catalog.html" class="footer__menu-link">Освещение</a></li>
-                                <li><a href="catalog.html" class="footer__menu-link">Декор</a></li>
-                                <li><a href="catalog.html" class="footer__menu-link">Текстиль</a></li>
-                                <li><a href="catalog.html" class="footer__menu-link">Напольные покрытия</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Колонка: Услуги -->
-                        <div class="footer__menu-column">
-                            <h4 class="footer__menu-title">Услуги</h4>
-                            <ul class="footer__menu-list">
-                                <li><a href="<?php echo esc_url(fabrica_get_designers_page_url()); ?>" class="footer__menu-link">Для дизайнеров</a></li>
-                                <li><a href="<?php echo esc_url(fabrica_get_business_page_url()); ?>" class="footer__menu-link">Для бизнеса</a></li>
-                                <li><a href="#" class="footer__menu-link">Индивидуальный дизайн</a></li>
-                                <li><a href="delivery.html" class="footer__menu-link">Доставка и сборка</a></li>
-                                <li><a href="#" class="footer__menu-link">Гарантия</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Колонка: Контакты -->
+                        $render_footer_menu = function($items, $title) {
+                            if (empty($items)) return;
+                            echo '<div class="footer__menu-column"><h4 class="footer__menu-title">' . esc_html($title) . '</h4><ul class="footer__menu-list">';
+                            foreach ($items as $it) {
+                                $label = isset($it['label']) ? trim($it['label']) : '';
+                                if (!$label) continue;
+                                $url = !empty($it['url']) ? $it['url'] : (isset($it['preset']) && $it['preset'] ? fabrica_get_url_by_preset($it['preset']) : home_url('/'));
+                                echo '<li><a href="' . esc_url($url) . '" class="footer__menu-link">' . esc_html($label) . '</a></li>';
+                            }
+                            echo '</ul></div>';
+                        };
+                        $render_footer_menu($company_items, 'Компания');
+                        $render_footer_menu($catalog_items, 'Каталог');
+                        $render_footer_menu($services_items, 'Услуги');
+                        ?>
                         <div class="footer__menu-column">
                             <h4 class="footer__menu-title">Контакты</h4>
                             <ul class="footer__contacts-list">
+                                <?php
+                                $phone = fabrica_footer_option('footer_phone', '+7 (978) 597-74-42');
+                                $email = fabrica_footer_option('footer_email', 'info@fabrica.ru');
+                                $address = fabrica_footer_option('footer_address', 'ул. Генерала Васильева, 42');
+                                $address_url = fabrica_footer_option('footer_address_url', 'https://yandex.ru/maps/-/CPEiqUoc');
+                                $work_time = fabrica_footer_option('footer_work_time', 'ежедневно, 10:00–19:00');
+                                $phone_clean = preg_replace('/[^0-9+]/', '', $phone);
+                                ?>
                                 <li class="footer__contact-item">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                    </svg>
-                                    <a href="tel:+79785977442" class="footer__contact-link">+7 (978) 597-74-42</a>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                    <a href="tel:<?php echo esc_attr($phone_clean); ?>" class="footer__contact-link"><?php echo esc_html($phone); ?></a>
                                 </li>
                                 <li class="footer__contact-item">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                        <polyline points="22,6 12,13 2,6"></polyline>
-                                    </svg>
-                                    <a href="mailto:info@fabrica.ru" class="footer__contact-link">info@fabrica.ru</a>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    <a href="mailto:<?php echo esc_attr($email); ?>" class="footer__contact-link"><?php echo esc_html($email); ?></a>
                                 </li>
                                 <li class="footer__contact-item">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                        <circle cx="12" cy="10" r="3"></circle>
-                                    </svg>
-                                    <a href="https://yandex.ru/maps/-/CPEiqUoc" target="_blank" rel="noopener noreferrer" class="footer__contact-link">ул. Генерала Васильева, 42</a>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    <?php if ($address_url) : ?><a href="<?php echo esc_url($address_url); ?>" target="_blank" rel="noopener noreferrer" class="footer__contact-link"><?php echo esc_html($address); ?></a><?php else : ?><span class="footer__contact-text"><?php echo esc_html($address); ?></span><?php endif; ?>
                                 </li>
                                 <li class="footer__contact-item">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <polyline points="12 6 12 12 16 14"></polyline>
-                                    </svg>
-                                    <span class="footer__contact-text">ежедневно, 10:00–19:00</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span class="footer__contact-text"><?php echo esc_html($work_time); ?></span>
                                 </li>
                             </ul>
                         </div>
@@ -167,14 +178,28 @@ if (!isset($t)) {
         <div class="footer__bottom">
             <div class="container">
                 <div class="footer__bottom-content">
-                    <p class="footer__copyright">© 2026 ФАБРИКА интерьеров. Все права защищены.</p>
+                    <?php
+                    $copyright_text = fabrica_footer_option('footer_copyright', 'ФАБРИКА интерьеров. Все права защищены.');
+                    ?>
+                    <p class="footer__copyright">© <?php echo esc_html(date('Y')); ?> <?php echo esc_html($copyright_text); ?></p>
+                    <?php
+                    $legal_base = fabrica_get_legal_base_url();
+                    $privacy = fabrica_footer_option('footer_privacy_url') ?: fabrica_get_legal_page_url('privacy');
+                    $terms = fabrica_footer_option('footer_terms_url') ?: fabrica_get_legal_page_url('terms');
+                    $offer = fabrica_footer_option('footer_offer_url') ?: fabrica_get_legal_page_url('offer');
+                    if ($legal_base || $privacy || $terms || $offer) :
+                    ?>
                     <div class="footer__legal">
-                        <a href="#" class="footer__legal-link">Политика конфиденциальности</a>
-                        <span class="footer__separator">•</span>
-                        <a href="#" class="footer__legal-link">Пользовательское соглашение</a>
-                        <span class="footer__separator">•</span>
-                        <a href="#" class="footer__legal-link">Публичная оферта</a>
+                        <?php
+                        $legal_parts = array();
+                        if ($legal_base) $legal_parts[] = '<a href="' . esc_url($legal_base) . '" class="footer__legal-link">Юридическая информация</a>';
+                        if ($privacy) $legal_parts[] = '<a href="' . esc_url($privacy) . '" class="footer__legal-link">Политика конфиденциальности</a>';
+                        if ($terms) $legal_parts[] = '<a href="' . esc_url($terms) . '" class="footer__legal-link">Пользовательское соглашение</a>';
+                        if ($offer) $legal_parts[] = '<a href="' . esc_url($offer) . '" class="footer__legal-link">Публичная оферта</a>';
+                        echo implode('<span class="footer__separator">•</span>', $legal_parts);
+                        ?>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -188,20 +213,33 @@ if (!isset($t)) {
     </button>
 
     <!-- Плавающие кнопки связи -->
+    <?php
+    $float_phone = fabrica_footer_option('footer_phone', '+7 (978) 597-74-42');
+    $float_phone_clean = preg_replace('/[^0-9+]/', '', $float_phone);
+    $float_telegram = '';
+    $social_links = fabrica_footer_option('footer_social_links', array());
+    if (!empty($social_links) && is_array($social_links)) {
+        foreach ($social_links as $item) {
+            if (isset($item['icon']) && $item['icon'] === 'telegram' && !empty($item['url'])) {
+                $float_telegram = $item['url'];
+                break;
+            }
+        }
+    }
+    ?>
     <div class="floating-buttons">
-        <!-- Кнопка Позвонить -->
-        <a href="tel:+79785977442" class="floating-button floating-button--phone" aria-label="Позвонить">
+        <a href="tel:<?php echo esc_attr($float_phone_clean); ?>" class="floating-button floating-button--phone" aria-label="Позвонить">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </a>
-
-        <!-- Кнопка Telegram -->
-        <a href="https://t.me/your_telegram" target="_blank" class="floating-button floating-button--telegram" aria-label="Telegram">
+        <?php if ($float_telegram) : ?>
+        <a href="<?php echo esc_url($float_telegram); ?>" target="_blank" rel="noopener noreferrer" class="floating-button floating-button--telegram" aria-label="Telegram">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
             </svg>
         </a>
+        <?php endif; ?>
     </div>
 
     <!-- Виджет чата с менеджером -->
@@ -212,8 +250,8 @@ if (!isset($t)) {
                 <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="Менеджер" class="chat-widget__avatar-img">
             </div>
             <div class="chat-widget__info">
-                <div class="chat-widget__name">Александр, ведущий менеджер</div>
-                <div class="chat-widget__message">Мы тут! Всегда общение.</div>
+                <div class="chat-widget__name"><?php echo esc_html(fabrica_footer_option('chat_name', 'Александр, ведущий менеджер')); ?></div>
+                <div class="chat-widget__message"><?php echo esc_html(fabrica_footer_option('chat_message', 'Мы тут! Всегда на связи.')); ?></div>
             </div>
             <button class="chat-widget__button" id="chatButton" aria-label="Открыть чат">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -288,7 +326,9 @@ if (!isset($t)) {
                 <p class="callback-modal__privacy">
                     <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
                         <input type="checkbox" name="privacy_agreement" required style="margin-top: 2px; cursor: pointer;">
-                        <span>Нажимая на кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></span>
+                        <span>Нажимая на кнопку, вы соглашаетесь с <?php
+                        $modal_privacy_url = fabrica_footer_option('footer_privacy_url') ?: fabrica_get_legal_page_url('privacy');
+                        if ($modal_privacy_url) : ?><a href="<?php echo esc_url($modal_privacy_url); ?>" target="_blank">политикой конфиденциальности</a><?php else : ?>политикой конфиденциальности<?php endif; ?></span>
                     </label>
                 </p>
             </form>
