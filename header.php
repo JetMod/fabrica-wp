@@ -184,7 +184,7 @@ if (!isset($t)) {
                                 ),
                             ),
                             array(
-                                'label'    => 'Декор11',
+                                'label'    => 'Декор',
                                 'url'      => $catalog_url,
                                 'fallback' => array(
                                     (object) array('name' => 'Вазы', 'slug' => 'vazy', 'link' => $catalog_url),

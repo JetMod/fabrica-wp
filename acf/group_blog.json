@@ -1,0 +1,100 @@
+{
+    "key": "group_blog",
+    "title": "Настройки блога",
+    "fields": [
+        {
+            "key": "field_blog_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Эти настройки применяются к главной странице блога и архивов. Для категорий, тегов и дат заголовок и подзаголовок подставляются автоматически.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_blog_tab_hero",
+            "label": "Hero (шапка)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_blog_hero_title",
+            "label": "Заголовок главной страницы блога",
+            "name": "blog_hero_title",
+            "type": "text",
+            "instructions": "H1 на главной странице блога. Для архивов (категория, тег, дата) заголовок берётся автоматически.",
+            "default_value": "Блог"
+        },
+        {
+            "key": "field_blog_hero_subtitle",
+            "label": "Подзаголовок главной страницы блога",
+            "name": "blog_hero_subtitle",
+            "type": "textarea",
+            "instructions": "Под основным заголовком на главной странице блога.",
+            "rows": 2,
+            "default_value": "Статьи о дизайне мебели, интерьерах, советы экспертов и истории дизайна",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_blog_tab_filters",
+            "label": "Фильтры и навигация",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_blog_filter_all",
+            "label": "Подпись «Все статьи»",
+            "name": "blog_filter_all",
+            "type": "text",
+            "instructions": "Текст ссылки для показа всех статей (без фильтра по категории).",
+            "default_value": "Все статьи"
+        },
+        {
+            "key": "field_blog_breadcrumb_label",
+            "label": "Блог в хлебных крошках",
+            "name": "blog_breadcrumb_label",
+            "type": "text",
+            "instructions": "Как показывать «Блог» в навигационной цепочке.",
+            "default_value": "Блог"
+        },
+        {
+            "key": "field_blog_tab_empty",
+            "label": "Пустое состояние",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_blog_empty_title",
+            "label": "Заголовок при отсутствии записей",
+            "name": "blog_empty_title",
+            "type": "text",
+            "instructions": "Когда в блоге (или выбранной категории) нет статей.",
+            "default_value": "Записей пока нет"
+        },
+        {
+            "key": "field_blog_empty_text",
+            "label": "Подсказка при отсутствии записей",
+            "name": "blog_empty_text",
+            "type": "textarea",
+            "instructions": "Дополнительный текст под заголовком. Оставьте пустым, если не нужен.",
+            "rows": 2,
+            "default_value": "Скоро здесь появятся новые статьи.",
+            "new_lines": "br"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-blog"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Настройки главной страницы блога и архивов"
+}

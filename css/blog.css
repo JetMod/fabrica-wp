@@ -403,6 +403,16 @@
     color: rgba(30, 30, 30, 0.6);
 }
 
+.blog-list__empty-title {
+    margin: 0 0 8px;
+}
+
+.blog-list__empty-text {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.85;
+}
+
 /* Пагинация */
 .blog-list .pagination {
     display: flex;

@@ -1,0 +1,73 @@
+{
+    "key": "group_favorites_page",
+    "title": "Страница «Избранное»",
+    "fields": [
+        {
+            "key": "field_fav_tab_hero",
+            "label": "Hero (шапка)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_fav_hero_title",
+            "label": "Заголовок",
+            "name": "favorites_hero_title",
+            "type": "text",
+            "default_value": "Избранное"
+        },
+        {
+            "key": "field_fav_hero_subtitle",
+            "label": "Подзаголовок",
+            "name": "favorites_hero_subtitle",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Товары, которые вы сохранили. Добавляйте понравившиеся с помощью сердечка на карточке.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_fav_tab_empty",
+            "label": "Пустое состояние",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_fav_empty_title",
+            "label": "Заголовок при пустом избранном",
+            "name": "favorites_empty_title",
+            "type": "text",
+            "default_value": "В избранном пока ничего нет"
+        },
+        {
+            "key": "field_fav_empty_text",
+            "label": "Текст при пустом избранном",
+            "name": "favorites_empty_text",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Добавляйте понравившиеся товары с помощью сердечка на карточке — они появятся здесь.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_fav_empty_btn",
+            "label": "Текст кнопки",
+            "name": "favorites_empty_btn",
+            "type": "text",
+            "default_value": "Перейти в каталог"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/template-favorites.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Настройки страницы «Избранное»"
+}

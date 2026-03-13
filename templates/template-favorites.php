@@ -2,12 +2,19 @@
 /**
  * Template Name: Избранное
  * Description: Страница избранных товаров (данные из localStorage)
+ * Тексты редактируются в ACF при редактировании страницы
  *
  * @package Fabrica
  */
 
 $t = get_template_directory_uri();
 $body_class = 'page-favorites';
+$page_id = get_queried_object_id();
+
+$fav = function($key, $default = '') use ($page_id) {
+    $v = function_exists('get_field') ? get_field($key, $page_id) : '';
+    return ($v !== '' && $v !== null && $v !== false) ? $v : $default;
+};
 ?>
 <?php get_template_part('inc/header-document'); ?>
 <?php get_header(); ?>
@@ -29,7 +36,7 @@ $body_class = 'page-favorites';
                 <li class="category-breadcrumb__item">
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="category-breadcrumb__link">Главная</a>
                 </li>
-                <li class="category-breadcrumb__item" aria-current="page">Избранное</li>
+                <li class="category-breadcrumb__item" aria-current="page"><?php echo esc_html($fav('favorites_hero_title', 'Избранное')); ?></li>
             </ol>
         </div>
     </nav>
@@ -38,8 +45,8 @@ $body_class = 'page-favorites';
     <section class="category-hero">
         <div class="container">
             <div class="category-hero__inner">
-                <h1 class="category-hero__title">Избранное</h1>
-                <p class="category-hero__subtitle">Товары, которые вы сохранили. Добавляйте понравившиеся с помощью сердечка на карточке.</p>
+                <h1 class="category-hero__title"><?php echo esc_html($fav('favorites_hero_title', 'Избранное')); ?></h1>
+                <p class="category-hero__subtitle"><?php echo esc_html($fav('favorites_hero_subtitle', 'Товары, которые вы сохранили. Добавляйте понравившиеся с помощью сердечка на карточке.')); ?></p>
             </div>
         </div>
     </section>
@@ -49,9 +56,9 @@ $body_class = 'page-favorites';
         <div class="container">
             <div id="favorites-grid" class="category-products__grid"></div>
             <div id="favorites-empty" class="favorites-empty" hidden>
-                <p class="favorites-empty__title">В избранном пока ничего нет</p>
-                <p class="favorites-empty__text">Добавляйте понравившиеся товары с помощью сердечка на карточке — они появятся здесь.</p>
-                <a href="<?php echo esc_url($catalog_url); ?>" class="button">Перейти в каталог</a>
+                <p class="favorites-empty__title"><?php echo esc_html($fav('favorites_empty_title', 'В избранном пока ничего нет')); ?></p>
+                <p class="favorites-empty__text"><?php echo esc_html($fav('favorites_empty_text', 'Добавляйте понравившиеся товары с помощью сердечка на карточке — они появятся здесь.')); ?></p>
+                <a href="<?php echo esc_url($catalog_url); ?>" class="button"><?php echo esc_html($fav('favorites_empty_btn', 'Перейти в каталог')); ?></a>
             </div>
         </div>
     </section>

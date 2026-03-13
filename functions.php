@@ -402,6 +402,30 @@ function fabrica_acf_init() {
         'capability' => 'edit_posts',
         'icon_url'   => 'dashicons-editor-kitchensink',
     ));
+
+    acf_add_options_page(array(
+        'page_title' => 'Юридическая информация',
+        'menu_title' => 'Юридическая информация',
+        'menu_slug'  => 'acf-options-legal',
+        'capability' => 'edit_posts',
+        'icon_url'   => 'dashicons-media-document',
+    ));
+
+    acf_add_options_page(array(
+        'page_title' => 'Настройки блога',
+        'menu_title' => 'Блог',
+        'menu_slug'  => 'acf-options-blog',
+        'capability' => 'edit_posts',
+        'icon_url'   => 'dashicons-edit',
+    ));
+
+    acf_add_options_page(array(
+        'page_title' => 'Настройки поиска',
+        'menu_title' => 'Поиск',
+        'menu_slug'  => 'acf-options-search',
+        'capability' => 'edit_posts',
+        'icon_url'   => 'dashicons-search',
+    ));
 }
 add_action('acf/init', 'fabrica_acf_init');
 
@@ -659,6 +683,7 @@ function fabrica_get_url_by_preset($preset) {
         'contact'      => home_url('/#contact-form'),
         'production'   => home_url('/#production'),
         'blog'         => fabrica_get_blog_page_url(),
+        'legal'        => fabrica_get_legal_base_url(),
         'mebel'        => fabrica_get_category_url('Мебель'),
         'posuda'       => fabrica_get_category_url('Посуда'),
         'dekor'        => fabrica_get_category_url('Декор'),

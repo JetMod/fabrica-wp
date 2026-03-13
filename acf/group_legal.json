@@ -1,0 +1,256 @@
+{
+    "key": "group_legal",
+    "title": "Юридическая информация",
+    "fields": [
+        {
+            "key": "field_legal_tab_requisites",
+            "label": "Реквизиты компании",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_legal_company_info",
+            "label": "Реквизиты",
+            "name": "legal_company_info",
+            "type": "group",
+            "instructions": "Используются на странице «Юридическая информация» в разделе «Реквизиты компании». Пустые поля подменяются значениями по умолчанию.",
+            "sub_fields": [
+                {
+                    "key": "field_legal_company_legal_name",
+                    "label": "Наименование (ИП / ООО)",
+                    "name": "legal_name",
+                    "type": "text",
+                    "default_value": "ИП Османов Эскендер Сейранович"
+                },
+                {
+                    "key": "field_legal_company_inn",
+                    "label": "ИНН",
+                    "name": "inn",
+                    "type": "text",
+                    "default_value": "910906142735"
+                },
+                {
+                    "key": "field_legal_company_ogrnip",
+                    "label": "ОГРНИП",
+                    "name": "ogrnip",
+                    "type": "text",
+                    "default_value": "315910200053599"
+                },
+                {
+                    "key": "field_legal_company_okpo",
+                    "label": "ОКПО",
+                    "name": "okpo",
+                    "type": "text",
+                    "default_value": "01979784"
+                },
+                {
+                    "key": "field_legal_company_account",
+                    "label": "Расчётный счёт",
+                    "name": "account",
+                    "type": "text",
+                    "default_value": "40802810630000036205"
+                },
+                {
+                    "key": "field_legal_company_bank",
+                    "label": "Банк",
+                    "name": "bank",
+                    "type": "text",
+                    "default_value": "КРАСНОДАРСКОЕ ОТДЕЛЕНИЕ N8619 ПАО СБЕРБАНК"
+                },
+                {
+                    "key": "field_legal_company_bik",
+                    "label": "БИК",
+                    "name": "bik",
+                    "type": "text",
+                    "default_value": "040349602"
+                },
+                {
+                    "key": "field_legal_company_corr_account",
+                    "label": "Корр. счёт",
+                    "name": "corr_account",
+                    "type": "text",
+                    "default_value": "30101810100000000602"
+                },
+                {
+                    "key": "field_legal_company_address",
+                    "label": "Адрес",
+                    "name": "address",
+                    "type": "textarea",
+                    "rows": 2,
+                    "default_value": "РОССИЯ, 297573, Крым Респ, Симферопольский р-н, Фонтаны с, СЭреджеповой ул, дом № 1"
+                },
+                {
+                    "key": "field_legal_company_phone",
+                    "label": "Телефон",
+                    "name": "phone",
+                    "type": "text",
+                    "default_value": "+7 (978) 751-72-10"
+                },
+                {
+                    "key": "field_legal_company_certificate",
+                    "label": "Свидетельство (опционально)",
+                    "name": "certificate",
+                    "type": "text",
+                    "default_value": "91 №000035409 от 17.01.2015"
+                }
+            ]
+        },
+        {
+            "key": "field_legal_tab_privacy",
+            "label": "Политика конфиденциальности",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_legal_privacy_intro",
+            "label": "Вступительный абзац",
+            "name": "legal_privacy_intro",
+            "type": "textarea",
+            "instructions": "Если пусто — используется текст по умолчанию из темы.",
+            "rows": 4
+        },
+        {
+            "key": "field_legal_privacy_sections",
+            "label": "Разделы документа",
+            "name": "legal_privacy_sections",
+            "type": "repeater",
+            "instructions": "Добавьте разделы. В каждом разделе — заголовок и пункты (каждый пункт — отдельная строка). Если пусто — используется документ по умолчанию.",
+            "layout": "block",
+            "button_label": "Добавить раздел",
+            "sub_fields": [
+                {
+                    "key": "field_legal_privacy_section_title",
+                    "label": "Заголовок раздела",
+                    "name": "section_title",
+                    "type": "text",
+                    "placeholder": "1. Определение терминов"
+                },
+                {
+                    "key": "field_legal_privacy_section_items",
+                    "label": "Пункты",
+                    "name": "section_items",
+                    "type": "repeater",
+                    "layout": "table",
+                    "button_label": "Добавить пункт",
+                    "sub_fields": [
+                        {
+                            "key": "field_legal_privacy_item_text",
+                            "label": "Текст пункта",
+                            "name": "item",
+                            "type": "textarea",
+                            "rows": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_legal_tab_agreement",
+            "label": "Пользовательское соглашение",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_legal_agreement_intro",
+            "label": "Вступительный абзац",
+            "name": "legal_agreement_intro",
+            "type": "textarea",
+            "rows": 4
+        },
+        {
+            "key": "field_legal_agreement_sections",
+            "label": "Разделы документа",
+            "name": "legal_agreement_sections",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Добавить раздел",
+            "sub_fields": [
+                {
+                    "key": "field_legal_agreement_section_title",
+                    "label": "Заголовок раздела",
+                    "name": "section_title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_legal_agreement_section_items",
+                    "label": "Пункты",
+                    "name": "section_items",
+                    "type": "repeater",
+                    "layout": "table",
+                    "button_label": "Добавить пункт",
+                    "sub_fields": [
+                        {
+                            "key": "field_legal_agreement_item_text",
+                            "label": "Текст пункта",
+                            "name": "item",
+                            "type": "textarea",
+                            "rows": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_legal_tab_offer",
+            "label": "Публичная оферта",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_legal_offer_intro",
+            "label": "Вступительный абзац",
+            "name": "legal_offer_intro",
+            "type": "textarea",
+            "rows": 4
+        },
+        {
+            "key": "field_legal_offer_sections",
+            "label": "Разделы документа",
+            "name": "legal_offer_sections",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Добавить раздел",
+            "sub_fields": [
+                {
+                    "key": "field_legal_offer_section_title",
+                    "label": "Заголовок раздела",
+                    "name": "section_title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_legal_offer_section_items",
+                    "label": "Пункты",
+                    "name": "section_items",
+                    "type": "repeater",
+                    "layout": "table",
+                    "button_label": "Добавить пункт",
+                    "sub_fields": [
+                        {
+                            "key": "field_legal_offer_item_text",
+                            "label": "Текст пункта",
+                            "name": "item",
+                            "type": "textarea",
+                            "rows": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-legal"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Реквизиты и тексты юридических документов для страницы «Юридическая информация»"
+}

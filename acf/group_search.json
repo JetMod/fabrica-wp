@@ -1,0 +1,84 @@
+{
+    "key": "group_search",
+    "title": "Настройки поиска",
+    "fields": [
+        {
+            "key": "field_search_tab_no_query",
+            "label": "Без запроса",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_search_subtitle_no_query",
+            "label": "Подсказка без запроса",
+            "name": "search_subtitle_no_query",
+            "type": "textarea",
+            "instructions": "Когда пользователь открыл страницу поиска без запроса.",
+            "rows": 2,
+            "default_value": "Введите запрос в поле поиска в шапке сайта.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_search_tab_empty",
+            "label": "Ничего не найдено",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_search_empty_title_no_query",
+            "label": "Заголовок (без запроса)",
+            "name": "search_empty_title_no_query",
+            "type": "text",
+            "default_value": "Введите запрос"
+        },
+        {
+            "key": "field_search_empty_title_has_query",
+            "label": "Заголовок (есть запрос, ничего не найдено)",
+            "name": "search_empty_title_has_query",
+            "type": "text",
+            "default_value": "Ничего не найдено"
+        },
+        {
+            "key": "field_search_empty_text_no_query",
+            "label": "Текст (без запроса)",
+            "name": "search_empty_text_no_query",
+            "type": "textarea",
+            "rows": 2,
+            "default_value": "Введите слово или фразу в поле поиска в шапке сайта.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_search_empty_text_has_query",
+            "label": "Текст (есть запрос, ничего не найдено)",
+            "name": "search_empty_text_has_query",
+            "type": "textarea",
+            "instructions": "Используйте %s как плейсхолдер для поискового запроса.",
+            "rows": 2,
+            "default_value": "По запросу «%s» ничего не найдено. Попробуйте другие слова или перейдите в каталог.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_search_empty_btn",
+            "label": "Текст кнопки «Перейти в каталог»",
+            "name": "search_empty_btn",
+            "type": "text",
+            "default_value": "Перейти в каталог"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-search"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Тексты страницы результатов поиска"
+}

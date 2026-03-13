@@ -1,12 +1,18 @@
 <?php
 /**
  * Шаблон результатов поиска
+ * Тексты из ACF Options «Поиск» (acf-options-search)
  *
  * @package Fabrica
  */
 
 $t = get_template_directory_uri();
 $body_class = 'page-search';
+
+$srch = function($key, $default = '') {
+    $v = function_exists('get_field') ? get_field($key, 'option') : '';
+    return ($v !== '' && $v !== null && $v !== false) ? $v : $default;
+};
 ?>
 <?php get_template_part('inc/header-document'); ?>
 <?php get_header(); ?>
@@ -17,6 +23,7 @@ $body_class = 'page-search';
     $catalog_url = fabrica_get_catalog_page_url();
     $search_query = get_search_query();
     $found_posts = $wp_query->found_posts;
+    $has_query = !empty($search_query);
     ?>
     <!-- Хлебные крошки -->
     <nav class="category-breadcrumb" aria-label="Хлебные крошки">
@@ -34,8 +41,8 @@ $body_class = 'page-search';
     <section class="category-hero">
         <div class="container">
             <div class="category-hero__inner">
-                <h1 class="category-hero__title"><?php echo $search_query ? 'Результаты поиска: «' . esc_html($search_query) . '»' : 'Поиск'; ?></h1>
-                <p class="category-hero__subtitle"><?php echo $search_query ? 'Найдено записей: ' . (int) $found_posts : 'Введите запрос в поле поиска в шапке сайта.'; ?></p>
+                <h1 class="category-hero__title"><?php echo $has_query ? 'Результаты поиска: «' . esc_html($search_query) . '»' : 'Поиск'; ?></h1>
+                <p class="category-hero__subtitle"><?php echo $has_query ? 'Найдено записей: ' . (int) $found_posts : esc_html($srch('search_subtitle_no_query', 'Введите запрос в поле поиска в шапке сайта.')); ?></p>
             </div>
         </div>
     </section>
@@ -86,10 +93,15 @@ $body_class = 'page-search';
             </div>
             <?php the_posts_pagination(array('mid_size' => 2)); ?>
             <?php else : ?>
+            <?php
+            $empty_title = $has_query ? $srch('search_empty_title_has_query', 'Ничего не найдено') : $srch('search_empty_title_no_query', 'Введите запрос');
+            $empty_text_tpl = $has_query ? $srch('search_empty_text_has_query', 'По запросу «%s» ничего не найдено. Попробуйте другие слова или перейдите в каталог.') : $srch('search_empty_text_no_query', 'Введите слово или фразу в поле поиска в шапке сайта.');
+            $empty_text = $has_query ? sprintf($empty_text_tpl, esc_html($search_query)) : $empty_text_tpl;
+            ?>
             <div class="search-empty" id="search-results-empty">
-                <h2 class="search-empty__title"><?php echo $search_query ? 'Ничего не найдено' : 'Введите запрос'; ?></h2>
-                <p class="search-empty__text"><?php echo $search_query ? 'По запросу «' . esc_html($search_query) . '» ничего не найдено. Попробуйте другие слова или перейдите в каталог.' : 'Введите слово или фразу в поле поиска в шапке сайта.'; ?></p>
-                <a href="<?php echo esc_url($catalog_url); ?>" class="button button--primary" style="margin-top:16px; display:inline-block;">Перейти в каталог</a>
+                <h2 class="search-empty__title"><?php echo esc_html($empty_title); ?></h2>
+                <p class="search-empty__text"><?php echo esc_html($empty_text); ?></p>
+                <a href="<?php echo esc_url($catalog_url); ?>" class="button button--primary" style="margin-top:16px; display:inline-block;"><?php echo esc_html($srch('search_empty_btn', 'Перейти в каталог')); ?></a>
             </div>
             <?php endif; ?>
         </div>

@@ -2,6 +2,7 @@
 /**
  * Контент страницы блога (архив статей)
  * Используется в home.php и archive.php (категории, теги, автор, дата)
+ * Тексты из ACF Options «Блог» (acf-options-blog)
  *
  * @package Fabrica
  */
@@ -10,10 +11,18 @@ $t = get_template_directory_uri();
 $categories = get_categories(array('orderby' => 'name', 'order' => 'ASC'));
 $blog_url = fabrica_get_blog_page_url();
 
+$b = function($key, $default = '') {
+    if (!function_exists('get_field')) {
+        return $default;
+    }
+    $v = get_field($key, 'option');
+    return ($v !== '' && $v !== null && $v !== false) ? $v : $default;
+};
+
 // Текущий контекст архива
 $current_cat_slug = '';
-$archive_title = 'Блог';
-$archive_subtitle = 'Статьи о дизайне мебели, интерьерах, советы экспертов и истории дизайна';
+$archive_title = $b('blog_hero_title', 'Блог');
+$archive_subtitle = $b('blog_hero_subtitle', 'Статьи о дизайне мебели, интерьерах, советы экспертов и истории дизайна');
 
 if (is_category()) {
     $term = get_queried_object();
@@ -55,12 +64,12 @@ if (is_category()) {
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="blog-breadcrumb__link">Главная</a>
                     </li>
                     <li class="blog-breadcrumb__item">
-                        <a href="<?php echo esc_url($blog_url); ?>" class="blog-breadcrumb__link">Блог</a>
+                        <a href="<?php echo esc_url($blog_url); ?>" class="blog-breadcrumb__link"><?php echo esc_html($b('blog_breadcrumb_label', 'Блог')); ?></a>
                     </li>
                     <?php if (!is_home()) : ?>
                     <li class="blog-breadcrumb__item" aria-current="page"><?php echo esc_html($archive_title); ?></li>
                     <?php else : ?>
-                    <li class="blog-breadcrumb__item" aria-current="page">Блог</li>
+                    <li class="blog-breadcrumb__item" aria-current="page"><?php echo esc_html($b('blog_breadcrumb_label', 'Блог')); ?></li>
                     <?php endif; ?>
                 </ol>
             </div>
@@ -81,7 +90,7 @@ if (is_category()) {
         <section class="blog-filters">
             <div class="container">
                 <div class="blog-filters__inner">
-                    <a href="<?php echo esc_url($blog_url); ?>" class="blog-filters__link<?php echo empty($current_cat_slug) ? ' blog-filters__link--active' : ''; ?>">Все статьи</a>
+                    <a href="<?php echo esc_url($blog_url); ?>" class="blog-filters__link<?php echo empty($current_cat_slug) ? ' blog-filters__link--active' : ''; ?>"><?php echo esc_html($b('blog_filter_all', 'Все статьи')); ?></a>
                     <?php foreach ($categories as $cat) : ?>
                     <a href="<?php echo esc_url(get_category_link($cat)); ?>" class="blog-filters__link<?php echo ($current_cat_slug === $cat->slug) ? ' blog-filters__link--active' : ''; ?>"><?php echo esc_html($cat->name); ?></a>
                     <?php endforeach; ?>
@@ -103,7 +112,10 @@ if (is_category()) {
                     'next_text' => '→',
                 )); ?>
                 <?php else : ?>
-                <p class="blog-list__empty">Записей пока нет.</p>
+                <div class="blog-list__empty">
+                    <p class="blog-list__empty-title"><?php echo esc_html($b('blog_empty_title', 'Записей пока нет')); ?></p>
+                    <?php $empty_text = $b('blog_empty_text', ''); if ($empty_text) : ?><p class="blog-list__empty-text"><?php echo esc_html($empty_text); ?></p><?php endif; ?>
+                </div>
                 <?php endif; ?>
             </div>
         </section>

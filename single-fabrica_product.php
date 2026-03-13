@@ -100,7 +100,7 @@ $body_class = 'page-product';
         </nav>
 
         <!-- Основная секция товара -->
-        <section class="product-main">
+        <section class="product-main" data-product-id="<?php echo (int) $product_id; ?>">
             <div class="container">
                 <div class="product-main__inner">
                     <!-- Галерея -->
