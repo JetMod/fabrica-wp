@@ -6,13 +6,34 @@
             "key": "field_hf_tab_header",
             "label": "Header",
             "name": "",
-            "type": "tab"
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_header_msg_main",
             "label": "Основные настройки",
             "name": "",
+            "aria-label": "",
             "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Логотип, слоган, кнопка и поиск в шапке сайта.",
             "new_lines": "wpautop",
             "esc_html": 0
@@ -21,51 +42,126 @@
             "key": "field_header_logo",
             "label": "Логотип (header)",
             "name": "header_logo",
+            "aria-label": "",
             "type": "image",
-            "instructions": "Для десктопа. Если не выбран — используется логотип из Настроек темы или img/logo.jpg",
+            "instructions": "Для десктопа. Если не выбран — используется логотип из Настроек темы или img\/logo.jpg",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "medium",
-            "library": "all"
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_header_logo_mobile",
             "label": "Логотип для мобильных (header)",
             "name": "header_logo_mobile",
+            "aria-label": "",
             "type": "image",
-            "instructions": "Опционально. Если не выбран — используется основной логотип или img/logo-mobile.jpg",
+            "instructions": "Опционально. Если не выбран — используется основной логотип или img\/logo-mobile.jpg",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "medium",
-            "library": "all"
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_header_tagline",
             "label": "Слоган под логотипом",
             "name": "header_tagline",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "Текст под логотипом. Для переноса строки — Enter.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "Дизайнерская мебель\nдля дома, работы и отдыха",
             "rows": 2,
-            "new_lines": "br"
+            "new_lines": "br",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_header_cta_text",
             "label": "Текст кнопки «Заказать звонок»",
             "name": "header_cta_text",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Заказать звонок"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Заказать звонок",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_header_search_placeholder",
             "label": "Подсказка в поле поиска",
             "name": "header_search_placeholder",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Поиск"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Поиск",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_header_msg_nav",
             "label": "Верхнее меню (левая часть)",
             "name": "",
+            "aria-label": "",
             "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Ссылки: О нас, Услуги, Дизайнерам, Бизнесу, Доставка, Проекты. Можно переименовать и указать свой путь.",
             "new_lines": "wpautop",
             "esc_html": 0
@@ -74,23 +170,58 @@
             "key": "field_header_top_nav",
             "label": "Пункты меню",
             "name": "header_top_nav",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Добавьте пункты меню. Текст — как отображается. Пресет — быстрый выбор страницы. URL — свой путь (если заполнен, перезаписывает пресет).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "button_label": "Добавить пункт",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_htn_label",
                     "label": "Текст ссылки",
                     "name": "label",
+                    "aria-label": "",
                     "type": "text",
-                    "placeholder": "О нас"
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "О нас",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_header_top_nav"
                 },
                 {
                     "key": "field_htn_preset",
                     "label": "Пресет",
                     "name": "preset",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "": "— Выберите —",
                         "office": "О нас",
@@ -102,14 +233,33 @@
                         "home": "Главная",
                         "contact": "Форма заявки",
                         "production": "Производство (#production)"
-                    }
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "parent_repeater": "field_header_top_nav"
                 },
                 {
                     "key": "field_htn_url",
                     "label": "Свой URL",
                     "name": "url",
+                    "aria-label": "",
                     "type": "url",
-                    "instructions": "Оставьте пустым, чтобы использовать пресет"
+                    "instructions": "Оставьте пустым, чтобы использовать пресет",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_header_top_nav"
                 }
             ]
         },
@@ -117,7 +267,16 @@
             "key": "field_header_msg_right",
             "label": "Верхнее меню (правая часть)",
             "name": "",
+            "aria-label": "",
             "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Ссылки: Избранное, Каталог. С иконками.",
             "new_lines": "wpautop",
             "esc_html": 0
@@ -126,46 +285,118 @@
             "key": "field_header_top_right",
             "label": "Пункты справа",
             "name": "header_top_right",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Избранное и Каталог. Выберите иконку для отображения.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "button_label": "Добавить",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_htr_label",
                     "label": "Текст",
                     "name": "label",
+                    "aria-label": "",
                     "type": "text",
-                    "placeholder": "Избранное"
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "Избранное",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_header_top_right"
                 },
                 {
                     "key": "field_htr_icon",
                     "label": "Иконка",
                     "name": "icon",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "none": "Без иконки",
                         "favorites": "Избранное (сердечко)",
                         "catalog": "Каталог (сетка)"
-                    }
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "parent_repeater": "field_header_top_right"
                 },
                 {
                     "key": "field_htr_preset",
                     "label": "Пресет",
                     "name": "preset",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "": "— Выберите —",
                         "favorites": "Избранное",
                         "catalog": "Каталог",
                         "home": "Главная"
-                    }
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "parent_repeater": "field_header_top_right"
                 },
                 {
                     "key": "field_htr_url",
                     "label": "Свой URL",
                     "name": "url",
-                    "type": "url"
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_header_top_right"
                 }
             ]
         },
@@ -173,13 +404,34 @@
             "key": "field_hf_tab_contacts",
             "label": "Контакты",
             "name": "",
-            "type": "tab"
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_contacts_msg",
             "label": "",
             "name": "",
+            "aria-label": "",
             "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Используются в header и футере.",
             "new_lines": "wpautop",
             "esc_html": 0
@@ -188,49 +440,130 @@
             "key": "field_footer_phone",
             "label": "Телефон",
             "name": "footer_phone",
+            "aria-label": "",
             "type": "text",
-            "default_value": "+7 (978) 597-74-42"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "+7 (978) 597-74-42",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_work_time",
             "label": "Режим работы",
             "name": "footer_work_time",
+            "aria-label": "",
             "type": "text",
-            "default_value": "ежедневно, 10:00–19:00"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ежедневно, 10:00–19:00",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_email",
             "label": "Email",
             "name": "footer_email",
+            "aria-label": "",
             "type": "email",
-            "default_value": "info@fabrica.ru"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "info@fabrica.ru",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_address",
             "label": "Адрес",
             "name": "footer_address",
+            "aria-label": "",
             "type": "text",
-            "default_value": "ул. Генерала Васильева, 42"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ул. Генерала Васильева, 42",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_address_url",
             "label": "Ссылка на карту",
             "name": "footer_address_url",
+            "aria-label": "",
             "type": "url",
             "instructions": "Яндекс.Карты или Google Maps",
-            "default_value": "https://yandex.ru/maps/-/CPEiqUoc"
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "https:\/\/yandex.ru\/maps\/-\/CPEiqUoc",
+            "placeholder": ""
         },
         {
             "key": "field_hf_tab_footer",
             "label": "Футер",
             "name": "",
-            "type": "tab"
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_footer_msg_desc",
             "label": "Описание и логотип",
             "name": "",
+            "aria-label": "",
             "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Логотип и описание под ним в футере.",
             "new_lines": "wpautop",
             "esc_html": 0
@@ -239,25 +572,61 @@
             "key": "field_footer_logo",
             "label": "Логотип (футер)",
             "name": "footer_logo",
+            "aria-label": "",
             "type": "image",
-            "instructions": "Если не выбран — используется img/logo.jpg",
+            "instructions": "Если не выбран — используется img\/logo.jpg",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "medium",
-            "library": "all"
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_footer_description",
             "label": "Описание компании",
             "name": "footer_description",
+            "aria-label": "",
             "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 3,
-            "default_value": "Производство полного цикла интерьерных решений премиум-класса. Создаём мебель и комплексные проекты под ключ с 2010 года."
+            "default_value": "Производство полного цикла интерьерных решений премиум-класса. Создаём мебель и комплексные проекты под ключ с 2010 года.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_footer_msg_menus",
             "label": "Колонки меню в футере",
             "name": "",
+            "aria-label": "",
             "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Три колонки: Компания, Каталог, Услуги. Пресет — быстрый выбор страницы. Свой URL — перезаписывает пресет.",
             "new_lines": "wpautop",
             "esc_html": 0
@@ -266,23 +635,58 @@
             "key": "field_footer_menu_company",
             "label": "Колонка «Компания»",
             "name": "footer_menu_company",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "О нас, Наши проекты, Производство, Блог и др.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "button_label": "Добавить пункт",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_fmc_label",
                     "label": "Текст",
                     "name": "label",
+                    "aria-label": "",
                     "type": "text",
-                    "placeholder": "О нас"
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "О нас",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_footer_menu_company"
                 },
                 {
                     "key": "field_fmc_preset",
                     "label": "Пресет",
                     "name": "preset",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "": "— Выберите —",
                         "office_about": "О нас",
@@ -291,14 +695,33 @@
                         "blog": "Блог",
                         "office": "Офис (страница)",
                         "contact": "Форма заявки"
-                    }
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "parent_repeater": "field_footer_menu_company"
                 },
                 {
                     "key": "field_fmc_url",
                     "label": "Свой URL",
                     "name": "url",
+                    "aria-label": "",
                     "type": "url",
-                    "instructions": "Оставьте пустым для пресета"
+                    "instructions": "Оставьте пустым для пресета",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_footer_menu_company"
                 }
             ]
         },
@@ -306,23 +729,58 @@
             "key": "field_footer_menu_catalog",
             "label": "Колонка «Каталог»",
             "name": "footer_menu_catalog",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Мебель, Посуда, Декор, Horeca — связь с категориями каталога.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "button_label": "Добавить пункт",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_fmcat_label",
                     "label": "Текст",
                     "name": "label",
+                    "aria-label": "",
                     "type": "text",
-                    "placeholder": "Мебель"
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "Мебель",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_footer_menu_catalog"
                 },
                 {
                     "key": "field_fmcat_preset",
                     "label": "Пресет",
                     "name": "preset",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "": "— Выберите —",
                         "mebel": "Мебель",
@@ -330,14 +788,33 @@
                         "dekor": "Декор",
                         "horeca": "Horeca",
                         "catalog": "Каталог (главная)"
-                    }
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "parent_repeater": "field_footer_menu_catalog"
                 },
                 {
                     "key": "field_fmcat_url",
                     "label": "Свой URL",
                     "name": "url",
+                    "aria-label": "",
                     "type": "url",
-                    "instructions": "Оставьте пустым для пресета"
+                    "instructions": "Оставьте пустым для пресета",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_footer_menu_catalog"
                 }
             ]
         },
@@ -345,37 +822,91 @@
             "key": "field_footer_menu_services",
             "label": "Колонка «Услуги»",
             "name": "footer_menu_services",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Для дизайнеров, Для бизнеса, Услуги, Доставка и сборка.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "button_label": "Добавить пункт",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_fms_label",
                     "label": "Текст",
                     "name": "label",
+                    "aria-label": "",
                     "type": "text",
-                    "placeholder": "Для дизайнеров"
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "Для дизайнеров",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_footer_menu_services"
                 },
                 {
                     "key": "field_fms_preset",
                     "label": "Пресет",
                     "name": "preset",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "": "— Выберите —",
                         "designers": "Для дизайнеров",
                         "business": "Для бизнеса",
                         "services": "Услуги",
                         "delivery": "Доставка и сборка"
-                    }
+                    },
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "default_value": false,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "parent_repeater": "field_footer_menu_services"
                 },
                 {
                     "key": "field_fms_url",
                     "label": "Свой URL",
                     "name": "url",
+                    "aria-label": "",
                     "type": "url",
-                    "instructions": "Оставьте пустым для пресета"
+                    "instructions": "Оставьте пустым для пресета",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_footer_menu_services"
                 }
             ]
         },
@@ -383,7 +914,16 @@
             "key": "field_footer_msg_cards",
             "label": "Карточки-призывы",
             "name": "",
+            "aria-label": "",
             "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "message": "Три карточки в верхней части футера (B2B, Дизайн-услуги, Шоурум).",
             "new_lines": "wpautop",
             "esc_html": 0
@@ -392,95 +932,255 @@
             "key": "field_footer_cta_1_title",
             "label": "Карточка 1 — заголовок",
             "name": "footer_cta_1_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "B2B программа"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "B2B программа",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_cta_1_text",
             "label": "Карточка 1 — текст",
             "name": "footer_cta_1_text",
+            "aria-label": "",
             "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 2,
-            "default_value": "Вы дизайнер интерьера или архитектор? Присоединяйтесь сегодня."
+            "default_value": "Вы дизайнер интерьера или архитектор? Присоединяйтесь сегодня.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_footer_cta_1_link",
             "label": "Карточка 1 — ссылка",
             "name": "footer_cta_1_link",
+            "aria-label": "",
             "type": "text",
-            "default_value": "#contact-form"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#contact-form",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_cta_1_btn",
             "label": "Карточка 1 — текст кнопки",
             "name": "footer_cta_1_btn",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Присоединиться"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Присоединиться",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_cta_2_title",
             "label": "Карточка 2 — заголовок",
             "name": "footer_cta_2_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Дизайн-услуги"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Дизайн-услуги",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_cta_2_text",
             "label": "Карточка 2 — текст",
             "name": "footer_cta_2_text",
+            "aria-label": "",
             "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 2,
-            "default_value": "Комплексные дизайн-услуги для вашего интерьера под ключ."
+            "default_value": "Комплексные дизайн-услуги для вашего интерьера под ключ.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_footer_cta_2_link",
             "label": "Карточка 2 — ссылка",
             "name": "footer_cta_2_link",
+            "aria-label": "",
             "type": "text",
-            "default_value": "#contact-form"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#contact-form",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_cta_2_btn",
             "label": "Карточка 2 — текст кнопки",
             "name": "footer_cta_2_btn",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Записаться на встречу"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Записаться на встречу",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_cta_3_title",
             "label": "Карточка 3 — заголовок",
             "name": "footer_cta_3_title",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Посетите шоурум"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Посетите шоурум",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_cta_3_text",
             "label": "Карточка 3 — текст",
             "name": "footer_cta_3_text",
+            "aria-label": "",
             "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 2,
-            "default_value": "Приглашаем увидеть наши коллекции в нашем шоуруме."
+            "default_value": "Приглашаем увидеть наши коллекции в нашем шоуруме.",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_hf_tab_social",
             "label": "Соцсети",
             "name": "",
-            "type": "tab"
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_footer_social_links",
             "label": "Социальные сети",
             "name": "footer_social_links",
+            "aria-label": "",
             "type": "repeater",
-            "instructions": "Иконка + ссылка. URL для WhatsApp: https://wa.me/79XXXXXXXXX, Telegram: https://t.me/username",
+            "instructions": "Иконка + ссылка. URL для WhatsApp: https:\/\/wa.me\/79XXXXXXXXX, Telegram: https:\/\/t.me\/username",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "button_label": "Добавить соцсеть",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_footer_social_icon",
                     "label": "Иконка",
                     "name": "icon",
+                    "aria-label": "",
                     "type": "select",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "choices": {
                         "vk": "ВКонтакте",
                         "whatsapp": "WhatsApp",
@@ -491,13 +1191,32 @@
                         "viber": "Viber",
                         "tiktok": "TikTok"
                     },
-                    "default_value": "telegram"
+                    "default_value": "telegram",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "return_format": "value",
+                    "parent_repeater": "field_footer_social_links"
                 },
                 {
                     "key": "field_footer_social_url",
                     "label": "Ссылка",
                     "name": "url",
-                    "type": "url"
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_footer_social_links"
                 }
             ]
         },
@@ -505,53 +1224,148 @@
             "key": "field_hf_tab_legal",
             "label": "Юридические страницы",
             "name": "",
-            "type": "tab"
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_footer_copyright",
             "label": "Текст копирайта",
             "name": "footer_copyright",
+            "aria-label": "",
             "type": "text",
             "instructions": "Год подставится автоматически.",
-            "default_value": "ФАБРИКА интерьеров. Все права защищены."
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ФАБРИКА интерьеров. Все права защищены.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_privacy_url",
             "label": "Политика конфиденциальности",
             "name": "footer_privacy_url",
-            "type": "url"
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         },
         {
             "key": "field_footer_terms_url",
             "label": "Пользовательское соглашение",
             "name": "footer_terms_url",
-            "type": "url"
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         },
         {
             "key": "field_footer_offer_url",
             "label": "Публичная оферта",
             "name": "footer_offer_url",
-            "type": "url"
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
         },
         {
             "key": "field_hf_tab_chat",
             "label": "Виджет чата",
             "name": "",
-            "type": "tab"
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_chat_name",
             "label": "Имя менеджера",
             "name": "chat_name",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Александр, ведущий менеджер"
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Александр, ведущий менеджер",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_chat_message",
             "label": "Сообщение",
             "name": "chat_message",
+            "aria-label": "",
             "type": "text",
-            "default_value": "Мы тут! Всегда на связи."
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Мы тут! Всегда на связи.",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -568,6 +1382,9 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
+    "hide_on_screen": [],
     "active": true,
-    "description": "Настройки header и футера"
+    "description": "Настройки header и футера",
+    "show_in_rest": false,
+    "modified": 1773236749
 }

@@ -9,10 +9,9 @@ if (!isset($t)) {
     $t = get_template_directory_uri();
 }
 
-$page_id = get_queried_object_id();
+$page_id = get_the_ID();
 $d = function($key, $default = '') use ($page_id) {
-    $v = function_exists('get_field') ? get_field($key, $page_id) : '';
-    return ($v !== '' && $v !== null && $v !== false) ? $v : $default;
+    return function_exists('get_field') ? (get_field($key, $page_id) ?: $default) : $default;
 };
 
 $badge = $d('projects_page_badge', 'Портфолио');

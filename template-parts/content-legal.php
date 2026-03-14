@@ -30,11 +30,26 @@ if (preg_match('/rekvizity/i', $current_slug)) {
     $legal_section = 'offer';
 }
 
+$show_requisites = fabrica_legal_option('legal_show_requisites', 1);
+$show_privacy = fabrica_legal_option('legal_show_privacy', 1);
+$show_agreement = fabrica_legal_option('legal_show_agreement', 1);
+$show_offer = fabrica_legal_option('legal_show_offer', 1);
+
 $base_url = fabrica_get_legal_base_url();
-$req_url = fabrica_get_legal_requisites_url();
-$privacy_url = fabrica_get_legal_page_url('privacy');
-$terms_url = fabrica_get_legal_page_url('terms');
-$offer_url = fabrica_get_legal_page_url('offer');
+$req_url = $show_requisites ? fabrica_get_legal_requisites_url() : '';
+$privacy_url = $show_privacy ? fabrica_get_legal_page_url('privacy') : '';
+$terms_url = $show_agreement ? fabrica_get_legal_page_url('terms') : '';
+$offer_url = $show_offer ? fabrica_get_legal_page_url('offer') : '';
+
+// Редирект на главную раздела, если раздел отключён
+$section_disabled = ($legal_section === 'requisites' && !$show_requisites)
+    || ($legal_section === 'privacy' && !$show_privacy)
+    || ($legal_section === 'agreement' && !$show_agreement)
+    || ($legal_section === 'offer' && !$show_offer);
+if ($section_disabled && $base_url) {
+    wp_safe_redirect($base_url, 302);
+    exit;
+}
 
 $section_titles = array(
     'requisites' => 'Реквизиты компании',
@@ -128,7 +143,21 @@ $section_intros = array(
 
 <?php else : ?>
 <!-- Страница одного раздела -->
-<?php if ($legal_section === 'requisites') : ?>
+<?php if ($legal_section === 'requisites') :
+    $req_show = array(
+        'legal_name'   => fabrica_legal_option('legal_req_show_legal_name', 1),
+        'inn'          => fabrica_legal_option('legal_req_show_inn', 1),
+        'ogrnip'       => fabrica_legal_option('legal_req_show_ogrnip', 1),
+        'okpo'         => fabrica_legal_option('legal_req_show_okpo', 1),
+        'account'      => fabrica_legal_option('legal_req_show_account', 1),
+        'bank'         => fabrica_legal_option('legal_req_show_bank', 1),
+        'bik'          => fabrica_legal_option('legal_req_show_bik', 1),
+        'corr_account' => fabrica_legal_option('legal_req_show_corr_account', 1),
+        'address'      => fabrica_legal_option('legal_req_show_address', 1),
+        'phone'        => fabrica_legal_option('legal_req_show_phone', 1),
+        'certificate'  => fabrica_legal_option('legal_req_show_certificate', 1),
+    );
+?>
 <section class="legal-requisites animate-on-scroll" id="requisites">
     <div class="container">
         <div class="legal-requisites__card">
@@ -143,46 +172,46 @@ $section_intros = array(
                     </svg>
                 </div>
                 <h2 class="legal-requisites__title">Реквизиты компании</h2>
-                <p class="legal-requisites__subtitle"><?php echo esc_html($company['legal_name']); ?></p>
+                <?php if ($req_show['legal_name']) : ?><p class="legal-requisites__subtitle"><?php echo esc_html($company['legal_name']); ?></p><?php endif; ?>
             </div>
             <div class="legal-requisites__grid">
-                <div class="legal-requisites__item">
+                <?php if ($req_show['inn']) : ?><div class="legal-requisites__item">
                     <span class="legal-requisites__label">ИНН</span>
                     <span class="legal-requisites__value"><?php echo esc_html($company['inn']); ?></span>
-                </div>
-                <div class="legal-requisites__item">
+                </div><?php endif; ?>
+                <?php if ($req_show['ogrnip']) : ?><div class="legal-requisites__item">
                     <span class="legal-requisites__label">ОГРНИП</span>
                     <span class="legal-requisites__value"><?php echo esc_html($company['ogrnip']); ?></span>
-                </div>
-                <div class="legal-requisites__item">
+                </div><?php endif; ?>
+                <?php if ($req_show['okpo']) : ?><div class="legal-requisites__item">
                     <span class="legal-requisites__label">ОКПО</span>
                     <span class="legal-requisites__value"><?php echo esc_html($company['okpo']); ?></span>
-                </div>
-                <div class="legal-requisites__item legal-requisites__item--full">
+                </div><?php endif; ?>
+                <?php if ($req_show['account']) : ?><div class="legal-requisites__item legal-requisites__item--full">
                     <span class="legal-requisites__label">Расчётный счёт</span>
                     <span class="legal-requisites__value legal-requisites__value--mono"><?php echo esc_html($company['account']); ?></span>
-                </div>
-                <div class="legal-requisites__item legal-requisites__item--full">
+                </div><?php endif; ?>
+                <?php if ($req_show['bank']) : ?><div class="legal-requisites__item legal-requisites__item--full">
                     <span class="legal-requisites__label">Банк</span>
                     <span class="legal-requisites__value"><?php echo esc_html($company['bank']); ?></span>
-                </div>
-                <div class="legal-requisites__item">
+                </div><?php endif; ?>
+                <?php if ($req_show['bik']) : ?><div class="legal-requisites__item">
                     <span class="legal-requisites__label">БИК</span>
                     <span class="legal-requisites__value legal-requisites__value--mono"><?php echo esc_html($company['bik']); ?></span>
-                </div>
-                <div class="legal-requisites__item">
+                </div><?php endif; ?>
+                <?php if ($req_show['corr_account']) : ?><div class="legal-requisites__item">
                     <span class="legal-requisites__label">Корр. счёт</span>
                     <span class="legal-requisites__value legal-requisites__value--mono"><?php echo esc_html($company['corr_account']); ?></span>
-                </div>
-                <div class="legal-requisites__item legal-requisites__item--full">
+                </div><?php endif; ?>
+                <?php if ($req_show['address']) : ?><div class="legal-requisites__item legal-requisites__item--full">
                     <span class="legal-requisites__label">Адрес</span>
                     <span class="legal-requisites__value"><?php echo esc_html($company['address']); ?></span>
-                </div>
-                <div class="legal-requisites__item">
+                </div><?php endif; ?>
+                <?php if ($req_show['phone']) : ?><div class="legal-requisites__item">
                     <span class="legal-requisites__label">Телефон</span>
                     <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $company['phone'])); ?>" class="legal-requisites__value legal-requisites__link"><?php echo esc_html($company['phone']); ?></a>
-                </div>
-                <?php if (!empty($company['certificate'])) : ?>
+                </div><?php endif; ?>
+                <?php if ($req_show['certificate'] && !empty($company['certificate'])) : ?>
                 <div class="legal-requisites__item legal-requisites__item--full">
                     <span class="legal-requisites__label">Свидетельство</span>
                     <span class="legal-requisites__value"><?php echo esc_html($company['certificate']); ?></span>

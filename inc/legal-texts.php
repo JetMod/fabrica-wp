@@ -29,6 +29,9 @@ function fabrica_get_legal_doc_from_acf($intro_key, $sections_key, $default_titl
     }
     $sections = array();
     foreach ($sections_raw as $row) {
+        if (isset($row['section_show']) && (int) $row['section_show'] === 0) {
+            continue;
+        }
         $items = array();
         if (!empty($row['section_items']) && is_array($row['section_items'])) {
             foreach ($row['section_items'] as $it) {

@@ -3,10 +3,188 @@
     "title": "Юридическая информация",
     "fields": [
         {
+            "key": "field_legal_tab_visibility",
+            "label": "Отображение разделов",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_legal_visibility_msg",
+            "label": "Включение и отключение разделов",
+            "name": "",
+            "type": "message",
+            "message": "Включите или выключите отображение разделов на странице «Юридическая информация». Скрытые разделы не появятся в навигации и на главной странице раздела.",
+            "new_lines": "br",
+            "esc_html": 0
+        },
+        {
+            "key": "field_legal_show_requisites",
+            "label": "Показывать «Реквизиты»",
+            "name": "legal_show_requisites",
+            "type": "true_false",
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_show_privacy",
+            "label": "Показывать «Политика конфиденциальности»",
+            "name": "legal_show_privacy",
+            "type": "true_false",
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_show_agreement",
+            "label": "Показывать «Пользовательское соглашение»",
+            "name": "legal_show_agreement",
+            "type": "true_false",
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_show_offer",
+            "label": "Показывать «Публичная оферта»",
+            "name": "legal_show_offer",
+            "type": "true_false",
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
             "key": "field_legal_tab_requisites",
             "label": "Реквизиты компании",
             "name": "",
             "type": "tab"
+        },
+        {
+            "key": "field_legal_req_visibility_msg",
+            "label": "Видимость полей реквизитов",
+            "name": "",
+            "type": "message",
+            "message": "Включите или выключите отображение каждого поля на странице «Реквизиты компании».",
+            "new_lines": "br",
+            "esc_html": 0
+        },
+        {
+            "key": "field_legal_req_show_legal_name",
+            "label": "Показывать «Наименование (ИП / ООО)»",
+            "name": "legal_req_show_legal_name",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_inn",
+            "label": "Показывать «ИНН»",
+            "name": "legal_req_show_inn",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_ogrnip",
+            "label": "Показывать «ОГРНИП»",
+            "name": "legal_req_show_ogrnip",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_okpo",
+            "label": "Показывать «ОКПО»",
+            "name": "legal_req_show_okpo",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_account",
+            "label": "Показывать «Расчётный счёт»",
+            "name": "legal_req_show_account",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_bank",
+            "label": "Показывать «Банк»",
+            "name": "legal_req_show_bank",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_bik",
+            "label": "Показывать «БИК»",
+            "name": "legal_req_show_bik",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_corr_account",
+            "label": "Показывать «Корр. счёт»",
+            "name": "legal_req_show_corr_account",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_address",
+            "label": "Показывать «Адрес»",
+            "name": "legal_req_show_address",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_phone",
+            "label": "Показывать «Телефон»",
+            "name": "legal_req_show_phone",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
+        },
+        {
+            "key": "field_legal_req_show_certificate",
+            "label": "Показывать «Свидетельство»",
+            "name": "legal_req_show_certificate",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Вкл",
+            "ui_off_text": "Выкл"
         },
         {
             "key": "field_legal_company_info",
@@ -119,6 +297,16 @@
             "button_label": "Добавить раздел",
             "sub_fields": [
                 {
+                    "key": "field_legal_privacy_section_show",
+                    "label": "Показывать раздел",
+                    "name": "section_show",
+                    "type": "true_false",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Вкл",
+                    "ui_off_text": "Выкл"
+                },
+                {
                     "key": "field_legal_privacy_section_title",
                     "label": "Заголовок раздела",
                     "name": "section_title",
@@ -166,6 +354,16 @@
             "button_label": "Добавить раздел",
             "sub_fields": [
                 {
+                    "key": "field_legal_agreement_section_show",
+                    "label": "Показывать раздел",
+                    "name": "section_show",
+                    "type": "true_false",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Вкл",
+                    "ui_off_text": "Выкл"
+                },
+                {
                     "key": "field_legal_agreement_section_title",
                     "label": "Заголовок раздела",
                     "name": "section_title",
@@ -211,6 +409,16 @@
             "layout": "block",
             "button_label": "Добавить раздел",
             "sub_fields": [
+                {
+                    "key": "field_legal_offer_section_show",
+                    "label": "Показывать раздел",
+                    "name": "section_show",
+                    "type": "true_false",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Вкл",
+                    "ui_off_text": "Выкл"
+                },
                 {
                     "key": "field_legal_offer_section_title",
                     "label": "Заголовок раздела",

@@ -809,6 +809,17 @@ function fabrica_footer_option($name, $default = '') {
 }
 
 /**
+ * Значение из настроек «Юридическая информация» (ACF Options)
+ */
+function fabrica_legal_option($name, $default = '') {
+    $value = function_exists('get_field') ? get_field($name, 'option') : '';
+    if ($value === '' || $value === null) {
+        return $default;
+    }
+    return $value;
+}
+
+/**
  * SVG-иконки соцсетей для футера
  */
 function fabrica_get_social_icon_svg($icon_key) {

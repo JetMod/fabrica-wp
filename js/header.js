@@ -70,10 +70,6 @@ function initHeaderDropdown() {
         panel.classList.remove('is-open');
         panel.setAttribute('aria-hidden', 'true');
         panel.innerHTML = '';
-        panel.style.left = '';
-        panel.style.width = '';
-        panel.style.right = '';
-        panel.style.minWidth = '';
         dropdownItems.forEach(function(item) {
             item.classList.remove('header__dropdown-open');
         });
@@ -110,23 +106,6 @@ function initHeaderDropdown() {
             list.appendChild(li.cloneNode(true));
         });
         panel.appendChild(list);
-
-        var container = panel.offsetParent;
-        if (container) {
-            var itemRect = item.getBoundingClientRect();
-            var containerRect = container.getBoundingClientRect();
-            var panelMinW = 220;
-            var panelMaxW = Math.min(280, containerRect.width - 24);
-            var panelW = Math.max(panelMinW, Math.min(itemRect.width, panelMaxW));
-            var left = itemRect.left - containerRect.left;
-            if (left + panelW > containerRect.width - 12) left = containerRect.width - panelW - 12;
-            if (left < 12) left = 12;
-            panel.style.left = left + 'px';
-            panel.style.width = panelW + 'px';
-            panel.style.right = 'auto';
-            panel.style.minWidth = panelMinW + 'px';
-        }
-
         panel.classList.add('is-open');
         panel.setAttribute('aria-hidden', 'false');
         setTimeout(function() {

@@ -6,15 +6,34 @@
             "key": "field_product_tab_card",
             "label": "Карточка (каталог)",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "instructions": ""
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_product_catalog",
             "label": "Каталог (категория)",
             "name": "product_catalog",
+            "aria-label": "",
             "type": "taxonomy",
             "instructions": "Выберите категорию товара. Товар появится на странице этой категории (например: Мебель → Стол).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "taxonomy": "product_catalog",
             "field_type": "select",
             "allow_null": 1,
@@ -22,120 +41,275 @@
             "save_terms": 1,
             "load_terms": 1,
             "return_format": "id",
-            "multiple": 0
+            "multiple": 0,
+            "bidirectional_target": []
         },
         {
             "key": "field_product_image",
             "label": "Изображение",
             "name": "product_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "Главное фото для карточки. Если не указано — используется миниатюра записи.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
-            "preview_size": "medium"
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_product_price",
             "label": "Цена (текущая)",
             "name": "product_price",
+            "aria-label": "",
             "type": "text",
             "instructions": "Например: 45 900 руб.",
-            "default_value": ""
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_product_price_old",
             "label": "Цена (старая, зачёркнутая)",
             "name": "product_price_old",
+            "aria-label": "",
             "type": "text",
             "instructions": "Для отображения скидки. Оставьте пустым, если скидки нет.",
-            "default_value": ""
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_product_status",
             "label": "Наличие",
             "name": "product_status",
+            "aria-label": "",
             "type": "select",
             "instructions": "Отображается на карточке и странице товара.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "choices": {
                 "available": "В наличии",
                 "order": "Под заказ"
             },
-            "default_value": "order"
+            "default_value": "order",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value"
         },
         {
             "key": "field_product_badge",
             "label": "Бейдж",
             "name": "product_badge",
+            "aria-label": "",
             "type": "select",
             "instructions": "Метка на карточке (Финальная цена, Тренд и т.п.).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "choices": {
                 "": "— Без бейджа",
                 "final": "Финальная цена",
                 "trend": "Тренд"
             },
-            "default_value": ""
+            "default_value": false,
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value"
         },
         {
             "key": "field_product_tab_page",
             "label": "Страница товара",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "instructions": ""
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_product_gallery",
             "label": "Галерея",
             "name": "product_gallery",
+            "aria-label": "",
             "type": "gallery",
             "instructions": "Фотографии для страницы товара. Если пусто — используется главное изображение.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "medium",
             "library": "all",
             "min": 0,
             "max": 20,
-            "insert": "append"
+            "insert": "append",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         },
         {
             "key": "field_product_description",
             "label": "Краткое описание",
             "name": "product_description",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "Короткий текст под ценой (1–2 предложения).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "rows": 3,
-            "new_lines": "br"
+            "new_lines": "br",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": ""
         },
         {
             "key": "field_product_description_full",
             "label": "Подробное описание",
             "name": "product_description_full",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "Полный текст в блоке «О товаре». Можно использовать абзацы и форматирование.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 1,
-            "delay": 0
+            "delay": 0,
+            "default_value": ""
         },
         {
             "key": "field_product_specs",
             "label": "Характеристики",
             "name": "product_specs",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Добавьте характеристики: Материал, Размер, Цвет, Гарантия и т.д.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "button_label": "Добавить характеристику",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_product_spec_label",
                     "label": "Название",
                     "name": "spec_label",
+                    "aria-label": "",
                     "type": "text",
-                    "instructions": "Например: Материал, Размер (Д × Ш × В)"
+                    "instructions": "Например: Материал, Размер (Д × Ш × В)",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_product_specs"
                 },
                 {
                     "key": "field_product_spec_value",
                     "label": "Значение",
                     "name": "spec_value",
+                    "aria-label": "",
                     "type": "text",
-                    "instructions": "Например: массив, шпон"
+                    "instructions": "Например: массив, шпон",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_product_specs"
                 }
             ]
         }
@@ -154,6 +328,9 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
+    "hide_on_screen": [],
     "active": true,
-    "description": "Поля товара: карточка в каталоге и страница товара"
+    "description": "Поля товара: карточка в каталоге и страница товара",
+    "show_in_rest": false,
+    "modified": 1773232300
 }
