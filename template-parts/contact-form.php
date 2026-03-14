@@ -21,7 +21,7 @@ $default_form_id = apply_filters('fabrica_contact_form_id', '34b380a');
 $args = wp_parse_args($args ?? array(), array(
     'accent'        => 'Начните свой проект',
     'title'         => 'Получите персональную консультацию',
-    'subtitle'      => 'Оставьте заявку, и наш эксперт свяжется с вами в течение 15 минут',
+    'subtitle'      => 'Оставьте заявку, и наш эксперт свяжется с вами в ближайшее время',
     'form_id'       => $default_form_id,
     'show_benefits' => true,
 ));

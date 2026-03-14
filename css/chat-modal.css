@@ -195,6 +195,7 @@
 .chat-modal__textarea {
     min-height: 80px;
     line-height: 1.5;
+    max-height: 150px;
 }
 
 .chat-modal__input::placeholder,

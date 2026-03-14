@@ -1904,16 +1904,19 @@ a.header__tagline:hover {
         flex-shrink: 0;
     }
 
-    /* Панель выпадающего списка — тёмный фон, белый текст */
+    /* Панель выпадающего списка — позиция и ширина задаются в JS под кликнутый пункт */
     .header__dropdown-panel {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
-        right: 0;
+        right: auto;
+        width: 220px;
+        
         margin: 0;
         padding: 10px 12px 14px;
         list-style: none;
+        margin-left: 10px;
         background: linear-gradient(180deg,
             rgba(45, 40, 35, 0.98) 0%,
             rgba(35, 30, 25, 0.98) 100%);

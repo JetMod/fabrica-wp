@@ -306,88 +306,51 @@ $home_url = home_url('/');
 </div>
 
     <!-- Модальное окно чата -->
-    <div class="chat-modal" id="chatModal" aria-hidden="true" role="dialog" aria-labelledby="chatModalTitle">
-        <div class="chat-modal__overlay"></div>
-        <div class="chat-modal__content">
-            <!-- Заголовок с информацией о менеджере -->
-            <div class="chat-modal__header">
-                <div class="chat-modal__header-content">
-                    <div class="chat-modal__manager-info">
-                        <div class="chat-modal__avatar">
-                            <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="Александр" class="chat-modal__avatar-img">
-                            <span class="chat-modal__status"></span>
-                        </div>
-                        <div class="chat-modal__manager-text">
-                            <div class="chat-modal__manager-name">Александр, ведущий менеджер</div>
-                            <div class="chat-modal__manager-status">Мы тут! Всегда общение.</div>
-                        </div>
+<div class="chat-modal" id="chatModal" aria-hidden="true" role="dialog" aria-labelledby="chatModalTitle">
+    <div class="chat-modal__overlay"></div>
+
+    <div class="chat-modal__content">
+        <!-- Заголовок с информацией о менеджере -->
+        <div class="chat-modal__header">
+            <div class="chat-modal__header-content">
+                <div class="chat-modal__manager-info">
+                    <div class="chat-modal__avatar">
+                        <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="Александр" class="chat-modal__avatar-img">
+                        <span class="chat-modal__status"></span>
                     </div>
-                    <button class="chat-modal__close-header" id="chatModalClose" aria-label="Закрыть чат">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 6L6 18M6 6l12 12"/>
-                        </svg>
-                    </button>
+
+                    <div class="chat-modal__manager-text">
+                        <div class="chat-modal__manager-name">Александр, ведущий менеджер</div>
+                        <div class="chat-modal__manager-status">Мы тут! Всегда общение.</div>
+                    </div>
                 </div>
+
+                <button class="chat-modal__close-header" id="chatModalClose" aria-label="Закрыть чат" type="button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="chat-modal__body">
+            <div class="chat-modal__form-wrap">
+                <?php echo do_shortcode('[contact-form-7 id="b310b3c" title="Виджет с чатом"]'); ?>
             </div>
 
-            <!-- Основной контент -->
-            <div class="chat-modal__body">
-                <form class="chat-modal__form" id="chatForm">
-                    <div class="chat-modal__field">
-                        <input 
-                            type="text" 
-                            id="chatName" 
-                            name="name" 
-                            class="chat-modal__input" 
-                            placeholder="Ваше имя"
-                            required
-                        >
-                        <span class="chat-modal__error" id="chatNameError"></span>
-                    </div>
-
-                    <div class="chat-modal__field">
-                        <input 
-                            type="tel" 
-                            id="chatPhone" 
-                            name="phone" 
-                            class="chat-modal__input" 
-                            placeholder="Ваш телефон"
-                            required
-                        >
-                        <span class="chat-modal__error" id="chatPhoneError"></span>
-                    </div>
-
-                    <div class="chat-modal__field">
-                        <textarea 
-                            id="chatMessage" 
-                            name="message" 
-                            class="chat-modal__textarea" 
-                            placeholder="Ваше сообщение (необязательно)"
-                            rows="3"
-                        ></textarea>
-                        <span class="chat-modal__error" id="chatMessageError"></span>
-                    </div>
-
-                    <button type="submit" class="chat-modal__submit">
-                        <span>Отправить сообщение</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                        </svg>
-                    </button>
-                </form>
-
-                <!-- Сообщение об успехе -->
-                <div class="chat-modal__success" id="chatSuccess">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M8 12l2 2 4-4"/>
-                    </svg>
-                    <h3>Сообщение отправлено!</h3>
-                    <p>Менеджер свяжется с вами в ближайшее время</p>
-                </div>
+            <!-- Сообщение об успехе -->
+            <div class="chat-modal__success" id="chatSuccess" style="display:none;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 12l2 2 4-4"/>
+                </svg>
+                <h3>Сообщение отправлено!</h3>
+                <p>Менеджер свяжется с вами в ближайшее время</p>
             </div>
         </div>
     </div>
+</div>
 
     <?php wp_footer(); ?>
 </body>
