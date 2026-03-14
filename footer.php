@@ -276,74 +276,34 @@ $home_url = home_url('/');
 
     <!-- Модальное окно для обратной связи -->
     <div class="callback-modal" id="callbackModal" aria-hidden="true" role="dialog" aria-labelledby="callbackModalTitle">
-        <div class="callback-modal__overlay"></div>
-        <div class="callback-modal__content">
-            <button class="callback-modal__close" id="callbackModalClose" aria-label="Закрыть модальное окно">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 6L6 18M6 6l12 12"/>
-                </svg>
-            </button>
-            
-            <div class="callback-modal__header">
-                <h2 class="callback-modal__title" id="callbackModalTitle">Заказать звонок</h2>
-                <p class="callback-modal__subtitle">Оставьте свои контакты, и мы свяжемся с вами в ближайшее время</p>
-            </div>
+    <div class="callback-modal__overlay"></div>
 
-            <form class="callback-modal__form" id="callbackForm">
-                <div class="callback-modal__field">
-                    <label for="callbackName" class="callback-modal__label">Ваше имя</label>
-                    <input 
-                        type="text" 
-                        id="callbackName" 
-                        name="name" 
-                        class="callback-modal__input" 
-                        placeholder="Введите ваше имя"
-                        required
-                    >
-                    <span class="callback-modal__error" id="callbackNameError"></span>
-                </div>
+    <div class="callback-modal__content">
+        <button class="callback-modal__close" id="callbackModalClose" aria-label="Закрыть модальное окно" type="button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <div class="callback-modal__header">
+            <h2 class="callback-modal__title" id="callbackModalTitle">Заказать звонок</h2>
+            <p class="callback-modal__subtitle">Оставьте свои контакты, и мы свяжемся с вами в ближайшее время</p>
+        </div>
 
-                <div class="callback-modal__field">
-                    <label for="callbackPhone" class="callback-modal__label">Номер телефона</label>
-                    <input 
-                        type="tel" 
-                        id="callbackPhone" 
-                        name="phone" 
-                        class="callback-modal__input" 
-                        placeholder="+7 (___) ___-__-__"
-                        required
-                    >
-                    <span class="callback-modal__error" id="callbackPhoneError"></span>
-                </div>
+        <div class="callback-modal__form-wrap">
+            <?php echo do_shortcode('[contact-form-7 id="c4935ce" title="Без названия"]'); ?>
+        </div>
 
-                <button type="submit" class="callback-modal__submit">
-                    <span>Заказать звонок</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </button>
-
-                <p class="callback-modal__privacy">
-                    <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer;">
-                        <input type="checkbox" name="privacy_agreement" required style="margin-top: 2px; cursor: pointer;">
-                        <span>Нажимая на кнопку, вы соглашаетесь с <?php
-                        $modal_privacy_url = fabrica_footer_option('footer_privacy_url') ?: fabrica_get_legal_page_url('privacy');
-                        if ($modal_privacy_url) : ?><a href="<?php echo esc_url($modal_privacy_url); ?>" target="_blank">политикой конфиденциальности</a><?php else : ?>политикой конфиденциальности<?php endif; ?></span>
-                    </label>
-                </p>
-            </form>
-
-            <!-- Сообщение об успехе -->
-            <div class="callback-modal__success" id="callbackSuccess">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M8 12l2 2 4-4"/>
-                </svg>
-                <h3>Спасибо за обращение!</h3>
-                <p>Наш менеджер свяжется с вами в ближайшее время</p>
-            </div>
+        <div class="callback-modal__success" id="callbackSuccess" style="display:none;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 12l2 2 4-4"/>
+            </svg>
+            <h3>Спасибо за обращение!</h3>
+            <p>Наш менеджер свяжется с вами в ближайшее время</p>
         </div>
     </div>
+</div>
 
     <!-- Модальное окно чата -->
     <div class="chat-modal" id="chatModal" aria-hidden="true" role="dialog" aria-labelledby="chatModalTitle">

@@ -74,28 +74,6 @@ $pricing_benefits = !empty($pricing_benefits) ? $pricing_benefits : $pricing_ben
 $pricing_guarantee = get_field('service_pricing_guarantee', $service_id) ?: 'Бесплатная консультация и выезд на объект';
 ?>
 
-<!-- Breadcrumbs -->
-<nav class="breadcrumbs" aria-label="Хлебные крошки">
-    <div class="container">
-        <ol class="breadcrumbs__list" itemscope itemtype="https://schema.org/BreadcrumbList">
-            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumbs__link" itemprop="item"><span itemprop="name">Главная</span></a>
-                <meta itemprop="position" content="1">
-            </li>
-            <li class="breadcrumbs__item"><span class="breadcrumbs__separator">/</span></li>
-            <li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a href="<?php echo esc_url($services_page_url); ?>" class="breadcrumbs__link" itemprop="item"><span itemprop="name">Услуги</span></a>
-                <meta itemprop="position" content="2">
-            </li>
-            <li class="breadcrumbs__item"><span class="breadcrumbs__separator">/</span></li>
-            <li class="breadcrumbs__item breadcrumbs__current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <span itemprop="name"><?php the_title(); ?></span>
-                <meta itemprop="position" content="3">
-            </li>
-        </ol>
-    </div>
-</nav>
-
 <!-- Hero -->
 <section class="service-hero">
     <div class="service-hero__background">

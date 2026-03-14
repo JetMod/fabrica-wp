@@ -58,30 +58,75 @@ export function initHeaderScroll() {
 }
 
 /**
- * Инициализация выпадающего меню (dropdown) для touch-устройств
+ * Выпадающее меню на мобильных: контент показывается в панели под навигацией
+ * (вне .header__nav), чтобы не обрезаться overflow. Без переноса узлов в body.
  */
 function initHeaderDropdown() {
+    const panel = document.getElementById('header-dropdown-panel');
     const dropdownItems = document.querySelectorAll('.header__menu-item--has-dropdown');
-    if (!dropdownItems.length) return;
+    if (!panel || !dropdownItems.length) return;
 
-    function closeAllDropdowns() {
-        dropdownItems.forEach(item => item.classList.remove('header__dropdown-open'));
-        document.removeEventListener('click', closeAllDropdowns);
+    function closePanel() {
+        panel.classList.remove('is-open');
+        panel.setAttribute('aria-hidden', 'true');
+        panel.innerHTML = '';
+        dropdownItems.forEach(function(item) {
+            item.classList.remove('header__dropdown-open');
+        });
+        document.removeEventListener('click', onDocumentClick);
+        window.removeEventListener('scroll', onScrollClose);
     }
 
-    dropdownItems.forEach(item => {
-        const link = item.querySelector('.header__menu-link');
+    function onDocumentClick(e) {
+        if (panel.contains(e.target)) {
+            if (e.target.closest('a')) closePanel();
+            return;
+        }
+        var item = e.target.closest('.header__menu-item--has-dropdown');
+        if (item && item.querySelector('.header__menu-link') === e.target) return;
+        closePanel();
+    }
+
+    function onScrollClose() {
+        closePanel();
+    }
+
+    function openPanel(item) {
+        var dropdown = item.querySelector('.header__dropdown');
+        if (!dropdown) return;
+        dropdownItems.forEach(function(other) {
+            other.classList.remove('header__dropdown-open');
+        });
+        item.classList.add('header__dropdown-open');
+        panel.innerHTML = '';
+        var list = document.createElement('ul');
+        list.className = 'header__dropdown-panel-list';
+        list.setAttribute('role', 'list');
+        [].slice.call(dropdown.children).forEach(function(li) {
+            list.appendChild(li.cloneNode(true));
+        });
+        panel.appendChild(list);
+        panel.classList.add('is-open');
+        panel.setAttribute('aria-hidden', 'false');
+        setTimeout(function() {
+            document.addEventListener('click', onDocumentClick);
+            window.addEventListener('scroll', onScrollClose, { passive: true });
+        }, 80);
+    }
+
+    dropdownItems.forEach(function(item) {
+        var link = item.querySelector('.header__menu-link');
         if (!link) return;
 
         link.addEventListener('click', function(e) {
-            if (!('ontouchstart' in window)) return; // только для touch
+            if (window.innerWidth > 768) return;
+
             if (item.classList.contains('header__dropdown-open')) {
-                return; // при повторном клике — переход по ссылке
+                closePanel();
+                return;
             }
             e.preventDefault();
-            dropdownItems.forEach(other => other.classList.remove('header__dropdown-open'));
-            item.classList.add('header__dropdown-open');
-            setTimeout(() => document.addEventListener('click', closeAllDropdowns), 0);
+            openPanel(item);
         });
     });
 }

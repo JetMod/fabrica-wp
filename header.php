@@ -86,12 +86,13 @@ if (!isset($t)) {
                     $logo_desktop = ($header_logo && !empty($header_logo['url'])) ? $header_logo['url'] : '';
                     $logo_mobile = ($header_logo_mobile && !empty($header_logo_mobile['url'])) ? $header_logo_mobile['url'] : $logo_desktop;
                     $logo_alt = ($header_logo && !empty($header_logo['alt'])) ? $header_logo['alt'] : get_bloginfo('name');
+                    $use_mobile_logo = is_front_page() && $logo_mobile && $logo_mobile !== $logo_desktop;
                     ?>
                     <div class="header__branding">
                         <?php if ($logo_desktop) : ?>
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo">
                             <picture>
-                                <?php if ($logo_mobile && $logo_mobile !== $logo_desktop) : ?>
+                                <?php if ($use_mobile_logo) : ?>
                                 <source media="(max-width: 768px)" srcset="<?php echo esc_url($logo_mobile); ?>">
                                 <?php endif; ?>
                                 <img src="<?php echo esc_url($logo_desktop); ?>" alt="<?php echo esc_attr($logo_alt); ?>" class="header__logo-img">
@@ -102,7 +103,9 @@ if (!isset($t)) {
                         <?php else : ?>
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="header__logo">
                             <picture>
+                                <?php if (is_front_page()) : ?>
                                 <source media="(max-width: 768px)" srcset="<?php echo esc_url($t . '/img/logo-mobile.jpg'); ?>">
+                                <?php endif; ?>
                                 <img src="<?php echo esc_url($t . '/img/logo.jpg'); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="header__logo-img">
                             </picture>
                         </a>
@@ -192,7 +195,7 @@ if (!isset($t)) {
                                     (object) array('name' => 'Картины', 'slug' => 'kartiny', 'link' => $catalog_url),
                                 ),
                             ),
-                            array('label' => 'Услуги', 'url' => fabrica_get_services_page_url(), 'no_dropdown' => true),
+                            
                             array(
                                 'label'    => 'Horeca',
                                 'url'      => $catalog_url,
@@ -241,6 +244,8 @@ if (!isset($t)) {
                         </li>
                     </ul>
                 </nav>
+                <!-- Панель выпадающего списка на мобильных (вне nav, не обрезается overflow) -->
+                <div class="header__dropdown-panel" id="header-dropdown-panel" aria-hidden="true"></div>
             </div>
         </div>
 
