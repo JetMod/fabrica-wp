@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация компонентов
     initMobileMenu();
     initHeaderScroll();
+    initVideoHeroBackground();
     initHeroSlider();
     initServicesSlider();
     initChatWidget();
@@ -65,6 +66,38 @@ function initMobileMenu() {
         if (!mobileMenu.contains(e.target) && !burger.contains(e.target) && mobileMenu.classList.contains('active')) {
             closeMenu();
         }
+    });
+}
+
+// ===================================
+// Hero фоновое видео: запрет PiP (Яндекс и др.), автовозобновление на iOS
+// ===================================
+function initVideoHeroBackground() {
+    var video = document.getElementById('hero-background-video');
+    if (!video) return;
+
+    video.disablePictureInPicture = true;
+    video.disableRemotePlayback = true;
+    video.setAttribute('disablePictureInPicture', '');
+    video.setAttribute('disableRemotePlayback', '');
+
+    if (document.pictureInPictureEnabled) {
+        video.addEventListener('enterpictureinpicture', function() {
+            if (document.pictureInPictureElement) {
+                document.exitPictureInPicture().catch(function() {});
+            }
+        });
+    }
+
+    function tryPlay() {
+        if (video.paused && !document.hidden) {
+            video.play().catch(function() {});
+        }
+    }
+
+    video.addEventListener('pause', tryPlay);
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) tryPlay();
     });
 }
 

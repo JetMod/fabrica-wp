@@ -68,14 +68,17 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
         <section class="video-hero" aria-label="Видео ФАБРИКА интерьеров">
             <div class="video-hero__wrapper">
                 <video
+                    id="hero-background-video"
                     class="video-hero__video"
                     src="<?php echo $vh_video_src; ?>"
                     autoplay
                     muted
                     loop
                     playsinline
+                    webkit-playsinline
                     disablePictureInPicture
                     disableRemotePlayback
+                    controlsList="nodownload nofullscreen noremoteplayback"
                     aria-label="Фоновое видео"
                 ></video>
                 <div class="video-hero__overlay" aria-hidden="true"></div>
