@@ -52,7 +52,7 @@ if ($section_disabled && $base_url) {
 }
 
 $section_titles = array(
-    'requisites' => 'Реквизиты компании',
+    'requisites' => 'Реквизиты',
     'privacy'    => 'Политика конфиденциальности',
     'agreement'  => 'Пользовательское соглашение',
     'offer'      => 'Публичная оферта',
@@ -103,7 +103,6 @@ $section_intros = array(
                 <?php if ($req_url) : ?><li><a href="<?php echo esc_url($req_url); ?>" class="legal-nav__link<?php echo $legal_section === 'requisites' ? ' legal-nav__link--current' : ''; ?>">Реквизиты</a></li><?php endif; ?>
                 <?php if ($privacy_url) : ?><li><a href="<?php echo esc_url($privacy_url); ?>" class="legal-nav__link<?php echo $legal_section === 'privacy' ? ' legal-nav__link--current' : ''; ?>">Политика конфиденциальности</a></li><?php endif; ?>
                 <?php if ($terms_url) : ?><li><a href="<?php echo esc_url($terms_url); ?>" class="legal-nav__link<?php echo $legal_section === 'agreement' ? ' legal-nav__link--current' : ''; ?>">Пользовательское соглашение</a></li><?php endif; ?>
-                <?php if ($offer_url) : ?><li><a href="<?php echo esc_url($offer_url); ?>" class="legal-nav__link<?php echo $legal_section === 'offer' ? ' legal-nav__link--current' : ''; ?>">Публичная оферта</a></li><?php endif; ?>
             </ul>
         </div>
     </div>
@@ -131,12 +130,7 @@ $section_intros = array(
                 <p class="legal-index__text"><?php echo esc_html($section_intros['agreement']); ?></p>
                 <span class="legal-index__more">Читать полностью</span>
             </a>
-            <a href="<?php echo esc_url($offer_url); ?>" class="legal-index__card">
-                <span class="legal-index__icon legal-index__icon--contract"><?php echo fabrica_legal_icon_contract(); ?></span>
-                <h2 class="legal-index__title">Публичная оферта</h2>
-                <p class="legal-index__text"><?php echo esc_html($section_intros['offer']); ?></p>
-                <span class="legal-index__more">Читать полностью</span>
-            </a>
+          
         </div>
     </div>
 </section>

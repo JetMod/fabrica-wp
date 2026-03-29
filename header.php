@@ -196,14 +196,14 @@ if (!isset($t)) {
                                 ),
                             ),
                             
-                            array(
-                                'label'    => 'Horeca',
-                                'url'      => $catalog_url,
-                                'fallback' => array(
-                                    (object) array('name' => 'Мебель для HoReCa', 'slug' => 'mebel-dlya-horeca', 'link' => $catalog_url),
-                                    (object) array('name' => 'Оборудование', 'slug' => 'oborudovanie', 'link' => $catalog_url),
-                                ),
-                            ),
+                            // array(
+                            //     'label'    => 'Horeca',
+                            //     'url'      => $catalog_url,
+                            //     'fallback' => array(
+                            //         (object) array('name' => 'Мебель для HoReCa', 'slug' => 'mebel-dlya-horeca', 'link' => $catalog_url),
+                            //         (object) array('name' => 'Оборудование', 'slug' => 'oborudovanie', 'link' => $catalog_url),
+                            //     ),
+                            // ),
                         );
                         foreach ($menu_items as $item) :
                             $link_class = isset($item['accent']) && $item['accent'] ? ' header__menu-link--accent' : '';
@@ -348,7 +348,7 @@ if (!isset($t)) {
                 </a>
                 <?php endforeach; ?>
                 <?php
-                $mobile_cats = array('Мебель', 'Посуда', 'Декор', 'Horeca');
+                $mobile_cats = array('Мебель', 'Посуда', 'Декор', 'Проекты');
                 foreach ($mobile_cats as $cat_label) {
                     $cat_url = fabrica_get_category_url($cat_label);
                     ?>

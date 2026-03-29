@@ -23,9 +23,11 @@ $stat_1_label = $d('projects_page_stat_1_label', 'реализованных п�
 $stat_2_num = $d('projects_page_stat_2_number', '9+');
 $stat_2_label = $d('projects_page_stat_2_label', 'лет опыта');
 
+$paged = function_exists('fabrica_get_paged_for_page_template') ? fabrica_get_paged_for_page_template() : 1;
 $projects_query = new WP_Query(array(
     'post_type'      => 'fabrica_project',
-    'posts_per_page' => -1,
+    'posts_per_page' => 12,
+    'paged'          => $paged,
     'orderby'        => 'menu_order title',
     'order'          => 'ASC',
     'post_status'    => 'publish',
@@ -87,7 +89,6 @@ $projects_query = new WP_Query(array(
             <div class="projects-gallery__grid" id="projectsGrid">
                 <?php
                 if ($projects_query->have_posts()) :
-                    $idx = 0;
                     while ($projects_query->have_posts()) :
                         $projects_query->the_post();
                         $pid = (int) get_the_ID();
@@ -124,7 +125,6 @@ $projects_query = new WP_Query(array(
                             </div>
                         </a>
                         <?php
-                        $idx++;
                     endwhile;
                     wp_reset_postdata();
                 else :
@@ -134,6 +134,19 @@ $projects_query = new WP_Query(array(
                 endif;
                 ?>
             </div>
+            <?php
+            if ($projects_query->max_num_pages > 1) {
+                global $wp_query;
+                $tmp_main = $wp_query;
+                $wp_query = $projects_query;
+                the_posts_pagination(array(
+                    'mid_size'  => 2,
+                    'prev_text' => '←',
+                    'next_text' => '→',
+                ));
+                $wp_query = $tmp_main;
+            }
+            ?>
         </div>
     </section>
 

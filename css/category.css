@@ -87,6 +87,70 @@
     margin-bottom: 48px;
 }
 
+/* Пагинация (как в блоге): каталог, поиск, архив товаров, проекты, услуги */
+.category-products .pagination,
+.projects-gallery .pagination,
+.services-list .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0;
+    padding-top: 32px;
+    border-top: 1px solid rgba(30, 30, 30, 0.08);
+}
+
+.category-products .nav-links,
+.projects-gallery .nav-links,
+.services-list .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.category-products .page-numbers,
+.projects-gallery .page-numbers,
+.services-list .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-dark);
+    background: transparent;
+    border: 2px solid rgba(30, 30, 30, 0.15);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.category-products .page-numbers:hover,
+.projects-gallery .page-numbers:hover,
+.services-list .page-numbers:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.category-products .page-numbers.current,
+.projects-gallery .page-numbers.current,
+.services-list .page-numbers.current {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-white);
+}
+
+.category-products .page-numbers.dots,
+.projects-gallery .page-numbers.dots,
+.services-list .page-numbers.dots {
+    border-color: transparent;
+    min-width: auto;
+    padding: 0 8px;
+}
+
 /* Кнопка "Показать еще" */
 .category-products__action {
     text-align: center;

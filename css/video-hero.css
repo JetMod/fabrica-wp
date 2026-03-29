@@ -136,7 +136,7 @@
 
 /* Главный заголовок — серif для премиальности, мягкая тень */
 .video-hero__title {
-    font-family: Georgia, 'Times New Roman', serif;
+    /* font-family: Georgia, 'Times New Roman', serif; */
     font-size: clamp(2.5rem, 6.5vw, 4.5rem);
     font-weight: 700;
     line-height: 1.15;

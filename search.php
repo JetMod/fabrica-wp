@@ -91,7 +91,11 @@ $srch = function($key, $default = '') {
                 endwhile;
                 ?>
             </div>
-            <?php the_posts_pagination(array('mid_size' => 2)); ?>
+            <?php the_posts_pagination(array(
+                'mid_size'  => 2,
+                'prev_text' => '←',
+                'next_text' => '→',
+            )); ?>
             <?php else : ?>
             <?php
             $empty_title = $has_query ? $srch('search_empty_title_has_query', 'Ничего не найдено') : $srch('search_empty_title_no_query', 'Введите запрос');

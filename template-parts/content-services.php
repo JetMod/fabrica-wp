@@ -103,9 +103,11 @@ $cta_phone = $d('services_page_cta_phone', '+7 (978) 597-74-42');
 
     <!-- Список услуг -->
     <?php
+    $paged = function_exists('fabrica_get_paged_for_page_template') ? fabrica_get_paged_for_page_template() : 1;
     $services_query = new WP_Query(array(
         'post_type'      => 'fabrica_service',
-        'posts_per_page' => -1,
+        'posts_per_page' => 12,
+        'paged'          => $paged,
         'orderby'        => 'menu_order title',
         'order'          => 'ASC',
         'post_status'    => 'publish',
@@ -178,6 +180,19 @@ $cta_phone = $d('services_page_cta_phone', '+7 (978) 597-74-42');
                 endif;
                 ?>
             </div>
+            <?php
+            if ($services_query->max_num_pages > 1) {
+                global $wp_query;
+                $tmp_main = $wp_query;
+                $wp_query = $services_query;
+                the_posts_pagination(array(
+                    'mid_size'  => 2,
+                    'prev_text' => '←',
+                    'next_text' => '→',
+                ));
+                $wp_query = $tmp_main;
+            }
+            ?>
         </div>
     </section>
 

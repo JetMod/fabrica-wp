@@ -110,7 +110,7 @@ $home_url = home_url('/');
                             array('label' => 'Мебель', 'preset' => 'mebel', 'url' => ''),
                             array('label' => 'Посуда', 'preset' => 'posuda', 'url' => ''),
                             array('label' => 'Декор', 'preset' => 'dekor', 'url' => ''),
-                            array('label' => 'Horeca', 'preset' => 'horeca', 'url' => ''),
+                            // array('label' => 'Horeca', 'preset' => 'horeca', 'url' => ''),
                         );
                         $services_default = array(
                             array('label' => 'Для дизайнеров', 'preset' => 'designers', 'url' => ''),
@@ -195,7 +195,6 @@ $home_url = home_url('/');
                         if ($legal_base) $legal_parts[] = '<a href="' . esc_url($legal_base) . '" class="footer__legal-link">Юридическая информация</a>';
                         if ($privacy) $legal_parts[] = '<a href="' . esc_url($privacy) . '" class="footer__legal-link">Политика конфиденциальности</a>';
                         if ($terms) $legal_parts[] = '<a href="' . esc_url($terms) . '" class="footer__legal-link">Пользовательское соглашение</a>';
-                        if ($offer) $legal_parts[] = '<a href="' . esc_url($offer) . '" class="footer__legal-link">Публичная оферта</a>';
                         echo implode('<span class="footer__separator">•</span>', $legal_parts);
                         ?>
                     </div>

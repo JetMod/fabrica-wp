@@ -380,6 +380,30 @@ function fabrica_search_include_cpt($query) {
 add_action('pre_get_posts', 'fabrica_search_include_cpt');
 
 /**
+ * Архив товаров: число записей на странице (сетка каталога)
+ */
+function fabrica_product_archive_posts_per_page($query) {
+    if (is_admin() || !$query->is_main_query()) {
+        return;
+    }
+    if ($query->is_post_type_archive('fabrica_product')) {
+        $query->set('posts_per_page', 12);
+    }
+}
+add_action('pre_get_posts', 'fabrica_product_archive_posts_per_page', 11);
+
+/**
+ * Номер страницы для пагинации на страницах с шаблоном (paged и page).
+ */
+function fabrica_get_paged_for_page_template() {
+    $paged = max(1, (int) get_query_var('paged'));
+    if ($paged < 2) {
+        $paged = max(1, (int) get_query_var('page'));
+    }
+    return $paged;
+}
+
+/**
  * ACF: Options Page и Local JSON
  */
 function fabrica_acf_init() {
@@ -687,7 +711,7 @@ function fabrica_get_url_by_preset($preset) {
         'mebel'        => fabrica_get_category_url('Мебель'),
         'posuda'       => fabrica_get_category_url('Посуда'),
         'dekor'        => fabrica_get_category_url('Декор'),
-        'horeca'       => fabrica_get_category_url('Horeca'),
+        // 'horeca'       => fabrica_get_category_url('Horeca'),
     );
     return isset($map[$preset]) ? $map[$preset] : home_url('/');
 }

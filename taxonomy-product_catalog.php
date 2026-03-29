@@ -132,7 +132,11 @@ $body_class = 'page-category';
                 endwhile;
                 ?>
             </div>
-            <?php the_posts_pagination(array('mid_size' => 2)); ?>
+            <?php the_posts_pagination(array(
+                'mid_size'  => 2,
+                'prev_text' => '←',
+                'next_text' => '→',
+            )); ?>
             <?php else : ?>
             <p class="category-products__empty">В этом каталоге пока нет товаров.</p>
             <?php endif; ?>
