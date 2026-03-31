@@ -45,6 +45,24 @@ $cta_phone = $d('services_page_cta_phone', '+7 (978) 597-74-42');
 
     <!-- Hero секция -->
     <section class="services-hero">
+
+        <!-- Фон: сетка, свечения, шиммер (декор) -->
+        <div class="services-hero__ambient" aria-hidden="true">
+            <div class="services-hero__ambient-grid"></div>
+            <div class="services-hero__ambient-glow services-hero__ambient-glow--a"></div>
+            <div class="services-hero__ambient-glow services-hero__ambient-glow--b"></div>
+            <div class="services-hero__ambient-glow services-hero__ambient-glow--c"></div>
+            <div class="services-hero__ambient-shimmer"></div>
+            <div class="services-hero__ambient-vline services-hero__ambient-vline--l"></div>
+            <div class="services-hero__ambient-vline services-hero__ambient-vline--r"></div>
+        </div>
+
+        <!-- Угловые декоративные скобки -->
+        <span class="services-hero__corner services-hero__corner--tl" aria-hidden="true"></span>
+        <span class="services-hero__corner services-hero__corner--tr" aria-hidden="true"></span>
+        <span class="services-hero__corner services-hero__corner--bl" aria-hidden="true"></span>
+        <span class="services-hero__corner services-hero__corner--br" aria-hidden="true"></span>
+
         <div class="container">
             <div class="services-hero__content">
                 <div class="services-hero__badge">
