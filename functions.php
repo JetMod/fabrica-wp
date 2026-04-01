@@ -492,56 +492,158 @@ function fabrica_get_delivery_page_url() {
 }
 
 /**
- * Получить подкатегории для пункта меню каталога (по имени или slug)
+ * Разбить группы мега-меню по колонкам (равномерно сверху вниз).
  *
- * @param string $label Название категории (Мебель, Посуда, Декор, Horeca и т.д.)
- * @param array  $fallback Fallback-пункты если категория нет или пуста
- * @return array{terms: array, use_fallback: bool, parent_url: string|null}
+ * @param array $groups Список групп из fabrica_get_catalog_mega_menu_data()
+ * @param int   $columns Число колонок (по умолчанию 4)
+ * @return array<int, array<int, array>>
  */
-function fabrica_get_subcategories_for_menu($label, $fallback = array()) {
+function fabrica_split_mega_menu_into_columns(array $groups, $columns = 4) {
+    if (empty($groups)) {
+        return array();
+    }
+    $columns = max(1, (int) $columns);
+    $n = count($groups);
+    if ($n <= $columns) {
+        $out = array();
+        foreach ($groups as $g) {
+            $out[] = array($g);
+        }
+        while (count($out) < $columns) {
+            $out[] = array();
+        }
+        return array_slice($out, 0, $columns);
+    }
+    $chunk_size = (int) ceil($n / $columns);
+
+    return array_chunk($groups, $chunk_size);
+}
+
+/**
+ * Данные для мега-меню каталога: уровень 2 — заголовки колонок, уровень 3 — ссылки.
+ * Заполняется из таксономии product_catalog (иерархия в админке).
+ *
+ * @param string $label Название родительской категории (Мебель, Посуда, Декор и т.д.)
+ * @param array  $fallback Плоский запасной набор, если термин не найден или без потомков
+ * @return array{groups: array, use_fallback: bool, parent_url: string|null}
+ */
+function fabrica_get_catalog_mega_menu_data($label, $fallback = array()) {
     $term = get_term_by('name', $label, 'product_catalog');
     if (!$term || is_wp_error($term)) {
-        $slug = sanitize_title($label);
-        $term = get_term_by('slug', $slug, 'product_catalog');
+        $term = get_term_by('slug', sanitize_title($label), 'product_catalog');
     }
-    $subs = array();
+    $groups       = array();
     $use_fallback = false;
-    $parent_url = null;
+    $parent_url   = null;
+
     if ($term && !is_wp_error($term)) {
         $parent_link = get_term_link($term);
         if (!is_wp_error($parent_link)) {
             $parent_url = $parent_link;
         }
-        $subs = get_terms(array(
+        $second_level = get_terms(array(
             'taxonomy'   => 'product_catalog',
             'hide_empty' => false,
             'parent'     => (int) $term->term_id,
-            'number'     => 12,
+            'orderby'    => 'term_order',
+            'order'      => 'ASC',
         ));
-        if (is_wp_error($subs)) {
-            $subs = array();
+        if (is_wp_error($second_level)) {
+            $second_level = array();
+        }
+        foreach ($second_level as $child) {
+            $third = get_terms(array(
+                'taxonomy'   => 'product_catalog',
+                'hide_empty' => false,
+                'parent'     => (int) $child->term_id,
+                'orderby'    => 'term_order',
+                'order'      => 'ASC',
+            ));
+            if (is_wp_error($third)) {
+                $third = array();
+            }
+            $links = array();
+            foreach ($third as $t) {
+                $l = get_term_link($t);
+                if (is_wp_error($l)) {
+                    continue;
+                }
+                $links[] = array(
+                    'name' => $t->name,
+                    'url'  => $l,
+                );
+            }
+            if (empty($links)) {
+                $l = get_term_link($child);
+                if (!is_wp_error($l)) {
+                    $links[] = array(
+                        'name' => $child->name,
+                        'url'  => $l,
+                    );
+                }
+            }
+            $title_url = get_term_link($child);
+            $title_url = !is_wp_error($title_url) ? $title_url : $parent_url;
+            $groups[]  = array(
+                'title'     => $child->name,
+                'title_url' => $title_url,
+                'links'     => $links,
+            );
         }
     }
-    if (empty($subs) && !empty($fallback)) {
-        $catalog_url = fabrica_get_catalog_page_url();
-        $resolved = array();
+
+    if (empty($groups) && !empty($fallback)) {
+        $use_fallback = true;
+        $catalog_url  = fabrica_get_catalog_page_url();
         foreach ($fallback as $item) {
             $name = is_object($item) ? $item->name : ($item['name'] ?? '');
             $slug = is_object($item) ? $item->slug : ($item['slug'] ?? sanitize_title($name));
+            if (!$name) {
+                continue;
+            }
             $term_by_slug = get_term_by('slug', $slug, 'product_catalog');
             if ($term_by_slug && !is_wp_error($term_by_slug)) {
                 $link = get_term_link($term_by_slug);
                 $link = !is_wp_error($link) ? $link : $catalog_url;
-                $resolved[] = (object) array('name' => $term_by_slug->name, 'slug' => $term_by_slug->slug, 'link' => $link);
+                $groups[] = array(
+                    'title'     => $term_by_slug->name,
+                    'title_url' => $link,
+                    'links'     => array(
+                        array(
+                            'name' => $term_by_slug->name,
+                            'url'  => $link,
+                        ),
+                    ),
+                );
             } else {
                 $link = home_url('/catalog/' . $slug . '/');
-                $resolved[] = (object) array('name' => $name, 'slug' => $slug, 'link' => $link);
+                $groups[] = array(
+                    'title'     => $name,
+                    'title_url' => $link,
+                    'links'     => array(
+                        array(
+                            'name' => $name,
+                            'url'  => $link,
+                        ),
+                    ),
+                );
             }
         }
-        $subs = $resolved;
-        $use_fallback = true;
+        if (!$parent_url) {
+            if ($term && !is_wp_error($term)) {
+                $pl = get_term_link($term);
+                $parent_url = !is_wp_error($pl) ? $pl : $catalog_url;
+            } else {
+                $parent_url = $catalog_url;
+            }
+        }
     }
-    return array('terms' => $subs, 'use_fallback' => $use_fallback, 'parent_url' => $parent_url);
+
+    return array(
+        'groups'       => $groups,
+        'use_fallback' => $use_fallback,
+        'parent_url'   => $parent_url,
+    );
 }
 
 /**

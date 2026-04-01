@@ -119,30 +119,56 @@ $body_class = 'page-category';
             </div>
         </div>
     </section>
-    <?php else : ?>
-    <!-- Сетка товаров -->
+    <?php endif; ?>
+
+    <!-- Сетка товаров (включая товары из дочерних категорий) -->
     <section class="category-products">
         <div class="container">
-            <?php if (have_posts()) : ?>
+            <?php
+            $paged = max(1, (int) get_query_var('paged'));
+            if ($paged < 2) {
+                $paged = max(1, (int) get_query_var('page'));
+            }
+
+            $products_query = new WP_Query(array(
+                'post_type'      => 'fabrica_product',
+                'post_status'    => 'publish',
+                'posts_per_page' => 12,
+                'paged'          => $paged,
+                'tax_query'      => array(
+                    array(
+                        'taxonomy'         => 'product_catalog',
+                        'field'            => 'term_id',
+                        'terms'            => (int) $term->term_id,
+                        'include_children' => true,
+                    ),
+                ),
+            ));
+            ?>
+            <?php if ($products_query->have_posts()) : ?>
             <div class="category-products__grid">
                 <?php
-                while (have_posts()) :
-                    the_post();
+                while ($products_query->have_posts()) :
+                    $products_query->the_post();
                     get_template_part('template-parts/product-card', null, array('product_id' => get_the_ID()));
                 endwhile;
                 ?>
             </div>
-            <?php the_posts_pagination(array(
+            <?php
+            the_posts_pagination(array(
                 'mid_size'  => 2,
                 'prev_text' => '←',
                 'next_text' => '→',
-            )); ?>
+                'total'     => $products_query->max_num_pages,
+                'current'   => $paged,
+            ));
+            wp_reset_postdata();
+            ?>
             <?php else : ?>
             <p class="category-products__empty">В этом каталоге пока нет товаров.</p>
             <?php endif; ?>
         </div>
     </section>
-    <?php endif; ?>
 
     <!-- Форма заявки -->
     <?php get_template_part('template-parts/contact-form'); ?>

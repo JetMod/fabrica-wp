@@ -195,6 +195,11 @@ if (!isset($t)) {
                                     (object) array('name' => 'Картины', 'slug' => 'kartiny', 'link' => $catalog_url),
                                 ),
                             ),
+                            array(
+                                'label'    => 'Свет',
+                                'url'      => home_url('/catalog/light/'),
+                                'fallback' => array(),
+                            ),
                             
                             // array(
                             //     'label'    => 'Horeca',
@@ -208,34 +213,81 @@ if (!isset($t)) {
                         foreach ($menu_items as $item) :
                             $link_class = isset($item['accent']) && $item['accent'] ? ' header__menu-link--accent' : '';
                             if (!empty($item['no_dropdown'])) {
-                                $subs = array('terms' => array(), 'use_fallback' => false, 'parent_url' => null);
+                                $mega = array('groups' => array(), 'use_fallback' => false, 'parent_url' => null);
                             } else {
-                                $subs = fabrica_get_subcategories_for_menu($item['label'], isset($item['fallback']) ? $item['fallback'] : array());
+                                $mega = fabrica_get_catalog_mega_menu_data($item['label'], isset($item['fallback']) ? $item['fallback'] : array());
                             }
-                            $has_dropdown = !empty($subs['terms']);
-                            $use_fallback = $subs['use_fallback'];
-                            $item_url = !empty($subs['parent_url']) ? $subs['parent_url'] : $item['url'];
+                            $has_dropdown = !empty($mega['groups']);
+                            $item_url = !empty($mega['parent_url']) ? $mega['parent_url'] : $item['url'];
+                            $mega_columns = $has_dropdown ? fabrica_split_mega_menu_into_columns($mega['groups'], 4) : array();
+                            $mega_section_id = $has_dropdown ? 'header-mega-' . sanitize_title($item['label']) : '';
                         ?>
                         <li class="header__menu-item<?php echo $has_dropdown ? ' header__menu-item--has-dropdown' : ''; ?>">
-                            <a href="<?php echo esc_url($item_url); ?>" class="header__menu-link<?php echo $link_class; ?>">
+                            <a href="<?php echo esc_url($item_url); ?>" class="header__menu-link<?php echo $link_class; ?>"
+                                <?php if ($has_dropdown) : ?>
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                aria-controls="<?php echo esc_attr($mega_section_id); ?>"
+                                <?php endif; ?>
+                            >
                                 <?php echo esc_html($item['label']); ?>
                                 <?php if ($has_dropdown) : ?>
-                                    <svg class="header__menu-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="header__menu-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                         <path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 <?php endif; ?>
                             </a>
                             <?php if ($has_dropdown) : ?>
-                            <ul class="header__dropdown">
-                                <?php foreach ($subs['terms'] as $cat) :
-                                    $cat_link = $use_fallback ? $cat->link : get_term_link($cat);
-                                    if (!$use_fallback && is_wp_error($cat_link)) continue;
-                                ?>
-                                <li class="header__dropdown-item">
-                                    <a href="<?php echo esc_url($cat_link); ?>" class="header__dropdown-link"><?php echo esc_html($cat->name); ?></a>
-                                </li>
-                                <?php endforeach; ?>
-                            </ul>
+                            <div class="header__mega" id="<?php echo esc_attr($mega_section_id); ?>" role="group" aria-label="<?php echo esc_attr($item['label'] . ' — подразделы каталога'); ?>">
+                                <div class="header__mega-inner">
+                                    <div class="header__mega-cols">
+                                        <?php foreach ($mega_columns as $col_groups) : ?>
+                                        <div class="header__mega-col">
+                                            <?php foreach ($col_groups as $group) {
+                                                $g_title = isset($group['title']) ? $group['title'] : '';
+                                                $g_title_url = isset($group['title_url']) ? $group['title_url'] : '';
+                                                $g_links = isset($group['links']) && is_array($group['links']) ? $group['links'] : array();
+                                                if (!$g_title && empty($g_links)) {
+                                                    continue;
+                                                }
+                                                ?>
+                                            <div class="header__mega-group">
+                                                <?php if ($g_title_url) : ?>
+                                                <a href="<?php echo esc_url($g_title_url); ?>" class="header__mega-heading"><?php echo esc_html($g_title); ?></a>
+                                                <?php else : ?>
+                                                <span class="header__mega-heading"><?php echo esc_html($g_title); ?></span>
+                                                <?php endif; ?>
+                                                <?php
+                                                $show_list = !empty($g_links);
+                                                if ($show_list && $g_title_url && count($g_links) === 1) {
+                                                    $one = $g_links[0];
+                                                    if (isset($one['name'], $one['url']) && $one['name'] === $g_title && $one['url'] === $g_title_url) {
+                                                        $show_list = false;
+                                                    }
+                                                }
+                                                ?>
+                                                <?php if ($show_list) : ?>
+                                                <ul class="header__mega-list">
+                                                    <?php foreach ($g_links as $l) {
+                                                        $ln = isset($l['name']) ? $l['name'] : '';
+                                                        $lu = isset($l['url']) ? $l['url'] : '';
+                                                        if (!$ln || !$lu) {
+                                                            continue;
+                                                        }
+                                                        ?>
+                                                    <li class="header__mega-item">
+                                                        <a href="<?php echo esc_url($lu); ?>" class="header__mega-link"><?php echo esc_html($ln); ?></a>
+                                                    </li>
+                                                    <?php } ?>
+                                                </ul>
+                                                <?php endif; ?>
+                                            </div>
+                                            <?php } ?>
+                                        </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
                             <?php endif; ?>
                         </li>
                         <?php endforeach; ?>
@@ -348,7 +400,7 @@ if (!isset($t)) {
                 </a>
                 <?php endforeach; ?>
                 <?php
-                $mobile_cats = array('Мебель', 'Посуда', 'Декор', 'Проекты');
+                $mobile_cats = array('Мебель', 'Посуда', 'Декор', 'Свет', 'Проекты');
                 foreach ($mobile_cats as $cat_label) {
                     $cat_url = fabrica_get_category_url($cat_label);
                     ?>
