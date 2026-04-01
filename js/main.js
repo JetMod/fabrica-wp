@@ -729,20 +729,23 @@ function initSmoothScroll() {
                 return;
             }
             
+            // Игнорируем ссылки на contact-form (модальное окно обрабатывает отдельно)
+            if (href === '#contact-form') {
+                return;
+            }
+            
             const target = document.querySelector(href);
             
             if (target) {
                 e.preventDefault();
                 
-                // Получаем высоту header
                 const header = document.querySelector('.header');
                 const headerHeight = header ? header.offsetHeight : 0;
-                
-                // Вычисляем позицию с учетом header
-                const targetPosition = target.offsetTop - headerHeight;
+                const rect = target.getBoundingClientRect();
+                const targetPosition = rect.top + window.pageYOffset - headerHeight;
                 
                 window.scrollTo({
-                    top: targetPosition,
+                    top: Math.max(0, targetPosition),
                     behavior: 'smooth'
                 });
             }

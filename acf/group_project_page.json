@@ -7,7 +7,7 @@
             "label": "Подсказка",
             "name": "",
             "type": "message",
-            "message": "Настройки Hero-блока страницы проектов. Проекты выводятся из раздела «Проекты» в меню. Категория проекта выбирается при редактировании каждого проекта.",
+            "message": "Настройки Hero-блока страницы проектов. Тексты и статистика — на вкладке «Hero». Фото коллажа справа, фон и декор — на вкладке «Декор hero». Список проектов внизу страницы — из раздела «Проекты»; категория задаётся в каждом проекте.",
             "new_lines": "br"
         },
         {
@@ -74,6 +74,143 @@
             "name": "projects_page_stat_2_label",
             "type": "text",
             "default_value": "лет опыта"
+        },
+        {
+            "key": "field_project_page_scroll_label",
+            "label": "Ссылка вниз hero — текст",
+            "name": "projects_page_scroll_label",
+            "type": "text",
+            "instructions": "Кнопка под статистикой, ведёт к галерее проектов на этой же странице.",
+            "default_value": "Смотреть работы"
+        },
+        {
+            "key": "field_project_page_tab_hero_decor",
+            "label": "Декор hero (коллаж, фон)",
+            "name": "",
+            "type": "tab"
+        },
+        {
+            "key": "field_project_page_decor_msg",
+            "label": "Подсказка",
+            "name": "",
+            "type": "message",
+            "message": "Управление оформлением шапки: фото коллажа справа (см. ниже), анимированный фон, угловые линии, водяной знак. Отключение коллажа убирает правую колонку и выравнивает текст по центру.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_project_page_hero_images_msg",
+            "label": "Фото коллажа в hero",
+            "name": "",
+            "type": "message",
+            "message": "Загрузите до трёх снимков для правой части шапки (накладываются с поворотом). Если все три поля пустые, автоматически подставятся обложки первых трёх проектов из каталога.",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_project_page_hero_image_1",
+            "label": "Фото 1 — задний план",
+            "name": "projects_page_hero_image_1",
+            "type": "image",
+            "instructions": "Нижний/задний кадр в коллаже (слева).",
+            "required": false,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "",
+            "wrapper": {
+                "width": "33.33"
+            }
+        },
+        {
+            "key": "field_project_page_hero_image_2",
+            "label": "Фото 2 — средний план",
+            "name": "projects_page_hero_image_2",
+            "type": "image",
+            "instructions": "Средний слой.",
+            "required": false,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "",
+            "wrapper": {
+                "width": "33.33"
+            }
+        },
+        {
+            "key": "field_project_page_hero_image_3",
+            "label": "Фото 3 — передний план",
+            "name": "projects_page_hero_image_3",
+            "type": "image",
+            "instructions": "Верхний кадр (внизу коллажа).",
+            "required": false,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "",
+            "wrapper": {
+                "width": "33.33"
+            }
+        },
+        {
+            "key": "field_project_page_show_hero_visual",
+            "label": "Показывать коллаж из проектов",
+            "name": "projects_page_show_hero_visual",
+            "type": "true_false",
+            "message": "",
+            "instructions": "Справа в hero — коллаж из трёх фото (задаются выше или берутся из первых проектов).",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Да",
+            "ui_off_text": "Нет"
+        },
+        {
+            "key": "field_project_page_show_visual_caption",
+            "label": "Показывать подпись под коллажем",
+            "name": "projects_page_show_visual_caption",
+            "type": "true_false",
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Да",
+            "ui_off_text": "Нет"
+        },
+        {
+            "key": "field_project_page_visual_caption",
+            "label": "Текст под коллажем",
+            "name": "projects_page_visual_caption",
+            "type": "text",
+            "instructions": "Если поле пустое, подставится метка бейджа из вкладки Hero.",
+            "default_value": "",
+            "placeholder": "Например: Портфолио"
+        },
+        {
+            "key": "field_project_page_watermark",
+            "label": "Водяной знак (вертикальный текст справа)",
+            "name": "projects_page_watermark",
+            "type": "text",
+            "instructions": "Крупный полупрозрачный текст по краю экрана. Оставьте поле пустым, чтобы не показывать.",
+            "default_value": "ПОРТФОЛИО"
+        },
+        {
+            "key": "field_project_page_show_hero_ambient",
+            "label": "Фоновый декор (сетка, блики, дуга)",
+            "name": "projects_page_show_hero_ambient",
+            "type": "true_false",
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Да",
+            "ui_off_text": "Нет"
+        },
+        {
+            "key": "field_project_page_show_hero_corners",
+            "label": "Угловые декоративные линии",
+            "name": "projects_page_show_hero_corners",
+            "type": "true_false",
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Да",
+            "ui_off_text": "Нет"
         }
     ],
     "location": [
