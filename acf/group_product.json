@@ -213,8 +213,8 @@
             "label": "Краткое описание",
             "name": "product_description",
             "aria-label": "",
-            "type": "textarea",
-            "instructions": "Короткий текст под ценой (1–2 предложения).",
+            "type": "wysiwyg",
+            "instructions": "Короткий текст под ценой (1–2 предложения)",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -222,11 +222,11 @@
                 "class": "",
                 "id": ""
             },
-            "rows": 3,
-            "new_lines": "br",
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": ""
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0,
+            "default_value": ""
         },
         {
             "key": "field_product_description_full",
@@ -332,5 +332,5 @@
     "active": true,
     "description": "Поля товара: карточка в каталоге и страница товара",
     "show_in_rest": false,
-    "modified": 1773232300
+    "modified": 1773232500
 }

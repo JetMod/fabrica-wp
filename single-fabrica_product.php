@@ -148,9 +148,9 @@ $body_class = 'page-product';
                             <span class="product-info__price-old"><?php echo esc_html($price_old); ?></span>
                             <?php endif; ?>
                         </div>
-                        <?php if ($description) : ?>
-                        <div class="product-info__description">
-                            <p><?php echo nl2br(esc_html($description)); ?></p>
+                        <?php if (is_string($description) && $description !== '') : ?>
+                        <div class="product-info__description product-info__description--wysiwyg">
+                            <?php echo wp_kses_post($description); ?>
                         </div>
                         <?php endif; ?>
                         <div class="product-info__actions">
@@ -187,8 +187,8 @@ $body_class = 'page-product';
             <div class="container">
                 <div class="product-description__inner">
                     <h2 class="product-description__title">О товаре</h2>
-                    <div class="product-description__text">
-                        <?php echo $description_full; ?>
+                    <div class="product-description__text product-description__text--wysiwyg">
+                        <?php echo wp_kses_post($description_full); ?>
                     </div>
                 </div>
             </div>
