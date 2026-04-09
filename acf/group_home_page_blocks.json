@@ -397,6 +397,14 @@
             "default_value": "Откройте для себя мир премиальных интерьерных решений"
         },
         {
+            "key": "field_catalog_page_subtitle",
+            "label": "Подзаголовок страницы каталога",
+            "name": "catalog_page_subtitle",
+            "type": "text",
+            "instructions": "Текст под заголовком на странице шаблона «Каталог»",
+            "default_value": "Откройте для себя мир премиальных интерьерных решений"
+        },
+        {
             "key": "field_catalog_cards",
             "label": "Карточки каталога",
             "name": "catalog_cards",

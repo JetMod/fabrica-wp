@@ -39,6 +39,12 @@ $body_class = 'page-catalog';
         $t . '/img/22.webp',
         $t . '/img/6.webp',
     );
+    $catalog_page_subtitle = function_exists('get_field')
+        ? get_field('catalog_page_subtitle', 'option')
+        : '';
+    if (empty($catalog_page_subtitle)) {
+        $catalog_page_subtitle = 'Откройте для себя мир премиальных интерьерных решений';
+    }
     ?>
     <!-- Hero -->
     <section class="catalog-hero">
@@ -50,7 +56,7 @@ $body_class = 'page-catalog';
         <div class="container">
             <div class="catalog-hero__inner">
                 <h1 class="catalog-hero__title">Каталог</h1>
-                <p class="catalog-hero__subtitle">Откройте для себя мир премиальных интерьерных решений</p>
+                <p class="catalog-hero__subtitle"><?php echo esc_html($catalog_page_subtitle); ?></p>
             </div>
         </div>
     </section>
