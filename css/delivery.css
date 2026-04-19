@@ -58,7 +58,7 @@
 .delivery-hero__blob--1 {
     width: 320px;
     height: 320px;
-    background: radial-gradient(circle at 30% 30%, rgba(198, 161, 91, 0.25), transparent 60%);
+    background: radial-gradient(circle at 30% 30%, rgba(213, 101, 13, 0.25), transparent 60%);
     top: 10%;
     right: 5%;
     animation-delay: 0s;
@@ -77,7 +77,7 @@
 .delivery-hero__blob--3 {
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle at 50% 50%, rgba(198, 161, 91, 0.15), transparent 65%);
+    background: radial-gradient(circle at 50% 50%, rgba(213, 101, 13, 0.15), transparent 65%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -120,7 +120,7 @@
     transform: translate(-50%, -50%) rotate(15deg);
     animation-duration: 55s;
     animation-direction: reverse;
-    border-color: rgba(198, 161, 91, 0.08);
+    border-color: rgba(213, 101, 13, 0.08);
 }
 
 @keyframes deliveryRingRotate {
@@ -135,7 +135,7 @@
     height: 8px;
     border-radius: 50%;
     background: rgba(245, 243, 239, 0.4);
-    box-shadow: 0 0 20px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 0 20px rgba(213, 101, 13, 0.3);
     animation: deliveryOrbTwinkle 4s ease-in-out infinite;
 }
 
@@ -172,7 +172,7 @@
     bottom: 0;
     width: min(180px, 14vw);
     background:
-        linear-gradient(90deg, rgba(198, 161, 91, 0.06) 0%, transparent 100%),
+        linear-gradient(90deg, rgba(213, 101, 13, 0.06) 0%, transparent 100%),
         repeating-linear-gradient(
             90deg,
             transparent 0,
@@ -190,7 +190,7 @@
     right: 0;
     left: auto;
     background:
-        linear-gradient(270deg, rgba(198, 161, 91, 0.06) 0%, transparent 100%),
+        linear-gradient(270deg, rgba(213, 101, 13, 0.06) 0%, transparent 100%),
         repeating-linear-gradient(
             270deg,
             transparent 0,
@@ -220,9 +220,9 @@
     inset: 0;
     z-index: 2;
     background:
-        radial-gradient(ellipse 60% 50% at 70% 30%, rgba(198, 161, 91, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 70% 30%, rgba(213, 101, 13, 0.08) 0%, transparent 50%),
         radial-gradient(ellipse 50% 60% at 20% 80%, rgba(180, 150, 100, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(198, 161, 91, 0.04) 0%, transparent 45%);
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(213, 101, 13, 0.04) 0%, transparent 45%);
     pointer-events: none;
 }
 
@@ -252,7 +252,7 @@
 .delivery-hero__glow--1 {
     width: 520px;
     height: 520px;
-    background: radial-gradient(circle, rgba(198, 161, 91, 0.4) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(213, 101, 13, 0.4) 0%, transparent 65%);
     top: -140px;
     right: -100px;
 }
@@ -269,7 +269,7 @@
 .delivery-hero__glow--3 {
     width: 380px;
     height: 380px;
-    background: radial-gradient(circle, rgba(198, 161, 91, 0.18) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(213, 101, 13, 0.18) 0%, transparent 65%);
     bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
@@ -381,7 +381,7 @@
 
 .delivery-hero__btn--primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 12px 32px rgba(213, 101, 13, 0.4);
 }
 
 .delivery-hero__btn--outline {
@@ -420,7 +420,7 @@
 
 .delivery-hero__zone:hover {
     background: rgba(245, 243, 239, 0.1);
-    border-color: rgba(198, 161, 91, 0.3);
+    border-color: rgba(213, 101, 13, 0.3);
     transform: translateY(-4px);
 }
 
@@ -432,7 +432,7 @@
     height: 44px;
     margin-bottom: 10px;
     color: var(--color-accent);
-    background: rgba(198, 161, 91, 0.12);
+    background: rgba(213, 101, 13, 0.12);
     border-radius: 10px;
 }
 
@@ -510,7 +510,7 @@
     letter-spacing: 2px;
     margin-bottom: 16px;
     padding: 8px 20px;
-    background: rgba(198, 161, 91, 0.1);
+    background: rgba(213, 101, 13, 0.1);
     border-radius: 50px;
 }
 
@@ -537,14 +537,14 @@
     padding: 36px 28px;
     background: linear-gradient(135deg, #FFFFFF 0%, #FAF9F7 100%);
     border-radius: 20px;
-    border: 1px solid rgba(198, 161, 91, 0.1);
+    border: 1px solid rgba(213, 101, 13, 0.1);
     transition: all 0.35s ease;
 }
 
 .delivery-method:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 48px rgba(198, 161, 91, 0.12);
-    border-color: rgba(198, 161, 91, 0.25);
+    box-shadow: 0 16px 48px rgba(213, 101, 13, 0.12);
+    border-color: rgba(213, 101, 13, 0.25);
 }
 
 .delivery-method__icon {
@@ -553,7 +553,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.1) 0%, rgba(198, 161, 91, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.1) 0%, rgba(213, 101, 13, 0.05) 100%);
     border-radius: 18px;
     color: var(--color-accent);
     margin-bottom: 20px;
@@ -594,7 +594,7 @@
     letter-spacing: 2px;
     margin-bottom: 12px;
     padding: 8px 20px;
-    background: rgba(198, 161, 91, 0.1);
+    background: rgba(213, 101, 13, 0.1);
     border-radius: 50px;
 }
 
@@ -621,13 +621,13 @@
     padding: 32px 28px;
     background: var(--color-white);
     border-radius: 16px;
-    border: 1px solid rgba(198, 161, 91, 0.12);
+    border: 1px solid rgba(213, 101, 13, 0.12);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .delivery-zone:hover {
-    border-color: rgba(198, 161, 91, 0.3);
-    box-shadow: 0 8px 28px rgba(198, 161, 91, 0.08);
+    border-color: rgba(213, 101, 13, 0.3);
+    box-shadow: 0 8px 28px rgba(213, 101, 13, 0.08);
 }
 
 .delivery-zone__name {
@@ -665,7 +665,7 @@
     letter-spacing: 2px;
     margin-bottom: 16px;
     padding: 8px 20px;
-    background: rgba(198, 161, 91, 0.1);
+    background: rgba(213, 101, 13, 0.1);
     border-radius: 50px;
 }
 
@@ -721,12 +721,12 @@
     border-radius: 50px;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 24px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 8px 24px rgba(213, 101, 13, 0.3);
 }
 
 .delivery-assembly__button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 12px 32px rgba(213, 101, 13, 0.4);
 }
 
 .delivery-assembly__visual {
@@ -737,8 +737,8 @@
     background: linear-gradient(135deg, #FAF9F7 0%, #FFFFFF 100%);
     border-radius: 24px;
     padding: 40px;
-    border: 1px solid rgba(198, 161, 91, 0.15);
-    box-shadow: 0 16px 48px rgba(198, 161, 91, 0.08);
+    border: 1px solid rgba(213, 101, 13, 0.15);
+    box-shadow: 0 16px 48px rgba(213, 101, 13, 0.08);
 }
 
 .delivery-assembly__card-icon {
@@ -747,7 +747,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(198, 161, 91, 0.12);
+    background: rgba(213, 101, 13, 0.12);
     border-radius: 18px;
     color: var(--color-accent);
     margin-bottom: 20px;
@@ -786,7 +786,7 @@
     letter-spacing: 2px;
     margin-bottom: 12px;
     padding: 8px 20px;
-    background: rgba(198, 161, 91, 0.1);
+    background: rgba(213, 101, 13, 0.1);
     border-radius: 50px;
 }
 
@@ -807,14 +807,14 @@
     padding: 32px 28px;
     background: var(--color-white);
     border-radius: 16px;
-    border: 1px solid rgba(198, 161, 91, 0.1);
+    border: 1px solid rgba(213, 101, 13, 0.1);
     text-align: center;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .delivery-payment__item:hover {
-    border-color: rgba(198, 161, 91, 0.25);
-    box-shadow: 0 8px 24px rgba(198, 161, 91, 0.06);
+    border-color: rgba(213, 101, 13, 0.25);
+    box-shadow: 0 8px 24px rgba(213, 101, 13, 0.06);
 }
 
 .delivery-payment__icon {
@@ -841,7 +841,7 @@
 }
 
 .delivery-payment__legal a {
-    color: var(--color-accent, #c6a15b);
+    color: var(--color-accent, #d5650d);
     text-decoration: none;
 }
 

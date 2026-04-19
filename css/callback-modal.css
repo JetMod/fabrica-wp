@@ -136,7 +136,7 @@
 
 .callback-modal__input:focus {
     border-color: var(--color-accent);
-    box-shadow: 0 4px 20px rgba(198, 161, 91, 0.2);
+    box-shadow: 0 4px 20px rgba(213, 101, 13, 0.2);
     transform: translateY(-1px);
 }
 
@@ -169,7 +169,7 @@
     gap: 10px;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    box-shadow: 0 8px 30px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 8px 30px rgba(213, 101, 13, 0.4);
     position: relative;
     overflow: hidden;
     margin-top: 8px;
@@ -196,7 +196,7 @@
 
 .callback-modal__submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(198, 161, 91, 0.5);
+    box-shadow: 0 12px 40px rgba(213, 101, 13, 0.5);
 }
 
 .callback-modal__submit:hover::before {

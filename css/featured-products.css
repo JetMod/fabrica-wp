@@ -17,7 +17,7 @@
     left: -150px;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(198, 161, 91, 0.05), transparent);
+    background: radial-gradient(circle, rgba(213, 101, 13, 0.05), transparent);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -60,7 +60,7 @@
 .featured-products__tab.active {
     background-color: var(--color-accent);
     color: var(--color-white);
-    box-shadow: 0 4px 16px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 4px 16px rgba(213, 101, 13, 0.4);
     transform: scale(1.02);
 }
 
@@ -84,7 +84,7 @@
     background-color: var(--color-accent);
     color: var(--color-white);
     transform: translateX(6px);
-    box-shadow: 0 4px 16px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 4px 16px rgba(213, 101, 13, 0.3);
 }
 
 .featured-products__view-all svg {
@@ -186,7 +186,7 @@ section.featured-products .featured-products__grid .product-card {
     background-color: var(--color-accent);
     color: var(--color-white);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 6px 20px rgba(213, 101, 13, 0.4);
 }
 
 .featured-products__nav:disabled,
@@ -254,7 +254,7 @@ section.featured-products .featured-products__grid .product-card {
 .product-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
-    border-color: rgba(198, 161, 91, 0.2);
+    border-color: rgba(213, 101, 13, 0.2);
 }
 
 /* Изображение товара */
@@ -320,7 +320,7 @@ section.featured-products .featured-products__grid .product-card {
     background-color: var(--color-accent);
     color: var(--color-white);
     transform: scale(1.15) rotate(10deg);
-    box-shadow: 0 4px 15px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 4px 15px rgba(213, 101, 13, 0.4);
 }
 
 .product-card__favorite.active {
@@ -338,7 +338,7 @@ section.featured-products .featured-products__grid .product-card {
     bottom: 12px;
     left: 12px;
     padding: 6px 16px;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.95), rgba(198, 161, 91, 0.85));
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.95), rgba(213, 101, 13, 0.85));
     backdrop-filter: blur(10px);
     color: var(--color-white);
     font-size: 12px;
@@ -347,7 +347,7 @@ section.featured-products .featured-products__grid .product-card {
     letter-spacing: 0.5px;
     border-radius: 8px;
     z-index: 2;
-    box-shadow: 0 4px 12px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 4px 12px rgba(213, 101, 13, 0.3);
 }
 
 .product-card__badge--new {
@@ -404,7 +404,7 @@ section.featured-products .featured-products__grid .product-card {
 
 .product-card__status--order::before {
     background-color: var(--color-accent);
-    box-shadow: 0 0 8px rgba(198, 161, 91, 0.5);
+    box-shadow: 0 0 8px rgba(213, 101, 13, 0.5);
 }
 
 /* Футер карточки */
@@ -442,7 +442,7 @@ section.featured-products .featured-products__grid .product-card {
 .product-card__request {
     width: 44px;
     height: 44px;
-    background: linear-gradient(135deg, var(--color-accent), rgba(198, 161, 91, 0.9));
+    background: linear-gradient(135deg, var(--color-accent), rgba(213, 101, 13, 0.9));
     border: none;
     border-radius: 12px;
     display: flex;
@@ -451,13 +451,13 @@ section.featured-products .featured-products__grid .product-card {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     color: var(--color-white);
-    box-shadow: 0 4px 12px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 4px 12px rgba(213, 101, 13, 0.3);
 }
 
 .product-card__request:hover {
     transform: scale(1.15) rotate(-8deg);
-    box-shadow: 0 8px 25px rgba(198, 161, 91, 0.6);
-    background: linear-gradient(135deg, rgba(198, 161, 91, 1), rgba(198, 161, 91, 0.95));
+    box-shadow: 0 8px 25px rgba(213, 101, 13, 0.6);
+    background: linear-gradient(135deg, rgba(213, 101, 13, 1), rgba(213, 101, 13, 0.95));
 }
 
 .product-card__request:active {

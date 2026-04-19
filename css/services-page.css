@@ -425,14 +425,14 @@
 }
 
 .services-filter--active {
-    background: linear-gradient(135deg, var(--color-accent), #B8904F);
+    background: linear-gradient(135deg, var(--color-accent), #b56b23);
     border-color: var(--color-accent);
     color: var(--color-white);
     box-shadow: 0 4px 12px rgba(198, 161, 91, 0.3);
 }
 
 .services-filter--active:hover {
-    background: linear-gradient(135deg, #B8904F, var(--color-accent));
+    background: linear-gradient(135deg, #b56b23, var(--color-accent));
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(198, 161, 91, 0.4);
 }
@@ -696,7 +696,7 @@
 }
 
 .services-cta__button--primary {
-    background: linear-gradient(135deg, var(--color-accent), #B8904F);
+    background: linear-gradient(135deg, var(--color-accent), #b56b23);
     color: var(--color-white);
     box-shadow: 0 4px 16px rgba(198, 161, 91, 0.4);
 }

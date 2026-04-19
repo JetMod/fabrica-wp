@@ -263,7 +263,7 @@
     color: var(--color-white);
     border-color: var(--color-accent);
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 10px 30px rgba(213, 101, 13, 0.3);
 }
 
 .catalog__view-all:hover::before {

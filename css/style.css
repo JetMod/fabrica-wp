@@ -6,7 +6,8 @@
 :root {
     --color-primary: #1E1E1E;
     --color-background: #F5F3EF;
-    --color-accent: #C6A15B;
+    --color-accent: #d5650d;
+    --color-accent-hover: #b56b23;
     --color-white: #FFFFFF;
     --color-gray: #8B8B8B;
     --color-dark: #0F0F0F;
@@ -147,7 +148,7 @@ ul {
 }
 
 .button--primary:hover {
-    background-color: #B39150;
+    background-color: #b56b23;
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(198, 161, 91, 0.4);
 }

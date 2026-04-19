@@ -286,7 +286,7 @@
 }
 
 .favorites-empty .button:hover {
-    background: #B8985A;
+    background: #b56b23;
     transform: translateY(-2px);
 }
 
@@ -331,6 +331,6 @@
 }
 
 .search-empty .button:hover {
-    background: #B8985A;
+    background: #b56b23;
     transform: translateY(-2px);
 }

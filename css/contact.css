@@ -20,8 +20,8 @@
     position: absolute;
     inset: 0;
     background-image: 
-        radial-gradient(circle at 20% 50%, rgba(198, 161, 91, 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(198, 161, 91, 0.04) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(213, 101, 13, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(213, 101, 13, 0.04) 0%, transparent 50%);
 }
 
 .contact__background::before {
@@ -31,7 +31,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(198, 161, 91, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(213, 101, 13, 0.3), transparent);
 }
 
 .contact__background::after {
@@ -41,7 +41,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(198, 161, 91, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(213, 101, 13, 0.3), transparent);
 }
 
 /* Контейнер */
@@ -130,7 +130,7 @@
 .contact__input:focus {
     background: var(--color-white);
     border-color: var(--color-accent);
-    box-shadow: 0 8px 30px rgba(198, 161, 91, 0.2);
+    box-shadow: 0 8px 30px rgba(213, 101, 13, 0.2);
     transform: translateY(-2px);
 }
 
@@ -169,7 +169,7 @@
     white-space: nowrap;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    box-shadow: 0 8px 30px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 8px 30px rgba(213, 101, 13, 0.4);
     position: relative;
     overflow: hidden;
 }
@@ -196,7 +196,7 @@
 
 .contact__button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(198, 161, 91, 0.5);
+    box-shadow: 0 12px 40px rgba(213, 101, 13, 0.5);
 }
 
 .contact__button:hover::before {

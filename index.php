@@ -23,7 +23,6 @@
     <!-- Preload критических ресурсов -->
     <link rel="preload" as="image" href="<?php echo esc_url($t . '/img/logo.jpg'); ?>">
     <link rel="preload" as="video" href="<?php echo esc_url($t . '/video/hero.mp4'); ?>">
-    
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('page-index'); ?>>

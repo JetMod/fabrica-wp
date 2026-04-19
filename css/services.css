@@ -136,7 +136,7 @@
 
 .services__card:hover {
     transform: translateY(-12px);
-    box-shadow: 0 16px 40px rgba(198, 161, 91, 0.15);
+    box-shadow: 0 16px 40px rgba(213, 101, 13, 0.15);
 }
 
 /* Изображение карточки */
@@ -249,7 +249,7 @@
     cursor: pointer;
     z-index: 10;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(198, 161, 91, 0.2);
+    box-shadow: 0 4px 16px rgba(213, 101, 13, 0.2);
 }
 
 .services__nav svg {
@@ -260,7 +260,7 @@
 .services__nav:hover {
     background-color: var(--color-accent);
     transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 6px 24px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 6px 24px rgba(213, 101, 13, 0.3);
 }
 
 .services__nav:hover svg {

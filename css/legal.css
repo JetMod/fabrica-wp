@@ -55,7 +55,7 @@
 .legal-hero__blob--1 {
     width: 280px;
     height: 280px;
-    background: radial-gradient(circle at 30% 30%, rgba(198, 161, 91, 0.3), transparent 60%);
+    background: radial-gradient(circle at 30% 30%, rgba(213, 101, 13, 0.3), transparent 60%);
     top: 15%;
     right: 10%;
     animation-delay: 0s;
@@ -99,7 +99,7 @@
     transform: translate(-50%, -50%) rotate(20deg);
     animation-duration: 65s;
     animation-direction: reverse;
-    border-color: rgba(198, 161, 91, 0.06);
+    border-color: rgba(213, 101, 13, 0.06);
 }
 
 @keyframes legalRingRotate {
@@ -111,7 +111,7 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(198, 161, 91, 0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(213, 101, 13, 0.06) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -202,7 +202,7 @@
     content: '';
     width: 24px;
     height: 1px;
-    background: linear-gradient(90deg, rgba(198, 161, 91, 0.4) 0%, transparent 100%);
+    background: linear-gradient(90deg, rgba(213, 101, 13, 0.4) 0%, transparent 100%);
 }
 
 .legal-nav__list {
@@ -229,31 +229,31 @@
 }
 
 .legal-nav__link:hover {
-    color: var(--color-accent, #c6a15b);
+    color: var(--color-accent, #d5650d);
     background: #fff;
-    border-color: rgba(198, 161, 91, 0.35);
-    box-shadow: 0 4px 14px rgba(198, 161, 91, 0.12);
+    border-color: rgba(213, 101, 13, 0.35);
+    box-shadow: 0 4px 14px rgba(213, 101, 13, 0.12);
     transform: translateY(-1px);
 }
 
 .legal-nav__link:focus-visible {
-    outline: 2px solid var(--color-accent, #c6a15b);
+    outline: 2px solid var(--color-accent, #d5650d);
     outline-offset: 2px;
 }
 
 /* Текущий раздел */
 .legal-nav__link--current {
     color: #fff;
-    background: var(--color-accent, #c6a15b);
-    border-color: var(--color-accent, #c6a15b);
-    box-shadow: 0 2px 8px rgba(198, 161, 91, 0.3);
+    background: var(--color-accent, #d5650d);
+    border-color: var(--color-accent, #d5650d);
+    box-shadow: 0 2px 8px rgba(213, 101, 13, 0.3);
 }
 
 .legal-nav__link--current:hover {
     color: #fff;
-    background: #b8924f;
-    border-color: #b8924f;
-    box-shadow: 0 4px 14px rgba(198, 161, 91, 0.35);
+    background: #b56b23;
+    border-color: #b56b23;
+    box-shadow: 0 4px 14px rgba(213, 101, 13, 0.35);
 }
 
 /* Индекс: карточки разделов */
@@ -284,7 +284,7 @@
 
 .legal-index__card:hover {
     box-shadow: 0 8px 28px rgba(45, 45, 45, 0.08);
-    border-color: rgba(198, 161, 91, 0.2);
+    border-color: rgba(213, 101, 13, 0.2);
     transform: translateY(-2px);
 }
 
@@ -294,9 +294,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.1) 0%, rgba(198, 161, 91, 0.04) 100%);
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.1) 0%, rgba(213, 101, 13, 0.04) 100%);
     border-radius: 12px;
-    color: var(--color-accent, #c6a15b);
+    color: var(--color-accent, #d5650d);
     margin-bottom: 20px;
 }
 
@@ -322,7 +322,7 @@
 .legal-index__more {
     font-size: 13px;
     font-weight: 500;
-    color: var(--color-accent, #c6a15b);
+    color: var(--color-accent, #d5650d);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -359,9 +359,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.12) 0%, rgba(198, 161, 91, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.12) 0%, rgba(213, 101, 13, 0.05) 100%);
     border-radius: 12px;
-    color: var(--color-accent, #c6a15b);
+    color: var(--color-accent, #d5650d);
     margin-bottom: 20px;
 }
 
@@ -416,7 +416,7 @@
 }
 
 .legal-requisites__link {
-    color: var(--color-accent, #c6a15b);
+    color: var(--color-accent, #d5650d);
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -456,7 +456,7 @@
     color: #2d2d2d;
     margin: 0 0 24px;
     padding-bottom: 16px;
-    border-bottom: 2px solid rgba(198, 161, 91, 0.25);
+    border-bottom: 2px solid rgba(213, 101, 13, 0.25);
 }
 
 .legal-doc__intro {
@@ -505,7 +505,7 @@
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: var(--color-accent, #c6a15b);
+    background: var(--color-accent, #d5650d);
     opacity: 0.6;
 }
 
@@ -563,13 +563,13 @@
 }
 
 .legal-content__inner a {
-    color: var(--color-accent, #c6a15b);
+    color: var(--color-accent, #d5650d);
     text-decoration: none;
-    border-bottom: 1px solid rgba(198, 161, 91, 0.25);
+    border-bottom: 1px solid rgba(213, 101, 13, 0.25);
 }
 
 .legal-content__inner a:hover {
-    border-bottom-color: var(--color-accent, #c6a15b);
+    border-bottom-color: var(--color-accent, #d5650d);
 }
 
 /* Адаптив */

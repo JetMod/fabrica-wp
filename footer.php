@@ -186,7 +186,10 @@ $home_url = home_url('/');
                     $legal_base = fabrica_get_legal_base_url();
                     $privacy = fabrica_footer_option('footer_privacy_url') ?: fabrica_get_legal_page_url('privacy');
                     $terms = fabrica_footer_option('footer_terms_url') ?: fabrica_get_legal_page_url('terms');
-                    $offer = fabrica_footer_option('footer_offer_url') ?: fabrica_get_legal_page_url('offer');
+                    $show_offer_footer = fabrica_legal_option('legal_show_offer', 0);
+                    $offer = $show_offer_footer
+                        ? (fabrica_footer_option('footer_offer_url') ?: fabrica_get_legal_page_url('offer'))
+                        : '';
                     if ($legal_base || $privacy || $terms || $offer) :
                     ?>
                     <div class="footer__legal">
@@ -351,6 +354,30 @@ $home_url = home_url('/');
         </div>
     </div>
 </div>
+
+    <?php
+    $cookie_privacy_url = function_exists('fabrica_get_legal_page_url') ? fabrica_get_legal_page_url('privacy') : '';
+    ?>
+    <div class="cookie-consent cookie-consent--hidden" id="cookieConsent" role="dialog" aria-labelledby="cookieConsentTitle" aria-modal="false" aria-hidden="true">
+        <div class="cookie-consent__inner">
+            <p class="cookie-consent__text" id="cookieConsentTitle">
+                Сайт использует cookies, Яндекс.Метрику для анализа посещаемости. Подробнее в
+                <?php if ($cookie_privacy_url) : ?>
+                    <a href="<?php echo esc_url($cookie_privacy_url); ?>" class="cookie-consent__link">политике конфиденциальности</a>.
+                <?php else : ?>
+                    <span class="cookie-consent__link cookie-consent__link--static">политике конфиденциальности</span>.
+                <?php endif; ?>
+            </p>
+            <label class="cookie-consent__label" for="cookieConsentPd">
+                <input type="checkbox" class="cookie-consent__checkbox" id="cookieConsentPd" autocomplete="off">
+                <span class="cookie-consent__label-text">Я даю согласие на обработку персональных данных</span>
+            </label>
+            <div class="cookie-consent__actions cookie-consent__actions--single">
+                <button type="button" class="cookie-consent__btn cookie-consent__btn--primary" id="cookieConsentAccept" disabled>Принять</button>
+                <button type="button" class="cookie-consent__btn cookie-consent__btn--secondary" id="cookieConsentDecline" hidden>Отклонить</button>
+            </div>
+        </div>
+    </div>
 
     <?php wp_footer(); ?>
 </body>

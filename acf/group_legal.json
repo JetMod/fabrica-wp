@@ -56,7 +56,7 @@
             "name": "legal_show_offer",
             "type": "true_false",
             "message": "",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "Вкл",
             "ui_off_text": "Выкл"
@@ -111,7 +111,7 @@
             "label": "Показывать «ОКПО»",
             "name": "legal_req_show_okpo",
             "type": "true_false",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "Вкл",
             "ui_off_text": "Выкл"
@@ -121,7 +121,7 @@
             "label": "Показывать «Расчётный счёт»",
             "name": "legal_req_show_account",
             "type": "true_false",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "Вкл",
             "ui_off_text": "Выкл"
@@ -131,7 +131,7 @@
             "label": "Показывать «Банк»",
             "name": "legal_req_show_bank",
             "type": "true_false",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "Вкл",
             "ui_off_text": "Выкл"
@@ -141,7 +141,7 @@
             "label": "Показывать «БИК»",
             "name": "legal_req_show_bik",
             "type": "true_false",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "Вкл",
             "ui_off_text": "Выкл"
@@ -151,7 +151,7 @@
             "label": "Показывать «Корр. счёт»",
             "name": "legal_req_show_corr_account",
             "type": "true_false",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "Вкл",
             "ui_off_text": "Выкл"
@@ -181,7 +181,7 @@
             "label": "Показывать «Свидетельство»",
             "name": "legal_req_show_certificate",
             "type": "true_false",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "Вкл",
             "ui_off_text": "Выкл"
@@ -233,7 +233,7 @@
                     "label": "Банк",
                     "name": "bank",
                     "type": "text",
-                    "default_value": "КРАСНОДАРСКОЕ ОТДЕЛЕНИЕ N8619 ПАО СБЕРБАНК"
+                    "default_value": "Краснодарское отделение №8619 ПАО «Сбербанк»"
                 },
                 {
                     "key": "field_legal_company_bik",
@@ -255,7 +255,7 @@
                     "name": "address",
                     "type": "textarea",
                     "rows": 2,
-                    "default_value": "РОССИЯ, 297573, Крым Респ, Симферопольский р-н, Фонтаны с, СЭреджеповой ул, дом № 1"
+                    "default_value": "297573, Республика Крым, Симферопольский район, с. Фонтаны, ул. Серджеповой, д. 1"
                 },
                 {
                     "key": "field_legal_company_phone",
@@ -269,7 +269,7 @@
                     "label": "Свидетельство (опционально)",
                     "name": "certificate",
                     "type": "text",
-                    "default_value": "91 №000035409 от 17.01.2015"
+                    "default_value": "Свидетельство о государственной регистрации физического лица в качестве индивидуального предпринимателя, серия 91 № 000035409 от 17.01.2015"
                 }
             ]
         },
@@ -392,20 +392,29 @@
             "key": "field_legal_tab_offer",
             "label": "Публичная оферта",
             "name": "",
-            "type": "tab"
+            "type": "tab",
+            "conditional_logic": [
+                [{"field": "field_legal_show_offer", "operator": "==", "value": "1"}]
+            ]
         },
         {
             "key": "field_legal_offer_intro",
             "label": "Вступительный абзац",
             "name": "legal_offer_intro",
             "type": "textarea",
-            "rows": 4
+            "rows": 4,
+            "conditional_logic": [
+                [{"field": "field_legal_show_offer", "operator": "==", "value": "1"}]
+            ]
         },
         {
             "key": "field_legal_offer_sections",
             "label": "Разделы документа",
             "name": "legal_offer_sections",
             "type": "repeater",
+            "conditional_logic": [
+                [{"field": "field_legal_show_offer", "operator": "==", "value": "1"}]
+            ],
             "layout": "block",
             "button_label": "Добавить раздел",
             "sub_fields": [

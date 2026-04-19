@@ -111,9 +111,9 @@
     align-items: center;
     gap: 8px;
     padding: 8px 20px;
-    background-color: rgba(198, 161, 91, 0.2);
+    background-color: rgba(213, 101, 13, 0.2);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(198, 161, 91, 0.3);
+    border: 1px solid rgba(213, 101, 13, 0.3);
     border-radius: 30px;
     font-size: 14px;
     font-weight: 600;
@@ -191,14 +191,14 @@
 }
 
 .service-hero__cta--primary {
-    background: linear-gradient(135deg, var(--color-accent), #B8904F);
+    background: linear-gradient(135deg, var(--color-accent), #b56b23);
     color: var(--color-white);
-    box-shadow: 0 4px 16px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 4px 16px rgba(213, 101, 13, 0.4);
 }
 
 .service-hero__cta--primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(198, 161, 91, 0.5);
+    box-shadow: 0 8px 24px rgba(213, 101, 13, 0.5);
 }
 
 .service-hero__cta--secondary {
@@ -281,7 +281,7 @@
 
 .service-feature:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(198, 161, 91, 0.15);
+    box-shadow: 0 8px 32px rgba(213, 101, 13, 0.15);
 }
 
 .service-feature__icon {
@@ -290,7 +290,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(198, 161, 91, 0.1);
+    background-color: rgba(213, 101, 13, 0.1);
     border-radius: 12px;
     margin-bottom: var(--spacing-md);
     color: var(--color-accent);
@@ -406,7 +406,7 @@
 
 .service-portfolio__item:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(198, 161, 91, 0.15);
+    box-shadow: 0 8px 32px rgba(213, 101, 13, 0.15);
 }
 
 .service-portfolio__img {
@@ -451,9 +451,9 @@
 }
 
 .service-portfolio__link:hover {
-    background-color: #B8904F;
+    background-color: #b56b23;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 8px 20px rgba(213, 101, 13, 0.3);
 }
 
 /* Цены */
@@ -490,7 +490,7 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background-color: rgba(198, 161, 91, 0.1);
+    background-color: rgba(213, 101, 13, 0.1);
     border-radius: 20px;
     font-size: 14px;
     font-weight: 600;
@@ -560,13 +560,13 @@
     align-items: center;
     gap: 12px;
     padding: 12px;
-    background-color: rgba(198, 161, 91, 0.05);
+    background-color: rgba(213, 101, 13, 0.05);
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .service-pricing__factor:hover {
-    background-color: rgba(198, 161, 91, 0.1);
+    background-color: rgba(213, 101, 13, 0.1);
     transform: translateX(4px);
 }
 
@@ -600,14 +600,14 @@
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     padding: var(--spacing-xl);
-    border: 1px solid rgba(198, 161, 91, 0.1);
+    border: 1px solid rgba(213, 101, 13, 0.1);
 }
 
 .service-pricing__cta-header {
     text-align: center;
     margin-bottom: var(--spacing-xl);
     padding-bottom: var(--spacing-lg);
-    border-bottom: 2px solid rgba(198, 161, 91, 0.1);
+    border-bottom: 2px solid rgba(213, 101, 13, 0.1);
 }
 
 .service-pricing__cta-header h3 {
@@ -631,20 +631,20 @@
     gap: 12px;
     width: 100%;
     padding: 20px;
-    background: linear-gradient(135deg, var(--color-accent), #B8904F);
+    background: linear-gradient(135deg, var(--color-accent), #b56b23);
     color: var(--color-white);
     text-decoration: none;
     border-radius: 12px;
     font-weight: 600;
     font-size: 18px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 4px 16px rgba(213, 101, 13, 0.3);
     margin-bottom: var(--spacing-xl);
 }
 
 .service-pricing__cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 8px 24px rgba(213, 101, 13, 0.4);
 }
 
 .service-pricing__benefits {
@@ -659,13 +659,13 @@
     align-items: flex-start;
     gap: var(--spacing-md);
     padding: var(--spacing-md);
-    background-color: rgba(198, 161, 91, 0.05);
+    background-color: rgba(213, 101, 13, 0.05);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
 
 .service-pricing__benefit:hover {
-    background-color: rgba(198, 161, 91, 0.1);
+    background-color: rgba(213, 101, 13, 0.1);
 }
 
 .service-pricing__benefit svg {
@@ -697,7 +697,7 @@
     align-items: center;
     gap: 10px;
     padding: var(--spacing-md);
-    background-color: rgba(198, 161, 91, 0.08);
+    background-color: rgba(213, 101, 13, 0.08);
     border-radius: 10px;
     font-size: 14px;
     color: var(--color-primary);
@@ -791,9 +791,9 @@
 }
 
 .service-contact__submit:hover {
-    background-color: #B8904F;
+    background-color: #b56b23;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 8px 20px rgba(213, 101, 13, 0.3);
 }
 
 .service-contact__privacy {
@@ -844,12 +844,12 @@
 }
 
 .service-faq__item:hover {
-    box-shadow: 0 4px 16px rgba(198, 161, 91, 0.12);
+    box-shadow: 0 4px 16px rgba(213, 101, 13, 0.12);
     transform: translateY(-2px);
 }
 
 .service-faq__item--active {
-    box-shadow: 0 8px 24px rgba(198, 161, 91, 0.2);
+    box-shadow: 0 8px 24px rgba(213, 101, 13, 0.2);
     border-color: var(--color-accent);
 }
 
@@ -868,12 +868,12 @@
 }
 
 .service-faq__button:hover {
-    background-color: rgba(198, 161, 91, 0.03);
+    background-color: rgba(213, 101, 13, 0.03);
 }
 
 .service-faq__button:focus {
     outline: none;
-    background-color: rgba(198, 161, 91, 0.05);
+    background-color: rgba(213, 101, 13, 0.05);
 }
 
 .service-faq__number {
@@ -883,7 +883,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.1), rgba(198, 161, 91, 0.05));
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.1), rgba(213, 101, 13, 0.05));
     border-radius: 10px;
     font-size: 16px;
     font-weight: 700;
@@ -892,7 +892,7 @@
 }
 
 .service-faq__item--active .service-faq__number {
-    background: linear-gradient(135deg, var(--color-accent), #B8904F);
+    background: linear-gradient(135deg, var(--color-accent), #b56b23);
     color: var(--color-white);
     transform: scale(1.05);
 }

@@ -18,6 +18,7 @@
 @import url('blog.css');
 @import url('contact.css');
 @import url('footer.css');
+@import url('cookie-banner.css');
 
 /* UI элементы */
 @import url('floating-buttons.css');

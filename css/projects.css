@@ -255,7 +255,7 @@
 .projects-hero__ambient-dots {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at center, rgba(198, 161, 91, 0.12) 1px, transparent 1px);
+    background-image: radial-gradient(circle at center, rgba(213, 101, 13, 0.12) 1px, transparent 1px);
     background-size: 28px 28px;
     opacity: 0.65;
     animation: projectsHeroDotsBreath 18s ease-in-out infinite;
@@ -273,8 +273,8 @@
         -32deg,
         transparent,
         transparent 38px,
-        rgba(198, 161, 91, 0.04) 38px,
-        rgba(198, 161, 91, 0.04) 39px
+        rgba(213, 101, 13, 0.04) 38px,
+        rgba(213, 101, 13, 0.04) 39px
     );
     opacity: 0.9;
 }
@@ -289,7 +289,7 @@
         102deg,
         transparent 0%,
         rgba(255, 255, 255, 0.35) 45%,
-        rgba(198, 161, 91, 0.08) 50%,
+        rgba(213, 101, 13, 0.08) 50%,
         rgba(255, 255, 255, 0.2) 55%,
         transparent 100%
     );
@@ -310,8 +310,8 @@
     right: -8%;
     transform: translateY(-50%);
     border-radius: 50%;
-    border: 1px solid rgba(198, 161, 91, 0.12);
-    box-shadow: inset 0 0 0 1px rgba(198, 161, 91, 0.06);
+    border: 1px solid rgba(213, 101, 13, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(213, 101, 13, 0.06);
     animation: projectsHeroArcFloat 24s ease-in-out infinite;
 }
 
@@ -329,7 +329,7 @@
     font-size: clamp(56px, 10vw, 120px);
     font-weight: 700;
     letter-spacing: 0.12em;
-    color: rgba(198, 161, 91, 0.06);
+    color: rgba(213, 101, 13, 0.06);
     white-space: nowrap;
     pointer-events: none;
     z-index: 0;
@@ -342,7 +342,7 @@
     height: 40px;
     pointer-events: none;
     z-index: 1;
-    border-color: rgba(198, 161, 91, 0.35);
+    border-color: rgba(213, 101, 13, 0.35);
     border-style: solid;
     border-width: 0;
     animation: projectsHeroCornerGlow 6s ease-in-out infinite;
@@ -384,8 +384,8 @@
 }
 
 @keyframes projectsHeroCornerGlow {
-    0%, 100% { border-color: rgba(198, 161, 91, 0.28); }
-    50% { border-color: rgba(198, 161, 91, 0.5); }
+    0%, 100% { border-color: rgba(213, 101, 13, 0.28); }
+    50% { border-color: rgba(213, 101, 13, 0.5); }
 }
 
 .projects-hero__background {
@@ -406,7 +406,7 @@
 .projects-hero__gradient--1 {
     width: 600px;
     height: 600px;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.3) 0%, rgba(198, 161, 91, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.3) 0%, rgba(213, 101, 13, 0.1) 100%);
     top: -200px;
     right: -100px;
 }
@@ -414,7 +414,7 @@
 .projects-hero__gradient--2 {
     width: 500px;
     height: 500px;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.2) 0%, rgba(198, 161, 91, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.2) 0%, rgba(213, 101, 13, 0.05) 100%);
     bottom: -150px;
     left: -50px;
     animation-delay: 5s;
@@ -429,7 +429,7 @@
 .projects-hero__pattern {
     position: absolute;
     inset: 0;
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(198, 161, 91, 0.03) 2px, rgba(198, 161, 91, 0.03) 4px);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(213, 101, 13, 0.03) 2px, rgba(213, 101, 13, 0.03) 4px);
     opacity: 0.4;
 }
 
@@ -487,7 +487,7 @@
     position: absolute;
     inset: 6%;
     border-radius: 50%;
-    border: 1px dashed rgba(198, 161, 91, 0.25);
+    border: 1px dashed rgba(213, 101, 13, 0.25);
     animation: projectsHeroRingSpin 32s linear infinite;
 }
 
@@ -509,7 +509,7 @@
     overflow: hidden;
     box-shadow:
         0 24px 48px rgba(30, 30, 30, 0.12),
-        0 0 0 1px rgba(198, 161, 91, 0.15);
+        0 0 0 1px rgba(213, 101, 13, 0.15);
     background: #fff;
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
@@ -518,21 +518,21 @@
     transform: rotate(-10deg) translateY(-4px);
     box-shadow:
         0 28px 56px rgba(30, 30, 30, 0.14),
-        0 0 0 1px rgba(198, 161, 91, 0.22);
+        0 0 0 1px rgba(213, 101, 13, 0.22);
 }
 
 .projects-hero__visual:hover .projects-hero__frame--mid {
     transform: rotate(8deg) translateY(-2px);
     box-shadow:
         0 28px 56px rgba(30, 30, 30, 0.14),
-        0 0 0 1px rgba(198, 161, 91, 0.22);
+        0 0 0 1px rgba(213, 101, 13, 0.22);
 }
 
 .projects-hero__visual:hover .projects-hero__frame--front {
     transform: rotate(-2deg) translateY(-6px);
     box-shadow:
         0 32px 64px rgba(30, 30, 30, 0.16),
-        0 0 0 1px rgba(198, 161, 91, 0.25);
+        0 0 0 1px rgba(213, 101, 13, 0.25);
 }
 
 .projects-hero__frame-img {
@@ -580,7 +580,7 @@
 }
 
 .projects-hero__placeholder-icon {
-    color: rgba(198, 161, 91, 0.45);
+    color: rgba(213, 101, 13, 0.45);
 }
 
 .projects-hero__visual-caption {
@@ -617,8 +617,8 @@
     letter-spacing: 2px;
     margin-bottom: 32px;
     padding: 12px 24px;
-    background: rgba(198, 161, 91, 0.1);
-    border: 1px solid rgba(198, 161, 91, 0.2);
+    background: rgba(213, 101, 13, 0.1);
+    border: 1px solid rgba(213, 101, 13, 0.2);
     border-radius: 50px;
     animation: projectsHeroReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
     position: relative;
@@ -632,7 +632,7 @@
     top: 50%;
     width: clamp(40px, 8vw, 120px);
     height: 1px;
-    background: linear-gradient(90deg, rgba(198, 161, 91, 0.45), transparent);
+    background: linear-gradient(90deg, rgba(213, 101, 13, 0.45), transparent);
     transform: translateY(-50%);
     pointer-events: none;
 }
@@ -678,7 +678,7 @@
     justify-content: flex-start;
     gap: 64px;
     padding-top: 40px;
-    border-top: 1px solid rgba(198, 161, 91, 0.2);
+    border-top: 1px solid rgba(213, 101, 13, 0.2);
 }
 
 .projects-hero__stat {
@@ -972,6 +972,6 @@
         transform: inherit;
         box-shadow:
             0 24px 48px rgba(30, 30, 30, 0.12),
-            0 0 0 1px rgba(198, 161, 91, 0.15);
+            0 0 0 1px rgba(213, 101, 13, 0.15);
     }
 }

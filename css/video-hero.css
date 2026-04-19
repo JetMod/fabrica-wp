@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-accent, #C6A15B);
+    color: var(--color-accent, #d5650d);
     opacity: 0.95;
 }
 
@@ -114,7 +114,7 @@
 .video-hero__tagline-line {
     width: 2px;
     height: 20px;
-    background: linear-gradient(180deg, transparent, var(--color-accent, #C6A15B), transparent);
+    background: linear-gradient(180deg, transparent, var(--color-accent, #d5650d), transparent);
     border-radius: 2px;
     opacity: 0.8;
     flex-shrink: 0;
@@ -131,7 +131,7 @@
 }
 
 .video-hero__tagline-accent {
-    color: var(--color-accent, #C6A15B);
+    color: var(--color-accent, #d5650d);
 }
 
 /* Главный заголовок — серif для премиальности, мягкая тень */
@@ -160,12 +160,12 @@
         rgba(255, 255, 255, 1) 0%,
         rgba(255, 250, 240, 0.95) 35%,
         rgba(220, 195, 140, 0.9) 65%,
-        rgba(198, 161, 91, 1) 100%
+        rgba(213, 101, 13, 1) 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 30px rgba(198, 161, 91, 0.15));
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 30px rgba(213, 101, 13, 0.15));
 }
 
 /* Короткая акцентная линия — градиент в тон тексту */
@@ -179,7 +179,7 @@
     background: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0.6),
-        var(--color-accent, #C6A15B)
+        var(--color-accent, #d5650d)
     );
 }
 
@@ -213,7 +213,7 @@
 }
 
 .video-hero__cta:focus-visible {
-    outline: 2px solid var(--color-accent, #C6A15B);
+    outline: 2px solid var(--color-accent, #d5650d);
     outline-offset: 3px;
 }
 

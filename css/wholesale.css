@@ -16,7 +16,7 @@
     right: -200px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(198, 161, 91, 0.08), transparent);
+    background: radial-gradient(circle, rgba(213, 101, 13, 0.08), transparent);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -182,7 +182,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(198, 161, 91, 0.1), rgba(198, 161, 91, 0.05));
+    background: linear-gradient(135deg, rgba(213, 101, 13, 0.1), rgba(213, 101, 13, 0.05));
     border-radius: 16px;
     color: var(--color-accent);
     flex-shrink: 0;
@@ -193,7 +193,7 @@
     background: linear-gradient(135deg, var(--color-accent), #d4a574);
     color: var(--color-white);
     transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 8px 24px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 8px 24px rgba(213, 101, 13, 0.3);
 }
 
 .wholesale__feature-icon svg {
@@ -240,12 +240,12 @@
     text-decoration: none;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 8px 30px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 8px 30px rgba(213, 101, 13, 0.3);
 }
 
 .wholesale__cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(198, 161, 91, 0.4);
+    box-shadow: 0 12px 40px rgba(213, 101, 13, 0.4);
 }
 
 .wholesale__cta svg {

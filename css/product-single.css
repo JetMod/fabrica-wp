@@ -207,7 +207,7 @@
 
 .product-info__status--order {
     color: var(--color-accent);
-    background: rgba(198, 161, 91, 0.1);
+    background: rgba(213, 101, 13, 0.1);
 }
 
 .product-info__price {
@@ -271,9 +271,9 @@
 }
 
 .product-info__button--primary:hover {
-    background: #B8985A;
+    background: #b56b23;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(198, 161, 91, 0.3);
+    box-shadow: 0 8px 24px rgba(213, 101, 13, 0.3);
 }
 
 .product-info__button--secondary {
@@ -446,7 +446,7 @@
     margin: 0 0 20px;
     padding: 16px 20px;
     border-left: 4px solid var(--color-accent);
-    background: rgba(198, 161, 91, 0.08);
+    background: rgba(213, 101, 13, 0.08);
     font-style: italic;
 }
 

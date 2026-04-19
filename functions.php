@@ -270,11 +270,20 @@ function fabrica_enqueue_assets() {
     );
 
     // ========== СКРИПТЫ (в footer, перед </body>) ==========
+    // Согласие на cookies / отложенная Яндекс.Метрика (до app и main)
+    wp_enqueue_script(
+        'fabrica-cookie-consent',
+        $theme_uri . '/js/cookie-consent.js',
+        array(),
+        $version,
+        true
+    );
+
     // app.js — ES-модуль, основной файл (импортирует mobile-menu, header, hero-slider и т.д.)
     wp_enqueue_script(
         'fabrica-app',
         $theme_uri . '/js/app.js',
-        array(),
+        array('fabrica-cookie-consent'),
         $version,
         true // in_footer
     );
@@ -283,7 +292,7 @@ function fabrica_enqueue_assets() {
     wp_enqueue_script(
         'fabrica-main',
         $theme_uri . '/js/main.js',
-        array(),
+        array('fabrica-cookie-consent'),
         $version,
         true // in_footer
     );
@@ -677,12 +686,12 @@ function fabrica_get_company_info() {
         'ogrnip'       => '315910200053599',
         'okpo'         => '01979784',
         'account'      => '40802810630000036205',
-        'bank'         => 'КРАСНОДАРСКОЕ ОТДЕЛЕНИЕ N8619 ПАО СБЕРБАНК',
+        'bank'         => 'Краснодарское отделение №8619 ПАО «Сбербанк»',
         'bik'          => '040349602',
         'corr_account' => '30101810100000000602',
-        'address'      => 'РОССИЯ, 297573, Крым Респ, Симферопольский р-н, Фонтаны с, СЭреджеповой ул, дом № 1',
+        'address'      => '297573, Республика Крым, Симферопольский район, с. Фонтаны, ул. Серджеповой, д. 1',
         'phone'        => '+7 (978) 751-72-10',
-        'certificate'  => '91 №000035409 от 17.01.2015',
+        'certificate'  => 'Свидетельство о государственной регистрации физического лица в качестве индивидуального предпринимателя, серия 91 № 000035409 от 17.01.2015',
     );
     if (function_exists('get_field')) {
         $acf = get_field('legal_company_info', 'option');

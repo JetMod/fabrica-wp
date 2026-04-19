@@ -10,7 +10,6 @@
 $company = fabrica_get_company_info();
 $privacy = fabrica_get_legal_privacy_policy();
 $agreement = fabrica_get_legal_user_agreement();
-$offer = fabrica_get_legal_public_offer();
 
 $current_slug = '';
 $obj = get_queried_object();
@@ -33,7 +32,8 @@ if (preg_match('/rekvizity/i', $current_slug)) {
 $show_requisites = fabrica_legal_option('legal_show_requisites', 1);
 $show_privacy = fabrica_legal_option('legal_show_privacy', 1);
 $show_agreement = fabrica_legal_option('legal_show_agreement', 1);
-$show_offer = fabrica_legal_option('legal_show_offer', 1);
+$show_offer = fabrica_legal_option('legal_show_offer', 0);
+$offer = $show_offer ? fabrica_get_legal_public_offer() : array();
 
 $base_url = fabrica_get_legal_base_url();
 $req_url = $show_requisites ? fabrica_get_legal_requisites_url() : '';
