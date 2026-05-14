@@ -163,6 +163,155 @@
     display: block;
 }
 
+/* Цветовые варианты — горизонтальные «чипы» */
+.product-color-swatches {
+    margin: 20px 0 22px;
+    padding: 18px 18px 16px;
+    border-radius: 16px;
+    background: linear-gradient(
+        160deg,
+        rgba(30, 30, 30, 0.04) 0%,
+        rgba(30, 30, 30, 0.02) 45%,
+        rgba(255, 255, 255, 0.65) 100%
+    );
+    border: 1px solid rgba(30, 30, 30, 0.07);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+}
+
+.product-color-swatches__label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(30, 30, 30, 0.42);
+    margin: 0 0 14px;
+}
+
+.product-color-swatches__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-color-swatches__btn {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 48px;
+    padding: 5px 18px 5px 5px;
+    margin: 0;
+    border: 1px solid rgba(30, 30, 30, 0.1);
+    border-radius: 999px;
+    background: var(--color-white);
+    cursor: pointer;
+    color: var(--color-dark);
+    font: inherit;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 4px 12px rgba(0, 0, 0, 0.03);
+    transition:
+        border-color 0.22s ease,
+        background-color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-color-swatches__btn {
+        transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+}
+
+.product-color-swatches__btn:hover {
+    border-color: rgba(30, 30, 30, 0.16);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.05),
+        0 10px 28px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+}
+
+.product-color-swatches__btn:active {
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-color-swatches__btn:hover,
+    .product-color-swatches__btn:active {
+        transform: none;
+    }
+}
+
+.product-color-swatches__btn:focus {
+    outline: none;
+}
+
+.product-color-swatches__btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.product-color-swatches__btn.is-active,
+.product-color-swatches__btn[aria-pressed="true"] {
+    border-color: rgba(213, 101, 13, 0.45);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(213, 101, 13, 0.06) 100%
+    );
+    box-shadow:
+        0 0 0 1px rgba(213, 101, 13, 0.25),
+        0 6px 20px rgba(213, 101, 13, 0.12);
+}
+
+.product-color-swatches__swatch {
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow:
+        inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.product-color-swatches__btn.is-active .product-color-swatches__swatch,
+.product-color-swatches__btn[aria-pressed="true"] .product-color-swatches__swatch {
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+        0 0 0 2px var(--color-white),
+        0 0 0 4px var(--color-accent);
+}
+
+.product-color-swatches__swatch-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.product-color-swatches__text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: rgba(30, 30, 30, 0.78);
+    word-break: break-word;
+    max-width: 11em;
+}
+
+.product-color-swatches__btn.is-active .product-color-swatches__text,
+.product-color-swatches__btn[aria-pressed="true"] .product-color-swatches__text {
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
 /* Информация о товаре */
 .product-info {
     display: flex;
@@ -536,6 +685,31 @@
     .product-gallery__thumbs {
         grid-template-columns: repeat(4, 1fr);
         gap: 8px;
+    }
+
+    .product-color-swatches {
+        padding: 14px 14px 12px;
+        margin: 16px 0 18px;
+    }
+
+    .product-color-swatches__list {
+        gap: 8px;
+    }
+
+    .product-color-swatches__btn {
+        min-height: 44px;
+        gap: 10px;
+        padding: 4px 14px 4px 4px;
+    }
+
+    .product-color-swatches__swatch {
+        width: 34px;
+        height: 34px;
+    }
+
+    .product-color-swatches__text {
+        font-size: 13px;
+        max-width: 9em;
     }
 
     .product-gallery__nav {

@@ -25,13 +25,34 @@ if (!$post || $post->post_type !== 'fabrica_product') {
 $title = get_the_title($product_id);
 $link = get_permalink($product_id);
 
-// Изображение: ACF или миниатюра
-$image_arr = get_field('product_image', $product_id);
+// Изображение: при валидных цветовых вариантах — первое фото первого варианта (как на single); иначе ACF / миниатюра.
 $image_url = '';
-if (!empty($image_arr) && is_array($image_arr) && !empty($image_arr['url'])) {
-    $image_url = $image_arr['url'];
-} elseif (has_post_thumbnail($product_id)) {
-    $image_url = get_the_post_thumbnail_url($product_id, 'large');
+$raw_color_variants = get_field('product_color_variants', $product_id);
+if (!empty($raw_color_variants) && is_array($raw_color_variants)) {
+    foreach ($raw_color_variants as $row) {
+        if (!is_array($row)) {
+            continue;
+        }
+        $variant_label   = isset($row['variant_label']) ? trim((string) $row['variant_label']) : '';
+        $variant_gallery = isset($row['variant_gallery']) ? $row['variant_gallery'] : null;
+        if ($variant_label === '' || empty($variant_gallery) || !is_array($variant_gallery)) {
+            continue;
+        }
+        foreach ($variant_gallery as $img) {
+            if (!empty($img['url'])) {
+                $image_url = $img['url'];
+                break 2;
+            }
+        }
+    }
+}
+if ($image_url === '') {
+    $image_arr = get_field('product_image', $product_id);
+    if (!empty($image_arr) && is_array($image_arr) && !empty($image_arr['url'])) {
+        $image_url = $image_arr['url'];
+    } elseif (has_post_thumbnail($product_id)) {
+        $image_url = get_the_post_thumbnail_url($product_id, 'large');
+    }
 }
 if (empty($image_url)) {
     $image_url = get_template_directory_uri() . '/img/16.webp';

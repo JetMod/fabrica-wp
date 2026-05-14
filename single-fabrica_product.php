@@ -18,24 +18,80 @@ $body_class = 'page-product';
         $product_id = get_the_ID();
         $title = get_the_title();
 
-        // Изображения: галерея или главное
-        $gallery = get_field('product_gallery', $product_id);
-        $image_arr = get_field('product_image', $product_id);
-        $images = array();
-        if (!empty($gallery) && is_array($gallery)) {
-            foreach ($gallery as $img) {
-                if (!empty($img['url'])) {
-                    $images[] = $img;
+        // Цветовые варианты (ACF): валидная строка — непустое название и минимум одно фото в variant_gallery.
+        $raw_color_variants = get_field('product_color_variants', $product_id);
+        $color_variants_js    = array();
+
+        if (!empty($raw_color_variants) && is_array($raw_color_variants)) {
+            foreach ($raw_color_variants as $row) {
+                if (!is_array($row)) {
+                    continue;
                 }
+                $variant_label = isset($row['variant_label']) ? trim((string) $row['variant_label']) : '';
+                $variant_gallery = isset($row['variant_gallery']) ? $row['variant_gallery'] : null;
+                $row_images      = array();
+
+                if (!empty($variant_gallery) && is_array($variant_gallery)) {
+                    foreach ($variant_gallery as $img) {
+                        if (!empty($img['url'])) {
+                            $row_images[] = array(
+                                'url' => $img['url'],
+                                'alt' => !empty($img['alt']) ? $img['alt'] : ($title . ' — ' . $variant_label),
+                            );
+                        }
+                    }
+                }
+
+                if ($variant_label === '' || empty($row_images)) {
+                    continue;
+                }
+
+                $swatch_url = '';
+                if (!empty($row['variant_swatch']) && is_array($row['variant_swatch']) && !empty($row['variant_swatch']['url'])) {
+                    $swatch_url = $row['variant_swatch']['url'];
+                }
+                if ($swatch_url === '' && !empty($row_images[0]['url'])) {
+                    $swatch_url = $row_images[0]['url'];
+                }
+
+                $color_variants_js[] = array(
+                    'label'     => $variant_label,
+                    'swatchUrl' => $swatch_url,
+                    'images'    => $row_images,
+                );
             }
         }
-        if (empty($images) && !empty($image_arr) && is_array($image_arr) && !empty($image_arr['url'])) {
-            $images[] = $image_arr;
+
+        $use_color_variants = !empty($color_variants_js);
+
+        // Изображения: при заданных вариантах — только галерея первого варианта; иначе общая галерея / главное / миниатюра.
+        $gallery   = get_field('product_gallery', $product_id);
+        $image_arr = get_field('product_image', $product_id);
+        $images    = array();
+
+        if ($use_color_variants) {
+            foreach ($color_variants_js[0]['images'] as $norm) {
+                $images[] = array(
+                    'url' => $norm['url'],
+                    'alt' => $norm['alt'],
+                );
+            }
+        } else {
+            if (!empty($gallery) && is_array($gallery)) {
+                foreach ($gallery as $img) {
+                    if (!empty($img['url'])) {
+                        $images[] = $img;
+                    }
+                }
+            }
+            if (empty($images) && !empty($image_arr) && is_array($image_arr) && !empty($image_arr['url'])) {
+                $images[] = $image_arr;
+            }
+            if (empty($images) && has_post_thumbnail($product_id)) {
+                $images[] = array('url' => get_the_post_thumbnail_url($product_id, 'large'), 'alt' => $title);
+            }
         }
-        if (empty($images) && has_post_thumbnail($product_id)) {
-            $thumb_id = get_post_thumbnail_id($product_id);
-            $images[] = array('url' => get_the_post_thumbnail_url($product_id, 'large'), 'alt' => $title);
-        }
+
         if (empty($images)) {
             $images[] = array('url' => $t . '/img/16.webp', 'alt' => $title);
         }
@@ -100,7 +156,7 @@ $body_class = 'page-product';
         </nav>
 
         <!-- Основная секция товара -->
-        <section class="product-main" data-product-id="<?php echo (int) $product_id; ?>">
+        <section class="product-main" data-product-id="<?php echo (int) $product_id; ?>"<?php echo $use_color_variants ? ' data-fabrica-color-variants="1"' : ''; ?>>
             <div class="container">
                 <div class="product-main__inner">
                     <!-- Галерея -->
@@ -124,6 +180,27 @@ $body_class = 'page-product';
                             </button>
                             <?php endif; ?>
                         </div>
+                        <?php if ($use_color_variants) : ?>
+                        <div class="product-color-swatches" role="group" aria-labelledby="product-color-swatches-label">
+                            <span id="product-color-swatches-label" class="product-color-swatches__label"><?php esc_html_e('Цвет', 'fabrica'); ?></span>
+                            <div class="product-color-swatches__list">
+                                <?php foreach ($color_variants_js as $vi => $variant) : ?>
+                                <button
+                                    type="button"
+                                    class="product-color-swatches__btn<?php echo 0 === $vi ? ' is-active' : ''; ?>"
+                                    data-variant-index="<?php echo (int) $vi; ?>"
+                                    aria-pressed="<?php echo 0 === $vi ? 'true' : 'false'; ?>"
+                                    aria-label="<?php echo esc_attr($variant['label']); ?>"
+                                >
+                                    <span class="product-color-swatches__swatch" aria-hidden="true">
+                                        <img src="<?php echo esc_url($variant['swatchUrl']); ?>" alt="" class="product-color-swatches__swatch-img" width="40" height="40" loading="lazy" decoding="async">
+                                    </span>
+                                    <span class="product-color-swatches__text"><?php echo esc_html($variant['label']); ?></span>
+                                </button>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <?php endif; ?>
                         <?php if (count($images) > 1) : ?>
                         <div class="product-gallery__thumbs">
                             <?php foreach ($images as $i => $img) : ?>
@@ -133,6 +210,15 @@ $body_class = 'page-product';
                             <?php endforeach; ?>
                         </div>
                         <?php endif; ?>
+                        <?php
+                        if ($use_color_variants) {
+                            $variants_payload = array('variants' => $color_variants_js);
+                            echo '<script type="application/json" id="fabrica-product-color-variants-data">' . wp_json_encode(
+                                $variants_payload,
+                                JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+                            ) . '</script>';
+                        }
+                        ?>
                     </div>
 
                     <!-- Информация о товаре -->

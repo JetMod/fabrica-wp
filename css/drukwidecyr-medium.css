@@ -1,0 +1,23 @@
+@font-face {
+	font-family: 'DrukWideCyr-Medium';
+	src: url('fonts/drukwidecyr-medium.woff2') format('woff2'),
+		url('fonts/drukwidecyr-medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+
+
+	
+}
+
+
+@font-face {
+	font-family: 'DrukWideCyr-Medium';
+	src:
+		url('fonts/drukwidecyr-medium.woff2') format('woff2'),
+		url('fonts/drukwidecyr-medium.ttf') format('truetype'),
+		url('fonts/drukwidecyr-medium.svg#DrukWideCyr-Medium') format('svg');
+	font-weight: 400 700;
+	font-style: normal;
+	font-display: swap;
+}

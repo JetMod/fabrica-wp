@@ -209,6 +209,105 @@
             "mime_types": ""
         },
         {
+            "key": "field_product_color_variants",
+            "label": "Цветовые варианты",
+            "name": "product_color_variants",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Один товар — один URL; здесь задаются разные цвета\/отделки с отдельными фото.\r\n\r\n• Если повторитель пустой — всё как раньше: на странице используются поля «Изображение» и «Галерея».\r\n• Если есть хотя бы одна строка — на странице товара показывается переключатель цветов и галерея из вариантов; общее поле «Галерея» в этом случае на странице не используется (без дублирования).\r\n• Порядок строк = порядок кнопок; первый вариант — цвет по умолчанию.\r\n• В каждой строке в «Галерее варианта» должно быть минимум одно фото, иначе строка не считается полноценным вариантом.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Добавить вариант цвета",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "field_product_variant_label",
+            "sub_fields": [
+                {
+                    "key": "field_product_variant_label",
+                    "label": "Название цвета",
+                    "name": "variant_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Подпись на кнопке переключателя, например: «Бежевый», «Графит».",
+                    "required": true,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_product_color_variants"
+                },
+                {
+                    "key": "field_product_variant_swatch",
+                    "label": "Свотч (превью)",
+                    "name": "variant_swatch",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Маленькое изображение для кнопки: фрагмент ткани, текстура или квадрат однотонного цвета. Если не загрузить — на фронте можно показать только текст из «Название цвета».",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_product_color_variants"
+                },
+                {
+                    "key": "field_product_variant_gallery",
+                    "label": "Галерея варианта",
+                    "name": "variant_gallery",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "Только фото этого цвета\/отделки. Минимум одно изображение в строке.",
+                    "required": true,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min": 1,
+                    "max": 20,
+                    "insert": "append",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_product_color_variants"
+                }
+            ]
+        },
+        {
             "key": "field_product_description",
             "label": "Краткое описание",
             "name": "product_description",
@@ -332,5 +431,5 @@
     "active": true,
     "description": "Поля товара: карточка в каталоге и страница товара",
     "show_in_rest": false,
-    "modified": 1773232500
+    "modified": 1778371200
 }

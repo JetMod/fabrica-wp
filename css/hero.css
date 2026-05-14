@@ -127,13 +127,14 @@
 }
 
 .hero__title {
+    font-family: 'DrukWideCyr-Medium', sans-serif;
     font-size: clamp(28px, 4vw, 48px);
     font-weight: 700;
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
     line-height: 1.2;
     text-transform: uppercase;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.5px; 
     position: relative;
     padding-bottom: 20px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);

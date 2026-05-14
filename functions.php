@@ -258,7 +258,7 @@ add_action('save_post', 'fabrica_legal_page_saved_hook');
 function fabrica_enqueue_assets() {
     $theme_uri = get_template_directory_uri();
     $theme_path = get_template_directory();
-    $version = defined('WP_DEBUG') && WP_DEBUG ? filemtime($theme_path . '/css/main.css') : '1.0';
+    $version = filemtime($theme_path . '/css/main.css');
 
     // ========== СТИЛИ ==========
     // main.css импортирует все остальные стили (style.css, header.css, hero.css и т.д.)

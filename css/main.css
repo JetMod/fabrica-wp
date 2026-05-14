@@ -4,6 +4,7 @@
 
 /* Базовые стили */
 @import url('style.css');
+@import url('drukwidecyr-medium.css');
 
 /* Компоненты */
 @import url('header.css');
