@@ -35,9 +35,9 @@
    Верхний хедер
    =================================== */
 .header__top {
-    background: linear-gradient(135deg, 
+    /* background: linear-gradient(135deg, 
         rgba(30, 30, 30, 0.03) 0%, 
-        rgba(213, 101, 13, 0.05) 100%);
+        rgba(213, 101, 13, 0.05) 100%); */
     padding: 6px 0;
     border-bottom: 1px solid rgba(213, 101, 13, 0.12);
     position: relative;
@@ -335,8 +335,7 @@ a.header__tagline:hover {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, 
-        var(--color-accent) 0%, 
-        #f07030 100%);
+        var(--color-accent));
     border: none;
     border-radius: 8px;
     color: var(--color-white);

@@ -228,11 +228,21 @@ $body_class = 'page-product';
                         <?php endif; ?>
                         <h1 class="product-info__title"><?php echo esc_html($title); ?></h1>
                         <span class="product-info__status <?php echo esc_attr($status_class); ?>"><?php echo esc_html($status_text); ?></span>
-                        <div class="product-info__price">
-                            <span class="product-info__price-current"><?php echo esc_html($price); ?></span>
-                            <?php if ($price_old) : ?>
-                            <span class="product-info__price-old"><?php echo esc_html($price_old); ?></span>
-                            <?php endif; ?>
+                        <div class="product-info__price-block">
+                            <div class="product-info__price">
+                                <span class="product-info__price-current"><?php echo esc_html($price); ?></span>
+                                <?php if ($price_old) : ?>
+                                <span class="product-info__price-old"><?php echo esc_html($price_old); ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <p class="product-info__price-note">
+                                <svg class="product-info__price-note-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <circle cx="7" cy="7" r="6.25" stroke="currentColor" stroke-width="1.25"/>
+                                    <path d="M7 6.25V10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+                                    <circle cx="7" cy="4.25" r="0.75" fill="currentColor"/>
+                                </svg>
+                                Цена может измениться. Уточняйте при заказе.
+                            </p>
                         </div>
                         <?php if (is_string($description) && $description !== '') : ?>
                         <div class="product-info__description product-info__description--wysiwyg">

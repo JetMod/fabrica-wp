@@ -82,6 +82,8 @@ if ($badge === 'final') {
 
 $heart_svg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
 $request_svg = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h16v12H2V4zm0 0l8 5 8-5M2 16V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+$price_hint_svg = '<svg class="product-card__price-hint-icon" width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="7" cy="7" r="6.25" stroke="currentColor" stroke-width="1.25"/><path d="M7 6.25V10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/><circle cx="7" cy="4.25" r="0.75" fill="currentColor"/></svg>';
+$price_hint_label = 'Цена может измениться. Уточняйте при заказе.';
 ?>
 <a href="<?php echo esc_url($link); ?>" class="product-card" data-product-id="<?php echo (int) $product_id; ?>">
     <div class="product-card__image">
@@ -98,9 +100,21 @@ $request_svg = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmln
         <div class="product-card__status <?php echo esc_attr($status_class); ?>"><?php echo esc_html($status_text); ?></div>
         <div class="product-card__footer">
             <div class="product-card__price">
-                <?php if ($price) : ?>
-                <span class="product-card__price-current"><?php echo esc_html($price); ?></span>
-                <?php endif; ?>
+                <div class="product-card__price-row">
+                    <?php if ($price) : ?>
+                    <span class="product-card__price-current"><?php echo esc_html($price); ?></span>
+                    <?php endif; ?>
+                    <span
+                        class="product-card__price-hint"
+                        tabindex="0"
+                        role="img"
+                        aria-label="<?php echo esc_attr($price_hint_label); ?>"
+                        onclick="event.preventDefault(); event.stopPropagation();"
+                    >
+                        <?php echo $price_hint_svg; ?>
+                        <span class="product-card__price-hint-tooltip" role="tooltip"><?php echo esc_html($price_hint_label); ?></span>
+                    </span>
+                </div>
                 <?php if ($price_old) : ?>
                 <span class="product-card__price-old"><?php echo esc_html($price_old); ?></span>
                 <?php endif; ?>

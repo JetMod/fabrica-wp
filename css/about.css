@@ -334,7 +334,7 @@
 }
 
 .about__value-card:hover .about__value-icon {
-    background: linear-gradient(135deg, var(--color-accent), rgba(213, 101, 13, 0.8));
+    background: linear-gradient(135deg, var(--color-accent));
     color: var(--color-white);
     transform: scale(1.15) rotate(5deg);
     box-shadow: 0 8px 25px rgba(213, 101, 13, 0.4);

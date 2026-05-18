@@ -124,8 +124,9 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
                 foreach ($hero_slides as $slide) :
                     $s_title = !empty($slide['slide_title']) ? $slide['slide_title'] : '';
                     $s_subtitle = !empty($slide['slide_subtitle']) ? $slide['slide_subtitle'] : '';
-                    $s_btn_text = !empty($slide['slide_button_text']) ? $slide['slide_button_text'] : 'В КАТАЛОГ';
-                    $s_btn_url = !empty($slide['slide_button_url']) ? $slide['slide_button_url'] : '#';
+                    $s_btn_text = isset($slide['slide_button_text']) ? trim((string) $slide['slide_button_text']) : '';
+                    $s_btn_url = isset($slide['slide_button_url']) ? trim((string) $slide['slide_button_url']) : '';
+                    $s_show_btn = $s_btn_text !== '' && $s_btn_url !== '' && $s_btn_url !== '#';
                     $s_img = $slide['slide_image'] ?? null;
                     $s_img_url = is_array($s_img) ? ($s_img['url'] ?? '') : ($s_img ?: '');
                     if (empty($s_img_url)) $s_img_url = $t . '/img/16.webp';
@@ -138,7 +139,9 @@ if (empty($hero_slides)) $hero_slides = $hero_slides_default;
                             <div class="hero__text-wrapper">
                                 <h1 class="hero__title"><?php echo esc_html($s_title); ?></h1>
                                 <p class="hero__subtitle"><?php echo esc_html($s_subtitle); ?></p>
+                                <?php if ($s_show_btn) : ?>
                                 <a href="<?php echo esc_url($s_btn_url); ?>" class="button button--primary hero__button"><?php echo esc_html($s_btn_text); ?></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="hero__image-side">
