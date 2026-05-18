@@ -157,7 +157,6 @@
 .legal-hero__title {
     font-size: clamp(32px, 5vw, 48px);
     font-weight: 400;
-    font-family: 'Georgia', serif;
     line-height: 1.2;
     margin: 0 0 12px;
     color: #f5f3ef;

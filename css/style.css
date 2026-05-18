@@ -93,12 +93,93 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--spacing-sm);
 }
 
+h1,
+h2 {
+    font-family: var(--font-display-druk);
+}
+
 h1 {
     font-size: clamp(32px, 5vw, 48px);
 }
 
 h2 {
     font-size: clamp(28px, 4vw, 36px);
+}
+
+/* Крупные заголовки секций и hero (не карточки) */
+:is(
+    .video-hero__title,
+    .hero__title,
+    .hero-promo-intro__title,
+    .about__title,
+    .about__values-title,
+    .services__title,
+    .catalog__title,
+    .projects__title,
+    .blog__title,
+    .contact__title,
+    .wholesale__title,
+    .catalog-hero__title,
+    .catalog-categories__title,
+    .category-hero__title,
+    .product-info__title,
+    .product-description__title,
+    .product-related__title,
+    .blog-hero__title,
+    .article-hero__title,
+    .article-related__title,
+    .favorites-empty__title,
+    .search-empty__title,
+    .business-hero__title,
+    .business-hero__title-main,
+    .business-hero__title-accent,
+    .designers-hero__title,
+    .designers-hero__title-line,
+    .office-hero__title,
+    .office-hero__title-line,
+    .delivery-hero__title,
+    .projects-hero__title,
+    .projects-hero__title-line,
+    .services-hero__title,
+    .service-hero__title,
+    .legal-hero__title,
+    .business-benefits__title,
+    .business-process__title,
+    .business-conditions__title,
+    .business-intro__title,
+    .business-faq__title,
+    .business-form__title,
+    .designers-benefits__title,
+    .designers-process__title,
+    .designers-conditions__title,
+    .designers-form__title,
+    .office-about__title,
+    .office-benefits__title,
+    .office-catalog__title,
+    .office-location__title,
+    .delivery-methods__title,
+    .delivery-zones__title,
+    .delivery-assembly__title,
+    .delivery-payment__title,
+    .services-cta__title,
+    .service-about__title,
+    .service-features__title,
+    .service-process__title,
+    .service-portfolio__title,
+    .service-pricing__title,
+    .service-contact__title,
+    .service-faq__title,
+    .project-hero__title,
+    .project-about__title,
+    .project-gallery__title,
+    .project-cta__title,
+    .legal-index__title,
+    .legal-requisites__title,
+    .legal-doc__title,
+    .legal-doc__section-title,
+    .callback-modal__title
+) {
+    font-family: var(--font-display-druk);
 }
 
 h3 {
