@@ -5,6 +5,7 @@
 /* Базовые стили */
 @import url('style.css');
 @import url('drukwidecyr-medium.css');
+@import url('gordita-regular.css');
 
 /* Компоненты */
 @import url('header.css');
