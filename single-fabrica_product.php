@@ -18,7 +18,7 @@ $body_class = 'page-product';
         $product_id = get_the_ID();
         $title = get_the_title();
 
-        // Цветовые варианты (ACF): валидная строка — непустое название и минимум одно фото в variant_gallery.
+        // Цветовые варианты (ACF): валидная строка — непустое название; галерея опциональна.
         $raw_color_variants = get_field('product_color_variants', $product_id);
         $color_variants_js    = array();
 
@@ -28,6 +28,10 @@ $body_class = 'page-product';
                     continue;
                 }
                 $variant_label = isset($row['variant_label']) ? trim((string) $row['variant_label']) : '';
+                if ($variant_label === '') {
+                    continue;
+                }
+
                 $variant_gallery = isset($row['variant_gallery']) ? $row['variant_gallery'] : null;
                 $row_images      = array();
 
@@ -40,10 +44,6 @@ $body_class = 'page-product';
                             );
                         }
                     }
-                }
-
-                if ($variant_label === '' || empty($row_images)) {
-                    continue;
                 }
 
                 $swatch_url = '';
@@ -64,19 +64,21 @@ $body_class = 'page-product';
 
         $use_color_variants = !empty($color_variants_js);
 
-        // Изображения: при заданных вариантах — только галерея первого варианта; иначе общая галерея / главное / миниатюра.
+        // Изображения: галерея первого варианта (если есть); иначе общая галерея / главное / миниатюра.
         $gallery   = get_field('product_gallery', $product_id);
         $image_arr = get_field('product_image', $product_id);
         $images    = array();
 
-        if ($use_color_variants) {
+        if ($use_color_variants && !empty($color_variants_js[0]['images'])) {
             foreach ($color_variants_js[0]['images'] as $norm) {
                 $images[] = array(
                     'url' => $norm['url'],
                     'alt' => $norm['alt'],
                 );
             }
-        } else {
+        }
+
+        if (empty($images)) {
             if (!empty($gallery) && is_array($gallery)) {
                 foreach ($gallery as $img) {
                     if (!empty($img['url'])) {
@@ -193,7 +195,9 @@ $body_class = 'page-product';
                                     aria-label="<?php echo esc_attr($variant['label']); ?>"
                                 >
                                     <span class="product-color-swatches__swatch" aria-hidden="true">
+                                        <?php if (!empty($variant['swatchUrl'])) : ?>
                                         <img src="<?php echo esc_url($variant['swatchUrl']); ?>" alt="" class="product-color-swatches__swatch-img" width="40" height="40" loading="lazy" decoding="async">
+                                        <?php endif; ?>
                                     </span>
                                     <span class="product-color-swatches__text"><?php echo esc_html($variant['label']); ?></span>
                                 </button>

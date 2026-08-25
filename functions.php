@@ -28,6 +28,15 @@ function fabrica_rewrite_flush() {
 add_action('after_switch_theme', 'fabrica_rewrite_flush');
 
 /**
+ * Отключаем автообновления WordPress (ядро, плагины, темы, переводы)
+ */
+add_filter('automatic_updater_disabled', '__return_true');
+add_filter('auto_update_core', '__return_false');
+add_filter('auto_update_plugin', '__return_false');
+add_filter('auto_update_theme', '__return_false');
+add_filter('auto_update_translation', '__return_false');
+
+/**
  * Скрываем стандартный блок «Каталоги» — выбор через ACF в форме товара
  */
 function fabrica_remove_product_catalog_metabox() {
@@ -1198,5 +1207,358 @@ function fabrica_service_schema() {
         ),
     );
     echo '<script type="application/ld+json">' . wp_json_encode($breadcrumb) . '</script>' . "\n";
+}
+
+// =============================================================================
+// Yandex SmartCaptcha — интеграция с Contact Form 7
+// Ключи задаются в wp-config.php: YANDEX_CAPTCHA_CLIENT_KEY, YANDEX_CAPTCHA_SERVER_KEY
+// =============================================================================
+
+add_action('wp_enqueue_scripts', 'fabrica_enqueue_smartcaptcha');
+function fabrica_enqueue_smartcaptcha() {
+    if (function_exists('wpcf7_contact_form')) {
+        wp_enqueue_script(
+            'yandex-smartcaptcha',
+            'https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=fabricaInitSmartCaptcha',
+            [],
+            false,
+            true
+        );
+    }
+}
+
+add_action('wpcf7_init', 'fabrica_register_yandex_captcha_tag');
+function fabrica_register_yandex_captcha_tag() {
+    if (function_exists('wpcf7_add_form_tag')) {
+        wpcf7_add_form_tag('yandex_captcha', 'fabrica_render_yandex_captcha', ['name-attr' => false]);
+    }
+}
+
+function fabrica_render_yandex_captcha($tag) {
+    $client_key = defined('YANDEX_CAPTCHA_CLIENT_KEY') ? YANDEX_CAPTCHA_CLIENT_KEY : '';
+    $field_name = !empty($tag->name) ? $tag->name : 'smart-token';
+    $uid        = 'ysc-' . uniqid();
+    $input_id   = 'smart-token-' . $uid;
+
+    ob_start(); ?>
+<div class="fabrica-smartcaptcha" data-sitekey="<?php echo esc_attr($client_key); ?>">
+    <button type="button" class="fabrica-smartcaptcha__check" aria-pressed="false" aria-label="Подтвердите, что вы не робот">
+        <span class="fabrica-smartcaptcha__box" aria-hidden="true">
+            <svg class="fabrica-smartcaptcha__tick" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+        </span>
+        <span class="fabrica-smartcaptcha__label">Я не робот</span>
+        <span class="fabrica-smartcaptcha__brand">SmartCaptcha</span>
+    </button>
+    <div class="fabrica-smartcaptcha__host" id="<?php echo esc_attr($uid); ?>"></div>
+    <input type="hidden" name="<?php echo esc_attr($field_name); ?>" id="<?php echo esc_attr($input_id); ?>" value="">
+</div>
+    <?php
+    return ob_get_clean();
+}
+
+function fabrica_form_has_captcha($contact_form) {
+    if (!$contact_form || !method_exists($contact_form, 'scan_form_tags')) {
+        return false;
+    }
+
+    $tags = $contact_form->scan_form_tags(['type' => 'yandex_captcha']);
+    return !empty($tags);
+}
+
+function fabrica_get_smart_token() {
+    if (isset($_POST['smart-token'])) {
+        return sanitize_text_field(wp_unslash($_POST['smart-token']));
+    }
+
+    if (class_exists('WPCF7_Submission')) {
+        $submission = WPCF7_Submission::get_instance();
+        if ($submission) {
+            $posted = $submission->get_posted_data();
+            if (!empty($posted['smart-token'])) {
+                return sanitize_text_field($posted['smart-token']);
+            }
+        }
+    }
+
+    return '';
+}
+
+add_filter('wpcf7_posted_data', 'fabrica_smartcaptcha_posted_data');
+function fabrica_smartcaptcha_posted_data($posted_data) {
+    if (isset($_POST['smart-token'])) {
+        $posted_data['smart-token'] = sanitize_text_field(wp_unslash($_POST['smart-token']));
+    }
+
+    return $posted_data;
+}
+
+add_filter('wpcf7_validate_yandex_captcha', 'fabrica_validate_yandex_captcha', 20, 2);
+function fabrica_validate_yandex_captcha($result, $tag) {
+    if (!fabrica_smartcaptcha_verify()) {
+        $result->invalidate($tag, 'Пожалуйста, подтвердите, что вы не робот.');
+    }
+
+    return $result;
+}
+
+add_filter('wpcf7_spam', 'fabrica_smartcaptcha_spam_check', 9, 2);
+function fabrica_smartcaptcha_spam_check($spam, $submission) {
+    if ($spam) {
+        return $spam;
+    }
+
+    $contact_form = $submission instanceof WPCF7_Submission
+        ? $submission->get_contact_form()
+        : null;
+
+    if (!$contact_form || !fabrica_form_has_captcha($contact_form)) {
+        return $spam;
+    }
+
+    if (fabrica_smartcaptcha_verify()) {
+        return $spam;
+    }
+
+    if ($submission instanceof WPCF7_Submission) {
+        $submission->add_spam_log([
+            'agent'  => 'yandex_smartcaptcha',
+            'reason' => 'Captcha token is missing or invalid.',
+        ]);
+    }
+
+    return true;
+}
+
+add_action('wpcf7_before_send_mail', 'fabrica_smartcaptcha_before_send_mail', 9, 3);
+function fabrica_smartcaptcha_before_send_mail($contact_form, &$abort, $submission) {
+    if (!$contact_form || !fabrica_form_has_captcha($contact_form)) {
+        return;
+    }
+
+    if (fabrica_smartcaptcha_verify()) {
+        return;
+    }
+
+    $abort = true;
+
+    if ($submission instanceof WPCF7_Submission) {
+        $submission->set_status('validation_failed');
+        $submission->set_response('Пожалуйста, подтвердите, что вы не робот.');
+    }
+}
+
+add_filter('wpcf7_feedback_response', 'fabrica_smartcaptcha_feedback_response', 10, 2);
+function fabrica_smartcaptcha_feedback_response($response, $result) {
+    if (($result['status'] ?? '') !== 'spam') {
+        return $response;
+    }
+
+    if (class_exists('WPCF7_Submission')) {
+        $submission = WPCF7_Submission::get_instance();
+        if ($submission) {
+            foreach ($submission->get_spam_log() as $log) {
+                if (($log['agent'] ?? '') === 'yandex_smartcaptcha') {
+                    $response['message'] = 'Пожалуйста, подтвердите, что вы не робот.';
+                    break;
+                }
+            }
+        }
+    }
+
+    return $response;
+}
+
+add_action('wp_footer', 'fabrica_smartcaptcha_cf7_script', 5);
+function fabrica_smartcaptcha_cf7_script() {
+    if (!function_exists('wpcf7_contact_form')) {
+        return;
+    }
+    ?>
+<script>
+(function () {
+    function resetWidget(root) {
+        if (!root) {
+            return;
+        }
+
+        var input = root.querySelector('input[name="smart-token"]');
+        var btn = root.querySelector('.fabrica-smartcaptcha__check');
+
+        if (input) {
+            input.value = '';
+        }
+
+        root.classList.remove('is-verified', 'is-loading', 'is-error', 'is-challenge');
+
+        if (btn) {
+            btn.setAttribute('aria-pressed', 'false');
+        }
+
+        if (window.smartCaptcha && root._yscWidgetId != null) {
+            window.smartCaptcha.reset(root._yscWidgetId);
+        }
+    }
+
+    function bindWidget(root) {
+        if (!window.smartCaptcha || typeof window.smartCaptcha.render !== 'function' || root._yscReady) {
+            return;
+        }
+
+        var host = root.querySelector('.fabrica-smartcaptcha__host');
+        var input = root.querySelector('input[name="smart-token"]');
+        var btn = root.querySelector('.fabrica-smartcaptcha__check');
+        var sitekey = root.getAttribute('data-sitekey');
+
+        if (!host || !input || !btn || !sitekey) {
+            return;
+        }
+
+        var widgetId = window.smartCaptcha.render(host, {
+            sitekey: sitekey,
+            hl: 'ru',
+            invisible: true,
+            hideShield: true,
+            callback: function (token) {
+                input.value = token || '';
+                root.classList.remove('is-loading', 'is-error', 'is-challenge');
+                root.classList.toggle('is-verified', !!token);
+                btn.setAttribute('aria-pressed', token ? 'true' : 'false');
+            }
+        });
+
+        root._yscWidgetId = widgetId;
+        root._yscReady = true;
+
+        if (typeof window.smartCaptcha.subscribe === 'function') {
+            window.smartCaptcha.subscribe(widgetId, 'challenge-visible', function () {
+                root.classList.add('is-challenge');
+            });
+            window.smartCaptcha.subscribe(widgetId, 'challenge-hidden', function () {
+                root.classList.remove('is-challenge');
+                if (!input.value) {
+                    root.classList.remove('is-loading');
+                }
+            });
+            window.smartCaptcha.subscribe(widgetId, 'network-error', function () {
+                root.classList.remove('is-loading', 'is-verified');
+                root.classList.add('is-error');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            window.smartCaptcha.subscribe(widgetId, 'token-expired', function () {
+                input.value = '';
+                root.classList.remove('is-verified', 'is-loading', 'is-challenge');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+        }
+
+        btn.addEventListener('click', function () {
+            if (root.classList.contains('is-verified') || root.classList.contains('is-loading')) {
+                return;
+            }
+
+            if (!window.smartCaptcha || typeof window.smartCaptcha.execute !== 'function') {
+                root.classList.add('is-error');
+                return;
+            }
+
+            root.classList.remove('is-error');
+            root.classList.add('is-loading');
+            window.smartCaptcha.execute(widgetId);
+
+            window.setTimeout(function () {
+                if (!input.value) {
+                    root.classList.remove('is-loading');
+                }
+            }, 12000);
+        });
+    }
+
+    function initWidgets() {
+        document.querySelectorAll('.fabrica-smartcaptcha').forEach(bindWidget);
+    }
+
+    window.fabricaInitSmartCaptcha = initWidgets;
+
+    function whenReady(cb) {
+        if (window.smartCaptcha) {
+            cb();
+            return;
+        }
+
+        var attempts = 0;
+        var timer = setInterval(function () {
+            attempts += 1;
+            if (window.smartCaptcha) {
+                clearInterval(timer);
+                cb();
+            } else if (attempts > 50) {
+                clearInterval(timer);
+            }
+        }, 100);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+            whenReady(initWidgets);
+        });
+    } else {
+        whenReady(initWidgets);
+    }
+
+    document.addEventListener('wpcf7invalid', function (event) {
+        resetWidget(event.target.querySelector('.fabrica-smartcaptcha'));
+
+        var firstError = event.target.querySelector('.wpcf7-not-valid-tip, .wpcf7-response-output');
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+
+    document.addEventListener('wpcf7mailsent', function (event) {
+        resetWidget(event.target.querySelector('.fabrica-smartcaptcha'));
+    });
+
+    document.addEventListener('wpcf7spam', function (event) {
+        resetWidget(event.target.querySelector('.fabrica-smartcaptcha'));
+    });
+})();
+</script>
+    <?php
+}
+
+function fabrica_smartcaptcha_verify() {
+    static $verified = null;
+
+    if ($verified !== null) {
+        return $verified;
+    }
+
+    $token  = fabrica_get_smart_token();
+    $secret = defined('YANDEX_CAPTCHA_SERVER_KEY') ? YANDEX_CAPTCHA_SERVER_KEY : '';
+    $ip     = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field($_SERVER['REMOTE_ADDR']) : '';
+
+    if (empty($token) || empty($secret)) {
+        $verified = false;
+        return $verified;
+    }
+
+    $response = wp_remote_post('https://smartcaptcha.yandexcloud.net/validate', [
+        'timeout' => 5,
+        'body'    => [
+            'secret' => $secret,
+            'token'  => $token,
+            'ip'     => $ip,
+        ],
+    ]);
+
+    if (is_wp_error($response)) {
+        $verified = false;
+        return $verified;
+    }
+
+    $body = json_decode(wp_remote_retrieve_body($response), true);
+    $verified = isset($body['status']) && $body['status'] === 'ok';
+
+    return $verified;
 }
 add_action('wp_head', 'fabrica_service_schema', 5);

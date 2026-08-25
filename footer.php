@@ -379,6 +379,32 @@ $home_url = home_url('/');
         </div>
     </div>
 
+    <!-- Попап: выходной день 27 мая — Курбан-Байрам -->
+    <!-- <div class="holiday-popup" id="holidayPopup" role="dialog" aria-modal="true" aria-labelledby="holidayPopupTitle" aria-hidden="true">
+        <div class="holiday-popup__overlay"></div>
+        <div class="holiday-popup__box">
+            <button class="holiday-popup__x" id="holidayPopupX" aria-label="Закрыть">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="holiday-popup__icon">🌙</div>
+            <div class="holiday-popup__badge">
+                <span class="holiday-popup__badge-dot"></span>
+                Выходной день
+            </div>
+            <h2 class="holiday-popup__title" id="holidayPopupTitle">Сегодня мы не работаем</h2>
+            <span class="holiday-popup__date">27 мая 2025</span>
+            <div class="holiday-popup__divider"></div>
+            <p class="holiday-popup__text">
+                В связи с праздником <strong>Курбан-Байрам</strong> наш магазин и шоурум сегодня закрыты.<br>
+                Мы вернёмся к работе завтра в привычном режиме.
+            </p>
+            <p class="holiday-popup__note">Вы можете оставить заявку, и мы свяжемся с вами в первый рабочий день.</p>
+            <button class="holiday-popup__close" id="holidayPopupClose">Понятно, спасибо</button>
+        </div>
+    </div> -->
+
     <?php wp_footer(); ?>
 </body>
 </html>

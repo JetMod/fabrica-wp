@@ -219,13 +219,15 @@
             }
 
             var variant = data.variants[vi];
+            updateSwatchStates(galleryRoot, vi);
+
+            // Вариант без своей галереи: только переключаем свотч, медиа не меняем.
             if (!variant.images || !variant.images.length) {
                 return;
             }
 
             removeListeners();
             replaceGalleryMedia(galleryRoot, variant.images);
-            updateSwatchStates(galleryRoot, vi);
             currentSlide = 0;
             showSlide(0);
             addListeners();
